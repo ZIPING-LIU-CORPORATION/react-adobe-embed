@@ -6,6 +6,8 @@ In case you want to use it with React with a bit more Typescript This Wrapper al
 
 ### Quick Guide
 
+`npm install react-adobe-embed`
+
 Add the library stuff from Adobe API in the index.html's head: public/index.html
 ```html
 <head>
@@ -42,4 +44,4 @@ return(
 
 ### Do you need to see a demo? 
 
-Okay, you can see a demo [here](https://aboutamazon.me/live)
+Okay, you can see a demo [here](https://aboutamazon.me/live#react-adobe-embed)
