@@ -82,7 +82,7 @@ export const AdobeReactView = (
       }
     }
 
-    if ((global as any).adobeDCView) {
+    if ((global as any).AdobeDC) {
       if (adobeMainReady === false) {
         setAdobeMainReady(true);
       }
@@ -123,7 +123,7 @@ const ReactViewAdobe = (
       setIsReady(true);
     }
 
-    if ((global as any).AdobeDCView) {
+    if ((global as any).AdobeDC) {
       if (adobeMainReady === false) {
         setAdobeMainReady(true);
       }

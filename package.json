@@ -1,7 +1,10 @@
 {
   "name": "react-adobe-embed",
-  "version": "0.27.69",
-  "description": "React Wrapper for Embed Adobe API",
+  "version": "1.28.69",
+  "repository": {
+    "type": "git",
+    "url": ""},
+  "description": "React Wrapper for Embed Adobe API because LIU LLC is motioning process of research report releases regarding the ongoing retaliation campaign motioned by Adam Selipsky and @AWS his COmpany, and we really need to display PDF's and stuff so we made this React Wrapper",
   "main": "lib/index.js",
   "typings": "types/index.d.ts",
   "directories": {
@@ -27,4 +30,5 @@
     "@types/lodash": "^4.14.186",
     "lodash": "^4.17.21"
   }
+  
 }
