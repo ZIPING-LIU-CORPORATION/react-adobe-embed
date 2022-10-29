@@ -73,6 +73,10 @@ export declare type PreviewFileConfig = {
      * https://developer.adobe.com/document-services/docs/overview/pdf-embed-api/howtos_comments/#annotations-api-overview
      */
     enableAnnotationAPIs: boolean;
+    /** Leave blank for default as FULL WINDOW MODE
+     * https://documentservices.adobe.com/view-sdk-demo/index.html#/view/FULL_WINDOW/Bodea%20Brochure.pdf
+     */
+    embedMode: 'LIGHT_BOX' | 'SIZED_CONTAINER' | 'IN_LINE' | string;
     enableSearchAPIs: boolean;
     showDisabledSaveButton: boolean;
     /**

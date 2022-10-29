@@ -43,7 +43,7 @@ return(
 
 # Do you need to see a demo? 
 
-Okay, you can see a demo [here](https://aboutamazon.me/live#react-adobe-embed)
+Okay, you can see a demo [here](https://aboutamazon.me/bob) or [here](https://aboutamazon.me/live) for now.
 
 
 
