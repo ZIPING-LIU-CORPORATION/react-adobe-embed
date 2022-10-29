@@ -1,8 +1,7 @@
+# react-adobe-embed
+## [ADOBE PDF EMBED API](https://developer.adobe.com/document-services/apis/pdf-embed/) is a Great Tool for Displaying PDF's with rich features,
 
-## ADOBE PDF EMBED API is a Great Tool for Displaying PDF's with rich features - I really enjoy using Adobe Acrobat DC Pro ever since having the chance to use it for the first time when I interned at a law firm.
-
-In case you want to use it with React with a bit more Typescript This Wrapper allows Adobe PDF Embed to work great with React 18 and Typescript
-
+Ziping Liu really enjoys using Adobe Acrobat DC Pro ever since having the chance to use it for the first time when I interned at a law firm. In case you want to use it with React with a bit more Typescript This Wrapper allows Adobe PDF Embed to work great with React 18 and Typescript
 
 ### Quick Guide
 
@@ -38,10 +37,30 @@ return(
                         } /> )}
 ```
 
-### Why was this made?
+# Why was this made?
 
  We needed a utility for displaying PDF's but wanted to have more typescript and React involved with the displaying. This is part of LIU LLC's intermission phase ongoing in preliminary motions for setting up required framing for phase 4. These motions and phases encompass research and analysis as well as press reporting of the ongoing retaliation campaign currently waged against an employee at Amazon that started April of 2022. To learn more, see [here](https://andyjassy.cn/amazonblackmail)
 
-### Do you need to see a demo? 
+# Do you need to see a demo? 
 
 Okay, you can see a demo [here](https://aboutamazon.me/live#react-adobe-embed)
+
+
+
+# FAQS
+### Have something to say about this wrapper?
+ - [Discuss Issues with it Here](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/discussions/1)
+### Is this Wrapper Adobe Embed Thing being Updated? It's pretty barebones and doesn't do anything 
+ - Yes, since this wrapper is actrively used in LIU LLC Sites, it is being updated and expect more updates and stuff on it
+
+### Why are you using React 18? Why are you using Typescript 4.8? Isn't that overkill?
+ - In some cases it is overkill, so hence you may utilize [Adobe Embed API](https://developer.adobe.com/document-services/apis/pdf-embed/) that is the service, hence why this package is called a wrapper and not ADOBE API Library
+
+### This wrapper is overkill as a package on npm, a four year old could just write this out inline on any react front-end website
+ - We agree, this is for those who are younger than four years old and not yet able to inline out components as vanilla react-js
+
+### Where is npm?
+ - You may view [here](https://www.npmjs.com/package/react-adobe-embed) for its npm package.
+
+### Are you or is this wrapper thing affialated with Adobe Developer or Adobe?
+ - Adobe, the Adobe logo, Acrobat, the Adobe PDF logo, Adobe Premiere, Creative Cloud, InDesign, and Photoshop are either registered trademarks or trademarks of Adobe in the United States and/or other countries. Ziping LIu Corporation  is trademarked in the United States and LIU LLC is incoporated in the State of Texas. As of this time we have no further public comments on the matter to put on record or address inquiries related wherein.

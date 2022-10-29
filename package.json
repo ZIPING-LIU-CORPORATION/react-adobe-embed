@@ -1,34 +1,58 @@
 {
   "name": "react-adobe-embed",
-  "version": "1.28.69",
+  "version": "1.29.74",
+  "homepage": "https://aboutamazon.me/react-adobe-embed",
+
   "repository": {
     "type": "git",
-    "url": "https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed"},
+    "url": "https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed.git"},
   "description": "React Wrapper for Embed Adobe API because LIU LLC is motioning process of research report releases regarding the ongoing retaliation campaign motioned by Adam Selipsky and @AWS his COmpany, and we really need to display PDF's and stuff so we made this React Wrapper",
+  "keywords": [
+    "promise",
+    "async",
+    "adobe",
+    "react",
+    "react 18",
+    "react 17",
+    "react 16",
+    "typescript 4.8",
+    "adobe embed api",
+    "adobe pdf",
+    "adobe embed pdf api",
+    "amazon legal",
+    "amazon web services",
+    "amazon where are my wages",
+    "amazon where are my wages lawsuit pending",
+    "ziping liu corporation"
+  ],
   "main": "lib/index.js",
   "typings": "types/index.d.ts",
-  "directories": {
-    "lib": "lib",
-    "test": "test",
-    "types": "types",
-    "src": "src"
-  },
+  "types": "types/index.d.ts",
+  "files": [
+    "lib",
+    "types",
+    "README.md",
+    ".gitignore"
+  ],
+
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx tsc"
   },
-  "author": "ZIPINGLIUCORPORATION",
+  
+  "author": "Ziping Liu <dev@a2z.money> (https://a2z.money)",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^18.11.7",
     "@types/react": "^18.0.23",
     "@types/react-dom": "^18.0.7",
     "@types/typescript": "^2.0.0",
-    "typescript": "^4.8.4"
+    "typescript": "^4.8.4 || >=2.8.0"
   },
-  "dependencies": {
-    "@types/lodash": "^4.14.186",
-    "lodash": "^4.17.21"
+
+  "optionalDependencies": {
+    "npm": ">=6.0.0",
+    "react": "^15.0.0-0 || ^16.0.0-0 || ^17.0.0-0 || ^18.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0-0 || ^19.0.0 || ^20.0.0",
+    "react-dom": "^0.14.0 || ^15.0.0-0 || ^16.0.0-0 || ^17.0.0-0 || ^18.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0-0 || ^19.0.0 || ^20.0.0"
   }
-  
 }
