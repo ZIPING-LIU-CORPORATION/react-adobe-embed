@@ -1,3 +1,5 @@
+[![wakatime](https://wakatime.com/badge/github/ZIPING-LIU-CORPORATION/react-adobe-embed.svg)](https://wakatime.com/badge/github/ZIPING-LIU-CORPORATION/react-adobe-embed)
+
 # react-adobe-embed
 ## [ADOBE PDF EMBED API](https://developer.adobe.com/document-services/apis/pdf-embed/) is a Great Tool for Displaying PDF's with rich features,
 
