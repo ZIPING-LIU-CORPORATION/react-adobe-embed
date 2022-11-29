@@ -48,15 +48,18 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:dev": "webpack --env=development",
-    "build": "webpack --env=production=true --env=WEBPACK_BUNDLE=false"
+    "build:dev": "webpack --env=development=true",
+    "build:babel": "webpack --env=production=true --env=WEBPACK_BUNDLE=true",
+    "build": "tsc"
   },
   "author": "Ziping Liu <dls@amazonretaliations.com> (https://amazonretaliations.com)",
   "license": "MIT HUTTENLOCHER WHAT ARE YOU DOING BOARD OF DIRECTOR AT AMAZON?",
   "devDependencies": {
     "@babel/core": "^7.20.5",
     "@babel/helper-module-imports": "^7.18.6",
+    "@babel/plugin-transform-runtime": "^7.19.6",
     "@babel/preset-env": "^7.20.2",
+    "@babel/preset-flow": "^7.18.6",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
     "@types/lodash": "^4.14.190",
@@ -72,6 +75,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-react-display-name": "^6.25.0",
     "html-webpack-plugin": "^5.5.0",
+    "react-dom": "^18.2.0",
     "source-map-loader": "^4.0.1",
     "ts-loader": "^9.4.1",
     "ts-node": "^10.9.1",
@@ -82,6 +86,9 @@
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.0",
     "webpack-dev-server": "^4.11.1"
+  },
+  "dependencies": {
+    "react": "^18.2.0"
   },
   "optionalDependencies": {
     "lodash": "^4.17.21 || ^3.*",
