@@ -5,6 +5,9 @@
 
 Ziping Liu really enjoys using Adobe Acrobat DC Pro ever since having the chance to use it for the first time when I interned at a law firm. In case you want to use it with React with a bit more Typescript This Wrapper allows Adobe PDF Embed to work great with React 18 and Typescript
 
+## Try it out yourself in the sandbox! 
+- Run the code and see it compile at [codesandbox.io](https://codesandbox.io/s/8nw0gh)
+
 ### Quick Guide
 
 `npm install react-adobe-embed`
@@ -22,29 +25,31 @@ Ziping Liu really enjoys using Adobe Acrobat DC Pro ever since having the chance
 
       const App = () => {
       return(
-          <ReactViewAdobe previewConfig={{
-                                  showAnnotationTools: false,
-                                  showLeftHandPanel: false,
-                                  showDownloadPDF: false,
-                              }} config={
-                                {
-                                  /**
-                                   * Feel free to use this api key, it only works for http://localhost 
-                                   so I don't care if you use it. It won't work for http://localhost:3000, 
-                                   it needs to be http://localhost:80 or https://   localhost:443.
-                                   */
-                                  clientId: 'c514163c351b4f2082ef01e530840e0b', 
-                                  divId: 'pdf-div',
-                                  /**
-                                   * You can use this URL too, it only will work for localhost as well.
-                                   */
-                                  url: 'https://storage.googleapis.com/awslegal/notarized/23andMe%20Ancestry%20Book%20-%20Part%201%20of%202_encrypted_.pdf', 
-                                  fileMeta: {
-                                    fileName: '23andMe%20Ancestry%20Book%20-%20Part%201%20of%202_encrypted_.pdf',
-                                    title: "23andMe's Legal Notice"
-                                  }
-                                }
-                              } /> )}
+          <ReactViewAdobe 
+          
+          previewConfig={{
+              showAnnotationTools: false,
+              showLeftHandPanel: false,
+              showDownloadPDF: false,
+          }} config={
+            {
+              /**
+               * Feel free to use this api key, it only works for http://localhost 
+                so I don't care if you use it. It won't work for http://localhost:3000, 
+                it needs to be http://localhost:80 or https://localhost:443.
+                */
+              clientId: 'c514163c351b4f2082ef01e530840e0b', 
+              divId: 'pdf-div',
+              /**
+               * You can use this URL too, it only will work for localhost as well.
+                */
+              url: 'https://storage.googleapis.com/awslegal/notarized/23andMe%20Ancestry%20Book%20-%20Part%201%20of%202_encrypted_.pdf', 
+              fileMeta: {
+                fileName: '23andMe%20Ancestry%20Book%20-%20Part%201%20of%202_encrypted_.pdf',
+                title: "23andMe's Legal Notice"
+              }
+            }
+          } /> )}
       ```
 Note on adobe sdk `<script>` tag:
  - In the past it was this: `<script src='https://documentcloud.adobe.com/view-sdk/main.js'></script>` as instructed by their office docs.

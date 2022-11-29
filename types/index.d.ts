@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component } from "react";
 export type PreviewFileConfig = {
     showZoomControl: boolean;
     showAnnotationTools: boolean;
@@ -88,26 +88,34 @@ export declare const DefaultConfigs: {
         id: string;
     };
 };
-export declare class AdobeReactView extends Component<AdobeReactViewProps & Partial<HTMLDivElement>, Required<AdobeReactViewProps> & {
-    adobeDCView: null | {
-        previewFile: (content: {
-            content: Required<Config["content"]>;
-            metaData: Config["fileMeta"];
-        }, previewFileConfig: Partial<PreviewFileConfig>) => void;
-        [key: string]: Function;
-    };
-} & Partial<HTMLDivElement>> {
-    checkForViewJsLoaded(): boolean;
-    checkForDeprecatedMainJsLoaded(): boolean;
+export declare class AdobeReactView extends Component<Partial<EmbedState> & {
+    previewConfig: Partial<PreviewFileConfig>;
+} & Partial<Omit<HTMLDivElement, 'style'>> & {
+    style?: Partial<CSSStyleDeclaration>;
+}, Partial<EmbedState> & {
+    previewConfig: Partial<PreviewFileConfig>;
+} & Partial<Omit<HTMLDivElement, 'style'>> & {
+    style?: Partial<CSSStyleDeclaration>;
+} & AdobeReactViewProps & {
+    adobeMainReady: boolean | null;
+}> {
+    private dcView;
+    static checkForViewJsLoaded(): boolean;
+    static checkForDeprecatedMainJsLoaded(): boolean;
     constructor(props: Partial<EmbedState> & {
         previewConfig: Partial<PreviewFileConfig>;
-    } & Partial<HTMLDivElement>);
-    previewFile: (divId: string, viewerConfig: Partial<PreviewFileConfig>, url: string) => void | null;
-    onLoaded: () => void;
+    } & Partial<Omit<HTMLDivElement, 'style'>> & {
+        style?: Partial<CSSStyleDeclaration>;
+    });
+    previewFile(divId: string, viewerConfig: Partial<PreviewFileConfig>, url: string): any;
+    onLoaded(): void;
     onLoad(): void;
+    componentDidMount(): void;
     render(): JSX.Element;
 }
 declare const ReactViewAdobe: (props: Partial<EmbedState> & {
     previewConfig: Partial<PreviewFileConfig>;
-} & Partial<HTMLDivElement>) => JSX.Element;
+} & Partial<Omit<HTMLDivElement, 'style'>> & {
+    style?: Partial<CSSStyleDeclaration>;
+}) => JSX.Element;
 export default ReactViewAdobe;

@@ -1,7 +1,6 @@
+import React, { Component, useEffect, useMemo, useRef, useState } from "react";
+import ReactDOM from "react-dom";
 
-import React, {Component, useEffect, useMemo, useRef, useState} from 'react';
-import ReactDOM from 'react-dom';
-import lodash from 'lodash';
 
 export type PreviewFileConfig = {
   showZoomControl: boolean;
@@ -22,12 +21,12 @@ export type PreviewFileConfig = {
         Users can use the swipe gesture to navigate to other pages which will be displayed one at a time.
      */
   defaultViewMode:
-  | "FIT_WIDTH"
-  | "FIT_PAGE"
-  | "TWO_COLUMN"
-  | "TWO_COLUMN_FIT_PAGE"
-  | "CONTINUOUS"
-  | "SINGLE_PAGE";
+    | "FIT_WIDTH"
+    | "FIT_PAGE"
+    | "TWO_COLUMN"
+    | "TWO_COLUMN_FIT_PAGE"
+    | "CONTINUOUS"
+    | "SINGLE_PAGE";
   enableFormFilling: boolean;
   showDownloadPDF: boolean;
   showPrintPDF: boolean;
@@ -62,17 +61,13 @@ export type PreviewFileConfig = {
    * PDF should take focus when it is rendered. For more details, see the section Focus on PDF rendering.
    */
   focusOnRendering: any;
-}
-
-
-
+};
 
 export type EmbedState = {
   adobeMainReady: boolean;
   isReady: boolean;
   config: Config;
 };
-
 
 export type AdobeReactViewProps = Partial<EmbedState> & {
   previewConfig: Partial<PreviewFileConfig>;
@@ -107,50 +102,34 @@ export const DefaultConfigs = {
 };
 
 export class AdobeReactView extends Component<
-  AdobeReactViewProps & Partial<HTMLDivElement>,
-  Required<AdobeReactViewProps> & {
-    adobeDCView: null | {
-      previewFile: (
-        content: {
-          content: Required<Config["content"]>;
-          metaData: Config["fileMeta"];
-        },
-        previewFileConfig: Partial<PreviewFileConfig>
-      ) => void;
-      [key: string]: Function;
-    };
-  } & Partial<HTMLDivElement>
+Partial<EmbedState> & {
+    previewConfig: Partial<PreviewFileConfig>;
+  } & Partial<Omit<HTMLDivElement, 'style'>> & {style?: Partial<CSSStyleDeclaration> },  Partial<EmbedState> & {
+    previewConfig: Partial<PreviewFileConfig>  ;
+  } & Partial<Omit<HTMLDivElement, 'style'>> & {style?: Partial<CSSStyleDeclaration> } & AdobeReactViewProps & {
+    adobeMainReady: boolean | null;
+  }
 > {
-   checkForViewJsLoaded() {
-    return (
-      (
-      window as any
-      )["adobe_dc_view_sdk"] != undefined &&
-      typeof (window as any)["adobe_dc_view_sdk"] === "function"
-    );
+  private dcView: any;
+  static checkForViewJsLoaded() {
+    return (window as any)["adobe_dc_view_sdk"] != undefined;
   }
 
-   checkForDeprecatedMainJsLoaded() {
-    return (
-      (
-        window as any) ["AdobeDC"] != undefined &&
-       (window as any)["AdobeDC"] === "function"
-    );
+  static checkForDeprecatedMainJsLoaded() {
+    return (window as any)["AdobeDC"] != undefined;
   }
 
   constructor(
     props: Partial<EmbedState> & {
       previewConfig: Partial<PreviewFileConfig>;
-    } & Partial<HTMLDivElement>
-  ) {
+    } & Partial<Omit<HTMLDivElement, 'style'>> & {style?: Partial<CSSStyleDeclaration> }
+   ) {
     super(props);
 
-
     this.state = {
-      adobeMainReady: props.adobeMainReady || false,
+      adobeMainReady: false,
       previewConfig: props.previewConfig || DefaultConfigs.staticDefaultConfig,
       isReady: props.isReady || false,
-      adobeDCView: null,
       config: {
         divId: props.config?.divId || DefaultConfigs.staticDivId,
         clientId: props.config?.clientId || "",
@@ -164,102 +143,92 @@ export class AdobeReactView extends Component<
       },
     };
 
-    this.checkForViewJsLoaded = this.checkForViewJsLoaded.bind(this);
-    this.checkForDeprecatedMainJsLoaded = this.checkForDeprecatedMainJsLoaded.bind(this);
-      this.render = this.render.bind(this);
-    
+      this.onLoad = this.onLoad.bind(this);
+    this.onLoaded = this.onLoaded.bind(this);
+    this.render = this.render.bind(this);
 
+    this.previewFile = this.previewFile.bind(this);
   }
 
-  previewFile = (
+  previewFile(
     divId: string,
     viewerConfig: Partial<PreviewFileConfig>,
     url: string
-  ) => {
+  ) {
     const config = {
-      clientId: this.state.config.clientId,
+      clientId: this.state.config?.clientId,
       divId,
     };
-    const dcView = new (window as any).AdobeDC.View(config);
-    this.setState({
-      adobeDCView: dcView,
-    });
+    this.dcView = new (window as any).AdobeDC.View(config);
 
-    if (this.state.adobeDCView) {
-      const previewFilePromise = this.state.adobeDCView.previewFile(
-        {
-          content: {
-            location: {
-              url: url,
-            },
+    const previewFilePromise = this.dcView.previewFile(
+      {
+        content: {
+          location: {
+            url: url,
           },
-          metaData: this.state.config.fileMeta || DefaultConfigs.demoMetaData,
         },
-        viewerConfig
-      );
-      return previewFilePromise;
-    } else {
-      return null;
-    }
-  };
-
-  onLoaded = () => {
-    this.previewFile(
-      this.state.config.divId,
-      this.state.previewConfig,
-      this.state.config.url
+        metaData: this.state.config?.fileMeta || DefaultConfigs.demoMetaData,
+      },
+      viewerConfig
     );
-  };
+    return previewFilePromise;
+  }
+
+  onLoaded() {
+    this.previewFile(
+      this.state.config?.divId || DefaultConfigs.staticDivId,
+      this.state.previewConfig,
+      this.state.config?.url || DefaultConfigs.demoUrl
+    );
+  }
 
   onLoad() {
+    console.log("load",       this.state.config?.divId || DefaultConfigs.staticDivId,
+    );
+    document.addEventListener("adobe_dc_view_sdk.ready", () => {
+      this.setState({
+        adobeMainReady: true,
+      });
+      console.log("listed");
+    });
     if (
       document.getElementById(
-        this.state.config.divId || DefaultConfigs.staticDivId
+        this.state.config?.divId || DefaultConfigs.staticDivId
       )
     ) {
-      if (this.state.isReady === false) {
-        let oldState = lodash.cloneDeep(this.state);
-
-        const newState = Object.assign(oldState);
-
-        newState["isReady"] = true;
-
-        this.setState(newState as typeof this.state);
-      }
+      this.setState({
+        isReady: true,
+      });
     }
 
     if (
-      this.checkForDeprecatedMainJsLoaded() === true ||
-      this.checkForViewJsLoaded() === true
+      AdobeReactView.checkForViewJsLoaded() === true &&
+      document.getElementById(
+        this.state.config?.divId || DefaultConfigs.staticDivId
+      )
     ) {
-      if (this.state.adobeMainReady === false) {
-        let oldState = lodash.cloneDeep(this.state);
-
-        const newState = Object.assign(oldState);
-
-        newState["adobeMainReady"] = true;
-
-        this.setState(newState as typeof this.state);
-        console.log("new state", JSON.stringify(this.state, null, 2));
-      }
+      this.setState({
+        adobeMainReady: true,
+      });
     }
   }
 
+  componentDidMount() {
+    this.onLoad();
+  }
+
   render() {
-    if (
-      document.getElementById(
-        this.state.config.divId || DefaultConfigs.staticDivId
-      ) &&
-      this.state.isReady &&
-      this.state.adobeMainReady
-    ) {
+    if (this.state.adobeMainReady === true && this.state.isReady === true) {
       this.onLoaded();
     }
 
     return (
       <div
-        onLoad={this.onLoad}
-        id={this.state.config.divId || DefaultConfigs.staticDivId}
+        onLoad={() => {
+          this.onLoad();
+        }}
+        id={this.state.config?.divId || DefaultConfigs.staticDivId}
         className={
           this.props.className ||
           "adobe-viewer-of-amazon-corporate-retaliations"
@@ -300,9 +269,9 @@ export class AdobeReactView extends Component<
           alignItems: this.props.style?.alignItems || "inherit",
           alignContent: this.props.style?.alignContent || "inherit",
           maxWidth: this.props.style?.maxWidth || "inherit",
-          minWidth: this.props.style?.minWidth || "200px",
-          maxHeight: this.props.style?.maxHeight || "100%",
-          minHeight: this.props.style?.minHeight || "328px",
+          minWidth: this.props.style?.minWidth || "inherit",
+          maxHeight: this.props.style?.maxHeight || "inherit",
+          minHeight: this.props.style?.minHeight || "200px",
         }}
         title={
           this.props.title ||
@@ -315,7 +284,9 @@ export class AdobeReactView extends Component<
 const ReactViewAdobe = (
   props: Partial<EmbedState> & {
     previewConfig: Partial<PreviewFileConfig>;
-  } & Partial<HTMLDivElement>
+  } & Partial<Omit<HTMLDivElement, 'style'>> & {
+    style?: Partial<CSSStyleDeclaration>;
+  }
 ) => {
   const [adobeMainReady, setAdobeMainReady] = useState(
     props.adobeMainReady || false
@@ -323,57 +294,64 @@ const ReactViewAdobe = (
   const [isReady, setIsReady] = useState(props.isReady || false);
   const divID = props.config?.divId || DefaultConfigs.staticDivId;
 
-
-
-
-
-  const StoreRef = useRef(new AdobeReactView({
-    previewConfig: props.previewConfig,
-    config: props.config,
-    isReady:isReady,
-    adobeMainReady:adobeMainReady,
-    style: props.style,
-    className: props.className,
-    title:
-      props.title ||
-      "react-adobe-state-government-ensuring-rule-of-law-against-amazon-retaliator-or-a-child-component-framed-by-state-regulations-such-as-adobe-react-embed-core-div"
-    
-  }));
-  
-  useMemo(()=> {
-
-    StoreRef.current = new AdobeReactView({
+  const StoreRef = useRef(
+    new AdobeReactView({
       previewConfig: props.previewConfig,
       config: props.config,
-      isReady:isReady,
-      adobeMainReady:adobeMainReady,
+      isReady: isReady,
+      adobeMainReady: adobeMainReady,
       style: props.style,
       className: props.className,
       title:
         props.title ||
-        "react-adobe-state-government-ensuring-rule-of-law-against-amazon-retaliator-or-a-child-component-framed-by-state-regulations-such-as-adobe-react-embed-core-div"
-      
+        "react-adobe-state-government-ensuring-rule-of-law-against-amazon-retaliator-or-a-child-component-framed-by-state-regulations-such-as-adobe-react-embed-core-div",
+    })
+  );
+
+  useMemo(() => {
+    StoreRef.current = new AdobeReactView({
+      previewConfig: props.previewConfig,
+      config: props.config,
+      isReady: isReady,
+      adobeMainReady: adobeMainReady,
+      style: props.style,
+      className: props.className,
+      title:
+        props.title ||
+        "react-adobe-state-government-ensuring-rule-of-law-against-amazon-retaliator-or-a-child-component-framed-by-state-regulations-such-as-adobe-react-embed-core-div",
     });
-  },    [props.previewConfig, props.config, isReady, adobeMainReady, props.style, props.className, props.title]);
-
-
-    
+  }, [
+    props.previewConfig,
+    props.config,
+    isReady,
+    adobeMainReady,
+    props.style,
+    props.className,
+    props.title,
+  ]);
 
   useEffect(() => {
     if (document.getElementById(divID)) {
       setIsReady(true);
     }
-
-    if (
-      StoreRef.current.checkForDeprecatedMainJsLoaded() === true ||
-      StoreRef.current.checkForViewJsLoaded() === true
-    ) {
-      setAdobeMainReady(true);
-    }
-  }, [isReady, adobeMainReady, divID]);
-
-  const ReactView = StoreRef.current;
- return StoreRef.current.render();
+  }, [isReady, divID]);
+  document.addEventListener("adobe_dc_view_sdk.ready", () => {
+    setAdobeMainReady(true);
+  });
+  return (
+    <AdobeReactView
+      previewConfig={props.previewConfig}
+      config={props.config}
+      isReady={isReady}
+      adobeMainReady={adobeMainReady}
+      style={props.style}
+      className={props.className}
+      title={
+        props.title ||
+        "react-adobe-state-government-ensuring-rule-of-law-against-amazon-retaliator-or-a-child-component-framed-by-state-regulations-such-as-adobe-react-embed-core-div"
+      }
+    />
+  );
 };
 
 export default ReactViewAdobe;
