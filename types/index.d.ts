@@ -109,7 +109,5 @@ export declare class AdobeReactView extends Component<AdobeReactViewProps & Part
 }
 declare const ReactViewAdobe: (props: Partial<EmbedState> & {
     previewConfig: Partial<PreviewFileConfig>;
-} & Partial<HTMLDivElement>) => {
-    ReactView: AdobeReactView;
-};
+} & Partial<HTMLDivElement>) => JSX.Element;
 export default ReactViewAdobe;

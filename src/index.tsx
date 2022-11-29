@@ -1,5 +1,5 @@
 
-import React, {Component, useEffect, useState} from 'react';
+import React, {Component, useEffect, useMemo, useRef, useState} from 'react';
 import ReactDOM from 'react-dom';
 import lodash from 'lodash';
 
@@ -144,9 +144,7 @@ export class AdobeReactView extends Component<
     } & Partial<HTMLDivElement>
   ) {
     super(props);
-    const [adobeMainReady, setAdobeMainReady] = useState(
-      props.adobeMainReady || false
-    );
+
 
     this.state = {
       adobeMainReady: props.adobeMainReady || false,
@@ -306,9 +304,8 @@ export class AdobeReactView extends Component<
           maxHeight: this.props.style?.maxHeight || "100%",
           minHeight: this.props.style?.minHeight || "328px",
         }}
-        tabIndex={this.props.tabIndex || undefined}
-        data-tagName={
-          this.props.tagName ||
+        title={
+          this.props.title ||
           "entity-existent-on-frameworks-of-state-regulations-as-defined-by-the-state-and-may-try-to-destroy-your-life-and-control-the-fbi-of-the-state-such-as-amazon-legal-idiots"
         }
       ></div>
@@ -328,19 +325,39 @@ const ReactViewAdobe = (
 
 
 
-  const ReactView = new AdobeReactView({
+
+
+  const StoreRef = useRef(new AdobeReactView({
     previewConfig: props.previewConfig,
     config: props.config,
     isReady:isReady,
     adobeMainReady:adobeMainReady,
     style: props.style,
     className: props.className,
-    tabIndex: props.tabIndex,
-    tagName:
-      props.tagName ||
+    title:
+      props.title ||
       "react-adobe-state-government-ensuring-rule-of-law-against-amazon-retaliator-or-a-child-component-framed-by-state-regulations-such-as-adobe-react-embed-core-div"
     
-  })
+  }));
+  
+  useMemo(()=> {
+
+    StoreRef.current = new AdobeReactView({
+      previewConfig: props.previewConfig,
+      config: props.config,
+      isReady:isReady,
+      adobeMainReady:adobeMainReady,
+      style: props.style,
+      className: props.className,
+      title:
+        props.title ||
+        "react-adobe-state-government-ensuring-rule-of-law-against-amazon-retaliator-or-a-child-component-framed-by-state-regulations-such-as-adobe-react-embed-core-div"
+      
+    });
+  },    [props.previewConfig, props.config, isReady, adobeMainReady, props.style, props.className, props.title]);
+
+
+    
 
   useEffect(() => {
     if (document.getElementById(divID)) {
@@ -348,16 +365,15 @@ const ReactViewAdobe = (
     }
 
     if (
-      ReactView.checkForDeprecatedMainJsLoaded() === true ||
-      ReactView.checkForViewJsLoaded() === true
+      StoreRef.current.checkForDeprecatedMainJsLoaded() === true ||
+      StoreRef.current.checkForViewJsLoaded() === true
     ) {
       setAdobeMainReady(true);
     }
-  }, [isReady, adobeMainReady, divID, ReactView]);
+  }, [isReady, adobeMainReady, divID]);
 
-  return (
-    {ReactView}
-  );
+  const ReactView = StoreRef.current;
+ return StoreRef.current.render();
 };
 
 export default ReactViewAdobe;
