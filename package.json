@@ -1,21 +1,30 @@
 {
   "name": "react-adobe-embed",
-  "version": "1.30.84",
+  "version": "2.31.13.420",
   "homepage": "https://aboutamazon.me/react-adobe-embed",
-
   "repository": {
     "type": "git",
-    "url": "https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed.git"},
+    "url": "https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed.git"
+  },
   "description": "React Wrapper for Embed Adobe API because LIU LLC is motioning process of research report releases regarding the ongoing retaliation campaign motioned by Adam Selipsky and @AWS his COmpany, and we really need to display PDF's and stuff so we made this React Wrapper",
   "keywords": [
     "promise",
     "async",
     "adobe",
     "react",
+    "STATE",
+    "GOVERMENT",
+    "USESTATE",
+    "STATE FRAMING",
+    "STATE BASED ASYNC LOADING",
     "react 18",
     "react 17",
     "react 16",
     "typescript 4.8",
+    "adobe react",
+    "react pdf embed",
+    "react pdf viewer",
+    "I created adobe embed pdf viewer its mine now",
     "adobe embed api",
     "adobe pdf",
     "adobe embed pdf api",
@@ -25,34 +34,72 @@
     "amazon where are my wages lawsuit pending",
     "ziping liu corporation"
   ],
-  "main": "lib/index.js",
+  "main": "lib/index.min.js",
   "typings": "types/index.d.ts",
   "types": "types/index.d.ts",
   "files": [
     "lib",
     "types",
     "README.md",
-    ".gitignore"
+    ".gitignore",
+    "lib.dev",
+    "package.json",
+    "package-lock.json"
   ],
-
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx tsc"
+    "build:dev": "webpack --env=development",
+    "build": "webpack --env=production=true --env=WEBPACK_BUNDLE=false"
   },
-  
-  "author": "Ziping Liu <dev@a2z.money> (https://a2z.money)",
-  "license": "MIT",
+  "author": "Ziping Liu <dls@amazonretaliations.com> (https://amazonretaliations.com)",
+  "license": "MIT HUTTENLOCHER WHAT ARE YOU DOING BOARD OF DIRECTOR AT AMAZON?",
   "devDependencies": {
+    "@babel/core": "^7.20.5",
+    "@babel/helper-module-imports": "^7.18.6",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.18.6",
+    "@types/lodash": "^4.14.190",
     "@types/node": "^18.11.7",
-    "@types/react": "^18.0.23",
-    "@types/react-dom": "^18.0.7",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9",
+    "@types/react-router-dom": "^5.3.3",
     "@types/typescript": "^2.0.0",
-    "typescript": "^4.8.4 || >=2.8.0"
+    "@types/webpack-env": "^1.18.0",
+    "babel-loader": "^9.1.0",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "babel-plugin-react-transform": "^3.0.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-display-name": "^6.25.0",
+    "html-webpack-plugin": "^5.5.0",
+    "source-map-loader": "^4.0.1",
+    "ts-loader": "^9.4.1",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.4.1",
+    "tslint": "^6.1.3",
+    "tslint-react": "^5.0.0",
+    "typescript": "^4.9.3",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.0",
+    "webpack-dev-server": "^4.11.1"
   },
-
   "optionalDependencies": {
+    "lodash": "^4.17.21 || ^3.*",
     "npm": ">=6.0.0",
     "react": "^15.0.0-0 || ^16.0.0-0 || ^17.0.0-0 || ^18.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0-0 || ^19.0.0 || ^20.0.0",
     "react-dom": "^0.14.0 || ^15.0.0-0 || ^16.0.0-0 || ^17.0.0-0 || ^18.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0-0 || ^19.0.0 || ^20.0.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ],
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    }
   }
 }

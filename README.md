@@ -9,35 +9,51 @@ Ziping Liu really enjoys using Adobe Acrobat DC Pro ever since having the chance
 
 `npm install react-adobe-embed`
 
-Add the library stuff from Adobe API in the index.html's head: public/index.html
-```html
-<head>
-    <script src='https://documentcloud.adobe.com/view-sdk/main.js'></script>
+1. Add the library stuff from Adobe API in the index.html's head: public/index.html
+      ```html
+      <head>
+          <script src='https://documentservices.adobe.com/view-sdk/viewer.js'></script>
+      </head>
+      ```
 
-</head>
-```
+1. Add this in a React Component or in your main App.tsx return or render block. Don't feel frightened about the parameters, this is written using typescript so the props are typed and have comments.
+      ```js
+      import ReactViewAdobe, {AdobeReactView} from 'react-adobe-embed'
 
-Add this in a React Component or in your main App.tsx return or render block. Don't feel frightened about the parameters, this is written using typescript so the props are typed and have comments.
-```js
-import ReactViewAdobe, {AdobeReactView} from 'react-adobe-embed'
+      const App = () => {
+      return(
+          <ReactViewAdobe previewConfig={{
+                                  showAnnotationTools: false,
+                                  showLeftHandPanel: false,
+                                  showDownloadPDF: false,
+                              }} config={
+                                {
+                                  /**
+                                   * Feel free to use this api key, it only works for http://localhost 
+                                   so I don't care if you use it. It won't work for http://localhost:3000, 
+                                   it needs to be http://localhost:80 or https://   localhost:443.
+                                   */
+                                  clientId: 'c514163c351b4f2082ef01e530840e0b', 
+                                  divId: 'pdf-div',
+                                  /**
+                                   * You can use this URL too, it only will work for localhost as well.
+                                   */
+                                  url: 'https://storage.googleapis.com/awslegal/notarized/23andMe%20Ancestry%20Book%20-%20Part%201%20of%202_encrypted_.pdf', 
+                                  fileMeta: {
+                                    fileName: '23andMe%20Ancestry%20Book%20-%20Part%201%20of%202_encrypted_.pdf',
+                                    title: "23andMe's Legal Notice"
+                                  }
+                                }
+                              } /> )}
+      ```
+Note on adobe sdk `<script>` tag:
+ - In the past it was this: `<script src='https://documentcloud.adobe.com/view-sdk/main.js'></script>` as instructed by their office docs.
+   - If you use this URL right now however: it will give you an error saying to update your PDF Viewer. I saw the error on Nov 28th myself and asked myself... This is an embed PDF viewer, i shouldn't need to update anything.
+ - Anyways, the URL has been updated above in step 1.
+  - Since I guess Adobe just likes to change the URL to whatever they want, you can find the correct URL to use to include their ADOBE MAGIC STUFF [here](https://developer.adobe.com/document-services/docs/overview/pdf-embed-api/).
+  - I don't know why but the folks at Adobe decided to change the script URL, and then also change the global variable name used to store the Adobe api methods, this has ulimately caused this npm package as actually a broken useless wrapper... so why didn't anyone add to the [discussion board](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/discussions/1) to let me know? Seriously? Just literally next time say, hey idiot your code is broken. I won't be offended. It's just code dude.
 
-const App = () => {
-return(
-    <ReactViewAdobe previewConfig={{
-                             showAnnotationTools: false,
-                             showLeftHandPanel: false,
-                             showDownloadPDF: false,
-                        }} config={
-                          {
-                            clientId: 'c514163c351b4f2082ef01e530840e0b', // Feel free to use this api key, it only works for http://localhost so I don't care if you use it
-                            divId: 'pdf-div',
-                            url: 'https://suntzuping.s3.ap-east-1.amazonaws.com/ANDYTIME/23andMe_Ancestry_Book.pdf', // You can use this URL too, it only will work for localhost as well.
-                            fileMeta: {
-                              fileName: '23andMe_Ancestry_Book.pdf',
-                            }
-                          }
-                        } /> )}
-```
+  
 
 # Why was this made?
 
@@ -45,7 +61,7 @@ return(
 
 # Do you need to see a demo? 
 
-Okay, you can see a demo [here](https://aboutamazon.me/bob) or [here](https://aboutamazon.me/live) for now.
+Okay, you can see a demo [here](https://ziping.life) or [here](https://aboutamazon.me/live) for now.
 
 
 
