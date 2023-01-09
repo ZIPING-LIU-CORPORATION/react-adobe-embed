@@ -73,7 +73,7 @@
     "@types/typescript": "^2.0.0",
     "@types/webpack-env": "^1.18.0",
     "babel-loader": "^9.1.0",
-    "babel-plugin-module-resolver": "^4.1.0",
+    "babel-plugin-module-resolver": "^5.0.0",
     "babel-plugin-react-transform": "^3.0.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-react-display-name": "^6.25.0",
