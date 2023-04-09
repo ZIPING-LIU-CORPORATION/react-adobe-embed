@@ -66,7 +66,7 @@ Note on adobe sdk `<script>` tag:
 
 # Do you need to see a demo? 
 
-Okay, you can see a demo [here](https://ziping.life) or [here](https://aboutamazon.me/live) for now.
+Okay, you can see a demo [here](https://twitterliu.com/theft) or [here](https://twitterliu.com/fmla) for now.
 
 
 
