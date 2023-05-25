@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch } from "react";
 
  const DefaultConfigs = {
   demoUrl:
@@ -81,11 +81,21 @@ import React from "react";
 };
 
 export function   previewFile(
-  divId: string,
-  viewerConfig: Partial<PreviewFileConfig>,
-  url: string,
-  clientID: string,
-  _fileMeta?: { [key: string | "fileName" | "id"]: any },
+ {
+    divId,
+    viewerConfig,
+    url,
+    clientID,
+    _fileMeta,
+    _dcView,
+ }:{
+    divId: string,
+    viewerConfig: Partial<PreviewFileConfig>,
+    url: string,
+    clientID: string,
+    _dcView?: any,
+    _fileMeta?: { [key: string | "fileName" | "id"]: any },
+ }
 ) {
   const config = {
       clientId: clientID,
@@ -93,9 +103,9 @@ export function   previewFile(
 
   };
 
-  const dcView =  new (window as any).AdobeDC.View(config);
-
-  console.log('dcView', dcView)
+  const dcView =  _dcView || new (window as any).AdobeDC.View(config);
+{}
+  console.log('dcView',(dcView));
   const previewFilePromise = dcView.previewFile(
       {
           content: {
@@ -115,6 +125,7 @@ export function   previewFile(
 export const    ReactViewAdobe= (
  props:{
   id?: string;
+  setDcViewer?:React.Dispatch<any>;
   className?: string;
   title?: string;
   style?: React.CSSProperties;
@@ -127,57 +138,76 @@ export const    ReactViewAdobe= (
 
     const [adobePDFProgrammeInstalled, setAdobePDFProgrammeInstalled] = React.useState(false);
 
-    const [adobeMainReady, setAdobeMainReady] = React.useState(false);
-    const appendAdobeScriptLoader = () => {
-        const script = document.createElement("script");
-        script.src = "https://documentservices.adobe.com/view-sdk/viewer.js"
-        script.async = true;
+    const [adobeDCView, setAdobeDCView] = React.useState<any>(null);
+    
+    const appendAdobeScriptLoader = React.useCallback(()=>{
+            const scriptExists = document.getElementById("adobe-pdf-viewer-script");
 
-        document.body.appendChild(script);
-        console.info("Adobe PDF Viewer Script Appended")
-        setAdobePDFProgrammeInstalled(true);
-    }
+            if(scriptExists) {
+                scriptExists.remove();
+            }
+            const script = document.createElement("script");
+            
+            script.src = "https://documentservices.adobe.com/view-sdk/viewer.js"
+            script.async = true;
 
+            script.id = "adobe-pdf-viewer-script";
+    
+            document.body.appendChild(script);
+            console.info("Adobe PDF Viewer Script Appended")
+            setAdobePDFProgrammeInstalled(true);
+        
+    
+    } ,[
+        setAdobePDFProgrammeInstalled
+        
+    ]);
 
     React.useEffect(() => {
         if (adobePDFProgrammeInstalled === false) {
-            appendAdobeScriptLoader();
-        }
-
-        if (adobePDFProgrammeInstalled === true) {
-            console.info("Adobe PDF Viewer Script Loaded");
-
-            document.addEventListener("adobe_dc_view_sdk.ready", () => {
-                console.info("Adobe PDF Viewer SDK Ready");
-
-                setAdobeMainReady(true);
-
-            });
-        }
-
-        
-
-    }, [adobePDFProgrammeInstalled, adobeMainReady, setAdobeMainReady, setAdobePDFProgrammeInstalled]);
-
-
-    React.useEffect(() => {
-        if (adobeMainReady === true) {
-            const divId = props.id || DefaultConfigs.staticDivId;
-            const divElm = document.getElementById(divId);
-            console.log('hello');
-            if (divElm) {
-                console.info("Adobe PDF Viewer SDK Ready Rendering");
-                previewFile(
-                    divId,
-                    props.previewConfig || DefaultConfigs.staticDefaultConfig,
-                    props.url || DefaultConfigs.demoUrl,
-                    props.clientId || "",
-                    props.fileMeta || DefaultConfigs.demoMetaData,
-                );
+            if(AdobeViewerGlobalExists(window) === false) {
+                appendAdobeScriptLoader();
+            } else {
+                setAdobePDFProgrammeInstalled(true);
             }
         }
-    }
-        , [adobeMainReady , props.id, props.previewConfig]);
+
+  
+        if (adobePDFProgrammeInstalled) {
+            document.addEventListener("adobe_dc_view_sdk.ready", () => {
+
+                console.info("Adobe PDF Viewer SDK Ready Event");
+                const divId = props.id || DefaultConfigs.staticDivId;
+                const divElm = document.getElementById(divId);
+    
+                
+    
+                if (divElm && props.previewConfig?.embedMode !== 'LIGHT_BOX') {
+                    console.info("Adobe PDF Viewer SDK Ready Rendering");
+                    previewFile(
+                       {
+                        divId,
+                        viewerConfig: props.previewConfig || DefaultConfigs.staticDefaultConfig,
+                        url: props.url || DefaultConfigs.demoUrl,
+                        clientID: props.clientId,
+                        _fileMeta: props.fileMeta,
+                       }
+                        
+                    );
+                } else if(props.previewConfig?.embedMode === 'LIGHT_BOX'){
+    
+                    props.setDcViewer && props.setDcViewer(adobeDCView);
+    
+    
+                    
+                }
+            });
+        }
+        
+
+    }, [adobePDFProgrammeInstalled]);
+
+
 
 
 
@@ -194,6 +224,8 @@ export const    ReactViewAdobe= (
             "entity-existent-on-frameworks-of-state-regulations-as-defined-by-the-state-and-may-try-to-destroy-your-life-and-control-the-fbi-of-the-state-such-as-amazon-legal-idiots"
         }
 
+        
+
       >
 
       </div>
@@ -201,4 +233,10 @@ export const    ReactViewAdobe= (
 
 
 };
+
+
+export function AdobeViewerGlobalExists(window: Window){
+  console.info((window as any)["adobe_dc_view_sdk"]);
+  return (window as any)["adobe_dc_view_sdk"] !== undefined
+}
 

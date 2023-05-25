@@ -1,6 +1,6 @@
 {
   "name": "react-adobe-embed",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "homepage": "https://aboutamazon.me/react-adobe-embed",
   "repository": {
     "type": "git",
@@ -51,9 +51,7 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:dev": "webpack --env=development=true",
-    "build:babel": "webpack --env=production=true --env=WEBPACK_BUNDLE=true",
-    "build": "tsc ",
+    "build": "npm run build:roll ",
     "build:roll": "rimraf lib && tsc -p tsconfig.build.json && rollup -c rollup.config.js"
   },
   "author": "Ziping Liu <data@ethics.awspolls.com> (https://jeffbezos.academy)",

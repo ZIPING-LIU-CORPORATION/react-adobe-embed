@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch } from "react";
 export type PreviewFileConfig = {
     showZoomControl: boolean;
     showAnnotationTools: boolean;
@@ -52,11 +52,19 @@ export type PreviewFileConfig = {
      */
     focusOnRendering: any;
 };
-export declare function previewFile(divId: string, viewerConfig: Partial<PreviewFileConfig>, url: string, clientID: string, _fileMeta?: {
-    [key: string | "fileName" | "id"]: any;
+export declare function previewFile({ divId, viewerConfig, url, clientID, _fileMeta, _dcView, }: {
+    divId: string;
+    viewerConfig: Partial<PreviewFileConfig>;
+    url: string;
+    clientID: string;
+    _dcView?: any;
+    _fileMeta?: {
+        [key: string | "fileName" | "id"]: any;
+    };
 }): any;
 export declare const ReactViewAdobe: (props: {
     id?: string | undefined;
+    setDcViewer?: React.Dispatch<any> | undefined;
     className?: string | undefined;
     title?: string | undefined;
     style?: React.CSSProperties | undefined;
@@ -67,3 +75,4 @@ export declare const ReactViewAdobe: (props: {
         [key: string]: any;
     } | undefined;
 }) => JSX.Element;
+export declare function AdobeViewerGlobalExists(window: Window): boolean;

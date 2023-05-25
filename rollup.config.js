@@ -15,7 +15,7 @@ const config = {
     {
       file: 'lib/bundle.js', // equivalent to 'dist/bundle.js
       format: 'umd',
-      name: 'ReactScriptTag',
+      name: 'ReactAdobeEmbed',
       globals: {
         react: 'React'
       }

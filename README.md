@@ -1,62 +1,55 @@
 [![wakatime](https://wakatime.com/badge/github/ZIPING-LIU-CORPORATION/react-adobe-embed.svg)](https://wakatime.com/badge/github/ZIPING-LIU-CORPORATION/react-adobe-embed)
 
 # react-adobe-embed
+
+## Changes 
 ## [ADOBE PDF EMBED API](https://developer.adobe.com/document-services/apis/pdf-embed/) is a Great Tool for Displaying PDF's with rich features,
 
 Ziping Liu really enjoys using Adobe Acrobat DC Pro ever since having the chance to use it for the first time when I interned at a law firm. In case you want to use it with React with a bit more Typescript This Wrapper allows Adobe PDF Embed to work great with React 18 and Typescript
 
-## Try it out yourself in the sandbox! 
-- Run the code and see it compile at [codesandbox.io](https://codesandbox.io/s/8nw0gh)
-
+## Run a live Demo in your Browser:
+-  View a running demo as editable code, showcasing PDF embed displays such as light box here: [codesandbox](https://yq5zz6.csb.app/)
+  <a href="https://yq5zz6.csb.app"><img src="./demo.png" style="max-width: 1200px; height: auto; width: 90%; display:inline-block; text-align:center; transition: all 0.3s ease-in-out; animation: all 0.3s ease-in-out;  transform: scale(1), translateZ(0);  rotateX(0deg); rotateY(0deg); rotateZ(0deg); perspective(1000px);  " mouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'
+   "></a>
 ### Quick Guide
 
 `npm install react-adobe-embed`
 
-1. Add the library stuff from Adobe API in the index.html's head: public/index.html
-      ```html
-      <head>
-          <script src='https://documentservices.adobe.com/view-sdk/viewer.js'></script>
-      </head>
-      ```
-
 1. Add this in a React Component or in your main App.tsx return or render block. Don't feel frightened about the parameters, this is written using typescript so the props are typed and have comments.
-      ```js
-      import ReactViewAdobe, {AdobeReactView} from 'react-adobe-embed'
+```tsx
+import ReactViewAdobe, {AdobeReactView} from 'react-adobe-embed'
 
-      const App = () => {
-      return(
-          <ReactViewAdobe 
-          
-          previewConfig={{
-              showAnnotationTools: false,
-              showLeftHandPanel: false,
-              showDownloadPDF: false,
-          }} config={
-            {
-              /**
-               * Feel free to use this api key, it only works for http://localhost 
-                so I don't care if you use it. It won't work for http://localhost:3000, 
-                it needs to be http://localhost:80 or https://localhost:443.
-                */
-              clientId: 'c514163c351b4f2082ef01e530840e0b', 
-              divId: 'pdf-div',
-              /**
-               * You can use this URL too, it only will work for localhost as well.
-                */
-              url: 'https://storage.googleapis.com/awslegal/notarized/23andMe%20Ancestry%20Book%20-%20Part%201%20of%202_encrypted_.pdf', 
-              fileMeta: {
-                fileName: '23andMe%20Ancestry%20Book%20-%20Part%201%20of%202_encrypted_.pdf',
-                title: "23andMe's Legal Notice"
-              }
-            }
-          } /> )}
-      ```
+const App = () => {
+return(
+
+  <ReactViewAdobe
+    clientId="6e19a1dc2e3e43fc9fe0109f928bdf71"
+    url="https://storage.googleapis.com/laotzu/awslegal/"
+          + "notarized/EXHIBIT_"
+          + "A_Story%20of%20WagesOFNONPAIDAges_encrypted_.pdf"
+    id="exhbit-a-pdf" // required and must be unique because adobe devs are coupled like that
+    fileMeta={{
+      fileName: "A Story of Wages"
+    }}
+    previewConfig={{
+      defaultViewMode: "FIT_WIDTH",
+      showAnnotationTools: false,
+      showPageControls: false,
+      showDownloadPDF: false
+    }}
+    style={{
+      height: "50vh"
+    }}
+  />
+) }
+```
 Note on adobe sdk `<script>` tag:
- - In the past it was this: `<script src='https://documentcloud.adobe.com/view-sdk/main.js'></script>` as instructed by their office docs.
-   - If you use this URL right now however: it will give you an error saying to update your PDF Viewer. I saw the error on Nov 28th myself and asked myself... This is an embed PDF viewer, i shouldn't need to update anything.
- - Anyways, the URL has been updated above in step 1.
-  - Since I guess Adobe just likes to change the URL to whatever they want, you can find the correct URL to use to include their ADOBE MAGIC STUFF [here](https://developer.adobe.com/document-services/docs/overview/pdf-embed-api/).
-  - I don't know why but the folks at Adobe decided to change the script URL, and then also change the global variable name used to store the Adobe api methods, this has ulimately caused this npm package as actually a broken useless wrapper... so why didn't anyone add to the [discussion board](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/discussions/1) to let me know? Seriously? Just literally next time say, hey idiot your code is broken. I won't be offended. It's just code dude.
+ - You don't need to worry about handling outside script tags. The react wrapper handles any script downloading. Simple call the React Component as shown above.
+ - ~~In the past it was this: `<script src='https://documentcloud.adobe.com/view-sdk/main.js'></script>` as instructed by their office docs.~~
+   - ~~If you use this URL right now however: it will give you an error saying to update your PDF Viewer. I saw the error on Nov 28th myself and asked myself... This is an embed PDF viewer, i shouldn't need to update anything.~~
+ - ~~Anyways, the URL has been updated above in step 1.~~
+  - ~~Since I guess Adobe just likes to change the URL to whatever they want, you can find the correct URL to use to include their ADOBE MAGIC STUFF [here](https://developer.adobe.com/document-services/docs/overview/pdf-embed-api/).~~
+  - ~~I don't know why but the folks at Adobe decided to change the script URL, and then also change the global variable name used to store the Adobe api methods, this has ulimately caused this npm package as actually a broken useless wrapper... so why didn't anyone add to the [discussion board](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/discussions/1) to let me know? Seriously? Just literally next time say, hey idiot your code is broken. I won't be offended. It's just code dude.~~
 
   
 
