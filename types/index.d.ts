@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React from "react";
 export type PreviewFileConfig = {
     showZoomControl: boolean;
     showAnnotationTools: boolean;
@@ -52,70 +52,18 @@ export type PreviewFileConfig = {
      */
     focusOnRendering: any;
 };
-export type EmbedState = {
-    adobeMainReady: boolean;
-    isReady: boolean;
-    config: Config;
-};
-export type AdobeReactViewProps = Partial<EmbedState> & {
-    previewConfig: Partial<PreviewFileConfig>;
-};
-export type Config = {
-    divId: string;
-    clientId: string;
+export declare function previewFile(divId: string, viewerConfig: Partial<PreviewFileConfig>, url: string, clientID: string, _fileMeta?: {
+    [key: string | "fileName" | "id"]: any;
+}): any;
+export declare const ReactViewAdobe: (props: {
+    id?: string | undefined;
+    className?: string | undefined;
+    title?: string | undefined;
+    style?: React.CSSProperties | undefined;
+    previewConfig?: Partial<PreviewFileConfig> | undefined;
     url: string;
-    content?: {
-        location?: {
-            url: string;
-        };
-    };
+    clientId: string;
     fileMeta?: {
-        [key: string | "fileName" | "id"]: any;
-    };
-};
-export declare const DefaultConfigs: {
-    demoUrl: string;
-    staticDefaultConfig: {
-        showAnnotationTools: boolean;
-        showLeftHandPanel: boolean;
-        showPageControls: boolean;
-        showDownloadPDF: boolean;
-        showPrintPDF: boolean;
-    };
-    staticDivId: string;
-    demoMetaData: {
-        fileName: string;
-        id: string;
-    };
-};
-export declare class AdobeReactView extends Component<Partial<EmbedState> & {
-    previewConfig: Partial<PreviewFileConfig>;
-} & Partial<Omit<HTMLDivElement, 'style'>> & {
-    style?: Partial<CSSStyleDeclaration>;
-}, Partial<EmbedState> & {
-    previewConfig: Partial<PreviewFileConfig>;
-} & Partial<Omit<HTMLDivElement, 'style'>> & {
-    style?: Partial<CSSStyleDeclaration>;
-} & AdobeReactViewProps & {
-    adobeMainReady: boolean | null;
-}> {
-    private dcView;
-    static checkForViewJsLoaded(): boolean;
-    static checkForDeprecatedMainJsLoaded(): boolean;
-    constructor(props: Partial<EmbedState> & {
-        previewConfig: Partial<PreviewFileConfig>;
-    } & Partial<Omit<HTMLDivElement, 'style'>> & {
-        style?: Partial<CSSStyleDeclaration>;
-    });
-    previewFile(divId: string, viewerConfig: Partial<PreviewFileConfig>, url: string): any;
-    onLoaded(): void;
-    onLoad(): void;
-    componentDidMount(): void;
-    render(): JSX.Element;
-}
-declare const ReactViewAdobe: (props: Partial<EmbedState> & {
-    previewConfig: Partial<PreviewFileConfig>;
-} & Partial<Omit<HTMLDivElement, 'style'>> & {
-    style?: Partial<CSSStyleDeclaration>;
+        [key: string]: any;
+    } | undefined;
 }) => JSX.Element;
-export default ReactViewAdobe;

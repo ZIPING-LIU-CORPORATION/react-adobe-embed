@@ -1,53 +1,81 @@
-const path = require('path');
-const tsloader = require('ts-loader');
-const react = require('react');
-module.exports = env => {
-   const envString = JSON.stringify(env, null, 2);
-   const envObj = JSON.parse(envString);
-   const fileName = envObj['production'] ? 'index.min.js' : 'index.dev.js';
-   const loader = envObj['production'] ? 'babel-loader' : 'ts-loader';
+const path = require("path");
+const fs = require("fs");
 
-   const loaders = {
-    'babel-loader': require.resolve('babel-loader'),
-    'ts-loader': require.resolve('ts-loader')
-   }
-   console.log('loader', loader);
-   return {
-    mode: 'production',
-entry: path.join(__dirname, 'src', 'index.tsx'),
-    devtool: 'inline-source-map',
-    output: {
-        path: path.join(__dirname, 'lib'),
-        filename: fileName,
-        publicPath: '/lib'
-    },
-    devtool: 'inline-source-map',
+const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
+const ReactRefreshWebpackPlugin = require( '@pmmmwh/react-refresh-webpack-plugin' );
+const TerserPlugin = require( 'terser-webpack-plugin' );
+const bundleAnalyzerPlugin = require( 'webpack-bundle-analyzer' ).BundleAnalyzerPlugin;
 
-
-    module: {
- 
-        
-    
-        rules: [
-            {
-                test: /\.tsx?$/,
-                exclude: /node_modules/,
-                loader: loaders[loader],
-             
-            },
-            {
-                test: /\.jsx?$/,
-                loader: loaders['babel-loader'],
-                exclude: /node_modules/
-                },
-        
-    
-        ]
-    },
+module.exports = (env) => {
+  return {
     resolve: {
-        extensions: ['.jsx', 'ts', 'tsx', 'js'],
-        
+      extensions: [".ts", ".tsx", ".js", ".scss", ".css", ".json"],
+
     },
 
-   }
-}
+
+
+    
+    module: {
+      rules: [
+        // `js` and `jsx` files are parsed using `babel`
+        {
+          test: /\.(js|jsx)$/,
+          exclude: /node_modules/,
+          use: ["babel-loader"],
+        },
+        // `ts` and `tsx` files are parsed using `ts-loader`
+        {
+          test: /\.(ts|tsx)$/,
+          loader: "ts-loader",
+        },
+        {
+          test: /\.css$/,
+          use: [MiniCSSExtractPlugin.loader, "css-loader"],
+        },
+        {
+          test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+          use: [
+            {
+              loader: "file-loader",
+              options: {
+                name: "[name].[ext]",
+                outputPath: "assets",
+              },
+            },
+          ],
+        },
+        {
+          ///scss
+          test: /\.s[ac]ss$/i,
+          use: [MiniCSSExtractPlugin.loader, "css-loader", "sass-loader"],
+        },
+      ],
+    },
+
+    mode: "production",
+
+    entry: "./dist/src/index.js",
+
+    output: {
+      filename: "index.js",
+      path: path.resolve(__dirname, "build"),
+    },
+
+ 
+    plugins: [
+        new MiniCSSExtractPlugin({
+            filename: "index.css",
+        }),
+
+        new ReactRefreshWebpackPlugin(),
+
+    ],
+    optimization: {
+        minimize: true,
+        minimizer: [new TerserPlugin()],
+    },
+        
+    
+  };
+};

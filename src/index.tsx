@@ -1,8 +1,25 @@
-import React, { Component, useEffect, useMemo, useRef, useState } from "react";
-import ReactDOM from "react-dom";
+import React from "react";
+
+ const DefaultConfigs = {
+  demoUrl:
+      "https://documentcloud.adobe.com/view-sdk-demo/PDFs/Bodea Brochure.pdf",
+  staticDefaultConfig: {
+      showAnnotationTools: false,
+      showLeftHandPanel: false,
+      showPageControls: false,
+      showDownloadPDF: false,
+      showPrintPDF: false,
+  },
+  staticDivId: "pdf-div",
+  demoMetaData: {
+      fileName: "Menu.pdf",
+      id: "6d07d124 - ac85–43b3 - a867–36930f502ac6",
+  },
+};
 
 
-export type PreviewFileConfig = {
+
+ export type PreviewFileConfig = {
   showZoomControl: boolean;
   showAnnotationTools: boolean;
   showFullScreen: boolean;
@@ -21,12 +38,12 @@ export type PreviewFileConfig = {
         Users can use the swipe gesture to navigate to other pages which will be displayed one at a time.
      */
   defaultViewMode:
-    | "FIT_WIDTH"
-    | "FIT_PAGE"
-    | "TWO_COLUMN"
-    | "TWO_COLUMN_FIT_PAGE"
-    | "CONTINUOUS"
-    | "SINGLE_PAGE";
+  | "FIT_WIDTH"
+  | "FIT_PAGE"
+  | "TWO_COLUMN"
+  | "TWO_COLUMN_FIT_PAGE"
+  | "CONTINUOUS"
+  | "SINGLE_PAGE";
   enableFormFilling: boolean;
   showDownloadPDF: boolean;
   showPrintPDF: boolean;
@@ -63,295 +80,125 @@ export type PreviewFileConfig = {
   focusOnRendering: any;
 };
 
-export type EmbedState = {
-  adobeMainReady: boolean;
-  isReady: boolean;
-  config: Config;
-};
-
-export type AdobeReactViewProps = Partial<EmbedState> & {
-  previewConfig: Partial<PreviewFileConfig>;
-};
-
-export type Config = {
-  divId: string;
-  clientId: string;
-  url: string;
-  content?: {
-    location?: {
-      url: string;
-    };
-  };
-  fileMeta?: { [key: string | "fileName" | "id"]: any };
-};
-export const DefaultConfigs = {
-  demoUrl:
-    "https://documentcloud.adobe.com/view-sdk-demo/PDFs/Bodea Brochure.pdf",
-  staticDefaultConfig: {
-    showAnnotationTools: false,
-    showLeftHandPanel: false,
-    showPageControls: false,
-    showDownloadPDF: false,
-    showPrintPDF: false,
-  },
-  staticDivId: "pdf-div",
-  demoMetaData: {
-    fileName: "Menu.pdf",
-    id: "6d07d124 - ac85–43b3 - a867–36930f502ac6",
-  },
-};
-
-export class AdobeReactView extends Component<
-Partial<EmbedState> & {
-    previewConfig: Partial<PreviewFileConfig>;
-  } & Partial<Omit<HTMLDivElement, 'style'>> & {style?: Partial<CSSStyleDeclaration> },  Partial<EmbedState> & {
-    previewConfig: Partial<PreviewFileConfig>  ;
-  } & Partial<Omit<HTMLDivElement, 'style'>> & {style?: Partial<CSSStyleDeclaration> } & AdobeReactViewProps & {
-    adobeMainReady: boolean | null;
-  }
-> {
-  private dcView: any;
-  static checkForViewJsLoaded() {
-    return (window as any)["adobe_dc_view_sdk"] != undefined;
-  }
-
-  static checkForDeprecatedMainJsLoaded() {
-    return (window as any)["AdobeDC"] != undefined;
-  }
-
-  constructor(
-    props: Partial<EmbedState> & {
-      previewConfig: Partial<PreviewFileConfig>;
-    } & Partial<Omit<HTMLDivElement, 'style'>> & {style?: Partial<CSSStyleDeclaration> }
-   ) {
-    super(props);
-
-    this.state = {
-      adobeMainReady: false,
-      previewConfig: props.previewConfig || DefaultConfigs.staticDefaultConfig,
-      isReady: props.isReady || false,
-      config: {
-        divId: props.config?.divId || DefaultConfigs.staticDivId,
-        clientId: props.config?.clientId || "",
-        url: props.config?.url || DefaultConfigs.demoUrl,
-        fileMeta: props.config?.fileMeta || DefaultConfigs.demoMetaData,
-        content: props.config?.content || {
-          location: {
-            url: props.config?.url || DefaultConfigs.demoUrl,
-          },
-        },
-      },
-    };
-
-      this.onLoad = this.onLoad.bind(this);
-    this.onLoaded = this.onLoaded.bind(this);
-    this.render = this.render.bind(this);
-
-    this.previewFile = this.previewFile.bind(this);
-  }
-
-  previewFile(
-    divId: string,
-    viewerConfig: Partial<PreviewFileConfig>,
-    url: string
-  ) {
-    const config = {
-      clientId: this.state.config?.clientId,
+export function   previewFile(
+  divId: string,
+  viewerConfig: Partial<PreviewFileConfig>,
+  url: string,
+  clientID: string,
+  _fileMeta?: { [key: string | "fileName" | "id"]: any },
+) {
+  const config = {
+      clientId: clientID,
       divId,
-    };
-    this.dcView = new (window as any).AdobeDC.View(config);
 
-    const previewFilePromise = this.dcView.previewFile(
+  };
+
+  const dcView =  new (window as any).AdobeDC.View(config);
+
+  console.log('dcView', dcView)
+  const previewFilePromise = dcView.previewFile(
       {
-        content: {
-          location: {
-            url: url,
+          content: {
+              location: {
+                  url: url,
+              },
           },
-        },
-        metaData: this.state.config?.fileMeta || DefaultConfigs.demoMetaData,
+          metaData: _fileMeta || DefaultConfigs.demoMetaData,
       },
       viewerConfig
-    );
-    return previewFilePromise;
-  }
+  );
+  return previewFilePromise;
+}
 
-  onLoaded() {
-    this.previewFile(
-      this.state.config?.divId || DefaultConfigs.staticDivId,
-      this.state.previewConfig,
-      this.state.config?.url || DefaultConfigs.demoUrl
-    );
-  }
 
-  onLoad() {
-    console.log("load",       this.state.config?.divId || DefaultConfigs.staticDivId,
-    );
-    document.addEventListener("adobe_dc_view_sdk.ready", () => {
-      this.setState({
-        adobeMainReady: true,
-      });
-      console.log("listed");
-    });
-    if (
-      document.getElementById(
-        this.state.config?.divId || DefaultConfigs.staticDivId
-      )
-    ) {
-      this.setState({
-        isReady: true,
-      });
+
+export const    ReactViewAdobe= (
+ props:{
+  id?: string;
+  className?: string;
+  title?: string;
+  style?: React.CSSProperties;
+  previewConfig?: Partial<PreviewFileConfig>;
+  url: string;
+  clientId: string;
+  fileMeta?: { [key: string | "fileName" | "id"]: any };
+ }
+)  => {
+
+    const [adobePDFProgrammeInstalled, setAdobePDFProgrammeInstalled] = React.useState(false);
+
+    const [adobeMainReady, setAdobeMainReady] = React.useState(false);
+    const appendAdobeScriptLoader = () => {
+        const script = document.createElement("script");
+        script.src = "https://documentservices.adobe.com/view-sdk/viewer.js"
+        script.async = true;
+
+        document.body.appendChild(script);
+        console.info("Adobe PDF Viewer Script Appended")
+        setAdobePDFProgrammeInstalled(true);
     }
 
-    if (
-      AdobeReactView.checkForViewJsLoaded() === true &&
-      document.getElementById(
-        this.state.config?.divId || DefaultConfigs.staticDivId
-      )
-    ) {
-      this.setState({
-        adobeMainReady: true,
-      });
-    }
-  }
 
-  componentDidMount() {
-    this.onLoad();
-  }
+    React.useEffect(() => {
+        if (adobePDFProgrammeInstalled === false) {
+            appendAdobeScriptLoader();
+        }
 
-  render() {
-    if (this.state.adobeMainReady === true && this.state.isReady === true) {
-      this.onLoaded();
+        if (adobePDFProgrammeInstalled === true) {
+            console.info("Adobe PDF Viewer Script Loaded");
+
+            document.addEventListener("adobe_dc_view_sdk.ready", () => {
+                console.info("Adobe PDF Viewer SDK Ready");
+
+                setAdobeMainReady(true);
+
+            });
+        }
+
+        
+
+    }, [adobePDFProgrammeInstalled, adobeMainReady, setAdobeMainReady, setAdobePDFProgrammeInstalled]);
+
+
+    React.useEffect(() => {
+        if (adobeMainReady === true) {
+            const divId = props.id || DefaultConfigs.staticDivId;
+            const divElm = document.getElementById(divId);
+            console.log('hello');
+            if (divElm) {
+                console.info("Adobe PDF Viewer SDK Ready Rendering");
+                previewFile(
+                    divId,
+                    props.previewConfig || DefaultConfigs.staticDefaultConfig,
+                    props.url || DefaultConfigs.demoUrl,
+                    props.clientId || "",
+                    props.fileMeta || DefaultConfigs.demoMetaData,
+                );
+            }
+        }
     }
+        , [adobeMainReady , props.id, props.previewConfig]);
+
+
 
     return (
-      <div
-        onLoad={() => {
-          this.onLoad();
-        }}
-        id={this.state.config?.divId || DefaultConfigs.staticDivId}
+      <div id={props.id || DefaultConfigs.staticDivId}
         className={
-          this.props.className ||
-          "adobe-viewer-of-amazon-corporate-retaliations"
+            props.className ||
+            "adobe-viewer-of-amazon-corporate-retaliations"
         }
-        style={{
-          width: this.props.style?.width || undefined,
-          height: this.props.style?.height || undefined,
-          position:
-            (this.props.style?.position as
-              | "static"
-              | "relative"
-              | "absolute"
-              | "sticky"
-              | "fixed") || "static",
-          top: this.props.style?.top || undefined,
-          left: this.props.style?.left || undefined,
-          right: this.props.style?.right || undefined,
-          bottom: this.props.style?.bottom || undefined,
-          zIndex: this.props.style?.zIndex || "initial",
-          backgroundColor: this.props.style?.backgroundColor || "inherit",
-          color: this.props.style?.color || "inherit",
-          fontSize: this.props.style?.fontSize || "inherit",
-          fontFamily: this.props.style?.fontFamily || "inherit",
-          fontWeight: this.props.style?.fontWeight || "inherit",
-          fontStyle: this.props.style?.fontStyle || "inherit",
-          lineHeight: this.props.style?.lineHeight || "inherit",
-          margin: this.props.style?.margin || "inherit",
-          padding: this.props.style?.padding || "inherit",
-          marginTop: this.props.style?.marginTop || "inherit",
-          marginBottom: this.props.style?.marginBottom || "inherit",
-          marginLeft: this.props.style?.marginLeft || "inherit",
-          marginRight: this.props.style?.marginRight || "inherit",
-          paddingTop: this.props.style?.paddingTop || "inherit",
-          paddingBottom: this.props.style?.paddingBottom || "inherit",
-          paddingLeft: this.props.style?.paddingLeft || "inherit",
-          paddingRight: this.props.style?.paddingRight || "inherit",
-          alignSelf: this.props.style?.alignSelf || "inherit",
-          alignItems: this.props.style?.alignItems || "inherit",
-          alignContent: this.props.style?.alignContent || "inherit",
-          maxWidth: this.props.style?.maxWidth || "inherit",
-          minWidth: this.props.style?.minWidth || "inherit",
-          maxHeight: this.props.style?.maxHeight || "inherit",
-          minHeight: this.props.style?.minHeight || "200px",
-        }}
+        style={props.style}
+
         title={
-          this.props.title ||
-          "entity-existent-on-frameworks-of-state-regulations-as-defined-by-the-state-and-may-try-to-destroy-your-life-and-control-the-fbi-of-the-state-such-as-amazon-legal-idiots"
+            props.title ||
+            "entity-existent-on-frameworks-of-state-regulations-as-defined-by-the-state-and-may-try-to-destroy-your-life-and-control-the-fbi-of-the-state-such-as-amazon-legal-idiots"
         }
-      ></div>
-    );
-  }
-}
-const ReactViewAdobe = (
-  props: Partial<EmbedState> & {
-    previewConfig: Partial<PreviewFileConfig>;
-  } & Partial<Omit<HTMLDivElement, 'style'>> & {
-    style?: Partial<CSSStyleDeclaration>;
-  }
-) => {
-  const [adobeMainReady, setAdobeMainReady] = useState(
-    props.adobeMainReady || false
-  );
-  const [isReady, setIsReady] = useState(props.isReady || false);
-  const divID = props.config?.divId || DefaultConfigs.staticDivId;
 
-  const StoreRef = useRef(
-    new AdobeReactView({
-      previewConfig: props.previewConfig,
-      config: props.config,
-      isReady: isReady,
-      adobeMainReady: adobeMainReady,
-      style: props.style,
-      className: props.className,
-      title:
-        props.title ||
-        "react-adobe-state-government-ensuring-rule-of-law-against-amazon-retaliator-or-a-child-component-framed-by-state-regulations-such-as-adobe-react-embed-core-div",
-    })
-  );
+      >
 
-  useMemo(() => {
-    StoreRef.current = new AdobeReactView({
-      previewConfig: props.previewConfig,
-      config: props.config,
-      isReady: isReady,
-      adobeMainReady: adobeMainReady,
-      style: props.style,
-      className: props.className,
-      title:
-        props.title ||
-        "react-adobe-state-government-ensuring-rule-of-law-against-amazon-retaliator-or-a-child-component-framed-by-state-regulations-such-as-adobe-react-embed-core-div",
-    });
-  }, [
-    props.previewConfig,
-    props.config,
-    isReady,
-    adobeMainReady,
-    props.style,
-    props.className,
-    props.title,
-  ]);
+      </div>
+            )
 
-  useEffect(() => {
-    if (document.getElementById(divID)) {
-      setIsReady(true);
-    }
-  }, [isReady, divID]);
-  document.addEventListener("adobe_dc_view_sdk.ready", () => {
-    setAdobeMainReady(true);
-  });
-  return (
-    <AdobeReactView
-      previewConfig={props.previewConfig}
-      config={props.config}
-      isReady={isReady}
-      adobeMainReady={adobeMainReady}
-      style={props.style}
-      className={props.className}
-      title={
-        props.title ||
-        "react-adobe-state-government-ensuring-rule-of-law-against-amazon-retaliator-or-a-child-component-framed-by-state-regulations-such-as-adobe-react-embed-core-div"
-      }
-    />
-  );
+
 };
 
-export default ReactViewAdobe;
