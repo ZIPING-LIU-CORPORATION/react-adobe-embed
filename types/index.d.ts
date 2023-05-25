@@ -74,5 +74,6 @@ export declare const ReactViewAdobe: (props: {
     fileMeta?: {
         [key: string]: any;
     } | undefined;
+    debug?: boolean | undefined;
 }) => JSX.Element;
 export declare function AdobeViewerGlobalExists(window: Window): boolean;

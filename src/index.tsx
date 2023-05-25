@@ -1,5 +1,5 @@
 import React, { Dispatch } from "react";
-
+import ReactDOM from "react-dom/client";
  const DefaultConfigs = {
   demoUrl:
       "https://documentcloud.adobe.com/view-sdk-demo/PDFs/Bodea Brochure.pdf",
@@ -105,7 +105,6 @@ export function   previewFile(
 
   const dcView =  _dcView || new (window as any).AdobeDC.View(config);
 {}
-  console.log('dcView',(dcView));
   const previewFilePromise = dcView.previewFile(
       {
           content: {
@@ -133,6 +132,7 @@ export const    ReactViewAdobe= (
   url: string;
   clientId: string;
   fileMeta?: { [key: string | "fileName" | "id"]: any };
+    debug?: boolean;
  }
 )  => {
 
@@ -141,22 +141,46 @@ export const    ReactViewAdobe= (
     const [adobeDCView, setAdobeDCView] = React.useState<any>(null);
     
     const appendAdobeScriptLoader = React.useCallback(()=>{
-            const scriptExists = document.getElementById("adobe-pdf-viewer-script");
+            const scriptExists = document.getElementById("adobe-pdf-viewer-script-" + props.id);
+
+
 
             if(scriptExists) {
-                scriptExists.remove();
-            }
+               const rootEleme = scriptExists.parentElement;
+
+               ReactDOM.hydrateRoot(
+                rootEleme!,
+                 <script 
+                 id={"adobe-pdf-viewer-script-" + props.id}
+                 async={true}
+                    defer={true}
+                 src="https://documentservices.adobe.com/view-sdk/viewer.js"></script>
+               )
+
+
+
+            } else {
             const script = document.createElement("script");
             
             script.src = "https://documentservices.adobe.com/view-sdk/viewer.js"
             script.async = true;
+            script.defer= true;
+            
+            script.id = "adobe-pdf-viewer-script-" + props.id
+           const p = document.createElement("script");
+           ReactDOM.createRoot(
+            p
+           ).render(
+                <script src="https://documentservices.adobe.com/view-sdk/viewer.js"></script>
+              )
+            
+            const pdfdiv = document.getElementById(props.id || DefaultConfigs.staticDivId);
 
-            script.id = "adobe-pdf-viewer-script";
-    
-            document.body.appendChild(script);
-            console.info("Adobe PDF Viewer Script Appended")
+            pdfdiv!.appendChild(script);
+            if(props.debug)
+console.info("Adobe PDF Viewer Script Appended")
             setAdobePDFProgrammeInstalled(true);
-        
+            }
     
     } ,[
         setAdobePDFProgrammeInstalled
@@ -176,14 +200,16 @@ export const    ReactViewAdobe= (
         if (adobePDFProgrammeInstalled) {
             document.addEventListener("adobe_dc_view_sdk.ready", () => {
 
-                console.info("Adobe PDF Viewer SDK Ready Event");
+                if(props.debug)
+console.info("Adobe PDF Viewer SDK Ready Event");
                 const divId = props.id || DefaultConfigs.staticDivId;
                 const divElm = document.getElementById(divId);
     
                 
     
                 if (divElm && props.previewConfig?.embedMode !== 'LIGHT_BOX') {
-                    console.info("Adobe PDF Viewer SDK Ready Rendering");
+                    if(props.debug)
+console.info("Adobe PDF Viewer SDK Ready Rendering");
                     previewFile(
                        {
                         divId,
@@ -236,7 +262,7 @@ export const    ReactViewAdobe= (
 
 
 export function AdobeViewerGlobalExists(window: Window){
-  console.info((window as any)["adobe_dc_view_sdk"]);
+
   return (window as any)["adobe_dc_view_sdk"] !== undefined
 }
 
