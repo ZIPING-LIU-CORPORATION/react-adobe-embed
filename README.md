@@ -8,7 +8,7 @@
 Ziping Liu really enjoys using Adobe Acrobat DC Pro ever since having the chance to use it for the first time when I interned at a law firm. In case you want to use it with React with a bit more Typescript This Wrapper allows Adobe PDF Embed to work great with React 18 and Typescript
 
 ## Run a live Demo in your Browser:
--  View a running demo as editable code, showcasing PDF embed displays such as light box here: [codesandbox](http://awsretaliatory.com/)
+-  View a running demo as editable code, showcasing PDF embed displays such as light box here via codesandbox: [codesandbox.io](https://codesandbox.io/p/sandbox/react-adobe-embed-pdf-galleria-showcase-yq5zz6?embed=1)
   <a href="http://awsretaliatory.com/"><img src="./demo.png" style="max-width: 1200px; height: auto; width: 90%; display:inline-block; text-align:center; transition: all 0.3s ease-in-out; animation: all 0.3s ease-in-out;  transform: scale(1), translateZ(0);  rotateX(0deg); rotateY(0deg); rotateZ(0deg); perspective(1000px);  " mouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'
    "></a>
 ### Quick Guide
@@ -17,17 +17,26 @@ Ziping Liu really enjoys using Adobe Acrobat DC Pro ever since having the chance
 
 1. Add this in a React Component or in your main App.tsx return or render block. Don't feel frightened about the parameters, this is written using typescript so the props are typed and have comments.
 ```tsx
+import React from 'react';
+/**
+ *  *Import of ReactDOM/client is required as the ReactAdobeEmbed*
+ *  uses this and expects its existance as an external 
+ */
+import ReactDOM from 'react-dom/client'; 
 import ReactViewAdobe, {AdobeReactView} from 'react-adobe-embed'
 
 const App = () => {
 return(
-
   <ReactViewAdobe
     clientId="6e19a1dc2e3e43fc9fe0109f928bdf71"
+    title="A Story of Wages"
     url="https://storage.googleapis.com/laotzu/awslegal/"
           + "notarized/EXHIBIT_"
           + "A_Story%20of%20WagesOFNONPAIDAges_encrypted_.pdf"
-    id="exhbit-a-pdf" // required and must be unique because adobe devs are coupled like that
+    /**
+     * This is required and must be unique because adobe devs are coupled like that
+     */
+    id="exhbit-a-pdf" 
     fileMeta={{
       fileName: "A Story of Wages"
     }}
