@@ -23,7 +23,7 @@ import React from 'react';
  *  uses this and expects its existance as an external 
  */
 import ReactDOM from 'react-dom/client'; 
-import ReactViewAdobe, {AdobeReactView} from 'react-adobe-embed'
+import {ReactViewAdobe} from 'react-adobe-embed'
 
 const App = () => {
 return(
