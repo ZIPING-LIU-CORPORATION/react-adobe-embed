@@ -13,7 +13,7 @@ Ziping Liu really enjoys using Adobe Acrobat DC Pro ever since having the chance
    "></a>
 ### Quick Guide
 
-`npm install react-adobe-embed@6.24.2025`
+`npm install react-adobe-embed@6.6.2026`
 
 #### 1. Add this in a React Component or in your main App.tsx return or render block. Don't feel frightened about the parameters, this is written using typescript so the props are typed and have comments.
 ```tsx
