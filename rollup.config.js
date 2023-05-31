@@ -6,7 +6,7 @@ import filesize from 'rollup-plugin-filesize';
 import localResolve from 'rollup-plugin-local-resolve';
 import replace from "rollup-plugin-replace";
 import typescript from 'rollup-plugin-typescript2';
-
+import minify from 'rollup-plugin-babel-minify';
 import pkg from './package.json';
 
 const config = {
@@ -34,7 +34,8 @@ const config = {
       globals: {
         react: 'React'
       }
-    },
+    }
+
   ],
   plugins: [
     typescript({ useTsconfigDeclarationDir: true }),
@@ -57,6 +58,9 @@ const config = {
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)
     }),
     filesize(),
+    minify({
+      comments: false
+    })
   ],
 
   external: ['react'],

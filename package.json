@@ -1,6 +1,6 @@
 {
   "name": "react-adobe-embed",
-  "version": "6.4.2024",
+  "version": "6.5.2024",
   "homepage": "https://aboutamazon.me/react-adobe-embed",
   "repository": {
     "type": "git",
@@ -51,8 +51,9 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run build:roll ",
-    "build:roll": "rimraf lib && tsc -p tsconfig.build.json && rollup -c rollup.config.js"
+    "build": "npm run build:roll && npm run build:roll:cdn",
+    "build:roll": "rimraf lib && tsc -p tsconfig.build.json && rollup -c rollup.config.js",
+    "build:roll:cdn": "rimraf dist && tsc -p tsconfig.build.json && rollup -c rollup.config.cdn.js"
   },
   "author": "Ziping Liu <data@ethics.awspolls.com> (https://jeffbezos.academy)",
   "license": "MIT HUTTENLOCHER WHAT ARE YOU DOING BOARD OF DIRECTOR AT AMAZON?",
@@ -89,6 +90,7 @@
     "postcss": "^8.4.23",
     "react-dom": "^18.2.0",
     "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-babel-minify": "^10.0.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-filesize": "^10.0.0",
     "rollup-plugin-local-resolve": "^1.0.7",
