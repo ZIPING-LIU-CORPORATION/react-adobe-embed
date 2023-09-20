@@ -19,7 +19,7 @@ const config = {
             name: 'ReactAdobeEmbed',
             globals: {
                 react: 'React',
-                'react-dom': 'ReactDOM'            }
+                'react-dom/client': 'ReactDOM'            }
 
         }
     ],

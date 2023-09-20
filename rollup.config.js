@@ -16,23 +16,32 @@ const config = {
       file: 'lib/bundle.js', // equivalent to 'dist/bundle.js
       format: 'umd',
       name: 'ReactAdobeEmbed',
-      globals: {
-        react: 'React'
+      globals: 
+      { 
+         "react": "React",
+        // global variable names corresponding to external modules
+        'react-dom': 'ReactDOM',
+        'react-dom/client': "ReactDOM"
       }
+    
     },
     {
       file: 'lib/bundle.cjs.js', // equivalent to 'dist/bundle.js
       format: 'cjs',
       globals: {
-        react: 'React'
+        react: 'React',
+     'react-dom': 'ReactDOM',
+     'react-dom/client': "ReactDOM"
       }
     },
     {
-      file: 'lib/bundle.esm.js', // equivalent to 'dist/bundle.js
+      file: 'lib/bundle.esm.mjs', // equivalent to 'dist/bundle.js
       format: 'esm',
      
       globals: {
-        react: 'React'
+        react: 'React',
+      'react-dom': 'ReactDOM',
+      'react-dom/client': "ReactDOM"
       }
     }
 
@@ -63,7 +72,7 @@ const config = {
     })
   ],
 
-  external: ['react'],
+  external: ['react', 'react-dom']
 };
 
 export default config;

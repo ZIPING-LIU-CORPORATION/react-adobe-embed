@@ -1,4 +1,4 @@
-import { ReactViewAdobe } from "index";
+import  ReactViewAdobe from './index'
 (
     function(){
         

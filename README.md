@@ -2,7 +2,7 @@
 
 # react-adobe-embed
 
-## Changes 
+ 
 ## [ADOBE PDF EMBED API](https://developer.adobe.com/document-services/apis/pdf-embed/) is a Great Tool for Displaying PDF's with rich features,
 
 Ziping Liu really enjoys using Adobe Acrobat DC Pro ever since having the chance to use it for the first time when I interned at a law firm. In case you want to use it with React with a bit more Typescript This Wrapper allows Adobe PDF Embed to work great with React 18 and Typescript
@@ -18,21 +18,17 @@ Ziping Liu really enjoys using Adobe Acrobat DC Pro ever since having the chance
 #### 1. Add this in a React Component or in your main App.tsx return or render block. Don't feel frightened about the parameters, this is written using typescript so the props are typed and have comments.
 ```tsx
 import React from 'react';
-/**
- *  *Import of ReactDOM/client is required as the ReactAdobeEmbed*
- *  uses this and expects its existance as an external 
- */
-import ReactDOM from 'react-dom/client'; 
-import {ReactViewAdobe} from 'react-adobe-embed'
+ 
+import ReactViewAdobe from 'react-adobe-embed'
 
 const App = () => {
 return(
   <ReactViewAdobe
     clientId="6e19a1dc2e3e43fc9fe0109f928bdf71"
     title="A Story of Wages"
-    url="https://storage.googleapis.com/laotzu/awslegal/"
+    url={"https://storage.googleapis.com/laotzu/awslegal/"
           + "notarized/EXHIBIT_"
-          + "A_Story%20of%20WagesOFNONPAIDAges_encrypted_.pdf"
+          + "A_Story%20of%20WagesOFNONPAIDAges_encrypted_.pdf"}
     /**
      * This is required and must be unique because adobe devs are coupled like that
      */
@@ -52,7 +48,52 @@ return(
   />
 ) }
 ```
-#### 2. As the current implementation of creating [LIGHT_BOX](https://acrobatservices.adobe.com/view-sdk-demo/index.html#/view/LIGHT_BOX/Bodea%20Brochure.pdf) embed pdf's is quite complicated, you can view a live code example of how to use LIGHT_BOX mode with react-adobe-embed [here](https://codesandbox.io/p/sandbox/react-adobe-embed-pdf-galleria-showcase-yq5zz6?file=%2Fsrc%2FSections%2FMain.tsx%3A65%2C79)
+
+##### Lightbox Example 
+```ts
+import React from 'react';
+
+import ReactViewAdobe from 'react-adobe-embed'
+
+const App = () => {
+    const [viewDocumentTriggered, setViewDocumentTriggered] = React.useState(false);
+    return (
+        <div>
+            <button onClick={(e)=>{
+                e.preventDefault();
+                setViewDocumentTriggered(true);
+            }}>
+                View Document
+            </button>
+            <ReactViewAdobe
+                triggerAdobeDCViewRender={viewDocumentTriggered}
+                clientId="6e19a1dc2e3e43fc9fe0109f928bdf71"
+                title="A Story of Wages"
+                url={"https://storage.googleapis.com/laotzu/awslegal/"
+                     + "notarized/EXHIBIT_"
+                      + "A_Story%20of%20WagesOFNONPAIDAges_encrypted_.pdf"}
+            /**
+             * This is required and must be unique because adobe devs are coupled like that
+             */
+            id="exhbit-a-pdf"
+            fileMeta={{
+                fileName: "A Story of Wages"
+            }}
+            previewConfig={{
+                defaultViewMode: "FIT_WIDTH",
+                showAnnotationTools: false,
+                showPageControls: false,
+                showDownloadPDF: false
+            }}
+            style={{
+                height: "50vh"
+            }}
+  />
+        </div>
+    )
+}
+```
+#### 2. ~~As the current implementation of creating [LIGHT_BOX](https://acrobatservices.adobe.com/view-sdk-demo/index.html#/view/LIGHT_BOX/Bodea%20Brochure.pdf) embed pdf's is quite complicated~~, you can view a live code example of how to use LIGHT_BOX mode with react-adobe-embed [here](https://codesandbox.io/p/sandbox/react-adobe-embed-pdf-galleria-showcase-yq5zz6?file=%2Fsrc%2FSections%2FMain.tsx%3A65%2C79)
 
 #### 3. Note on adobe sdk `<script>` tag:
  - You don't need to worry about handling outside script tags. The react wrapper handles any script downloading. Simple call the React Component as shown above.
