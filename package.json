@@ -1,6 +1,6 @@
 {
   "name": "react-adobe-embed",
-  "version": "8.0.0",
+  "version": "8.0.5",
   "homepage": "https://aboutamazon.me/react-adobe-embed",
   "repository": {
     "type": "git",
@@ -42,7 +42,7 @@
   "module": "lib/bundle.esm.mjs",
 
   "main": "lib/bundle.cjs.js",
-  
+
   "exports": {
       ".": {
         "require": "./lib/bundle.cjs.js",
@@ -52,8 +52,8 @@
 
 
 
-  "types": "types/index.d.ts",
-  "cdn": "dist/react-adobe-embed.cdn.js",
+  "types": "lib/bundle.esm.d.ts",
+  "cdn:main": "dist/react-adobe-embed.cdn.js",
   "files": [
     "lib",
     "dist",

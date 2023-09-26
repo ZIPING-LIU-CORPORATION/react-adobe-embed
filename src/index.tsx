@@ -188,7 +188,7 @@ const AdobeDiv = (props: {
     };
   
     if(adobePDFProgrammeInstalled && scriptViewerLoaded){
-      adobeDCViewRef.current = new ((window as any)?.AdobeDC?.View)(config);
+      adobeDCViewRef.current = new ((window as any).AdobeDC.View)(config);
     }
 
 

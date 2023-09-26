@@ -80,14 +80,9 @@ const App = () => {
                 fileName: "A Story of Wages"
             }}
             previewConfig={{
-                defaultViewMode: "FIT_WIDTH",
-                showAnnotationTools: false,
-                showPageControls: false,
-                showDownloadPDF: false
+              "embedMode": "LIGHT_BOX"
             }}
-            style={{
-                height: "50vh"
-            }}
+         
   />
         </div>
     )

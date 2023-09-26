@@ -5,58 +5,49 @@ import commonjs from 'rollup-plugin-commonjs';
 import filesize from 'rollup-plugin-filesize';
 import localResolve from 'rollup-plugin-local-resolve';
 import replace from "rollup-plugin-replace";
-import typescript from 'rollup-plugin-typescript2';
 import minify from 'rollup-plugin-babel-minify';
-import pkg from './package.json';
+import typescript from "@rollup/plugin-typescript";
+import { terser } from "rollup-plugin-terser";
+import dts from "rollup-plugin-dts";
+
+import packageJson from './package.json';
+
+const outputCommonConf = {
+  sourcemap: 'inline',
+  globals: {
+    react: 'React',
+    'react-dom/client': 'ReactDOM'
+  }
+};
 
 const config = {
-  input: 'src/index.tsx',
+  input: 'src/index.js',
   output: [
     {
-      file: 'lib/bundle.js', // equivalent to 'dist/bundle.js
+      file: packageJson['umd:main'],
       format: 'umd',
-      name: 'ReactAdobeEmbed',
-      globals: 
-      { 
-         "react": "React",
-        // global variable names corresponding to external modules
-        'react-dom': 'ReactDOM',
-        'react-dom/client': "ReactDOM"
-      }
-    
+      name: 'ReactScriptTag',
+      ...outputCommonConf
     },
     {
-      file: 'lib/bundle.cjs.js', // equivalent to 'dist/bundle.js
+      file: packageJson.main,
       format: 'cjs',
-      globals: {
-        react: 'React',
-     'react-dom': 'ReactDOM',
-     'react-dom/client': "ReactDOM"
-      }
+      ...outputCommonConf
     },
     {
-      file: 'lib/bundle.esm.mjs', // equivalent to 'dist/bundle.js
-      format: 'esm',
-     
-      globals: {
-        react: 'React',
-      'react-dom': 'ReactDOM',
-      'react-dom/client': "ReactDOM"
-      }
-    }
-
+      file: packageJson.module,
+      format: 'es',
+      ...outputCommonConf
+    },
   ],
   plugins: [
-    typescript({ useTsconfigDeclarationDir: true }),
     peerDepsExternal(),
     babel({ exclude: 'node_modules/**' ,
-    runtimeHelpers: true,
-    externalHelpers: true,
     presets: [
       "@babel/preset-env",
       "@babel/preset-react",
       "@babel/preset-typescript"
-    ],
+  ]
   }),
     localResolve(),
     resolve(),
@@ -66,13 +57,49 @@ const config = {
     replace({
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)
     }),
+    minify({ comments: false }),
     filesize(),
-    minify({
-      comments: false
-    })
   ],
-
-  external: ['react', 'react-dom']
 };
 
-export default config;
+
+export default [
+    {
+        input: "./src/index.tsx",
+        output: [
+          {
+            file: packageJson['umd:main'],
+            format: 'umd',
+            name: 'ReactScriptTag',
+            ...outputCommonConf
+          },
+          {
+            file: packageJson.main,
+            format: 'cjs',
+            ...outputCommonConf
+          },
+          {
+            file: packageJson.module,
+            format: 'es',
+            ...outputCommonConf
+          },
+        ],
+        plugins: [
+            peerDepsExternal(),
+            localResolve(),
+            babel({ exclude: 'node_modules/**' }),
+            resolve(),
+            commonjs(),
+            typescript({ tsconfig: "./tsconfig.json" }),
+            minify({ comments: false }),
+            terser(),
+            filesize(),
+        ],
+        external: ["react", "react-dom", "styled-components"]
+    },
+    {
+        input: "lib/types/index.d.ts",
+        output: [{ file: "lib/bundle.esm.d.ts", format: "esm" }],
+        plugins: [dts()],
+    },
+];
