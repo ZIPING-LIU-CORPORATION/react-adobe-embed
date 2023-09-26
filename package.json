@@ -1,6 +1,6 @@
 {
   "name": "react-adobe-embed",
-  "version": "7.0.5",
+  "version": "8.0.0",
   "homepage": "https://aboutamazon.me/react-adobe-embed",
   "repository": {
     "type": "git",
@@ -37,10 +37,11 @@
   ],
   
 
-  "main": "lib/bundle.js",
+  "umd:main": "lib/bundle.js",
  
   "module": "lib/bundle.esm.mjs",
 
+  "main": "lib/bundle.cjs.js",
   
   "exports": {
       ".": {
