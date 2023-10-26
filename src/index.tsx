@@ -78,6 +78,43 @@ export type PreviewFileConfig = {
   focusOnRendering: any;
 };
 
+export function previewFile({
+  divId,
+  viewerConfig,
+  url,
+  clientID,
+  _fileMeta,
+  _dcView,
+}: {
+  divId: string;
+  viewerConfig: Partial<PreviewFileConfig>;
+  url: string;
+  clientID: string;
+  _dcView?: any;
+  _fileMeta?: { [key: string | "fileName" | "id"]: any };
+}) {
+  const config = {
+    clientId: clientID,
+    divId,
+  };
+
+  const dcView = _dcView || new (window as any).AdobeDC.View(config);
+  {
+  }
+  const previewFilePromise = dcView.previewFile(
+    {
+      content: {
+        location: {
+          url: url,
+        },
+      },
+      metaData: _fileMeta || DefaultConfigs.demoMetaData,
+    },
+    viewerConfig,
+  );
+  return previewFilePromise;
+}
+
 export type ReactHooks = 
 {
     [key   in (Extract<keyof typeof React, `use${string}` >  
@@ -126,10 +163,6 @@ export type ReactViewAdobeProps = {
   url: string;
   clientId: string;
   fileMeta?: { [key: string | "fileName" | "id"]: any };
-  headers?:{
-    key: string;
-    value: string;
-  }[],
   debug?: boolean;
 };
 
@@ -173,29 +206,14 @@ const AdobeDiv = (props: {
     React.useState(false);
 
   const [scriptViewerLoaded, setScriptViewerLoaded] = React.useState(false);
-  
- 
- 
-
-  const adobeDCViewRef = React.useRef<{ previewFile: any }>();
-  
-  const useHooksForAdobeConfig = React[props?.useReactHookForAdobeAPIConfigs || "useEffect"]
- 
-  useHooksForAdobeConfig(()=>{
-    const config = {
-      clientId:  props.clientId,
-      divId:  props.id || DefaultConfigs.staticDivId,
-    };
-  
-    if(adobePDFProgrammeInstalled && scriptViewerLoaded){
-      adobeDCViewRef.current = new ((window as any).AdobeDC.View)(config);
+  const useHooksForConfig = React[props?.useReactHookForAdobeAPIConfigs || "useMemo"] ;
+  const adobeDCView = 
+  useHooksForConfig(() => {
+    if (adobePDFProgrammeInstalled === true) {
+      const adobedcview = (window as any)["AdobeDC"]?.["View"];
+      return adobedcview;
     }
-
-
-    
-  },[adobePDFProgrammeInstalled, scriptViewerLoaded, props.clientId, props.id]);
-
-
+  }, [adobePDFProgrammeInstalled]);
 
   const useHooksForLoading =    React[props?.useReactHookWhenLoadingAdobeAPI || "useEffect"] ;
 
@@ -262,54 +280,14 @@ const AdobeDiv = (props: {
             previewConfig?: Partial<PreviewFileConfig>;
             url: string;
             clientId: string;
-            headers?:{
-              key: string;
-              value: string;}[],
+
             fileMeta?: { [key: string | "fileName" | "id"]: any };
         }
     ) =>{
-
- const previewFile = ({
- 
-  viewerConfig,
-  url,
-  _headers,
-  _fileMeta,
-  _dcView,
-}: {
- 
-  viewerConfig: Partial<PreviewFileConfig>;
-  url: string;
-  _headers?: {
-    key: string;
-    value: string;
-  }[];
-  _dcView?: any;
-  _fileMeta?: { [key: string | "fileName" | "id"]: any };
-})  =>{
-
-
-  
- const dcView = _dcView || adobeDCViewRef.current;
- 
-  const previewFilePromise = dcView.previewFile(
-    {
-      content: {
-        location: {
-          url: url,
-        },
-      },
-      metaData: _fileMeta || DefaultConfigs.demoMetaData,
-    },
-    viewerConfig,
-  );
-  return previewFilePromise;
-}
-
       if (props.debug)
         console.info(
           "Adobe PDF Viewer SDK Ready Event",
-          adobeDCViewRef,
+          adobeDCView,
           (window as any)["adobe_dc_view_sdk"],
         );
       const divId = props.id || DefaultConfigs.staticDivId;
@@ -318,22 +296,21 @@ const AdobeDiv = (props: {
       if (divElm && props.previewConfig?.embedMode !== "LIGHT_BOX") {
         if (props.debug) console.info("Adobe PDF Viewer SDK Ready Rendering");
         previewFile({
-         
+          divId,
           viewerConfig:
             props.previewConfig || DefaultConfigs.staticDefaultConfig,
           url: props.url || DefaultConfigs.demoUrl,
-          _headers: props.headers,
+          clientID: props.clientId,
           _fileMeta: props.fileMeta,
         });
       } else if (props.previewConfig?.embedMode === "LIGHT_BOX") {
         if (props?.triggerAdobeDCViewRender) {
           previewFile({
-      
+            divId: props.id || DefaultConfigs.staticDivId,
             viewerConfig:
               props.previewConfig || DefaultConfigs.staticDefaultConfig,
             url: props.url || DefaultConfigs.demoUrl,
-            _fileMeta: props.fileMeta,
-            _headers: props.headers
+            clientID: props.clientId,
           });
         }
       }
@@ -344,8 +321,9 @@ const AdobeDiv = (props: {
       );
     }
  
-  }, [adobePDFProgrammeInstalled, scriptViewerLoaded, props,adobeDCViewRef] );
+  }, [adobePDFProgrammeInstalled, scriptViewerLoaded, props,adobeDCView] );
 
+ 
 
   return <AdobeDiv {...props} />;
 };

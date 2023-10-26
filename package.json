@@ -1,6 +1,10 @@
 {
   "name": "react-adobe-embed",
+<<<<<<< HEAD
   "version": "8.0.5",
+=======
+  "version": "7.0.5",
+>>>>>>> parent of a0744d2 (feat: match code style with adobe pdf api examples when call adobe api)
   "homepage": "https://aboutamazon.me/react-adobe-embed",
   "repository": {
     "type": "git",
@@ -37,12 +41,16 @@
   ],
   
 
-  "umd:main": "lib/bundle.js",
+  "main": "lib/bundle.js",
  
   "module": "lib/bundle.esm.mjs",
 
+<<<<<<< HEAD
   "main": "lib/bundle.cjs.js",
 
+=======
+  
+>>>>>>> parent of a0744d2 (feat: match code style with adobe pdf api examples when call adobe api)
   "exports": {
       ".": {
         "require": "./lib/bundle.cjs.js",

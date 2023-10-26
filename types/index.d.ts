@@ -52,6 +52,16 @@ export type PreviewFileConfig = {
      */
     focusOnRendering: any;
 };
+export declare function previewFile({ divId, viewerConfig, url, clientID, _fileMeta, _dcView, }: {
+    divId: string;
+    viewerConfig: Partial<PreviewFileConfig>;
+    url: string;
+    clientID: string;
+    _dcView?: any;
+    _fileMeta?: {
+        [key: string | "fileName" | "id"]: any;
+    };
+}): any;
 export type ReactHooks = {
     [key in (Extract<keyof typeof React, `use${string}`>)]: [
     ] extends Parameters<typeof React[key]> ? never : key extends 'useReducer' ? never : key extends 'useDeferredValue' ? never : typeof React[key] extends (factory: React.EffectCallback, deps?: React.DependencyList | undefined) => void ? key : typeof React[key] extends (factory: () => any, deps: React.DependencyList | undefined) => void ? key : never;
@@ -80,10 +90,6 @@ export type ReactViewAdobeProps = {
     fileMeta?: {
         [key: string | "fileName" | "id"]: any;
     };
-    headers?: {
-        key: string;
-        value: string;
-    }[];
     debug?: boolean;
 };
 /**
@@ -92,4 +98,4 @@ export type ReactViewAdobeProps = {
  * compartmentalized and fully encapsulated and configured within a rendered page. Not sure why Adobe
  * Embed API does not inherently do this. See ReactViewAdobeProps for more details.
  */
-export default function ReactViewAdobe(props: ReactViewAdobeProps): React.JSX.Element;
+export default function ReactViewAdobe(props: ReactViewAdobeProps): JSX.Element;
