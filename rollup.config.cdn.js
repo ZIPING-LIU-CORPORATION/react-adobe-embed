@@ -1,9 +1,9 @@
-import babel from 'rollup-plugin-babel';
+import babel from   "@rollup/plugin-babel";
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+ 
 import filesize from 'rollup-plugin-filesize';
-import localResolve from 'rollup-plugin-local-resolve';
+ 
 import replace from "rollup-plugin-replace";
 import typescript from 'rollup-plugin-typescript2';
 import minify from 'rollup-plugin-babel-minify';
@@ -24,7 +24,11 @@ const config = {
         }
     ],
     plugins: [
-        typescript({ useTsconfigDeclarationDir: true }),
+        typescript({ useTsconfigDeclarationDir: true ,
+            exclude: [
+                "**/__tests__"
+            ]
+        }),
         peerDepsExternal(),
         babel({
             exclude: 'node_modules/**',

@@ -100,6 +100,25 @@ const App = () => {
 
   
 
+# Testing
+
+Given the increasing intricacy of this wrapper, it is imperative to safeguard the fundamental functionality from any potential disruption caused by new code alterations. At present, a rudimentary examination is conducted to verify the wrapper's capability to accurately display the PDF content while effectively handling asynchronous requests to the Adobe PDF Embed API.
+
+`npm run test`
+
+```bash
+PASS  src/__tests__/base.test.tsx
+  BasicRender
+    ✓ should render the component (23 ms)
+    ✓ should re-render the component when component props updated (18 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   2 passed, 2 total
+Time:        1.699 s
+Ran all test suites.
+```
+
 # Why was this made?
 
  We needed a utility for displaying PDF's but wanted to have more typescript and React involved with the displaying. This is part of LIU LLC's intermission phase ongoing in preliminary motions for setting up required framing for phase 4. These motions and phases encompass research and analysis as well as press reporting of the ongoing retaliation campaign currently waged against an employee at Amazon that started April of 2022. To learn more, see [here](https://andyjassy.cn/amazonblackmail)
@@ -127,3 +146,5 @@ Okay, you can see a demo [here](https://twitterliu.com/theft) or [here](https://
 
 ### Are you or is this wrapper thing affialated with Adobe Developer or Adobe?
  - Adobe, the Adobe logo, Acrobat, the Adobe PDF logo, Adobe Premiere, Creative Cloud, InDesign, and Photoshop are either registered trademarks or trademarks of Adobe in the United States and/or other countries. Ziping LIu Corporation  is trademarked in the United States and LIU LLC is incoporated in the State of Texas. As of this time we have no further public comments on the matter to put on record or address inquiries related wherein.
+
+

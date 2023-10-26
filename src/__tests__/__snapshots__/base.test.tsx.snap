@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BasicRender should re-render the component when component props updated 1`] = `[Function]`;
+
+exports[`BasicRender should render the component 1`] = `
+<div>
+  <div
+    class="adobe-viewer-of-amazon-corporate-retaliations"
+    id="pdf-div"
+    title="entity-existent-on-frameworks-of-state-regulations-as-defined-by-the-state-and-may-try-to-destroy-your-life-and-control-the-fbi-of-the-state-such-as-amazon-legal-idiots"
+  />
+</div>
+`;

@@ -1,19 +1,20 @@
-import babel from 'rollup-plugin-babel';
+import {babel} from '@rollup/plugin-babel';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 import filesize from 'rollup-plugin-filesize';
 import localResolve from 'rollup-plugin-local-resolve';
 import replace from "rollup-plugin-replace";
 import minify from 'rollup-plugin-babel-minify';
 import typescript from "@rollup/plugin-typescript";
-import { terser } from "rollup-plugin-terser";
+import terser from "@rollup/plugin-terser";
 import{ dts} from "rollup-plugin-dts";
 
 import packageJson from './package.json';
 
 const outputCommonConf = {
   sourcemap: 'inline',
+  exports: 'named',
   globals: {
     react: 'React',
     'react-dom/client': 'ReactDOM'
@@ -28,6 +29,7 @@ const config = {
       format: 'umd',
       name: 'ReactScriptTag',
       ...outputCommonConf
+
     },
     {
       file: packageJson.main,
@@ -87,10 +89,18 @@ export default [
         plugins: [
             peerDepsExternal(),
             localResolve(),
-            babel({ exclude: 'node_modules/**' }),
+            babel({ exclude: 'node_modules/**, src/tests/**' ,
+          }),
             resolve(),
             commonjs(),
-            typescript({ tsconfig: "./tsconfig.json" }),
+            typescript({ tsconfig: "./tsconfig.json" ,
+            exclude: [
+              "**/tests/**/*",
+              "**/*.test.tsx",
+              "**/*.test.ts",
+              "**/__tests__",
+            ]
+          }),
             minify({ comments: false }),
             terser(),
             filesize(),

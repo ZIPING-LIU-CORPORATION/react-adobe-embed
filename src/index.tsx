@@ -101,8 +101,7 @@ export function previewFile({
     };
 
     const dcView = _dcView || new (window as any).AdobeDC.View(config);
-    {
-    }
+   
     const previewFilePromise = dcView.previewFile(
         {
             content: {
@@ -154,6 +153,7 @@ export type ReactHooks =
  */
 export type ReactViewAdobeProps = {
     id?: string;
+    children?: React.ReactNode;
     useReactHookWhenLoadingAdobeAPI?: ReactHooks;
     useReactHookWhenCallingAdobeAPI?: ReactHooks;
     useReactHookForAdobeAPIConfigs?: ReactHooks;
@@ -234,11 +234,16 @@ export default function ReactViewAdobe(props: ReactViewAdobeProps) {
             if (scriptExistsALready) {
 
                 setComponentNeedsRendering(true);
-
+                scriptExistsALready.setAttribute(
+                    "data-testid", "react-adobe-embed-handholding-adobe-api-loading-idiocy-reused"
+                );
 
             } else {
                 const script = document.createElement("script");
-
+                script.setAttribute(
+                    "data-testid", "react-adobe-embed-handholding-adobe-api-loading-idiocy-initial"
+                );
+               
                 script.setAttribute(
                     "data-adobe-pdf-id",
                     props.id || DefaultConfigs.staticDivId,

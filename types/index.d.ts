@@ -77,6 +77,7 @@ export type ReactHooks = {
  */
 export type ReactViewAdobeProps = {
     id?: string;
+    children?: React.ReactNode;
     useReactHookWhenLoadingAdobeAPI?: ReactHooks;
     useReactHookWhenCallingAdobeAPI?: ReactHooks;
     useReactHookForAdobeAPIConfigs?: ReactHooks;
@@ -98,4 +99,4 @@ export type ReactViewAdobeProps = {
  * compartmentalized and fully encapsulated and configured within a rendered page. Not sure why Adobe
  * Embed API does not inherently do this. See ReactViewAdobeProps for more details.
  */
-export default function ReactViewAdobe(props: ReactViewAdobeProps): JSX.Element;
+export default function ReactViewAdobe(props: ReactViewAdobeProps): React.JSX.Element;
