@@ -8,7 +8,7 @@ import replace from "rollup-plugin-replace";
 import minify from 'rollup-plugin-babel-minify';
 import typescript from "@rollup/plugin-typescript";
 import { terser } from "rollup-plugin-terser";
-import dts from "rollup-plugin-dts";
+ 
 
 import packageJson from './package.json';
 
@@ -97,9 +97,5 @@ export default [
         ],
         external: ["react", "react-dom", "styled-components"]
     },
-    {
-        input: "lib/types/index.d.ts",
-        output: [{ file: "lib/bundle.esm.d.ts", format: "esm" }],
-        plugins: [dts()],
-    },
+ 
 ];
