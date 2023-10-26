@@ -1,6 +1,6 @@
 {
   "name": "react-adobe-embed",
-  "version": "9.0.2",
+  "version": "9.1.0",
   "homepage": "https://aboutamazon.me/react-adobe-embed",
   "repository": {
     "type": "git",
@@ -35,25 +35,23 @@
     "amazon where are my wages lawsuit pending",
     "ziping liu corporation"
   ],
-  
-
- 
- 
+  "umd:main": "lib/bundle.js",
+  "cdn:main": "dist/react-adobe-embed.cdn.js",
   "module": "lib/bundle.esm.mjs",
 
   "main": "lib/bundle.cjs.js",
 
+  
   "exports": {
-      ".": {
-        "require": "./lib/bundle.cjs.js",
-        "import": "./lib/bundle.esm.mjs"
-      }
+    ".": {
+      "require": "./lib/bundle.cjs.js",
+      "import": "./lib/bundle.esm.mjs"
+    }
   },
+  "types": "lib/bundle.esm.d.ts",
 
+  
 
-
-  "types": "types",
-  "cdn:main": "dist/react-adobe-embed.cdn.js",
   "files": [
     "lib",
     "dist",
@@ -69,8 +67,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build:roll && npm run build:roll:cdn",
-    "build:roll": "rimraf lib && tsc -p tsconfig.build.json && rollup -c rollup.config.js",
-    "build:roll:cdn": "rimraf dist && tsc -p tsconfig.build.json && rollup -c rollup.config.cdn.js"
+    "build:roll": "rimraf lib && tsc -p tsconfig.build.json && rollup --bundleConfigAsCjs -c rollup.config.js",
+    "build:roll:cdn": "rimraf dist && tsc -p tsconfig.build.json && rollup --bundleConfigAsCjs -c rollup.config.cdn.js"
   },
   "author": "Ziping Liu <data@ethics.awspolls.com> (https://jeffbezos.academy)",
   "license": "MIT HUTTENLOCHER WHAT ARE YOU DOING BOARD OF DIRECTOR AT AMAZON?",
@@ -103,12 +101,14 @@
     "babel-plugin-transform-react-display-name": "^6.25.0",
     "cssnano": "^6.0.1",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^29.3.1",
     "mini-css-extract-plugin": "^2.7.6",
     "postcss": "^8.4.23",
     "react-dom": "^18.2.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-babel-minify": "^10.0.0",
     "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-filesize": "^10.0.0",
     "rollup-plugin-local-resolve": "^1.0.7",
     "rollup-plugin-node-resolve": "^5.2.0",
@@ -129,10 +129,8 @@
     "webpack": "^5.75.0",
     "webpack-bundle-analyzer": "^4.8.0",
     "webpack-cli": "^5.0.0",
-    "webpack-dev-server": "^4.11.1",
-    "jest": "^29.3.1"
+    "webpack-dev-server": "^4.11.1"
   },
- 
   "optionalDependencies": {
     "lodash": "^4.17.21 || ^3.*",
     "npm": ">=9.8.0",
@@ -151,5 +149,8 @@
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     }
+  },
+  "dependencies": {
+    "rollup": "^4.1.4"
   }
 }
