@@ -24,7 +24,7 @@ import ReactViewAdobe from 'react-adobe-embed'
 const App = () => {
 return(
   <ReactViewAdobe
-    clientId="6e19a1dc2e3e43fc9fe0109f928bdf71"
+    clientId="324caa2a91b84f688935436cd2d25217"
     title="A Story of Wages"
     url={"https://storage.googleapis.com/laotzu/awslegal/"
           + "notarized/EXHIBIT_"
@@ -67,7 +67,7 @@ const App = () => {
             </button>
             <ReactViewAdobe
                 triggerAdobeDCViewRender={viewDocumentTriggered}
-                clientId="6e19a1dc2e3e43fc9fe0109f928bdf71"
+                clientId="324caa2a91b84f688935436cd2d25217"
                 title="A Story of Wages"
                 url={"https://storage.googleapis.com/laotzu/awslegal/"
                      + "notarized/EXHIBIT_"
