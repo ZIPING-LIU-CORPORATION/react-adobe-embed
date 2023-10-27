@@ -94,7 +94,7 @@ export const App = () => {
                             justifyContent: "center",
 
                         }}
-                        url="https://storage.googleapis.com/laotzu/awslegal/notarized/23andMe_Ancestry_Book.pdf"
+                        url="https://raw.githubusercontent.com/ZipingL/dna/main/23andMe_Ancestry_Book.pdf"
                         clientId={
                             window.location.hostname === 'localhost' ?
                                 '324caa2a91b84f688935436cd2d25217' :
