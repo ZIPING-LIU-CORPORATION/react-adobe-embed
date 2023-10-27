@@ -1,0 +1,23 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [ "slave" ]
+  pull_request:
+    branches: [ "slave" ]
+  
+jobs:
+  build:
+    environment: github-pages
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run:  npm install
+      - name: deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.DEPLOY_KEY }}
+          publish_dir: ./build      
+            
