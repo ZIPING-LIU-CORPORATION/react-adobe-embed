@@ -11,9 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
       - uses: actions/checkout@v3
+      - name: Install dependencies
+        run:  npm install
       - name: Build and then Deploy the static react canary app that uses the react adobe coponent
         uses: omkartapale/react-deployment-gh-pages@v1.0.0
-    
     
