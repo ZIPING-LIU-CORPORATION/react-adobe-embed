@@ -1,8 +1,8 @@
 {
   "name": "react-adobe-embed",
-  "version": "10.28.2023",
+  "version": "10.29.2023",
   "homepage": "https://ziping-liu-corporation.github.io/react-adobe-embed",
-  "private":"true",
+ 
   "repository": {
     "type": "git",
     "url": "https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed.git"
