@@ -1,7 +1,31 @@
-[![wakatime](https://wakatime.com/badge/user/e012350f-8b4a-4ec4-ae89-56e558bfec5d/project/91c0617a-04ed-419d-9221-d5086d1bfbf6.svg)](https://wakatime.com/badge/user/e012350f-8b4a-4ec4-ae89-56e558bfec5d/project/91c0617a-04ed-419d-9221-d5086d1bfbf6)  ![actionworfklow](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/actions/workflows/main.yml/badge.svg)
-
-# react-adobe-embed
-
+<table>
+ <thead>
+   <tr>
+    <td>
+     <a   href="https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed-cd-canary/blob/main/cypress.config.ts">Canary Heartbeat CD Enabler</a>
+    </td>
+    <td>
+     <a href="https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/blob/slave/src/__tests__/base.test.tsx">Integrated Unit Test</a>
+    </td>
+    <td>
+      <a href="http://www.wakatime.com/@aws">Development Coding Effort</a>
+    </td>
+   </tr>
+ </thead>
+  <tr>
+   <td>
+  <a href="https://cloud.cypress.io/projects/izghdg/runs">  <img title="Canary heartbeat status check for deployed latest component and adobe pdf api availability" src="https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/detailed/izghdg/main&style=flat-square&logo=cypress"/> </a>
+   </td>
+    <td>
+     <img src="https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/actions/workflows/main.yml/badge.svg"/>
+    </td>
+        <td>
+     <a href="https://wakatime.com/badge/user/e012350f-8b4a-4ec4-ae89-56e558bfec5d/project/91c0617a-04ed-419d-9221-d5086d1bfbf6"> <img src="https://wakatime.com/badge/user/e012350f-8b4a-4ec4-ae89-56e558bfec5d/project/91c0617a-04ed-419d-9221-d5086d1bfbf6.svg"/> </a>
+    </td>
+  </tr>
+</table>
+   
+ - [React Adobe Embed Deployed Latest Static Page for Canary Testing](https://ziping-liu-corporation.github.io/react-adobe-embed)
  
 ## [React based ADOBE PDF EMBED API Component Facade](https://ziping-liu-corporation.github.io/react-adobe-embed/) is a Great Tool for Displaying PDF's with rich features,
 
