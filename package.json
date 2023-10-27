@@ -61,7 +61,7 @@
   ],
   "scripts": {
     "test": "jest",
-    "build:canary": "npm run build:roll:canary && rsync -rhv --progress ./public/* ./build && rsync -rhv --progress README.md ./build",
+    "build:canary": "npm run build:roll:canary && rsync -rhv --progress ./public/* ./build && rsync -rhv --progress README.md ./build && rsync -rhv --progress ./dist ./build/",
     "build:roll:canary": "rimraf lib && rollup --bundleConfigAsCjs -c rollup.config.canary.js",
     "predeploy": "npm run build:roll:canary",
     "build": "npm run build:roll && npm run build:roll:cdn",
