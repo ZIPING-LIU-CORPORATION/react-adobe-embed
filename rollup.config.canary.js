@@ -6,18 +6,16 @@ import filesize from 'rollup-plugin-filesize';
  
 import replace from "rollup-plugin-replace";
 import typescript from 'rollup-plugin-typescript2';
-
 import minify from 'rollup-plugin-babel-minify';
 
 const config = {
-    input: 'src/main.tsx',
+    input: './canary/App.tsx',
     output: [
         {
        
-            file: 'dist/react-adobe-embed.cdn.js',
-            // cdn format
+            file: "build/app.js",
             format: 'umd',
-            name: 'ReactAdobeEmbed',
+            name:  'App',
             globals: {
                 react: 'React',
                 'react-dom/client': 'ReactDOM'            }
@@ -25,18 +23,39 @@ const config = {
         }
     ],
     plugins: [
+        typescript({ useTsconfigDeclarationDir: false ,
 
-        
-        typescript({ useTsconfigDeclarationDir: true ,
+            tsconfigOverride: {
+                compilerOptions: {
+                    outDir: "build"
+                },
+         
+            include: [
+                 "canary/App.tsx"
+            ],
+
             exclude: [
-                "**/__tests__"
+                "**/__tests__",
+                "build",
+                "dist",
+
             ]
+        },
         }),
         peerDepsExternal(),
         babel({
-            exclude: 'node_modules/**',
+            exclude: ['node_modules/**',
+                "build",
+                "dist",
+            ],
+        
             runtimeHelpers: true,
             externalHelpers: true,
+            include: [
+                "canary/App.tsx"
+            ],
+
+
             presets: [
                 "@babel/preset-env",
                 "@babel/preset-react",
@@ -54,7 +73,6 @@ const config = {
         })
         
     ],
-
 
     external: ['react', 'react-dom/client', 'react-dom'],
 };
