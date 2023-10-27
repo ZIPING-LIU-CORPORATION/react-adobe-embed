@@ -1,4 +1,4 @@
-[![wakatime](https://wakatime.com/badge/user/e012350f-8b4a-4ec4-ae89-56e558bfec5d/project/91c0617a-04ed-419d-9221-d5086d1bfbf6.svg)](https://wakatime.com/badge/user/e012350f-8b4a-4ec4-ae89-56e558bfec5d/project/91c0617a-04ed-419d-9221-d5086d1bfbf6)
+[![wakatime](https://wakatime.com/badge/user/e012350f-8b4a-4ec4-ae89-56e558bfec5d/project/91c0617a-04ed-419d-9221-d5086d1bfbf6.svg)](https://wakatime.com/badge/user/e012350f-8b4a-4ec4-ae89-56e558bfec5d/project/91c0617a-04ed-419d-9221-d5086d1bfbf6)  ![actionworfklow](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/actions/workflows/main.yml/badge.svg)
 
 # react-adobe-embed
 
@@ -12,8 +12,7 @@ Ziping Liu really enjoys using Adobe Acrobat DC Pro ever since having the chance
   <a href="http://awsretaliatory.com/"><img src="./demo.png" style="max-width: 1200px; height: auto; width: 90%; display:inline-block; text-align:center; transition: all 0.3s ease-in-out; animation: all 0.3s ease-in-out;  transform: scale(1), translateZ(0);  rotateX(0deg); rotateY(0deg); rotateZ(0deg); perspective(1000px);  " mouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'
    "></a>
 ### Quick Guide
-
-`npm install react-adobe-embed@9.1.0`
+`npm install react-adobe-embed@10.27.22`
 
 #### 1. Add this in a React Component or in your main App.tsx return or render block. Don't feel frightened about the parameters, this is written using typescript so the props are typed and have comments.
 ```tsx
@@ -100,7 +99,7 @@ const App = () => {
 
   
 
-# Testing
+## Testing
 
 Given the increasing intricacy of this wrapper, it is imperative to safeguard the fundamental functionality from any potential disruption caused by new code alterations. At present, a rudimentary examination is conducted to verify the wrapper's capability to accurately display the PDF content while effectively handling asynchronous requests to the Adobe PDF Embed API.
 
@@ -119,32 +118,27 @@ Time:        1.699 s
 Ran all test suites.
 ```
 
-# Why was this made?
-
- We needed a utility for displaying PDF's but wanted to have more typescript and React involved with the displaying. This is part of LIU LLC's intermission phase ongoing in preliminary motions for setting up required framing for phase 4. These motions and phases encompass research and analysis as well as press reporting of the ongoing retaliation campaign currently waged against an employee at Amazon that started April of 2022. To learn more, see [here](https://andyjassy.cn/amazonblackmail)
-
-# Do you need to see a demo? 
-
-Okay, you can see a demo [here](https://twitterliu.com/theft) or [here](https://twitterliu.com/fmla) for now.
-
 
 
 # FAQS
+### Why was this made?
+  - We needed a utility for displaying PDF's but wanted to have more typescript and React involved with the displaying. This is part of LIU LLC's intermission phase ongoing in preliminary motions for setting up required framing for phase 4. These motions and phases encompass research and analysis as well as press reporting of the ongoing retaliation campaign currently waged against an employee at Amazon that started April of 2022. To learn more, see [here](https://awsuni.com/life);
+### Do you need to see a demo without code sandbox?
+ - Okay, you can see a demo [here](https://twitterliu.com/linkedin) or [here](https://twitterliu.com/fmla) for now.
 ### Have something to say about this wrapper?
  - [Discuss Issues with it Here](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/discussions/1)
+ - Or open up a pull request, it can be for any reason there's no required level of issue.
 ### Is this Wrapper Adobe Embed Thing being Updated? It's pretty barebones and doesn't do anything 
  - Yes, since this wrapper is actrively used in LIU LLC Sites, it is being updated and expect more updates and stuff on it
-
 ### Why are you using React 18? Why are you using Typescript 4.8? Isn't that overkill?
  - In some cases it is overkill, so hence you may utilize [Adobe Embed API](https://developer.adobe.com/document-services/apis/pdf-embed/) that is the service, hence why this package is called a wrapper and not ADOBE API Library
-
 ### This wrapper is overkill as a package on npm, a four year old could just write this out inline on any react front-end website
  - We agree, this is for those who are younger than four years old and not yet able to inline out components as vanilla react-js
-
 ### Where is npm?
  - You may view [here](https://www.npmjs.com/package/react-adobe-embed) for its npm package.
-
 ### Are you or is this wrapper thing affialated with Adobe Developer or Adobe?
- - Adobe, the Adobe logo, Acrobat, the Adobe PDF logo, Adobe Premiere, Creative Cloud, InDesign, and Photoshop are either registered trademarks or trademarks of Adobe in the United States and/or other countries. Ziping LIu Corporation  is trademarked in the United States and LIU LLC is incoporated in the State of Texas. As of this time we have no further public comments on the matter to put on record or address inquiries related wherein.
+```
+Adobe, with its renowned symbols such as Acrobat, the Adobe PDF insignia, Adobe Premiere, Creative Cloud, InDesign, and Photoshop, are acknowledged trademarks of Adobe, registered in the United States and/or other jurisdictions. Ziping Liu Corporation, a trademark registered in the United States, and LIU LLC, incorporated under the laws of the State of Texas, are also part of our respected portfolio. At this moment, we have no additional public declarations to make or inquiries to address on this matter.
 
-
+Ziping LIU Corporation, overseeing Adobe code, is proud to unveil an innovative Nested React Component, aptly named 'ReactViewAdobe'. This component is a result of careful engineering, designed with the specific aim of managing the API calls and configurations associated with the Adobe Embed API SDK. This component, in its profound wisdom, employs React Hooks, thereby transforming what the Adobe Embed API SDK perceives as static and unadorned JavaScript code into an elegantly transposed representation in the Document Object Model (DOM). This is a testament to our commitment to innovation and growth in the ever-evolving digital landscape, or alternatively, necessary code scaffolding to allow for Adobe's complex API to function properly in modern frameworks.
+```
