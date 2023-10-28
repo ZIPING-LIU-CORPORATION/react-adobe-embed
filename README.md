@@ -36,7 +36,7 @@ Ziping Liu really enjoys using Adobe Acrobat DC Pro ever since having the chance
   <a href="http://awsretaliatory.com/"><img src="./demo.png" style="max-width: 1200px; height: auto; width: 90%; display:inline-block; text-align:center; transition: all 0.3s ease-in-out; animation: all 0.3s ease-in-out;  transform: scale(1), translateZ(0);  rotateX(0deg); rotateY(0deg); rotateZ(0deg); perspective(1000px);  " mouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'
    "></a>
 ### Quick Guide
-`npm install react-adobe-embed@10.29.23`
+`npm install react-adobe-embed@10.31.23`
 
 #### 1. Add this in a React Component or in your main App.tsx return or render block. Don't feel frightened about the parameters, this is written using typescript so the props are typed and have comments.
 ```tsx
@@ -121,7 +121,22 @@ const App = () => {
   - ~~Since I guess Adobe just likes to change the URL to whatever they want, you can find the correct URL to use to include their ADOBE MAGIC STUFF [here](https://developer.adobe.com/document-services/docs/overview/pdf-embed-api/).~~
   - I don't know why but the folks at Adobe decided to change the script URL, and then also change the global variable name used to store the Adobe api methods, this has ulimately caused this npm package as actually a broken useless wrapper... so why didn't anyone add to the [discussion board](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/discussions/1) to let me know? Seriously? Just literally next time say, hey idiot your code is broken. I won't be offended. It's just code dude.
 
-  
+
+## Installation via CDN
+You can also load this as a CDN script. By default the latest version can be accessed publically via. For now it is only accessible in this manner as a UMD bundle, with access to the default exported React Component.
+```html
+<script src="https://ziping-liu-corporation.github.io/react-adobe-embed/dist/react-adobe-embed.cdn.js">
+<script>
+  (function(){
+    /**
+     * In which the default export ReactViewAdobe Component can be accessed like such. And can be used with typescript development via webpack/rollup configurations of the npm as an external global.
+     * Further useage examples to be added.
+     */
+    const ReactAdobeEmbed = (window)?.ReactViewAdobe;
+  })()
+</script>
+```
+
 
 ## Testing
 
