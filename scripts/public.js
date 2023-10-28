@@ -85,9 +85,7 @@ const freqMapWor = wordsarra2UniqueFiltered.map((word) => {
 
 const topTenWords = freqMapWor.sort((a, b) => b.freq - a.freq).slice(0, 12);
 console.log(topTenWords);
-const headMatchedModded = headMatched +
-`
-<meta property="og:image" content="https://blog.zi-ping.com/wp-content/uploads/2023/10/love-blue.png">
+const headMatchedModded = headMatched[1] + ` <meta property="og:image" content="https://blog.zi-ping.com/wp-content/uploads/2023/10/love-blue.png">
 <meta property="article:author" content="https://zi-ping.com/resume">
 <meta name="author" content="Liu, Zi-ping">
 <meta name="description" content="Testing the React Component over Time as the Continuous Form of Avaiability Monitoring Concerning the React Adobe Embed custom react component library Due to possible failiures caused by external API changes ( Adobe Embed API is complicated and changes without notice often) Due to possible failures caused by code changes to the React Component that are unable to be caught through unit tests">
@@ -150,9 +148,8 @@ const headMatchedModded = headMatched +
 
 
  
+  const htmlNew = publicIndexhtml.replace( headMatched[1], headMatchedModded);
 
-
-const htmlNew = publicIndexhtml.replace(regexMatchHead, headMatchedModded);
 
 const htmlMiny = minify(htmlNew, {
     collapseWhitespace: true,
