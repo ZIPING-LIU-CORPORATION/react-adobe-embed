@@ -54,7 +54,7 @@ export const App = () => {
                         <div className="row">
                             <div className="col s12">
                                 <h5 data-testid="test-route" className="header">Test Route View</h5>
-                                <iframe src="https://ziping-liu-corporation.github.io/react-adobe-embed/README.md"
+                                <iframe src="https://storage.googleapis.com/laotzu/awslegal/ANDYTIME/assets/github/readme.html"
                                     style={{
                                     width: "100%",
                                     height: "900px",
