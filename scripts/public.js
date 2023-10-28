@@ -171,5 +171,5 @@ if(process && process?.env){
   process.env.DATEMODIFIED_CODE_DEPLOYED = modifiedDate;
 } 
 const env_filestring = `DATEMODIFIED_CODE_DEPLOYED=${modifiedDate}`;
-fs.writeFileSync(path.resolve(__dirname, '../.env'), env_filestring, 'utf8'); fs.writeFileSync(path.resolve(__dirname, '../.env'), env_filestring, 'utf8');
+fs.writeFileSync(path.resolve(__dirname, '../.env'), env_filestring, 'utf8');
 fs.writeFileSync(path.resolve(__dirname, '../build/index.html'), htmlMiny, 'utf8');
