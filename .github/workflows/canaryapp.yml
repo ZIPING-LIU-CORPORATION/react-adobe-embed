@@ -7,8 +7,7 @@ on:
     branches: [ "slave" ]
   
 jobs:
-  deploy:
-  
+  deploy: 
     environment: github-pages
     runs-on: ubuntu-latest
     permissions:
@@ -26,5 +25,19 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.DEPLOY_KEY }}
-          publish_dir: ./build      
-            
+          publish_dir: ./build
+  alert_code_change:
+    runs-on: ubuntu-latest
+    needs: [deploy]
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
+    steps:
+      - name: Emit repository_dispatch event to canary heartbeat
+        uses: mvasigh/dispatch-action@main
+        with:
+          # You should create a personal access token and store it in your repository
+          token: ${{ secrets.LICENSE_TO_DISPATCH_NOTIFY }}
+          repo: react-adobe-embed-cd-canary
+          owner: ZIPING-LIU-CORPORATION
+          event_type: react_adobe_embed_code_pushed
+          
+    
