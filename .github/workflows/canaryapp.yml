@@ -23,7 +23,7 @@ jobs:
         run: npm run build:canary
       - name: Read Build Timestamped Env from .env FILE generated
         run: |
-           $DATEMODIFIED_CODE_DEPLOYMENT = $(cat .env | grep "DATEMODIFIED_CODE_DEPLOYMENT" | cut -d '=' -f2)
+           $DATEMODIFIED_CODE_DEPLOYMENT=$(cat .env | grep "DATEMODIFIED_CODE_DEPLOYMENT" | cut -d '=' -f2)
       - name: deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
