@@ -2,6 +2,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const minify = require('html-minifier').minify;
 
+const modifiedDate = (new Date()).toISOString().replace(/\.\d\d\dZ/, '+00:00');
 const publicIndexhtml = fs.readFileSync(path.resolve(__dirname, '../public/index.html'), 'utf8');
 const readme = fs.readFileSync(path.resolve(__dirname, '../README.md'), 'utf8');
 
@@ -101,8 +102,8 @@ const headMatchedModded = headMatched[1] + ` <meta property="og:image" content="
 <meta name="author" content="Liu, Zi-ping">
 <meta name="description" content="Testing the React Component over Time as the Continuous Form of Avaiability Monitoring Concerning the React Adobe Embed custom react component library Due to possible failiures caused by external API changes ( Adobe Embed API is complicated and changes without notice often) Due to possible failures caused by code changes to the React Component that are unable to be caught through unit tests">
 <meta property="article:published_time" content="2023-10-13T04:22:32-05:00">
-<meta property="article:modified_time" content="${new Date().toISOString()}">
-<meta property="og:updated_time" content="${new Date().toISOString()}">
+<meta property="article:modified_time" content="${modifiedDate}">
+<meta property="og:updated_time" content="${modifiedDate}">
 <meta property="og:title" content="${matchedTitle[1]}">
 <meta property="og:image" content="https://blog.zi-ping.com/wp-content/uploads/2023/10/love-blue.png">
 <meta name="image" content="https://blog.zi-ping.com/wp-content/uploads/2023/10/love-blue.png">
@@ -124,9 +125,7 @@ const headMatchedModded = headMatched[1] + ` <meta property="og:image" content="
         },
         "headline": "${matchedTitle[1]}",
         "datePublished":  "2023-10-27T00:00:00+00:00",
-        "dateModified" : "${new Date().toISOString(). 
-            //replace the .000Z with offset gmtoffset
-            replace(/\.\d\d\dZ/, '+00:00')}",
+        "dateModified" : "${modifiedDate}",
         }",
         "mainEntityOfPage": {
           "@id": "https://ziping-liu-corporation.github.io/react-adobe-embed/"
@@ -154,14 +153,7 @@ const headMatchedModded = headMatched[1] + ` <meta property="og:image" content="
   </script>	
 
 `;
-
-
-
-
- 
-  const htmlNew = publicIndexhtml.replace( headMatched[1], headMatchedModded);
-
-
+const htmlNew = publicIndexhtml.replace( headMatched[1], headMatchedModded);
 const htmlMiny = minify(htmlNew, {
     collapseWhitespace: true,
     minifyCSS: true,
@@ -175,7 +167,7 @@ const htmlMiny = minify(htmlNew, {
     removeTagWhitespace: true,
     useShortDoctype: true,
 });
-
-
+if(process && process?.env){
+  process.env.DATEMODIFIED_CODE_DEPLOYED = modifiedDate;
+}
 fs.writeFileSync(path.resolve(__dirname, '../build/index.html'), htmlMiny, 'utf8');
-

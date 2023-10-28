@@ -40,5 +40,7 @@ jobs:
           repo: react-adobe-embed-cd-canary
           owner: ZIPING-LIU-CORPORATION
           event_type: react_adobe_embed_code_pushed
-          
-    
+          message: |
+            {
+               "DATEMODIFIED_CODE_DEPLOYED" : "${{ env.DATEMODIFIED_CODE_DEPLOYMENT }}"
+            }
