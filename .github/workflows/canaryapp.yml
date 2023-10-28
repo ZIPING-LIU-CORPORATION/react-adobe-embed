@@ -45,5 +45,5 @@ jobs:
           event_type: react_adobe_embed_code_pushed
           message: |
             {
-               "DATEMODIFIED_CODE_DEPLOYED" :  $DATEMODIFIED_CODE_DEPLOYMENT
+               "DATEMODIFIED_CODE_DEPLOYED" :  "$DATEMODIFIED_CODE_DEPLOYMENT"
             }
