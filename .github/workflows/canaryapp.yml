@@ -2,33 +2,35 @@ name: Build and Deploy
 
 on:
   push:
-    branches: [ "slave" ]
+    branches: ["slave"]
   pull_request:
-    branches: [ "slave" ]
-  
+    branches: ["slave"]
+
 jobs:
-  deploy: 
+  deploy:
     environment: github-pages
     runs-on: ubuntu-latest
     permissions:
       contents: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
-    
+
     steps:
       - uses: actions/checkout@v3
       - name: Install dependencies
-        run:  npm install
+        run: npm install
       - name: Build
         run: npm run build:canary
       - name: Read Build Timestamped Env from .env FILE generated
         run: |
-           DATEMODIFIED_CODE_DEPLOYMENT=$(cat .env | grep "DATEMODIFIED_CODE_DEPLOYMENT" | cut -d '=' -f2)
+          DATEMODIFIED_CODE_DEPLOYMENT=$(cat .env | grep "DATEMODIFIED_CODE_DEPLOYMENT" | cut -d '=' -f2)
       - name: deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.DEPLOY_KEY }}
           publish_dir: ./build
+        env:
+          DATEMODIFIED_CODE_DEPLOYMENT: ${{ env.DATEMODIFIED_CODE_DEPLOYMENT }}
   alert_code_change:
     runs-on: ubuntu-latest
     needs: [deploy]
@@ -42,8 +44,9 @@ jobs:
           token: ${{ secrets.LICENSE_TO_DISPATCH_NOTIFY }}
           repo: react-adobe-embed-cd-canary
           owner: ZIPING-LIU-CORPORATION
+
           event_type: react_adobe_embed_code_pushed
           message: |
             {
-               "DATEMODIFIED_CODE_DEPLOYED" :  "$DATEMODIFIED_CODE_DEPLOYMENT"
+               "DATEMODIFIED_CODE_DEPLOYED" :  ${{ env.DATEMODIFIED_CODE_DEPLOYMENT }}
             }
