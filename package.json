@@ -1,8 +1,7 @@
 {
   "name": "react-adobe-embed",
-  "version": "10.30.2023",
+  "version": "10.31.2023",
   "homepage": "https://ziping-liu-corporation.github.io/react-adobe-embed",
- 
   "repository": {
     "type": "git",
     "url": "https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed.git"
@@ -61,7 +60,8 @@
   ],
   "scripts": {
     "test": "jest",
-    "build:canary": "npm run build:roll:canary && rsync -rhv --progress ./public/* ./build && rsync -rhv --progress README.md ./build && rsync -rhv --progress ./dist ./build/",
+    "build:canary": "npm run build:roll:canary && rsync -rhv --progress ./public/* ./build && rsync -rhv --progress README.md ./build && rsync -rhv --progress ./dist ./build/ && npm run build:public",
+    "build:public": "node ./scripts/public.js",
     "build:roll:canary": "rimraf lib && rollup --bundleConfigAsCjs -c rollup.config.canary.js",
     "predeploy": "npm run build:roll:canary",
     "build": "npm run build:roll && npm run build:roll:cdn",
@@ -103,6 +103,7 @@
     "babel-plugin-transform-react-display-name": "^6.25.0",
     "cssnano": "^6.0.1",
     "gh-pages": "^6.0.0",
+    "html-minifier": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^29.7.0",
     "jest-dom": "^4.0.0",
@@ -135,14 +136,13 @@
     "webpack-dev-server": "^4.11.1"
   },
   "optionalDependencies": {
-    "lodash": "^4.17.21 || ^3.*",
-    "npm": ">=9.8.0",
     "@rollup/rollup-linux-x64-gnu": "*",
     "@rollup/rollup-linux-x64-musl": "*",
     "@rollup/rollup-linux-x64-napi": "*",
     "@rollup/rollup-linux-x64-unknown": "*",
     "@rollup/rollup-macos-x64-darwin": "*",
-
+    "lodash": "^4.17.21 || ^3.*",
+    "npm": ">=9.8.0",
     "react": "^15.0.0-0 || ^16.0.0-0 || ^17.0.0-0 || ^18.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0-0 || ^19.0.0 || ^20.0.0",
     "react-dom": "^0.14.0 || ^15.0.0-0 || ^16.0.0-0 || ^17.0.0-0 || ^18.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0-0 || ^19.0.0 || ^20.0.0"
   }
