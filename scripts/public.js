@@ -10,7 +10,7 @@ const regexMatchHead = /<head>([\s\S]*?)<\/head>/;
 const headMatched = publicIndexhtml.match(regexMatchHead);
 const matchedTitle = headMatched[1].match(/<title>([\s\S]*?)<\/title>/);
 
-const regexMatchLongWords =  /[a-zA-Z]{5,}/g;
+const regexMatchLongWords =  /[a-zA-Z]{6,}/g;
  
 
 const wordsarra =readme.match(regexMatchLongWords).map((word) => {
@@ -55,19 +55,30 @@ const wordAvoid =[
     'with',
     'stylesheet',
     'from',
+    'slave',
+    'enabler',
     'enjoys',
     'that',
     'this',
+    'effort',
     'crossorigin',
     'rel',
     'have',
+    'izghdg',
     'been',
     'will',
-
+    'thead',
+    'config',
+    'function',
+    'table',
+    'tbody',
+    'border',
+    'body',
     'your',
     'about',
 
 ]
+
 
 const wordsarra2UniqueFiltered = wordsarra2Unique.filter((word) => {
     return !wordAvoid.includes(word);
@@ -83,7 +94,7 @@ const freqMapWor = wordsarra2UniqueFiltered.map((word) => {
 
 );
 
-const topTenWords = freqMapWor.sort((a, b) => b.freq - a.freq).slice(0, 12);
+const topTenWords = freqMapWor.sort((a, b) => b.freq - a.freq).slice(0, 16);
 console.log(topTenWords);
 const headMatchedModded = headMatched[1] + ` <meta property="og:image" content="https://blog.zi-ping.com/wp-content/uploads/2023/10/love-blue.png">
 <meta property="article:author" content="https://zi-ping.com/resume">
@@ -120,7 +131,7 @@ const headMatchedModded = headMatched[1] + ` <meta property="og:image" content="
         "mainEntityOfPage": {
           "@id": "https://ziping-liu-corporation.github.io/react-adobe-embed/"
         },
-        "wordCount": 1027,
+        "wordCount": ${wordsarra.length},
         "publisher": { "@id": "https://privacy.zi-ping.com" },
         "image": {
           "@id": "https://blog.zi-ping.com/wp-content/uploads/2023/10/love-blue.png"
