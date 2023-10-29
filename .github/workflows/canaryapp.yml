@@ -25,7 +25,7 @@ jobs:
       - name: Read Build Timestamped Env from .env FILE generated
         id: set_modified_timestamped_actions_gh_pages
         run: |
-          echo "DATEMODIFIED_CODE_DEPLOYMENT=$(cat .env | grep DATEMODIFIED_CODE_DEPLOYMENT | cut -d '=' -f2)" >> $GITHUB_OUTPUT
+          echo "DATEMODIFIED_CODE_DEPLOYMENT=$(cat .env | grep DATEMODIFIED_CODE_DEPLOYMENT | cut -d '=' -f2)" >> $GITHUB_ENV
       - name: deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -33,10 +33,13 @@ jobs:
           publish_dir: ./build
   alert_code_change:
     runs-on: ubuntu-latest
-    needs: [deploy]
+    needs: deploy
     environment: github-pages
     if: github.event_name == 'push' || github.event_name == 'pull_request'
     steps:
+      - name: Access the output variable from the deploy job
+        run: |
+          echo "DATEMODIFIED_CODE_DEPLOYMENT=${{ needs.deploy.outputs.DATEMODIFIED_CODE_DEPLOYMENT }}"
       - name: Emit repository_dispatch event to canary heartbeat
         uses: mvasigh/dispatch-action@main
         with:
@@ -47,5 +50,7 @@ jobs:
           event_type: react_adobe_embed_code_pushed
           message: |
             {
-               "DATEMODIFIED_CODE_DEPLOYED" : "${{ needs.deploy.outputs.DATEMODIFIED_CODE_DEPLOYMENT }}"
+               "DATEMODIFIED_CODE_DEPLOYED" : "env.DATEMODIFIED_CODE_DEPLOYMENT",
             }
+        env:
+          DATEMODIFIED_CODE_DEPLOYMENT: ${{ needs.deploy.outputs.DATEMODIFIED_CODE_DEPLOYMENT }}
