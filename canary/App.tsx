@@ -95,14 +95,16 @@ export const App = () => {
 
                         }}
                         url="https://raw.githubusercontent.com/ZipingL/dna/main/23andMe_Ancestry_Book.pdf"
-                        clientId={
-                            window.location.hostname === 'localhost' ?
-                          
-                                '324caa2a91b84f688935436cd2d25217' :
-                                window.location.hostname === 'zipingl.github.io' ?
-                                '9c16d364507948289a9f65f9ab9da8bf' : 
-                                '875691e089ad4bf6bc4c5cea79403542'
-                            }
+                        clientId={ 
+                            // TODO: Fix this to a function
+                            window.location.hostname === 'localhost' ?                
+                            '324caa2a91b84f688935436cd2d25217' :
+                            window.location.hostname === 'one.ziping.org' ?
+                             '2e5605e61e5b4306829b619d6fad2dc4' :
+                            window.location.hostname === 'zipingl.github.io' ?
+                            '9c16d364507948289a9f65f9ab9da8bf' : 
+                            '875691e089ad4bf6bc4c5cea79403542'
+                        }
                     />
                 } />
             </Routes>
