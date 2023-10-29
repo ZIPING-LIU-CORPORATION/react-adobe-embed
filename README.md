@@ -2,10 +2,19 @@
  <thead>
    <tr>
     <td>
-     <a   href="https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed-cd-canary/blob/main/cypress.config.ts">Canary Heartbeat CD Enabler</a>
+     <a  
+      title="Canary End to End, integrated testing, that ensures the deployed react adobe component testing endpoint is runnning, via a production environment given that the react-adobe-embed relies on an external service "
+      href="https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed-cd-canary/blob/main/cypress.config.ts">Canary Hearbeat Status</a>
     </td>
     <td>
-     <a href="https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/blob/slave/src/__tests__/base.test.tsx">Integrated Unit Test</a>
+     <a 
+      title="Alarm via dispatching event on new code change to external dependencies but namely for the canary end to end testing heartbeat to ensure it is accessing the latest deployed endpoint (ziping-liu-corporation.github.io/react-adobe-embed) to test" 
+      href="https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/actions/workflows/canaryapp.yml">Alarm on Code Push for React-Adobe-Embed</a>
+    </td>
+    <td>
+     <a 
+      title="Unit Test that is a quick check of code changes via mocking out the very large external react embed api spaghetti code"
+      href="https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/blob/slave/src/__tests__/base.test.tsx">Integration/Unit Test on Code Push</a>
     </td>
     <td>
       <a href="http://www.wakatime.com/@aws">Development Coding Effort</a>
@@ -15,6 +24,9 @@
   <tr>
    <td>
   <a href="https://cloud.cypress.io/projects/izghdg/runs">  <img title="Canary heartbeat status check for deployed latest component and adobe pdf api availability" src="https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/detailed/izghdg/main&style=flat-square&logo=cypress"/> </a>
+   </td>
+   <td>
+     <img src="https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/actions/workflows/canaryapp.yml/badge.svg">
    </td>
     <td>
      <img src="https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/actions/workflows/main.yml/badge.svg"/>
