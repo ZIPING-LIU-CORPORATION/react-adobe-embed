@@ -33,7 +33,7 @@ jobs:
           publish_dir: ./build
       - name: output the output variable
         id: output_actions_gh_pages
-        run: echo "DATEMODIFIED_CODE_DEPLOYMENT=${{ steps.set_modified_timestamped_actions_gh_pages.outputs.DATEMODIFIED_CODE_DEPLOYMENT }}" >> "$GITHUB_OUTPUT"
+        run: echo "DATEMODIFIED_CODE_DEPLOYMENT=${{ env.DATEMODIFIED_CODE_DEPLOYMENT }}" >>  "$GITHUB_OUTPUT"
   alert_code_change:
     runs-on: ubuntu-latest
     needs: deploy
@@ -42,6 +42,11 @@ jobs:
     steps:
       - name: Access the output variable from the deploy job
         run:  echo "DATEMODIFIED_CODE_DEPLOYMENT=${{ needs.deploy.outputs.DATEMODIFIED_CODE_DEPLOYMENT }}"
+      - name: Access the output variable form two
+        run: echo "${{ env.DATEMODIFIED_CODE_DEPLOYMENT }}"
+      - name: Access the output variable form three
+        run: echo $GITHUB_OUTPUT
+        
       - name: Emit repository_dispatch event to canary heartbeat
         uses: mvasigh/dispatch-action@main
         with:
