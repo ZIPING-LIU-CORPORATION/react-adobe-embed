@@ -15,7 +15,7 @@ jobs:
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     outputs:
-      DATEMODIFIED_CODE_DEPLOYMENT: ${{ steps.set_modified_timestamped_actions_gh_pages.outputs.DATEMODIFIED_CODE_DEPLOYMENT }}
+      DATEMODIFIED_CODE_DEPLOYMENT: ${{ steps.output_actions_gh_pages.outputs.DATEMODIFIED_CODE_DEPLOYMENT }}
     steps:
       - uses: actions/checkout@v3
       - name: Install dependencies
@@ -31,6 +31,10 @@ jobs:
         with:
           deploy_key: ${{ secrets.DEPLOY_KEY }}
           publish_dir: ./build
+      - name: output the output variable
+        id: output_actions_gh_pages
+        run: |
+          echo "DATEMODIFIED_CODE_DEPLOYMENT=${{ steps.set_modified_timestamped_actions_gh_pages.outputs.DATEMODIFIED_CODE_DEPLOYMENT }}" >> "$GITHUB_OUTPUT"
   alert_code_change:
     runs-on: ubuntu-latest
     needs: deploy
