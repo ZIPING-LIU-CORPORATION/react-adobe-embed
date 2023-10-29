@@ -25,7 +25,7 @@ jobs:
       - name: Read Build Timestamped Env from .env FILE generated
         id: set_modified_timestamped_actions_gh_pages
         run: |
-          echo "DATEMODIFIED_CODE_DEPLOYMENT=$(cat .env | grep DATEMODIFIED_CODE_DEPLOYMENT | cut -d '=' -f2)" >> $GITHUB_ENV
+          echo "DATEMODIFIED_CODE_DEPLOYMENT=$(cat .env | grep DATEMODIFIED_CODE_DEPLOYED | cut -d '=' -f2)" >> $GITHUB_ENV
       - name: deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
