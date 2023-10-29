@@ -50,7 +50,8 @@ jobs:
           event_type: react_adobe_embed_code_pushed
           message: |
             {
-               "DATEMODIFIED_CODE_DEPLOYED" : "env.DATEMODIFIED_CODE_DEPLOYMENT",
+              "DATEMODIFIED_CODE_DEPLOYED" : "${{ env.DATEMODIFIED_CODE_DEPLOYMENT}}",
             }
         env:
           DATEMODIFIED_CODE_DEPLOYMENT: ${{ needs.deploy.outputs.DATEMODIFIED_CODE_DEPLOYMENT }}
+            
