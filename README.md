@@ -1,5 +1,10 @@
+# [React based ADOBE PDF EMBED API Component Facade](https://ziping-liu-corporation.github.io/react-adobe-embed/) is a Great Tool for Displaying PDF's with rich features,
+
+Ziping Liu really enjoys using Adobe Acrobat DC Pro ever since having the chance to use it for the first time when I interned at a law firm. In case you want to use it with React with a bit more Typescript This Wrapper allows Adobe PDF Embed to work great with React 18 and Typescript
+
+## Current Build and Working Status 
 <table>
- <thead>
+<thead>
    <tr>
     <td>
      <a  
@@ -34,23 +39,17 @@
         <td>
      <a href="https://wakatime.com/badge/user/e012350f-8b4a-4ec4-ae89-56e558bfec5d/project/91c0617a-04ed-419d-9221-d5086d1bfbf6"> <img src="https://wakatime.com/badge/user/e012350f-8b4a-4ec4-ae89-56e558bfec5d/project/91c0617a-04ed-419d-9221-d5086d1bfbf6.svg"/> </a>
     </td>
-  </tr>
-</table>
-   
- - [React Adobe Embed Deployed Latest Static Page for Canary Testing](https://ziping-liu-corporation.github.io/react-adobe-embed)
- 
-## [React based ADOBE PDF EMBED API Component Facade](https://ziping-liu-corporation.github.io/react-adobe-embed/) is a Great Tool for Displaying PDF's with rich features,
+  </tr></table>
 
-Ziping Liu really enjoys using Adobe Acrobat DC Pro ever since having the chance to use it for the first time when I interned at a law firm. In case you want to use it with React with a bit more Typescript This Wrapper allows Adobe PDF Embed to work great with React 18 and Typescript
+Through live heartbeat monitoring the react component as well as the external  api service used, as well as via standard integartion testing, that provides full CD/CI coverage of [react-adobe-embed](https://github.com/ziping-liu-corporation/react-adobe-embed). *Further details regarding CD to be provided.*
 
-## Run a live Demo in your Browser:
--  View a running demo as editable code, showcasing PDF embed displays such as light box here via codesandbox: [codesandbox.io](https://codesandbox.io/p/sandbox/react-adobe-embed-pdf-galleria-showcase-yq5zz6?embed=1)
-  <a href="http://awsretaliatory.com/"><img src="./demo.png" style="max-width: 1200px; height: auto; width: 90%; display:inline-block; text-align:center; transition: all 0.3s ease-in-out; animation: all 0.3s ease-in-out;  transform: scale(1), translateZ(0);  rotateX(0deg); rotateY(0deg); rotateZ(0deg); perspective(1000px);  " mouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'
-   "></a>
-### Quick Guide
-`npm install react-adobe-embed@10.31.202-3.1`
+## Installation via package managers
+ - `npm install react-adobe-embed@11.0.1`
+ - `yarn add react-adobe-embed`
 
-#### 1. Add this in a React Component or in your main App.tsx return or render block. Don't feel frightened about the parameters, this is written using typescript so the props are typed and have comments.
+
+### Basic Usage Examples
+
 ```tsx
 import React from 'react';
  
@@ -59,13 +58,22 @@ import ReactViewAdobe from 'react-adobe-embed'
 const App = () => {
 return(
   <ReactViewAdobe
+    
+    /**
+     * You can use the clientId below given that it only works
+     * on http://localhost:80.
+     * In order to generate your own clientId that is set with a configured
+     * application domain,(e.g. yourappwithadobeembedstuff.com), 
+     * visit: https://acrobatservices.adobe.com/dc-integration-creation-app-cdn/main
+     */
     clientId="324caa2a91b84f688935436cd2d25217"
     title="A Story of Wages"
     url={"https://storage.googleapis.com/laotzu/awslegal/"
           + "notarized/EXHIBIT_"
           + "A_Story%20of%20WagesOFNONPAIDAges_encrypted_.pdf"}
     /**
-     * This is required and must be unique because adobe devs are coupled like that
+     * This id must be unique to the pdf it is supposed to render, 
+     * as part of requirements from adobe embed's api
      */
     id="exhbit-a-pdf" 
     fileMeta={{
@@ -123,16 +131,18 @@ const App = () => {
     )
 }
 ```
-#### 2. ~~As the current implementation of creating [LIGHT_BOX](https://acrobatservices.adobe.com/view-sdk-demo/index.html#/view/LIGHT_BOX/Bodea%20Brochure.pdf) embed pdf's is quite complicated~~, you can view a live code example of how to use LIGHT_BOX mode with react-adobe-embed [here](https://codesandbox.io/p/sandbox/react-adobe-embed-pdf-galleria-showcase-yq5zz6?file=%2Fsrc%2FSections%2FMain.tsx%3A65%2C79)
 
-#### 3. Note on adobe sdk `<script>` tag:
+
+### Note:  these other steps below are no longer required but remain to provide insight on how react-adobe-embed handles adobe embed api
+#### ~~2~~. ~~As the current implementation of creating [LIGHT_BOX](https://acrobatservices.adobe.com/view-sdk-demo/index.html#/view/LIGHT_BOX/Bodea%20Brochure.pdf) embed pdf's is quite complicated~~, you can view a live code example of how to use LIGHT_BOX mode with react-adobe-embed [here](https://codesandbox.io/p/sandbox/react-adobe-embed-pdf-galleria-showcase-yq5zz6?file=%2Fsrc%2FSections%2FMain.tsx%3A65%2C79)
+
+#### ~~3~~. Note on adobe sdk `<script>` tag:
  - You don't need to worry about handling outside script tags. The react wrapper handles any script downloading. Simple call the React Component as shown above.
  - ~~In the past it was this: `<script src='https://documentcloud.adobe.com/view-sdk/main.js'></script>` as instructed by their office docs.~~
    - ~~If you use this URL right now however: it will give you an error saying to update your PDF Viewer. I saw the error on Nov 28th myself and asked myself... This is an embed PDF viewer, i shouldn't need to update anything.~~
  - ~~Anyways, the URL has been updated above in step 1.~~
   - ~~Since I guess Adobe just likes to change the URL to whatever they want, you can find the correct URL to use to include their ADOBE MAGIC STUFF [here](https://developer.adobe.com/document-services/docs/overview/pdf-embed-api/).~~
   - I don't know why but the folks at Adobe decided to change the script URL, and then also change the global variable name used to store the Adobe api methods, this has ulimately caused this npm package as actually a broken useless wrapper... so why didn't anyone add to the [discussion board](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/discussions/1) to let me know? Seriously? Just literally next time say, hey idiot your code is broken. I won't be offended. It's just code dude.
-
 
 ## Installation via CDN
 You can also load this as a CDN script. By default the latest version can be accessed publically via. For now it is only accessible in this manner as a UMD bundle, with access to the default exported React Component.
@@ -150,10 +160,19 @@ You can also load this as a CDN script. By default the latest version can be acc
 ```
 
 
+
+
 ## Testing
 
 Given the increasing intricacy of this wrapper, it is imperative to safeguard the fundamental functionality from any potential disruption caused by new code alterations. At present, a rudimentary examination is conducted to verify the wrapper's capability to accurately display the PDF content while effectively handling asynchronous requests to the Adobe PDF Embed API.
 
+
+### Integration Testing
+This test runs as [a github action](.github/workflows/main.yml) whenever a code change occurs. Note, these tests only test the 
+react code within, and thus mocks out any calls to adobe's embed api service.
+
+
+#### Usage
 `npm run test`
 
 ```bash
@@ -169,16 +188,27 @@ Time:        1.699 s
 Ran all test suites.
 ```
 
+### Canary Testing/End to End Testing
+The end to end tests which includes testing of the react-adobe-embed react component and the proper usage and response from the adobe embed api service is handled in a seperate repository, [react-adobe-embed-cd-canary](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed-cd-canary).
+
+ - These tests are deployed as a form of heartbeat or canary testing via github workflows.
+ - These tests are also ran with each new code push within this repo, and are triggered [via a respitory dispatch event](.github/workflows/canaryapp.yml)
+
+ *Note: Further details including the testing architecture that allows for then a continuosu dpeloyment and integartion of the react-adobe-embed component will be added.*
 
 
-# FAQS
+
+
+
+
+## FAQS
 ### Why was this made?
-  - We needed a utility for displaying PDF's but wanted to have more typescript and React involved with the displaying. This is part of LIU LLC's intermission phase ongoing in preliminary motions for setting up required framing for phase 4. These motions and phases encompass research and analysis as well as press reporting of the ongoing retaliation campaign currently waged against an employee at Amazon that started April of 2022. To learn more, see [here](https://awsuni.com/life);
+  - We needed a utility for displaying PDF's but wanted to have more typescript and React involved with the displaying. This is part of LIU LLC's intermission phase ongoing in preliminary motions for setting up required framing for phase 4. These motions and phases encompass research and analysis as well as press reporting of the ongoing retaliation campaign currently waged against an employee at Amazon that started April of 2022. To learn more, see [here](https://ziping-liu-corporation.github.io/#/home/)
 ### Do you need to see a demo without code sandbox?
  - Okay, you can see a demo [here](https://twitterliu.com/linkedin) or [here](https://twitterliu.com/fmla) for now.
 ### Have something to say about this wrapper?
- - [Discuss Issues with it Here](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/discussions/1)
- - Or open up a pull request, it can be for any reason there's no required level of issue.
+ - [You can create a new discussion post since they are open to the public](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/discussions/1)
+ - Or simply [open up a pull request or issue](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/issues), it can be for any reason there's no required level of issue.
 ### Is this Wrapper Adobe Embed Thing being Updated? It's pretty barebones and doesn't do anything 
  - Yes, since this wrapper is actrively used in LIU LLC Sites, it is being updated and expect more updates and stuff on it
 ### Why are you using React 18? Why are you using Typescript 4.8? Isn't that overkill?
