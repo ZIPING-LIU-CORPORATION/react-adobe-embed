@@ -44,7 +44,7 @@ Ziping Liu really enjoys using Adobe Acrobat DC Pro ever since having the chance
 Through live heartbeat monitoring the react component as well as the external  api service used, as well as via standard integartion testing, that provides full CD/CI coverage of [react-adobe-embed](https://github.com/ziping-liu-corporation/react-adobe-embed). *Further details regarding CD to be provided.*
 
 ## Installation via package managers
- - `npm install react-adobe-embed@11.0.1`
+ - `npm install react-adobe-embed@11.0.11`
  - `yarn add react-adobe-embed`
 
 
