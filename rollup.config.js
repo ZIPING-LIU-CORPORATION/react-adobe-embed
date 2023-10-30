@@ -3,10 +3,11 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import filesize from 'rollup-plugin-filesize';
-import localResolve from 'rollup-plugin-local-resolve';
-import replace from "rollup-plugin-replace";
-import minify from 'rollup-plugin-babel-minify';
+import localResolve from  '@haensl/rollup-plugin-local-resolve';
+import replace from "@rollup/plugin-replace";
+
 import typescript from "@rollup/plugin-typescript";
+ 
 import terser from "@rollup/plugin-terser";
 import{ dts} from "rollup-plugin-dts";
 
@@ -21,48 +22,6 @@ const outputCommonConf = {
   }
 };
 
-const config = {
-  input: 'src/index.js',
-  output: [
-    {
-      file: packageJson['umd:main'],
-      format: 'umd',
-      name: 'ReactScriptTag',
-      ...outputCommonConf
-
-    },
-    {
-      file: packageJson.main,
-      format: 'cjs',
-      ...outputCommonConf
-    },
-    {
-      file: packageJson.module,
-      format: 'es',
-      ...outputCommonConf
-    },
-  ],
-  plugins: [
-    peerDepsExternal(),
-    babel({ exclude: 'node_modules/**' ,
-    presets: [
-      "@babel/preset-env",
-      "@babel/preset-react",
-      "@babel/preset-typescript"
-  ]
-  }),
-    localResolve(),
-    resolve(),
-    commonjs({
-      include: /node_modules/
-    }),
-    replace({
-      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)
-    }),
-    minify({ comments: false }),
-    filesize(),
-  ],
-};
 
 
 export default [
@@ -90,10 +49,28 @@ export default [
             peerDepsExternal(),
             localResolve(),
             babel({ exclude: 'node_modules/**, src/tests/**' ,
+        
+            babelHelpers: 'external',
+            presets: [
+                "@babel/preset-env",
+                "@babel/preset-react",
+                "@babel/preset-typescript"
+            ],
           }),
+        
+
+            
+         
+            replace({
+                "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)
+            }),
+
+            
             resolve(),
             commonjs(),
             typescript({ tsconfig: "./tsconfig.json" ,
+          
+            "sourceMap": true,
             exclude: [
               "**/tests/**/*",
               "**/*.test.tsx",
@@ -101,8 +78,14 @@ export default [
               "**/__tests__",
             ]
           }),
-            minify({ comments: false }),
-            terser(),
+    
+            terser( {
+              format:{
+                comments: "some",
+                preamble: "/* react-script-tag */"
+              }
+            }),
+
             filesize(),
         ],
         external: ["react", "react-dom", "styled-components"]

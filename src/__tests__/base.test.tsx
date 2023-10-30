@@ -5,7 +5,6 @@ import { render, waitFor, screen } from '@testing-library/react';
 import ReactViewAdobe from '../index';
 import {
     HashRouter,
-    Router,
     Routes,
     Route
 } from 'react-router-dom';

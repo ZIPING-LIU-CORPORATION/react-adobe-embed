@@ -4,10 +4,9 @@ import resolve from '@rollup/plugin-node-resolve';
  
 import filesize from 'rollup-plugin-filesize';
  
-import replace from "rollup-plugin-replace";
+import replace from "@rollup/plugin-replace";
 import typescript from 'rollup-plugin-typescript2';
-import minify from 'rollup-plugin-babel-minify';
-
+import terser from "@rollup/plugin-terser";
 const config = {
     input: './canary/App.tsx',
     output: [
@@ -49,8 +48,7 @@ const config = {
                 "dist",
             ],
         
-            runtimeHelpers: true,
-            externalHelpers: true,
+            babelHelpers: 'external',
             include: [
                 "canary/App.tsx"
             ],
@@ -68,9 +66,12 @@ const config = {
             "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)
         }),
         filesize(),
-        minify({
-            comments: false
-        })
+        terser( {
+            format:{
+              comments: "all",
+              preamble: "/* react app for react-adobe-embed used as a live testing environment  via github pages */"           
+             }
+          }),
         
     ],
 

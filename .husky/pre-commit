@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+## do lint-staged
+#npx lint-staged
+npx lint-staged

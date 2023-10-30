@@ -4,10 +4,10 @@ import resolve from '@rollup/plugin-node-resolve';
  
 import filesize from 'rollup-plugin-filesize';
  
-import replace from "rollup-plugin-replace";
+import replace from "@rollup/plugin-replace";
 import typescript from 'rollup-plugin-typescript2';
 
-import minify from 'rollup-plugin-babel-minify';
+import terser from "@rollup/plugin-terser";
 
 const config = {
     input: 'src/main.tsx',
@@ -35,8 +35,8 @@ const config = {
         peerDepsExternal(),
         babel({
             exclude: 'node_modules/**',
-            runtimeHelpers: true,
-            externalHelpers: true,
+          
+            babelHelpers: 'external',
             presets: [
                 "@babel/preset-env",
                 "@babel/preset-react",
@@ -49,9 +49,13 @@ const config = {
             "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)
         }),
         filesize(),
-        minify({
-            comments: false
-        })
+    
+        terser( {
+            format:{
+              comments: "all",
+              preamble: "/* react-script-tag  cdn */"
+            }
+          }),
         
     ],
 
