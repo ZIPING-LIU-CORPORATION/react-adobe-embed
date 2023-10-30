@@ -1,11 +1,9 @@
-- [React Adobe Embed Deployed Latest Static Page for Canary Testing](https://ziping-liu-corporation.github.io/react-adobe-embed)
- 
-## [React based ADOBE PDF EMBED API Component Facade](https://ziping-liu-corporation.github.io/react-adobe-embed/) is a Great Tool for Displaying PDF's with rich features,
+# [React based ADOBE PDF EMBED API Component Facade](https://ziping-liu-corporation.github.io/react-adobe-embed/) is a Great Tool for Displaying PDF's with rich features,
 
 Ziping Liu really enjoys using Adobe Acrobat DC Pro ever since having the chance to use it for the first time when I interned at a law firm. In case you want to use it with React with a bit more Typescript This Wrapper allows Adobe PDF Embed to work great with React 18 and Typescript
 
 ## Current Build and Working Status 
-
+<table>
 <thead>
    <tr>
     <td>
@@ -46,7 +44,7 @@ Ziping Liu really enjoys using Adobe Acrobat DC Pro ever since having the chance
 Through live heartbeat monitoring the react component as well as the external  api service used, as well as via standard integartion testing, that provides full CD/CI coverage of [react-adobe-embed](https://github.com/ziping-liu-corporation/react-adobe-embed). *Further details regarding CD to be provided.*
 
 ## Installation via package managers
- - `npm install react-adobe-embed@11.0.0`
+ - `npm install react-adobe-embed@11.0.1`
  - `yarn add react-adobe-embed`
 
 
