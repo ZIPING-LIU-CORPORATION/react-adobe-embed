@@ -215,8 +215,8 @@ The end to end tests which includes testing of the react-adobe-embed react compo
  - In some cases it is overkill, so hence you may utilize [Adobe Embed API](https://developer.adobe.com/document-services/apis/pdf-embed/) that is the service, hence why this package is called a wrapper and not ADOBE API Library
 ### This wrapper is overkill as a package on npm, a four year old could just write this out inline on any react front-end website
  - We agree, this is for those who are younger than four years old and not yet able to inline out components as vanilla react-js
-### Where is npm?
- - You may view [here](https://www.npmjs.com/package/react-adobe-embed) for its npm package.
+### What's the NPM page?
+ - [![Socket Badge](https://socket.dev/api/badge/npm/package/react-adobe-embed)](https://socket.dev/npm/package/react-adobe-embed), is a pretty decent way to view the NPM releases. 
 ### Are you or is this wrapper thing affialated with Adobe Developer or Adobe?
 ```
 Adobe, with its renowned symbols such as Acrobat, the Adobe PDF insignia, Adobe Premiere, Creative Cloud, InDesign, and Photoshop, are acknowledged trademarks of Adobe, registered in the United States and/or other jurisdictions. Ziping Liu Corporation, a trademark registered in the United States, and LIU LLC, incorporated under the laws of the State of Texas, are also part of our respected portfolio. At this moment, we have no additional public declarations to make or inquiries to address on this matter.
