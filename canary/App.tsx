@@ -67,8 +67,27 @@ export const App = () => {
                         </div>
                     </div>
                 } />
-                <Route path="*" element={
-                    <ReactViewAdobe
+                <Route path="*" element={ 
+                    <ReactPath/>
+                } />
+            </Routes>
+        </Router>
+    );
+}
+
+function ReactPath () {
+    const locationUrl = window.location.href;
+    const paramPdf = locationUrl.split('?')[1];
+    
+    const newUrlSearchParams = new URLSearchParams(paramPdf);
+    const pdfUrl = newUrlSearchParams.get('pdf');
+    const width = newUrlSearchParams.get('width');
+    const height = newUrlSearchParams.get('height');
+
+ 
+    return(
+        <div>
+                   <ReactViewAdobe
                         previewConfig={
                             {
                                 embedMode: "FULL_WINDOW",
@@ -87,14 +106,18 @@ export const App = () => {
                         }
 
                         style={{
-                            width: "100%",
-                            height: "900px",
+                            width: width ? width : "100%",
+                            height:  height ? height : "900px",
                             border: "1px solid black",
                             alignContent: "center",
                             justifyContent: "center",
 
                         }}
-                        url="https://raw.githubusercontent.com/ZipingL/dna/main/23andMe_Ancestry_Book.pdf"
+                        url={
+                            pdfUrl ? 
+                            pdfUrl :
+                            "https://raw.githubusercontent.com/ZipingL/dna/main/23andMe_Ancestry_Book.pdf"
+                        }
                         clientId={ 
                             // TODO: Fix this to a function
                             window.location.hostname === 'localhost' ?                
@@ -106,10 +129,8 @@ export const App = () => {
                             '875691e089ad4bf6bc4c5cea79403542'
                         }
                     />
-                } />
-            </Routes>
-        </Router>
-    );
+        </div>
+    )
 }
 
 
