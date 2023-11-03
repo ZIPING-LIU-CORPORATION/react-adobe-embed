@@ -44,7 +44,7 @@ Ziping Liu really enjoys using Adobe Acrobat DC Pro ever since having the chance
 Through live heartbeat monitoring the react component as well as the external  api service used, as well as via standard integartion testing, that provides full CD/CI coverage of [react-adobe-embed](https://github.com/ziping-liu-corporation/react-adobe-embed). *Further details regarding CD to be provided.*
 
 ## Installation via package managers
- - `npm install react-adobe-embed@11.0.11`
+ - `npm install react-adobe-embed@11.0.12`
  - `yarn add react-adobe-embed`
 
 
@@ -144,7 +144,7 @@ const App = () => {
   - ~~Since I guess Adobe just likes to change the URL to whatever they want, you can find the correct URL to use to include their ADOBE MAGIC STUFF [here](https://developer.adobe.com/document-services/docs/overview/pdf-embed-api/).~~
   - I don't know why but the folks at Adobe decided to change the script URL, and then also change the global variable name used to store the Adobe api methods, this has ulimately caused this npm package as actually a broken useless wrapper... so why didn't anyone add to the [discussion board](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/discussions/1) to let me know? Seriously? Just literally next time say, hey idiot your code is broken. I won't be offended. It's just code dude.
 
-## Installation via CDN
+### Installation via CDN
 You can also load this as a CDN script. By default the latest version can be accessed publically via. For now it is only accessible in this manner as a UMD bundle, with access to the default exported React Component.
 ```html
 <script src="https://ziping-liu-corporation.github.io/react-adobe-embed/dist/react-adobe-embed.cdn.js">
@@ -160,7 +160,11 @@ You can also load this as a CDN script. By default the latest version can be acc
 ```
 
 
-
+## Troubleshooting common errors
+ - `Cannot read properties of undefined (reading 'View')`
+   - Remedy: disable ReactStrictMode when rendering the React Application, e.g., remove   <React.StrictMode>
+ - `LicenseVerificationService.js:32 POST https://viewlicense.adobe.io/viewsdklicense/jwt 401 (Unauthorized)` (The pdf renders then immediately disappears for no apparent reason)
+   - Remedy: the provided clientId is invalid. This is mainly due to the clientId provided not setup to allow for adobe embed api calls at the current hostname. You are free to use the clientId, `` shown in the example above, but take note that you will need to run your app on localhost port 80. To create your own clientId, visit the official page [here](https://acrobatservices.adobe.com/dc-integration-creation-app-cdn/main.html) for react adobe embed. 
 
 ## Testing
 

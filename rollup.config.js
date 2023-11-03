@@ -70,7 +70,7 @@ export default [
             commonjs(),
             typescript({ tsconfig: "./tsconfig.json" ,
           
-            "sourceMap": true,
+            "sourceMap": false,
             exclude: [
               "**/tests/**/*",
               "**/*.test.tsx",
