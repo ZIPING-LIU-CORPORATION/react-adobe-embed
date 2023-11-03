@@ -8,7 +8,12 @@ const readme = fs.readFileSync(path.resolve(__dirname, '../README.md'), 'utf8');
 
 const regexMatchHead = /<head>([\s\S]*?)<\/head>/;
 
+
 const headMatched = publicIndexhtml.match(regexMatchHead);
+ 
+ 
+ 
+
 const matchedTitle = headMatched[1].match(/<title>([\s\S]*?)<\/title>/);
 
 const regexMatchLongWords =  /[a-zA-Z]{6,}/g;
@@ -96,7 +101,7 @@ const freqMapWor = wordsarra2UniqueFiltered.map((word) => {
 );
 
 const topTenWords = freqMapWor.sort((a, b) => b.freq - a.freq).slice(0, 16);
-console.log(topTenWords);
+ 
 const headMatchedModded = headMatched[1] + ` <meta property="og:image" content="https://blog.zi-ping.com/wp-content/uploads/2023/10/love-blue.png">
 <meta property="article:author" content="https://zi-ping.com/resume">
 <meta name="author" content="Liu, Zi-ping">
@@ -161,10 +166,8 @@ const htmlMiny = minify(htmlNew, {
     removeComments: true,
     removeTagWhitespace: true,
     preserveLineBreaks: false,
-    minifyJS: true,
     removeEmptyAttributes: true,
     removeRedundantAttributes: true,
-    removeTagWhitespace: true,
     useShortDoctype: true,
 });
 if(process && process?.env){
