@@ -1,5 +1,5 @@
 /* react app for react-adobe-embed used as a live testing environment  via github pages */
-!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?t(exports,require("react"),require("react-dom/client")):"function"==typeof define&&define.amd?define(["exports","react","react-dom/client"],t):t((e="undefined"!=typeof globalThis?globalThis:e||self).App={},e.React,e.ReactDOM)}(this,(function(e,t,n){"use strict";function a(e){var t=Object.create(null);return e&&Object.keys(e).forEach((function(n){if("default"!==n){var a=Object.getOwnPropertyDescriptor(e,n);Object.defineProperty(t,n,a.get?a:{enumerable:!0,get:function(){return e[n]}})}})),t.default=e,Object.freeze(t)}var r,o=a(t);
+!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?t(require("react"),require("react-dom/client")):"function"==typeof define&&define.amd?define(["react","react-dom/client"],t):t((e="undefined"!=typeof globalThis?globalThis:e||self).React,e.ReactDOM)}(this,(function(e,t){"use strict";function n(e){var t=Object.create(null);return e&&Object.keys(e).forEach((function(n){if("default"!==n){var a=Object.getOwnPropertyDescriptor(e,n);Object.defineProperty(t,n,a.get?a:{enumerable:!0,get:function(){return e[n]}})}})),t.default=e,Object.freeze(t)}var a,r=n(e);
 /**
    * @remix-run/router v1.10.0
    *
@@ -9,7 +9,7 @@
    * LICENSE.md file in the root directory of this source tree.
    *
    * @license MIT
-   */function i(){return i=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var a in n)Object.prototype.hasOwnProperty.call(n,a)&&(e[a]=n[a])}return e},i.apply(this,arguments)}
+   */function o(){return o=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var a in n)Object.prototype.hasOwnProperty.call(n,a)&&(e[a]=n[a])}return e},o.apply(this,arguments)}
 ////////////////////////////////////////////////////////////////////////////////
 //#region Types and Constants
 ////////////////////////////////////////////////////////////////////////////////
@@ -34,7 +34,7 @@ e.Push="PUSH",
      * A REPLACE indicates the entry at the current index in the history stack
      * being replaced by a new one.
      */
-e.Replace="REPLACE"}(r||(r={}));const l="popstate";
+e.Replace="REPLACE"}(a||(a={}));const i="popstate";
 /**
    * Hash history stores the location in window.location.hash. This makes it ideal
    * for situations where you don't want to send the location to the server for
@@ -42,13 +42,13 @@ e.Replace="REPLACE"}(r||(r={}));const l="popstate";
    * reserved for something else.
    *
    * @see https://github.com/remix-run/history/tree/main/docs/api-reference.md#createhashhistory
-   */function s(e){return void 0===e&&(e={}),function(e,t,n,a){void 0===a&&(a={});let{window:o=document.defaultView,v5Compat:s=!1}=a,u=o.history,m=r.Pop,f=null,v=g();
+   */function l(e){return void 0===e&&(e={}),function(e,t,n,r){void 0===r&&(r={});let{window:l=document.defaultView,v5Compat:c=!1}=r,p=l.history,m=a.Pop,f=null,v=g();
 // Index should only be null when we initialize. If not, it's because the
 // user called history.pushState or history.replaceState directly, in which
 // case we should log a warning as it will result in bugs.
-null==v&&(v=0,u.replaceState(i({},u.state,{idx:v}),""));function g(){return(u.state||{idx:null}).idx}function b(){m=r.Pop;let e=g(),t=null==e?null:e-v;v=e,f&&f({action:m,location:E.location,delta:t})}function y(e,t){m=r.Push;let a=h(E.location,e,t);n&&n(a,e),v=g()+1;let i=d(a,v),l=E.createHref(a);
+null==v&&(v=0,p.replaceState(o({},p.state,{idx:v}),""));function g(){return(p.state||{idx:null}).idx}function b(){m=a.Pop;let e=g(),t=null==e?null:e-v;v=e,f&&f({action:m,location:R.location,delta:t})}function y(e,t){m=a.Push;let r=d(R.location,e,t);n&&n(r,e),v=g()+1;let o=u(r,v),i=R.createHref(r);
 // try...catch because iOS limits us to 100 pushState calls :/
-try{u.pushState(i,"",l)}catch(e){
+try{p.pushState(o,"",i)}catch(e){
 // If the exception is because `state` can't be serialized, let that throw
 // outwards just like a replace call would so the dev knows the cause
 // https://html.spec.whatwg.org/multipage/nav-history-apis.html#shared-history-push/replace-state-steps
@@ -56,24 +56,24 @@ try{u.pushState(i,"",l)}catch(e){
 if(e instanceof DOMException&&"DataCloneError"===e.name)throw e;
 // They are going to lose state here, but there is no real
 // way to warn them about it since the page will refresh...
-o.location.assign(l)}s&&f&&f({action:m,location:E.location,delta:1})}function w(e,t){m=r.Replace;let a=h(E.location,e,t);n&&n(a,e),v=g();let o=d(a,v),i=E.createHref(a);u.replaceState(o,"",i),s&&f&&f({action:m,location:E.location,delta:0})}function R(e){
+l.location.assign(i)}c&&f&&f({action:m,location:R.location,delta:1})}function w(e,t){m=a.Replace;let r=d(R.location,e,t);n&&n(r,e),v=g();let o=u(r,v),i=R.createHref(r);p.replaceState(o,"",i),c&&f&&f({action:m,location:R.location,delta:0})}function E(e){
 // window.location.origin is "null" (the literal string value) in Firefox
 // under certain conditions, notably when serving from a local HTML file
 // See https://bugzilla.mozilla.org/show_bug.cgi?id=878297
-let t="null"!==o.location.origin?o.location.origin:o.location.href,n="string"==typeof e?e:p(e);return c(t,"No window.location.(origin|href) available to create URL for href: "+n),new URL(n,t)}let E={get action(){return m},get location(){return e(o,u)},listen(e){if(f)throw new Error("A history only accepts one active listener");return o.addEventListener(l,b),f=e,()=>{o.removeEventListener(l,b),f=null}},createHref:e=>t(o,e),createURL:R,encodeLocation(e){
+let t="null"!==l.location.origin?l.location.origin:l.location.href,n="string"==typeof e?e:h(e);return s(t,"No window.location.(origin|href) available to create URL for href: "+n),new URL(n,t)}let R={get action(){return m},get location(){return e(l,p)},listen(e){if(f)throw new Error("A history only accepts one active listener");return l.addEventListener(i,b),f=e,()=>{l.removeEventListener(i,b),f=null}},createHref:e=>t(l,e),createURL:E,encodeLocation(e){
 // Encode a Location the same way window.location would
-let t=R(e);return{pathname:t.pathname,search:t.search,hash:t.hash}},push:y,replace:w,go:e=>u.go(e)};return E}
+let t=E(e);return{pathname:t.pathname,search:t.search,hash:t.hash}},push:y,replace:w,go:e=>p.go(e)};return R}
 //#endregion
-((function(e,t){let{pathname:n="/",search:a="",hash:r=""}=m(e.location.hash.substr(1));
+((function(e,t){let{pathname:n="/",search:a="",hash:r=""}=p(e.location.hash.substr(1));
 // Hash URL should always have a leading / just like window.location.pathname
 // does, so if an app ends up at a route like /#something then we add a
 // leading slash so all of our path-matching behaves the same as if it would
 // in a browser router.  This is particularly important when there exists a
 // root splat route (<Route path="*">) since that matches internally against
 // "/*" and we'd expect /#something to 404 in a hash router app.
-return n.startsWith("/")||n.startsWith(".")||(n="/"+n),h("",{pathname:n,search:a,hash:r},
+return n.startsWith("/")||n.startsWith(".")||(n="/"+n),d("",{pathname:n,search:a,hash:r},
 // state defaults to `null` because `window.history.state` does
-t.state&&t.state.usr||null,t.state&&t.state.key||"default")}),(function(e,t){let n=e.document.querySelector("base"),a="";if(n&&n.getAttribute("href")){let t=e.location.href,n=t.indexOf("#");a=-1===n?t:t.slice(0,n)}return a+"#"+("string"==typeof t?t:p(t))}),(function(e,t){u("/"===e.pathname.charAt(0),"relative pathnames are not supported in hash history.push("+JSON.stringify(t)+")")}),e)}function c(e,t){if(!1===e||null==e)throw new Error(t)}function u(e,t){if(!e){
+t.state&&t.state.usr||null,t.state&&t.state.key||"default")}),(function(e,t){let n=e.document.querySelector("base"),a="";if(n&&n.getAttribute("href")){let t=e.location.href,n=t.indexOf("#");a=-1===n?t:t.slice(0,n)}return a+"#"+("string"==typeof t?t:h(t))}),(function(e,t){c("/"===e.pathname.charAt(0),"relative pathnames are not supported in hash history.push("+JSON.stringify(t)+")")}),e)}function s(e,t){if(!1===e||null==e)throw new Error(t)}function c(e,t){if(!e){
 // eslint-disable-next-line no-console
 "undefined"!=typeof console&&console.warn(t);try{
 // Welcome to debugging history!
@@ -86,10 +86,10 @@ throw new Error(t);
 /**
    * For browser-based histories, we combine the state and key into an object
    */
-function d(e,t){return{usr:e.state,key:e.key,idx:t}}
+function u(e,t){return{usr:e.state,key:e.key,idx:t}}
 /**
    * Creates a Location object with a unique key from the given Path
-   */function h(e,t,n,a){return void 0===n&&(n=null),i({pathname:"string"==typeof e?e:e.pathname,search:"",hash:""},"string"==typeof t?m(t):t,{state:n,
+   */function d(e,t,n,a){return void 0===n&&(n=null),o({pathname:"string"==typeof e?e:e.pathname,search:"",hash:""},"string"==typeof t?p(t):t,{state:n,
 // TODO: This could be cleaned up.  push/replace should probably just take
 // full Locations now and avoid the need to run through this flow at all
 // But that's a pretty big refactor to the current test suite so going to
@@ -97,16 +97,16 @@ function d(e,t){return{usr:e.state,key:e.key,idx:t}}
 key:t&&t.key||a||Math.random().toString(36).substr(2,8)})}
 /**
    * Creates a string URL path from the given pathname, search, and hash components.
-   */function p(e){let{pathname:t="/",search:n="",hash:a=""}=e;return n&&"?"!==n&&(t+="?"===n.charAt(0)?n:"?"+n),a&&"#"!==a&&(t+="#"===a.charAt(0)?a:"#"+a),t}
+   */function h(e){let{pathname:t="/",search:n="",hash:a=""}=e;return n&&"?"!==n&&(t+="?"===n.charAt(0)?n:"?"+n),a&&"#"!==a&&(t+="#"===a.charAt(0)?a:"#"+a),t}
 /**
    * Parses a string URL path into its separate pathname, search, and hash components.
-   */function m(e){let t={};if(e){let n=e.indexOf("#");n>=0&&(t.hash=e.substr(n),e=e.substr(0,n));let a=e.indexOf("?");a>=0&&(t.search=e.substr(a),e=e.substr(0,a)),e&&(t.pathname=e)}return t}var f;
+   */function p(e){let t={};if(e){let n=e.indexOf("#");n>=0&&(t.hash=e.substr(n),e=e.substr(0,n));let a=e.indexOf("?");a>=0&&(t.search=e.substr(a),e=e.substr(0,a)),e&&(t.pathname=e)}return t}var m;
 /**
    * Matches the given routes to a location and returns the match data.
    *
    * @see https://reactrouter.com/utils/match-routes
    */
-function v(e,t,n){void 0===n&&(n="/");let a=A(("string"==typeof t?m(t):t).pathname||"/",n);if(null==a)return null;let r=g(e);!function(e){e.sort(((e,t)=>e.score!==t.score?t.score-e.score:function(e,t){let n=e.length===t.length&&e.slice(0,-1).every(((e,n)=>e===t[n]));return n?
+function f(e,t,n){void 0===n&&(n="/");let a=L(("string"==typeof t?p(t):t).pathname||"/",n);if(null==a)return null;let r=v(e);!function(e){e.sort(((e,t)=>e.score!==t.score?t.score-e.score:function(e,t){let n=e.length===t.length&&e.slice(0,-1).every(((e,n)=>e===t[n]));return n?
 // If two routes are siblings, we should try to match the earlier sibling
 // first. This allows people to have fine-grained control over the matching
 // behavior by simply putting routes with identical paths in the order they
@@ -114,26 +114,26 @@ function v(e,t,n){void 0===n&&(n="/");let a=A(("string"==typeof t?m(t):t).pathna
 e[e.length-1]-t[t.length-1]:
 // Otherwise, it doesn't really make sense to rank non-siblings by index,
 // so they sort equally.
-0}(e.routesMeta.map((e=>e.childrenIndex)),t.routesMeta.map((e=>e.childrenIndex)))))}(r);let o=null;for(let e=0;null==o&&e<r.length;++e)o=L(r[e],
+0}(e.routesMeta.map((e=>e.childrenIndex)),t.routesMeta.map((e=>e.childrenIndex)))))}(r);let o=null;for(let e=0;null==o&&e<r.length;++e)o=N(r[e],
 // Incoming pathnames are generally encoded from either window.location
 // or from router.navigate, but we want to match against the unencoded
 // paths in the route definitions.  Memory router locations won't be
 // encoded here but there also shouldn't be anything to decode so this
 // should be a safe operation.  This avoids needing matchRoutes to be
 // history-aware.
-P(a));return o}function g(e,t,n,a){void 0===t&&(t=[]),void 0===n&&(n=[]),void 0===a&&(a="");let r=(e,r,o)=>{let i={relativePath:void 0===o?e.path||"":o,caseSensitive:!0===e.caseSensitive,childrenIndex:r,route:e};i.relativePath.startsWith("/")&&(c(i.relativePath.startsWith(a),'Absolute route path "'+i.relativePath+'" nested under path "'+a+'" is not valid. An absolute child route path must start with the combined path of all its parent routes.'),i.relativePath=i.relativePath.slice(a.length));let l=k([a,i.relativePath]),s=n.concat(i);
+P(a));return o}function v(e,t,n,a){void 0===t&&(t=[]),void 0===n&&(n=[]),void 0===a&&(a="");let r=(e,r,o)=>{let i={relativePath:void 0===o?e.path||"":o,caseSensitive:!0===e.caseSensitive,childrenIndex:r,route:e};i.relativePath.startsWith("/")&&(s(i.relativePath.startsWith(a),'Absolute route path "'+i.relativePath+'" nested under path "'+a+'" is not valid. An absolute child route path must start with the combined path of all its parent routes.'),i.relativePath=i.relativePath.slice(a.length));let l=I([a,i.relativePath]),c=n.concat(i);
 // Add the children before adding this route to the array, so we traverse the
 // route tree depth-first and child routes appear before their parents in
 // the "flattened" version.
-e.children&&e.children.length>0&&(c(
+e.children&&e.children.length>0&&(s(
 // Our types know better, but runtime JS may not!
 // @ts-expect-error
-!0!==e.index,'Index routes must not have child routes. Please remove all child routes from route path "'+l+'".'),g(e.children,t,s,l)),
+!0!==e.index,'Index routes must not have child routes. Please remove all child routes from route path "'+l+'".'),v(e.children,t,c,l)),
 // Routes without a path shouldn't ever match by themselves unless they are
 // index routes, so don't add them to the list of possible branches.
-(null!=e.path||e.index)&&t.push({path:l,score:D(l,e.index),routesMeta:s})};return e.forEach(((e,t)=>{var n;
+(null!=e.path||e.index)&&t.push({path:l,score:S(l,e.index),routesMeta:c})};return e.forEach(((e,t)=>{var n;
 // coarse-grain check for optional params
-if(""!==e.path&&null!=(n=e.path)&&n.includes("?"))for(let n of b(e.path))r(e,t,n);else r(e,t)})),t}
+if(""!==e.path&&null!=(n=e.path)&&n.includes("?"))for(let n of g(e.path))r(e,t,n);else r(e,t)})),t}
 /**
    * Computes all combinations of optional path segments for a given path,
    * excluding combinations that are ambiguous and of lower priority.
@@ -147,12 +147,12 @@ if(""!==e.path&&null!=(n=e.path)&&n.includes("?"))for(let n of b(e.path))r(e,t,n
    * - `/one/:two/three/:five`
    * - `/one/three/:four/:five`
    * - `/one/:two/three/:four/:five`
-   */function b(e){let t=e.split("/");if(0===t.length)return[];let[n,...a]=t,r=n.endsWith("?"),o=n.replace(/\?$/,"");
+   */function g(e){let t=e.split("/");if(0===t.length)return[];let[n,...a]=t,r=n.endsWith("?"),o=n.replace(/\?$/,"");
 // Optional path segments are denoted by a trailing `?`
 if(0===a.length)
 // Intepret empty string as omitting an optional segment
 // `["one", "", "three"]` corresponds to omitting `:two` from `/one/:two?/three` -> `/one/three`
-return r?[o,""]:[o];let i=b(a.join("/")),l=[];
+return r?[o,""]:[o];let i=g(a.join("/")),l=[];
 // for absolute paths, ensure `/` instead of empty segment
 // All child paths with the prefix.  Do this for all children before the
 // optional version for all children, so we get consistent ordering where the
@@ -163,15 +163,15 @@ return r?[o,""]:[o];let i=b(a.join("/")),l=[];
 // first, we avoid this issue
 return l.push(...i.map((e=>""===e?o:[o,e].join("/")))),
 // Then, if this is an optional value, add all child versions without
-r&&l.push(...i),l.map((t=>e.startsWith("/")&&""===t?"/":t))}!function(e){e.data="data",e.deferred="deferred",e.redirect="redirect",e.error="error"}(f||(f={}));const y=/^:\w+$/,w=3,R=2,E=1,C=10,x=-2,S=e=>"*"===e;function D(e,t){let n=e.split("/"),a=n.length;return n.some(S)&&(a+=x),t&&(a+=R),n.filter((e=>!S(e))).reduce(((e,t)=>e+(y.test(t)?w:""===t?E:C)),a)}function L(e,t){let{routesMeta:n}=e,a={},r="/",o=[];for(let e=0;e<n.length;++e){let i=n[e],l=e===n.length-1,s="/"===r?t:t.slice(r.length)||"/",c=N({path:i.relativePath,caseSensitive:i.caseSensitive,end:l},s);if(!c)return null;Object.assign(a,c.params);let u=i.route;o.push({
+r&&l.push(...i),l.map((t=>e.startsWith("/")&&""===t?"/":t))}!function(e){e.data="data",e.deferred="deferred",e.redirect="redirect",e.error="error"}(m||(m={}));const b=/^:\w+$/,y=3,w=2,E=1,R=10,C=-2,x=e=>"*"===e;function S(e,t){let n=e.split("/"),a=n.length;return n.some(x)&&(a+=C),t&&(a+=w),n.filter((e=>!x(e))).reduce(((e,t)=>e+(b.test(t)?y:""===t?E:R)),a)}function N(e,t){let{routesMeta:n}=e,a={},r="/",o=[];for(let e=0;e<n.length;++e){let i=n[e],l=e===n.length-1,s="/"===r?t:t.slice(r.length)||"/",c=D({path:i.relativePath,caseSensitive:i.caseSensitive,end:l},s);if(!c)return null;Object.assign(a,c.params);let u=i.route;o.push({
 // TODO: Can this as be avoided?
-params:a,pathname:k([r,c.pathname]),pathnameBase:O(k([r,c.pathnameBase])),route:u}),"/"!==c.pathnameBase&&(r=k([r,c.pathnameBase]))}return o}
+params:a,pathname:I([r,c.pathname]),pathnameBase:U(I([r,c.pathnameBase])),route:u}),"/"!==c.pathnameBase&&(r=I([r,c.pathnameBase]))}return o}
 /**
    * Performs pattern matching on a URL pathname and returns information about
    * the match.
    *
    * @see https://reactrouter.com/utils/match-path
-   */function N(e,t){"string"==typeof e&&(e={path:e,caseSensitive:!1,end:!0});let[n,a]=function(e,t,n){void 0===t&&(t=!1);void 0===n&&(n=!0);u("*"===e||!e.endsWith("*")||e.endsWith("/*"),'Route path "'+e+'" will be treated as if it were "'+e.replace(/\*$/,"/*")+'" because the `*` character must always follow a `/` in the pattern. To get rid of this warning, please change the route path to "'+e.replace(/\*$/,"/*")+'".');let a=[],r="^"+e.replace(/\/*\*?$/,"").replace(/^\/*/,"/").replace(/[\\.*+^$?{}|()[\]]/g,"\\$&").replace(/\/:(\w+)/g,((e,t)=>(a.push(t),"/([^\\/]+)")));e.endsWith("*")?(a.push("*"),r+="*"===e||"/*"===e?"(.*)$":"(?:\\/(.+)|\\/*)$"):n?
+   */function D(e,t){"string"==typeof e&&(e={path:e,caseSensitive:!1,end:!0});let[n,a]=function(e,t,n){void 0===t&&(t=!1);void 0===n&&(n=!0);c("*"===e||!e.endsWith("*")||e.endsWith("/*"),'Route path "'+e+'" will be treated as if it were "'+e.replace(/\*$/,"/*")+'" because the `*` character must always follow a `/` in the pattern. To get rid of this warning, please change the route path to "'+e.replace(/\*$/,"/*")+'".');let a=[],r="^"+e.replace(/\/*\*?$/,"").replace(/^\/*/,"/").replace(/[\\.*+^$?{}|()[\]]/g,"\\$&").replace(/\/:(\w+)/g,((e,t)=>(a.push(t),"/([^\\/]+)")));e.endsWith("*")?(a.push("*"),r+="*"===e||"/*"===e?"(.*)$":"(?:\\/(.+)|\\/*)$"):n?
 // When matching to the end, ignore trailing slashes
 r+="\\/*$":""!==e&&"/"!==e&&(
 // If our path is non-empty and contains anything beyond an initial slash,
@@ -184,10 +184,10 @@ r+="\\/*$":""!==e&&"/"!==e&&(
 r+="(?:(?=\\/|$))");let o=new RegExp(r,t?void 0:"i");return[o,a]}(e.path,e.caseSensitive,e.end),r=t.match(n);if(!r)return null;let o=r[0],i=o.replace(/(.)\/+$/,"$1"),l=r.slice(1);return{params:a.reduce(((e,t,n)=>{
 // We need to compute the pathnameBase here using the raw splat value
 // instead of using params["*"] later because it will be decoded then
-if("*"===t){let e=l[n]||"";i=o.slice(0,o.length-e.length).replace(/(.)\/+$/,"$1")}return e[t]=function(e,t){try{return decodeURIComponent(e)}catch(n){return u(!1,'The value for the URL param "'+t+'" will not be decoded because the string "'+e+'" is a malformed URL segment. This is probably due to a bad percent encoding ('+n+")."),e}}
+if("*"===t){let e=l[n]||"";i=o.slice(0,o.length-e.length).replace(/(.)\/+$/,"$1")}return e[t]=function(e,t){try{return decodeURIComponent(e)}catch(n){return c(!1,'The value for the URL param "'+t+'" will not be decoded because the string "'+e+'" is a malformed URL segment. This is probably due to a bad percent encoding ('+n+")."),e}}
 /**
    * @private
-   */(l[n]||"",t),e}),{}),pathname:o,pathnameBase:i,pattern:e}}function P(e){try{return decodeURI(e)}catch(t){return u(!1,'The URL path "'+e+'" could not be decoded because it is is a malformed URL segment. This is probably due to a bad percent encoding ('+t+")."),e}}function A(e,t){if("/"===t)return e;if(!e.toLowerCase().startsWith(t.toLowerCase()))return null;
+   */(l[n]||"",t),e}),{}),pathname:o,pathnameBase:i,pattern:e}}function P(e){try{return decodeURI(e)}catch(t){return c(!1,'The URL path "'+e+'" could not be decoded because it is is a malformed URL segment. This is probably due to a bad percent encoding ('+t+")."),e}}function L(e,t){if("/"===t)return e;if(!e.toLowerCase().startsWith(t.toLowerCase()))return null;
 // We want to leave trailing slash behavior in the user's control, so if they
 // specify a basename with a trailing slash, we should support it
 let n=t.endsWith("/")?t.length-1:t.length,a=e.charAt(n);return a&&"/"!==a?null:e.slice(n)||"/"}
@@ -195,7 +195,7 @@ let n=t.endsWith("/")?t.length-1:t.length,a=e.charAt(n);return a&&"/"!==a?null:e
    * Returns a resolved path object relative to the given pathname.
    *
    * @see https://reactrouter.com/utils/resolve-path
-   */function T(e,t,n,a){return"Cannot include a '"+e+"' character in a manually specified `to."+t+"` field ["+JSON.stringify(a)+"].  Please separate it out to the `to."+n+'` field. Alternatively you may provide the full path as a string in <Link to="..."> and the router will parse it for you.'}
+   */function k(e,t,n,a){return"Cannot include a '"+e+"' character in a manually specified `to."+t+"` field ["+JSON.stringify(a)+"].  Please separate it out to the `to."+n+'` field. Alternatively you may provide the full path as a string in <Link to="..."> and the router will parse it for you.'}
 /**
    * @private
    *
@@ -218,10 +218,10 @@ let n=t.endsWith("/")?t.length-1:t.length,a=e.charAt(n);return a&&"/"!==a?null:e
    *       </Route
    *     </Route>
    *   </Route>
-   */function U(e){return e.filter(((e,t)=>0===t||e.route.path&&e.route.path.length>0))}
+   */function A(e){return e.filter(((e,t)=>0===t||e.route.path&&e.route.path.length>0))}
 /**
    * @private
-   */function I(e,t,n,a){let r;void 0===a&&(a=!1),"string"==typeof e?r=m(e):(r=i({},e),c(!r.pathname||!r.pathname.includes("?"),T("?","pathname","search",r)),c(!r.pathname||!r.pathname.includes("#"),T("#","pathname","hash",r)),c(!r.search||!r.search.includes("#"),T("#","search","hash",r)));let o,l=""===e||""===r.pathname,s=l?"/":r.pathname;
+   */function T(e,t,n,a){let r;void 0===a&&(a=!1),"string"==typeof e?r=p(e):(r=o({},e),s(!r.pathname||!r.pathname.includes("?"),k("?","pathname","search",r)),s(!r.pathname||!r.pathname.includes("#"),k("#","pathname","hash",r)),s(!r.search||!r.search.includes("#"),k("#","search","hash",r)));let i,l=""===e||""===r.pathname,c=l?"/":r.pathname;
 // Routing is relative to the current pathname if explicitly requested.
 // If a pathname is explicitly provided in `to`, it should be relative to the
 // route context. This is explained in `Note on `<Link to>` values` in our
@@ -230,34 +230,34 @@ let n=t.endsWith("/")?t.length-1:t.length,a=e.charAt(n);return a&&"/"!==a?null:e
 // `to` values that do not provide a pathname. `to` can simply be a search or
 // hash string, in which case we should assume that the navigation is relative
 // to the current location's pathname and *not* the route pathname.
-if(a||null==s)o=n;else{let e=t.length-1;if(s.startsWith("..")){let t=s.split("/");
+if(a||null==c)i=n;else{let e=t.length-1;if(c.startsWith("..")){let t=c.split("/");
 // Each leading .. segment means "go up one route" instead of "go up one
 // URL segment".  This is a key difference from how <a href> works and a
 // major reason we call this a "to" value instead of a "href".
 for(;".."===t[0];)t.shift(),e-=1;r.pathname=t.join("/")}
 // If there are more ".." segments than parent routes, resolve relative to
 // the root / URL.
-o=e>=0?t[e]:"/"}let u=function(e,t){void 0===t&&(t="/");let{pathname:n,search:a="",hash:r=""}="string"==typeof e?m(e):e,o=n?n.startsWith("/")?n:function(e,t){let n=t.replace(/\/+$/,"").split("/");return e.split("/").forEach((e=>{".."===e?
+i=e>=0?t[e]:"/"}let u=function(e,t){void 0===t&&(t="/");let{pathname:n,search:a="",hash:r=""}="string"==typeof e?p(e):e,o=n?n.startsWith("/")?n:function(e,t){let n=t.replace(/\/+$/,"").split("/");return e.split("/").forEach((e=>{".."===e?
 // Keep the root "" segment so the pathname starts at /
-n.length>1&&n.pop():"."!==e&&n.push(e)})),n.length>1?n.join("/"):"/"}(n,t):t;return{pathname:o,search:B(a),hash:_(r)}}(r,o),d=s&&"/"!==s&&s.endsWith("/"),h=(l||"."===s)&&n.endsWith("/");
+n.length>1&&n.pop():"."!==e&&n.push(e)})),n.length>1?n.join("/"):"/"}(n,t):t;return{pathname:o,search:O(a),hash:B(r)}}(r,i),d=c&&"/"!==c&&c.endsWith("/"),h=(l||"."===c)&&n.endsWith("/");
 // Ensure the pathname has a trailing slash if the original "to" had one
 return u.pathname.endsWith("/")||!d&&!h||(u.pathname+="/"),u}
 /**
    * @private
-   */const k=e=>e.join("/").replace(/\/\/+/g,"/")
+   */const I=e=>e.join("/").replace(/\/\/+/g,"/")
 /**
    * @private
-   */,O=e=>e.replace(/\/+$/,"").replace(/^\/*/,"/")
+   */,U=e=>e.replace(/\/+$/,"").replace(/^\/*/,"/")
 /**
    * @private
-   */,B=e=>e&&"?"!==e?e.startsWith("?")?e:"?"+e:""
+   */,O=e=>e&&"?"!==e?e.startsWith("?")?e:"?"+e:""
 /**
    * @private
-   */,_=e=>e&&"#"!==e?e.startsWith("#")?e:"#"+e:""
+   */,B=e=>e&&"#"!==e?e.startsWith("#")?e:"#"+e:""
 /**
    * Check if the given error is an ErrorResponse generated from a 4xx/5xx
    * Response thrown from an action/loader
-   */;const j=["post","put","patch","delete"];new Set(j);const M=["get",...j];
+   */;const _=["post","put","patch","delete"];new Set(_);const j=["get",..._];
 /**
    * React Router v6.17.0
    *
@@ -268,10 +268,10 @@ return u.pathname.endsWith("/")||!d&&!h||(u.pathname+="/"),u}
    *
    * @license MIT
    */
-function F(){return F=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var a in n)Object.prototype.hasOwnProperty.call(n,a)&&(e[a]=n[a])}return e},F.apply(this,arguments)}
+function M(){return M=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var a in n)Object.prototype.hasOwnProperty.call(n,a)&&(e[a]=n[a])}return e},M.apply(this,arguments)}
 // Create react-specific types from the agnostic types in @remix-run/router to
 // export from react-router
-new Set(M);const W=o.createContext(null);W.displayName="DataRouter";const V=o.createContext(null);V.displayName="DataRouterState";o.createContext(null).displayName="Await";
+new Set(j);const F=r.createContext(null);F.displayName="DataRouter";const W=r.createContext(null);W.displayName="DataRouterState";r.createContext(null).displayName="Await";
 /**
    * A Navigator is a "location changer"; it's how you get to different locations.
    *
@@ -281,13 +281,13 @@ new Set(M);const W=o.createContext(null);W.displayName="DataRouter";const V=o.cr
    * to avoid "tearing" that may occur in a suspense-enabled app if the action
    * and/or location were to be read directly from the history instance.
    */
-const $=o.createContext(null);$.displayName="Navigation";const H=o.createContext(null);H.displayName="Location";const z=o.createContext({outlet:null,matches:[],isDataRoute:!1});z.displayName="Route";const J=o.createContext(null);
+const V=r.createContext(null);V.displayName="Navigation";const $=r.createContext(null);$.displayName="Location";const H=r.createContext({outlet:null,matches:[],isDataRoute:!1});H.displayName="Route";const z=r.createContext(null);
 /**
    * Returns true if this component is a descendant of a `<Router>`.
    *
    * @see https://reactrouter.com/hooks/use-in-router-context
    */
-function K(){return null!=o.useContext(H)}
+function J(){return null!=r.useContext($)}
 /**
    * Returns the current location object, which represents the current URL in web
    * browsers.
@@ -297,24 +297,24 @@ function K(){return null!=o.useContext(H)}
    * be able to provide something higher-level to better suit your needs.
    *
    * @see https://reactrouter.com/hooks/use-location
-   */function Y(){return K()||c(!1,// TODO: This error is probably because they somehow have 2 versions of the
+   */function K(){return J()||s(!1,// TODO: This error is probably because they somehow have 2 versions of the
 // router loaded. We can help them understand how to avoid that.
-"useLocation() may be used only in the context of a <Router> component."),o.useContext(H).location}
+"useLocation() may be used only in the context of a <Router> component."),r.useContext($).location}
 /**
    * The interface for the navigate() function returned from useNavigate().
-   */J.displayName="RouteError";const q="You should call navigate() in a React.useEffect(), not when your component is first rendered.";
+   */z.displayName="RouteError";const Y="You should call navigate() in a React.useEffect(), not when your component is first rendered.";
 // Mute warnings for calls to useNavigate in SSR environments
-function G(e){o.useContext($).static||
+function q(e){r.useContext(V).static||
 // We should be able to get rid of this once react 18.3 is released
 // See: https://github.com/facebook/react/pull/26395
 // eslint-disable-next-line react-hooks/rules-of-hooks
-o.useLayoutEffect(e)}
+r.useLayoutEffect(e)}
 /**
    * Returns an imperative method for changing the location. Used by `<Link>`s, but
    * may also be used by other elements to change the location.
    *
    * @see https://reactrouter.com/hooks/use-navigate
-   */function X(){let{isDataRoute:e}=o.useContext(z);
+   */function G(){let{isDataRoute:e}=r.useContext(H);
 // Conditional usage is OK here because the usage of a data router is static
 // eslint-disable-next-line react-hooks/rules-of-hooks
 return e?
@@ -322,27 +322,27 @@ return e?
    * Stable version of useNavigate that is used when we are in the context of
    * a RouterProvider.
    */
-function(){let{router:e}=function(e){let t=o.useContext(W);return t||c(!1,ie(e)),t}(re.UseNavigateStable),t=le(oe.UseNavigateStable),n=o.useRef(!1);return G((()=>{n.current=!0})),o.useCallback((function(a,r){void 0===r&&(r={}),u(n.current,q),
+function(){let{router:e}=function(e){let t=r.useContext(F);return t||s(!1,oe(e)),t}(ae.UseNavigateStable),t=ie(re.UseNavigateStable),n=r.useRef(!1);return q((()=>{n.current=!0})),r.useCallback((function(a,r){void 0===r&&(r={}),c(n.current,Y),
 // Short circuit here since if this happens on first render the navigate
 // is useless because we haven't wired up our router subscriber yet
-n.current&&("number"==typeof a?e.navigate(a):e.navigate(a,F({fromRouteId:t},r)))}),[e,t])}():function(){K()||c(!1,// TODO: This error is probably because they somehow have 2 versions of the
+n.current&&("number"==typeof a?e.navigate(a):e.navigate(a,M({fromRouteId:t},r)))}),[e,t])}():function(){J()||s(!1,// TODO: This error is probably because they somehow have 2 versions of the
 // router loaded. We can help them understand how to avoid that.
-"useNavigate() may be used only in the context of a <Router> component.");let e=o.useContext(W),{basename:t,navigator:n}=o.useContext($),{matches:a}=o.useContext(z),{pathname:r}=Y(),i=JSON.stringify(U(a).map((e=>e.pathnameBase))),l=o.useRef(!1);return G((()=>{l.current=!0})),o.useCallback((function(a,o){
+"useNavigate() may be used only in the context of a <Router> component.");let e=r.useContext(F),{basename:t,navigator:n}=r.useContext(V),{matches:a}=r.useContext(H),{pathname:o}=K(),i=JSON.stringify(A(a).map((e=>e.pathnameBase))),l=r.useRef(!1);return q((()=>{l.current=!0})),r.useCallback((function(a,r){
 // Short circuit here since if this happens on first render the navigate
 // is useless because we haven't wired up our history listener yet
-if(void 0===o&&(o={}),u(l.current,q),!l.current)return;if("number"==typeof a)return void n.go(a);let s=I(a,JSON.parse(i),r,"path"===o.relative);
+if(void 0===r&&(r={}),c(l.current,Y),!l.current)return;if("number"==typeof a)return void n.go(a);let s=T(a,JSON.parse(i),o,"path"===r.relative);
 // If we're operating within a basename, prepend it to the pathname prior
 // to handing off to history (but only if we're not in a data router,
 // otherwise it'll prepend the basename inside of the router).
 // If this is a root navigation, then we navigate to the raw basename
 // which allows the basename to have full control over the presence of a
 // trailing slash on root links
-null==e&&"/"!==t&&(s.pathname="/"===s.pathname?t:k([t,s.pathname])),(o.replace?n.replace:n.push)(s,o.state,o)}),[t,n,i,r,e])}
+null==e&&"/"!==t&&(s.pathname="/"===s.pathname?t:I([t,s.pathname])),(r.replace?n.replace:n.push)(s,r.state,r)}),[t,n,i,o,e])}
 /**
    * Resolves the pathname of the given `to` value against the current location.
    *
    * @see https://reactrouter.com/hooks/use-resolved-path
-   */()}function Z(e,t){let{relative:n}=void 0===t?{}:t,{matches:a}=o.useContext(z),{pathname:r}=Y(),i=JSON.stringify(U(a).map((e=>e.pathnameBase)));return o.useMemo((()=>I(e,JSON.parse(i),r,"path"===n)),[e,i,r,n])}
+   */()}function Z(e,t){let{relative:n}=void 0===t?{}:t,{matches:a}=r.useContext(H),{pathname:o}=K(),i=JSON.stringify(A(a).map((e=>e.pathnameBase)));return r.useMemo((()=>T(e,JSON.parse(i),o,"path"===n)),[e,i,o,n])}
 /**
    * Returns the element of the route that matched the current location, prepared
    * with the correct context to render the remainder of the route tree. Route
@@ -350,11 +350,11 @@ null==e&&"/"!==t&&(s.pathname="/"===s.pathname?t:k([t,s.pathname])),(o.replace?n
    * element.
    *
    * @see https://reactrouter.com/hooks/use-routes
-   */function Q(e,t){
+   */function X(e,t){
 // Internal implementation with accept optional param for RouterProvider usage
-return function(e,t,n){K()||c(!1,// TODO: This error is probably because they somehow have 2 versions of the
+return function(e,t,n){J()||s(!1,// TODO: This error is probably because they somehow have 2 versions of the
 // router loaded. We can help them understand how to avoid that.
-"useRoutes() may be used only in the context of a <Router> component.");let{navigator:a}=o.useContext($),{matches:i}=o.useContext(z),l=i[i.length-1],s=l?l.params:{},d=l?l.pathname:"/",h=l?l.pathnameBase:"/",p=l&&l.route;{
+"useRoutes() may be used only in the context of a <Router> component.");let{navigator:o}=r.useContext(V),{matches:i}=r.useContext(H),l=i[i.length-1],u=l?l.params:{},d=l?l.pathname:"/",h=l?l.pathnameBase:"/",m=l&&l.route;{
 // You won't get a warning about 2 different <Routes> under a <Route>
 // without a trailing *, but this is a best-effort warning anyway since we
 // cannot even give the warning unless they land at the parent route.
@@ -372,43 +372,43 @@ return function(e,t,n){K()||c(!1,// TODO: This error is probably because they so
 //     </Routes>
 //   );
 // }
-let e=p&&p.path||"";f=d,g=!p||e.endsWith("*"),b='You rendered descendant <Routes> (or called `useRoutes()`) at "'+d+'" (under <Route path="'+e+'">) but the parent route path has no trailing "*". This means if you navigate deeper, the parent won\'t match anymore and therefore the child routes will never render.\n\nPlease change the parent <Route path="'+e+'"> to <Route path="'+("/"===e?"*":e+"/*")+'">.',g||se[f]||(se[f]=!0,u(!1,b))}var f,g,b;
+let e=m&&m.path||"";v=d,g=!m||e.endsWith("*"),b='You rendered descendant <Routes> (or called `useRoutes()`) at "'+d+'" (under <Route path="'+e+'">) but the parent route path has no trailing "*". This means if you navigate deeper, the parent won\'t match anymore and therefore the child routes will never render.\n\nPlease change the parent <Route path="'+e+'"> to <Route path="'+("/"===e?"*":e+"/*")+'">.',g||le[v]||(le[v]=!0,c(!1,b))}var v,g,b;
 /**
    * Declares an element that should be rendered at a certain URL path.
    *
    * @see https://reactrouter.com/components/route
-   */let y,w=Y();if(t){var R;let e="string"==typeof t?m(t):t;"/"===h||(null==(R=e.pathname)?void 0:R.startsWith(h))||c(!1,'When overriding the location using `<Routes location>` or `useRoutes(routes, location)`, the location pathname must begin with the portion of the URL pathname that was matched by all parent routes. The current pathname base is "'+h+'" but pathname "'+e.pathname+'" was given in the `location` prop.'),y=e}else y=w;let E=y.pathname||"/",C="/"===h?E:E.slice(h.length)||"/",x=v(e,{pathname:C});u(p||null!=x,'No routes matched location "'+y.pathname+y.search+y.hash+'" '),u(null==x||void 0!==x[x.length-1].route.element||void 0!==x[x.length-1].route.Component,'Matched leaf route at location "'+y.pathname+y.search+y.hash+'" does not have an element or Component. This means it will render an <Outlet /> with a null value by default resulting in an "empty" page.');let S=function(e,t,n){var a,r;void 0===t&&(t=[]);void 0===n&&(n=null);if(null==e){if(null==(r=n)||!r.errors)return null;
+   */let y,w=K();if(t){var E;let e="string"==typeof t?p(t):t;"/"===h||(null==(E=e.pathname)?void 0:E.startsWith(h))||s(!1,'When overriding the location using `<Routes location>` or `useRoutes(routes, location)`, the location pathname must begin with the portion of the URL pathname that was matched by all parent routes. The current pathname base is "'+h+'" but pathname "'+e.pathname+'" was given in the `location` prop.'),y=e}else y=w;let R=y.pathname||"/",C="/"===h?R:R.slice(h.length)||"/",x=f(e,{pathname:C});c(m||null!=x,'No routes matched location "'+y.pathname+y.search+y.hash+'" '),c(null==x||void 0!==x[x.length-1].route.element||void 0!==x[x.length-1].route.Component,'Matched leaf route at location "'+y.pathname+y.search+y.hash+'" does not have an element or Component. This means it will render an <Outlet /> with a null value by default resulting in an "empty" page.');let S=function(e,t,n){var a,o;void 0===t&&(t=[]);void 0===n&&(n=null);if(null==e){if(null==(o=n)||!o.errors)return null;
 // Don't bail if we have data router errors so we can render them in the
 // boundary.  Use the pre-matched (or shimmed) matches
 e=n.matches}let i=e,l=null==(a=n)?void 0:a.errors;
 // If we have data errors, trim matches to the highest error boundary
-if(null!=l){let e=i.findIndex((e=>e.route.id&&(null==l?void 0:l[e.route.id])));e>=0||c(!1,"Could not find a matching route for errors on route IDs: "+Object.keys(l).join(",")),i=i.slice(0,Math.min(i.length,e+1))}return i.reduceRight(((e,a,r)=>{let s=a.route.id?null==l?void 0:l[a.route.id]:null,c=null;
+if(null!=l){let e=i.findIndex((e=>e.route.id&&(null==l?void 0:l[e.route.id])));e>=0||s(!1,"Could not find a matching route for errors on route IDs: "+Object.keys(l).join(",")),i=i.slice(0,Math.min(i.length,e+1))}return i.reduceRight(((e,a,o)=>{let s=a.route.id?null==l?void 0:l[a.route.id]:null,c=null;
 // Only data routers handle errors
-n&&(c=a.route.errorElement||te);let u=t.concat(i.slice(0,r+1)),d=()=>{let t;return t=s?c:a.route.Component?o.createElement(a.route.Component,null):a.route.element?a.route.element:e,o.createElement(ae,{match:a,routeContext:{outlet:e,matches:u,isDataRoute:null!=n},children:t})};
+n&&(c=a.route.errorElement||ee);let u=t.concat(i.slice(0,o+1)),d=()=>{let t;return t=s?c:a.route.Component?r.createElement(a.route.Component,null):a.route.element?a.route.element:e,r.createElement(ne,{match:a,routeContext:{outlet:e,matches:u,isDataRoute:null!=n},children:t})};
 // Only wrap in an error boundary within data router usages when we have an
 // ErrorBoundary/errorElement on this route.  Otherwise let it bubble up to
 // an ancestor ErrorBoundary/errorElement
-return n&&(a.route.ErrorBoundary||a.route.errorElement||0===r)?o.createElement(ne,{location:n.location,revalidation:n.revalidation,component:c,error:s,children:d(),routeContext:{outlet:null,matches:u,isDataRoute:!0}}):d()}),null)}(x&&x.map((e=>Object.assign({},e,{params:Object.assign({},s,e.params),pathname:k([h,
+return n&&(a.route.ErrorBoundary||a.route.errorElement||0===o)?r.createElement(te,{location:n.location,revalidation:n.revalidation,component:c,error:s,children:d(),routeContext:{outlet:null,matches:u,isDataRoute:!0}}):d()}),null)}(x&&x.map((e=>Object.assign({},e,{params:Object.assign({},u,e.params),pathname:I([h,
 // Re-encode pathnames that were decoded inside matchRoutes
-a.encodeLocation?a.encodeLocation(e.pathname).pathname:e.pathname]),pathnameBase:"/"===e.pathnameBase?h:k([h,
+o.encodeLocation?o.encodeLocation(e.pathname).pathname:e.pathname]),pathnameBase:"/"===e.pathnameBase?h:I([h,
 // Re-encode pathnames that were decoded inside matchRoutes
-a.encodeLocation?a.encodeLocation(e.pathnameBase).pathname:e.pathnameBase])}))),i,n);
+o.encodeLocation?o.encodeLocation(e.pathnameBase).pathname:e.pathnameBase])}))),i,n);
 // When a user passes in a `locationArg`, the associated routes need to
 // be wrapped in a new `LocationContext.Provider` in order for `useLocation`
 // to use the scoped location instead of the global location.
 if(t&&S)
-return o.createElement(H.Provider,{value:{location:F({pathname:"/",search:"",hash:"",state:null,key:"default"},y),navigationType:r.Pop}},S);return S}(e,t)}function ee(){let e=
+return r.createElement($.Provider,{value:{location:M({pathname:"/",search:"",hash:"",state:null,key:"default"},y),navigationType:a.Pop}},S);return S}(e,t)}function Q(){let e=
 /**
    * Returns the nearest ancestor Route error, which could be a loader/action
    * error or a render error.  This is intended to be called from your
    * ErrorBoundary/errorElement to display a proper error message.
    */
-function(){var e;let t=o.useContext(J),n=function(e){let t=o.useContext(V);return t||c(!1,ie(e)),t}(oe.UseRouteError),a=le(oe.UseRouteError);
+function(){var e;let t=r.useContext(z),n=function(e){let t=r.useContext(W);return t||s(!1,oe(e)),t}(re.UseRouteError),a=ie(re.UseRouteError);
 // If this was a render error, we put it in a RouteError context inside
 // of RenderErrorBoundary
 if(t)return t;
 // Otherwise look for errors from our data router state
-return null==(e=n.errors)?void 0:e[a]}(),t=function(e){return null!=e&&"number"==typeof e.status&&"string"==typeof e.statusText&&"boolean"==typeof e.internal&&"data"in e}(e)?e.status+" "+e.statusText:e instanceof Error?e.message:JSON.stringify(e),n=e instanceof Error?e.stack:null,a="rgba(200,200,200, 0.5)",r={padding:"0.5rem",backgroundColor:a},i={padding:"2px 4px",backgroundColor:a},l=null;return console.error("Error handled by React Router default ErrorBoundary:",e),l=o.createElement(o.Fragment,null,o.createElement("p",null,"💿 Hey developer 👋"),o.createElement("p",null,"You can provide a way better UX than this when your app throws errors by providing your own ",o.createElement("code",{style:i},"ErrorBoundary")," or"," ",o.createElement("code",{style:i},"errorElement")," prop on your route.")),o.createElement(o.Fragment,null,o.createElement("h2",null,"Unexpected Application Error!"),o.createElement("h3",{style:{fontStyle:"italic"}},t),n?o.createElement("pre",{style:r},n):null,l)}const te=o.createElement(ee,null);class ne extends o.Component{constructor(e){super(e),this.state={location:e.location,revalidation:e.revalidation,error:e.error}}static getDerivedStateFromError(e){return{error:e}}static getDerivedStateFromProps(e,t){
+return null==(e=n.errors)?void 0:e[a]}(),t=function(e){return null!=e&&"number"==typeof e.status&&"string"==typeof e.statusText&&"boolean"==typeof e.internal&&"data"in e}(e)?e.status+" "+e.statusText:e instanceof Error?e.message:JSON.stringify(e),n=e instanceof Error?e.stack:null,a="rgba(200,200,200, 0.5)",o={padding:"0.5rem",backgroundColor:a},i={padding:"2px 4px",backgroundColor:a},l=null;return console.error("Error handled by React Router default ErrorBoundary:",e),l=r.createElement(r.Fragment,null,r.createElement("p",null,"💿 Hey developer 👋"),r.createElement("p",null,"You can provide a way better UX than this when your app throws errors by providing your own ",r.createElement("code",{style:i},"ErrorBoundary")," or"," ",r.createElement("code",{style:i},"errorElement")," prop on your route.")),r.createElement(r.Fragment,null,r.createElement("h2",null,"Unexpected Application Error!"),r.createElement("h3",{style:{fontStyle:"italic"}},t),n?r.createElement("pre",{style:o},n):null,l)}const ee=r.createElement(Q,null);class te extends r.Component{constructor(e){super(e),this.state={location:e.location,revalidation:e.revalidation,error:e.error}}static getDerivedStateFromError(e){return{error:e}}static getDerivedStateFromProps(e,t){
 // When we get into an error state, the user will likely click "back" to the
 // previous page that didn't have an error. Because this wraps the entire
 // application, that will have no effect--the error page continues to display.
@@ -421,15 +421,15 @@ return t.location!==e.location||"idle"!==t.revalidation&&"idle"===e.revalidation
 // any new errors that may come through. We retain the existing error, we do
 // this because the error provided from the app state may be cleared without
 // the location changing.
-}componentDidCatch(e,t){console.error("React Router caught the following error during render",e,t)}render(){return this.state.error?o.createElement(z.Provider,{value:this.props.routeContext},o.createElement(J.Provider,{value:this.state.error,children:this.props.component})):this.props.children}}function ae(e){let{routeContext:t,match:n,children:a}=e,r=o.useContext(W);
+}componentDidCatch(e,t){console.error("React Router caught the following error during render",e,t)}render(){return this.state.error?r.createElement(H.Provider,{value:this.props.routeContext},r.createElement(z.Provider,{value:this.state.error,children:this.props.component})):this.props.children}}function ne(e){let{routeContext:t,match:n,children:a}=e,o=r.useContext(F);
 // Track how deep we got in our render pass to emulate SSR componentDidCatch
 // in a DataStaticRouter
-return r&&r.static&&r.staticContext&&(n.route.errorElement||n.route.ErrorBoundary)&&(r.staticContext._deepestRenderedBoundaryId=n.route.id),o.createElement(z.Provider,{value:t},a)}var re=function(e){return e.UseBlocker="useBlocker",e.UseRevalidator="useRevalidator",e.UseNavigateStable="useNavigate",e}(re||{}),oe=function(e){return e.UseBlocker="useBlocker",e.UseLoaderData="useLoaderData",e.UseActionData="useActionData",e.UseRouteError="useRouteError",e.UseNavigation="useNavigation",e.UseRouteLoaderData="useRouteLoaderData",e.UseMatches="useMatches",e.UseRevalidator="useRevalidator",e.UseNavigateStable="useNavigate",e.UseRouteId="useRouteId",e}(oe||{});function ie(e){return e+" must be used within a data router.  See https://reactrouter.com/routers/picking-a-router."}
+return o&&o.static&&o.staticContext&&(n.route.errorElement||n.route.ErrorBoundary)&&(o.staticContext._deepestRenderedBoundaryId=n.route.id),r.createElement(H.Provider,{value:t},a)}var ae=function(e){return e.UseBlocker="useBlocker",e.UseRevalidator="useRevalidator",e.UseNavigateStable="useNavigate",e}(ae||{}),re=function(e){return e.UseBlocker="useBlocker",e.UseLoaderData="useLoaderData",e.UseActionData="useActionData",e.UseRouteError="useRouteError",e.UseNavigation="useNavigation",e.UseRouteLoaderData="useRouteLoaderData",e.UseMatches="useMatches",e.UseRevalidator="useRevalidator",e.UseNavigateStable="useNavigate",e.UseRouteId="useRouteId",e}(re||{});function oe(e){return e+" must be used within a data router.  See https://reactrouter.com/routers/picking-a-router."}
 // Internal version with hookName-aware debugging
-function le(e){let t=function(e){let t=o.useContext(z);return t||c(!1,ie(e)),t}(e),n=t.matches[t.matches.length-1];return n.route.id||c(!1,e+' can only be used on routes that contain a unique "id"'),n.route.id}
+function ie(e){let t=function(e){let t=r.useContext(H);return t||s(!1,oe(e)),t}(e),n=t.matches[t.matches.length-1];return n.route.id||s(!1,e+' can only be used on routes that contain a unique "id"'),n.route.id}
 /**
    * Returns the ID for the nearest contextual route
-   */const se={};function ce(e){c(!1,"A <Route> is only ever to be used as the child of <Routes> element, never rendered directly. Please wrap your <Route> in a <Routes>.")}
+   */const le={};function se(e){s(!1,"A <Route> is only ever to be used as the child of <Routes> element, never rendered directly. Please wrap your <Route> in a <Routes>.")}
 /**
    * Provides location context for the rest of the app.
    *
@@ -438,16 +438,16 @@ function le(e){let t=function(e){let t=o.useContext(z);return t||c(!1,ie(e)),t}(
    * in web browsers or a `<StaticRouter>` for server rendering.
    *
    * @see https://reactrouter.com/router-components/router
-   */function ue(e){let{basename:t="/",children:n=null,location:a,navigationType:i=r.Pop,navigator:l,static:s=!1}=e;K()&&c(!1,"You cannot render a <Router> inside another <Router>. You should never have more than one in your app.");
+   */function ce(e){let{basename:t="/",children:n=null,location:o,navigationType:i=a.Pop,navigator:l,static:u=!1}=e;J()&&s(!1,"You cannot render a <Router> inside another <Router>. You should never have more than one in your app.");
 // Preserve trailing slashes on basename, so we can let the user control
 // the enforcement of trailing slashes throughout the app
-let d=t.replace(/^\/*/,"/"),h=o.useMemo((()=>({basename:d,navigator:l,static:s})),[d,l,s]);"string"==typeof a&&(a=m(a));let{pathname:p="/",search:f="",hash:v="",state:g=null,key:b="default"}=a,y=o.useMemo((()=>{let e=A(p,d);return null==e?null:{location:{pathname:e,search:f,hash:v,state:g,key:b},navigationType:i}}),[d,p,f,v,g,b,i]);return u(null!=y,'<Router basename="'+d+'"> is not able to match the URL "'+p+f+v+"\" because it does not start with the basename, so the <Router> won't render anything."),null==y?null:o.createElement($.Provider,{value:h},o.createElement(H.Provider,{children:n,value:y}))}
+let d=t.replace(/^\/*/,"/"),h=r.useMemo((()=>({basename:d,navigator:l,static:u})),[d,l,u]);"string"==typeof o&&(o=p(o));let{pathname:m="/",search:f="",hash:v="",state:g=null,key:b="default"}=o,y=r.useMemo((()=>{let e=L(m,d);return null==e?null:{location:{pathname:e,search:f,hash:v,state:g,key:b},navigationType:i}}),[d,m,f,v,g,b,i]);return c(null!=y,'<Router basename="'+d+'"> is not able to match the URL "'+m+f+v+"\" because it does not start with the basename, so the <Router> won't render anything."),null==y?null:r.createElement(V.Provider,{value:h},r.createElement($.Provider,{children:n,value:y}))}
 /**
    * A container for a nested tree of `<Route>` elements that renders the branch
    * that best matches the current location.
    *
    * @see https://reactrouter.com/components/routes
-   */function de(e){let{children:t,location:n}=e;return Q(he(t),n)}
+   */function ue(e){let{children:t,location:n}=e;return X(de(t),n)}
 ///////////////////////////////////////////////////////////////////////////////
 // UTILS
 ///////////////////////////////////////////////////////////////////////////////
@@ -458,12 +458,12 @@ let d=t.replace(/^\/*/,"/"),h=o.useMemo((()=>({basename:d,navigator:l,static:s})
    *
    * @see https://reactrouter.com/utils/create-routes-from-children
    */
-function he(e,t){void 0===t&&(t=[]);let n=[];return o.Children.forEach(e,((e,a)=>{if(!o.isValidElement(e))
+function de(e,t){void 0===t&&(t=[]);let n=[];return r.Children.forEach(e,((e,a)=>{if(!r.isValidElement(e))
 // Ignore non-elements. This allows people to more easily inline
 // conditionals in their route config.
-return;let r=[...t,a];if(e.type===o.Fragment)
+return;let o=[...t,a];if(e.type===r.Fragment)
 // Transparently support React.Fragment and its children.
-return void n.push.apply(n,he(e.props.children,r));e.type!==ce&&c(!1,"["+("string"==typeof e.type?e.type:e.type.name)+"] is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>"),e.props.index&&e.props.children&&c(!1,"An index route cannot have child routes.");let i={id:e.props.id||r.join("-"),caseSensitive:e.props.caseSensitive,element:e.props.element,Component:e.props.Component,index:e.props.index,path:e.props.path,loader:e.props.loader,action:e.props.action,errorElement:e.props.errorElement,ErrorBoundary:e.props.ErrorBoundary,hasErrorBoundary:null!=e.props.ErrorBoundary||null!=e.props.errorElement,shouldRevalidate:e.props.shouldRevalidate,handle:e.props.handle,lazy:e.props.lazy};e.props.children&&(i.children=he(e.props.children,r)),n.push(i)})),n}
+return void n.push.apply(n,de(e.props.children,o));e.type!==se&&s(!1,"["+("string"==typeof e.type?e.type:e.type.name)+"] is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>"),e.props.index&&e.props.children&&s(!1,"An index route cannot have child routes.");let i={id:e.props.id||o.join("-"),caseSensitive:e.props.caseSensitive,element:e.props.element,Component:e.props.Component,index:e.props.index,path:e.props.path,loader:e.props.loader,action:e.props.action,errorElement:e.props.errorElement,ErrorBoundary:e.props.ErrorBoundary,hasErrorBoundary:null!=e.props.ErrorBoundary||null!=e.props.errorElement,shouldRevalidate:e.props.shouldRevalidate,handle:e.props.handle,lazy:e.props.lazy};e.props.children&&(i.children=de(e.props.children,o)),n.push(i)})),n}
 /**
    * React Router DOM v6.17.0
    *
@@ -473,13 +473,13 @@ return void n.push.apply(n,he(e.props.children,r));e.type!==ce&&c(!1,"["+("strin
    * LICENSE.md file in the root directory of this source tree.
    *
    * @license MIT
-   */function pe(){return pe=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var a in n)Object.prototype.hasOwnProperty.call(n,a)&&(e[a]=n[a])}return e},pe.apply(this,arguments)}function me(e,t){if(null==e)return{};var n,a,r={},o=Object.keys(e);for(a=0;a<o.length;a++)n=o[a],t.indexOf(n)>=0||(r[n]=e[n]);return r}new Promise((()=>{}));const fe="get",ve="application/x-www-form-urlencoded";function ge(e){return null!=e&&"string"==typeof e.tagName}
+   */function he(){return he=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var a in n)Object.prototype.hasOwnProperty.call(n,a)&&(e[a]=n[a])}return e},he.apply(this,arguments)}function pe(e,t){if(null==e)return{};var n,a,r={},o=Object.keys(e);for(a=0;a<o.length;a++)n=o[a],t.indexOf(n)>=0||(r[n]=e[n]);return r}new Promise((()=>{}));const me="get",fe="application/x-www-form-urlencoded";function ve(e){return null!=e&&"string"==typeof e.tagName}
 // One-time check for submitter support
-let be=null;const ye=new Set(["application/x-www-form-urlencoded","multipart/form-data","text/plain"]);function we(e){return null==e||ye.has(e)?e:(u(!1,'"'+e+'" is not a valid `encType` for `<Form>`/`<fetcher.Form>` and will default to "'+ve+'"'),null)}function Re(e,t){let n,a,r,o,i;if(ge(l=e)&&"form"===l.tagName.toLowerCase()){
+let ge=null;const be=new Set(["application/x-www-form-urlencoded","multipart/form-data","text/plain"]);function ye(e){return null==e||be.has(e)?e:(c(!1,'"'+e+'" is not a valid `encType` for `<Form>`/`<fetcher.Form>` and will default to "'+fe+'"'),null)}function we(e,t){let n,a,r,o,i;if(ve(l=e)&&"form"===l.tagName.toLowerCase()){
 // When grabbing the action from the element, it will have had the basename
 // prefixed to ensure non-JS scenarios work, so strip it since we'll
 // re-prefix in the router
-let i=e.getAttribute("action");a=i?A(i,t):null,n=e.getAttribute("method")||fe,r=we(e.getAttribute("enctype"))||ve,o=new FormData(e)}else if(function(e){return ge(e)&&"button"===e.tagName.toLowerCase()}(e)||function(e){return ge(e)&&"input"===e.tagName.toLowerCase()}(e)&&("submit"===e.type||"image"===e.type)){let i=e.form;if(null==i)throw new Error('Cannot submit a <button> or <input type="submit"> without a <form>');
+let i=e.getAttribute("action");a=i?L(i,t):null,n=e.getAttribute("method")||me,r=ye(e.getAttribute("enctype"))||fe,o=new FormData(e)}else if(function(e){return ve(e)&&"button"===e.tagName.toLowerCase()}(e)||function(e){return ve(e)&&"input"===e.tagName.toLowerCase()}(e)&&("submit"===e.type||"image"===e.type)){let i=e.form;if(null==i)throw new Error('Cannot submit a <button> or <input type="submit"> without a <form>');
 // <button>/<input type="submit"> may override attributes of <form>
 // When grabbing the action from the element, it will have had the basename
 // prefixed to ensure non-JS scenarios work, so strip it since we'll
@@ -489,13 +489,13 @@ let l=e.getAttribute("formaction")||i.getAttribute("action");
 // then tack on the submitter value at the end.  This is a lightweight
 // solution that is not 100% spec compliant.  For complete support in older
 // browsers, consider using the `formdata-submitter-polyfill` package
-if(a=l?A(l,t):null,n=e.getAttribute("formmethod")||i.getAttribute("method")||fe,r=we(e.getAttribute("formenctype"))||we(i.getAttribute("enctype"))||ve,
+if(a=l?L(l,t):null,n=e.getAttribute("formmethod")||i.getAttribute("method")||me,r=ye(e.getAttribute("formenctype"))||ye(i.getAttribute("enctype"))||fe,
 // Build a FormData object populated from a form and submitter
-o=new FormData(i,e),!function(){if(null===be)try{new FormData(document.createElement("form"),
+o=new FormData(i,e),!function(){if(null===ge)try{new FormData(document.createElement("form"),
 // @ts-expect-error if FormData supports the submitter parameter, this will throw
-0),be=!1}catch(e){be=!0}return be}()){let{name:t,type:n,value:a}=e;if("image"===n){let e=t?t+".":"";o.append(e+"x","0"),o.append(e+"y","0")}else t&&o.append(t,a)}}else{if(ge(e))throw new Error('Cannot submit element that is not <form>, <button>, or <input type="submit|image">');
+0),ge=!1}catch(e){ge=!0}return ge}()){let{name:t,type:n,value:a}=e;if("image"===n){let e=t?t+".":"";o.append(e+"x","0"),o.append(e+"y","0")}else t&&o.append(t,a)}}else{if(ve(e))throw new Error('Cannot submit element that is not <form>, <button>, or <input type="submit|image">');
 // Send body for <Form encType="text/plain" so we encode it into text
-n=fe,a=null,r=ve,i=e}var l;return o&&"text/plain"===r&&(i=o,o=void 0),{action:a,method:n.toLowerCase(),encType:r,formData:o,body:i}}const Ee=["onClick","relative","reloadDocument","replace","state","target","to","preventScrollReset","unstable_viewTransition"],Ce=["aria-current","caseSensitive","className","end","style","to","unstable_viewTransition","children"],xe=["reloadDocument","replace","state","method","action","onSubmit","submit","relative","preventScrollReset","unstable_viewTransition"],Se=o.createContext({isTransitioning:!1});Se.displayName="ViewTransition";
+n=me,a=null,r=fe,i=e}var l;return o&&"text/plain"===r&&(i=o,o=void 0),{action:a,method:n.toLowerCase(),encType:r,formData:o,body:i}}const Ee=["onClick","relative","reloadDocument","replace","state","target","to","preventScrollReset","unstable_viewTransition"],Re=["aria-current","caseSensitive","className","end","style","to","unstable_viewTransition","children"],Ce=["reloadDocument","replace","state","method","action","onSubmit","submit","relative","preventScrollReset","unstable_viewTransition"],xe=r.createContext({isTransitioning:!1});xe.displayName="ViewTransition";
 //#endregion
 ////////////////////////////////////////////////////////////////////////////////
 //#region Components
@@ -521,18 +521,18 @@ n=fe,a=null,r=ve,i=e}var l;return o&&"text/plain"===r&&(i=o,o=void 0),{action:a,
 
     See https://github.com/remix-run/react-router/issues/10579
   */
-const De=o.startTransition;
+const Se=r.startTransition;
 /**
    * A `<Router>` for use in web browsers. Stores the location in the hash
    * portion of the URL so it is not sent to the server.
    */
-function Le(e){let{basename:t,children:n,future:a,window:r}=e,i=o.useRef();null==i.current&&(i.current=s({window:r,v5Compat:!0}));let l=i.current,[c,u]=o.useState({action:l.action,location:l.location}),{v7_startTransition:d}=a||{},h=o.useCallback((e=>{d&&De?De((()=>u(e))):u(e)}),[u,d]);return o.useLayoutEffect((()=>l.listen(h)),[l,h]),o.createElement(ue,{basename:t,children:n,location:c.location,navigationType:c.action,navigator:l})}const Ne="undefined"!=typeof window&&void 0!==window.document&&void 0!==window.document.createElement,Pe=/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i,Ae=o.forwardRef((function(e,t){let n,{onClick:a,relative:r,reloadDocument:i,replace:l,state:s,target:d,to:h,preventScrollReset:m,unstable_viewTransition:f}=e,v=me(e,Ee),{basename:g}=o.useContext($),b=!1;if("string"==typeof h&&Pe.test(h)&&(
+function Ne(e){let{basename:t,children:n,future:a,window:o}=e,i=r.useRef();null==i.current&&(i.current=l({window:o,v5Compat:!0}));let s=i.current,[c,u]=r.useState({action:s.action,location:s.location}),{v7_startTransition:d}=a||{},h=r.useCallback((e=>{d&&Se?Se((()=>u(e))):u(e)}),[u,d]);return r.useLayoutEffect((()=>s.listen(h)),[s,h]),r.createElement(ce,{basename:t,children:n,location:c.location,navigationType:c.action,navigator:s})}const De="undefined"!=typeof window&&void 0!==window.document&&void 0!==window.document.createElement,Pe=/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i,Le=r.forwardRef((function(e,t){let n,{onClick:a,relative:o,reloadDocument:i,replace:l,state:u,target:d,to:p,preventScrollReset:m,unstable_viewTransition:f}=e,v=pe(e,Ee),{basename:g}=r.useContext(V),b=!1;if("string"==typeof p&&Pe.test(p)&&(
 // Render the absolute href server- and client-side
-n=h,Ne))try{let e=new URL(window.location.href),t=h.startsWith("//")?new URL(e.protocol+h):new URL(h),n=A(t.pathname,g);t.origin===e.origin&&null!=n?
+n=p,De))try{let e=new URL(window.location.href),t=p.startsWith("//")?new URL(e.protocol+p):new URL(p),n=L(t.pathname,g);t.origin===e.origin&&null!=n?
 // Strip the protocol/origin/basename for same-origin absolute URLs
-h=n+t.search+t.hash:b=!0}catch(e){
+p=n+t.search+t.hash:b=!0}catch(e){
 // We can't do external URL detection without a valid URL
-u(!1,'<Link to="'+h+'"> contains an invalid URL which will probably break when clicked - please update to a valid URL path.')}
+c(!1,'<Link to="'+p+'"> contains an invalid URL which will probably break when clicked - please update to a valid URL path.')}
 // Rendered into <a href> for relative URLs
 let y=
 /**
@@ -541,28 +541,28 @@ let y=
    *
    * @see https://reactrouter.com/hooks/use-href
    */
-function(e,t){let{relative:n}=void 0===t?{}:t;K()||c(!1,// TODO: This error is probably because they somehow have 2 versions of the
+function(e,t){let{relative:n}=void 0===t?{}:t;J()||s(!1,// TODO: This error is probably because they somehow have 2 versions of the
 // router loaded. We can help them understand how to avoid that.
-"useHref() may be used only in the context of a <Router> component.");let{basename:a,navigator:r}=o.useContext($),{hash:i,pathname:l,search:s}=Z(e,{relative:n}),u=l;
+"useHref() may be used only in the context of a <Router> component.");let{basename:a,navigator:o}=r.useContext(V),{hash:i,pathname:l,search:c}=Z(e,{relative:n}),u=l;
 // If we're operating within a basename, prepend it to the pathname prior
 // to creating the href.  If this is a root navigation, then just use the raw
 // basename which allows the basename to have full control over the presence
 // of a trailing slash on root links
-return"/"!==a&&(u="/"===l?a:k([a,l])),r.createHref({pathname:u,search:s,hash:i})}(h,{relative:r}),w=
+return"/"!==a&&(u="/"===l?a:I([a,l])),o.createHref({pathname:u,search:c,hash:i})}(p,{relative:o}),w=
 /**
    * Handles the click behavior for router `<Link>` components. This is useful if
    * you need to create custom `<Link>` components with the same click behavior we
    * use in our exported `<Link>`.
    */
-function(e,t){let{target:n,replace:a,state:r,preventScrollReset:i,relative:l,unstable_viewTransition:s}=void 0===t?{}:t,c=X(),u=Y(),d=Z(e,{relative:l});return o.useCallback((t=>{if(function(e,t){return!(0!==e.button||
+function(e,t){let{target:n,replace:a,state:o,preventScrollReset:i,relative:l,unstable_viewTransition:s}=void 0===t?{}:t,c=G(),u=K(),d=Z(e,{relative:l});return r.useCallback((t=>{if(function(e,t){return!(0!==e.button||
 // Ignore everything but left clicks
 t&&"_self"!==t||function(e){return!!(e.metaKey||e.altKey||e.ctrlKey||e.shiftKey)}(e))}(t,n)){t.preventDefault();
 // If the URL hasn't changed, a regular <a> will do a replace instead of
 // a push, so do the same here unless the replace prop is explicitly set
-let n=void 0!==a?a:p(u)===p(d);c(e,{replace:n,state:r,preventScrollReset:i,relative:l,unstable_viewTransition:s})}}),[u,c,d,a,r,n,e,i,l,s])}(h,{replace:l,state:s,target:d,preventScrollReset:m,relative:r,unstable_viewTransition:f});
+let n=void 0!==a?a:h(u)===h(d);c(e,{replace:n,state:o,preventScrollReset:i,relative:l,unstable_viewTransition:s})}}),[u,c,d,a,o,n,e,i,l,s])}(p,{replace:l,state:u,target:d,preventScrollReset:m,relative:o,unstable_viewTransition:f});
 
 // eslint-disable-next-line jsx-a11y/anchor-has-content
-return o.createElement("a",pe({},v,{href:n||y,onClick:b||i?a:function(e){a&&a(e),e.defaultPrevented||w(e)},ref:t,target:d}))}));Ae.displayName="Link";o.forwardRef((function(e,t){let{"aria-current":n="page",caseSensitive:a=!1,className:r="",end:i=!1,style:l,to:s,unstable_viewTransition:u,children:d}=e,h=me(e,Ce),p=Z(s,{relative:h.relative}),m=Y(),f=o.useContext(V),{navigator:v}=o.useContext($),g=null!=f&&
+return r.createElement("a",he({},v,{href:n||y,onClick:b||i?a:function(e){a&&a(e),e.defaultPrevented||w(e)},ref:t,target:d}))}));Le.displayName="Link";r.forwardRef((function(e,t){let{"aria-current":n="page",caseSensitive:a=!1,className:o="",end:i=!1,style:l,to:c,unstable_viewTransition:u,children:d}=e,h=pe(e,Re),p=Z(c,{relative:h.relative}),m=K(),f=r.useContext(W),{navigator:v}=r.useContext(V),g=null!=f&&
 // Conditional usage is OK here because the usage of a data router is static
 // eslint-disable-next-line react-hooks/rules-of-hooks
 /**
@@ -573,7 +573,7 @@ return o.createElement("a",pe({},v,{href:n||y,onClick:b||i?a:function(e){a&&a(e)
    * @param href The destination href
    * @param [opts.relative] Relative routing type ("route" | "path")
    */
-function(e,t){void 0===t&&(t={});let n=o.useContext(Se);null==n&&c(!1,"`unstable_useViewTransitionState` must be used within `react-router-dom`'s `RouterProvider`.  Did you accidentally import `RouterProvider` from `react-router`?");let{basename:a}=ke(Ue.useViewTransitionState),r=Z(e,{relative:t.relative});if(!n.isTransitioning)return!1;let i=A(n.currentLocation.pathname,a)||n.currentLocation.pathname,l=A(n.nextLocation.pathname,a)||n.nextLocation.pathname;
+function(e,t){void 0===t&&(t={});let n=r.useContext(xe);null==n&&s(!1,"`unstable_useViewTransitionState` must be used within `react-router-dom`'s `RouterProvider`.  Did you accidentally import `RouterProvider` from `react-router`?");let{basename:a}=Ie(Ae.useViewTransitionState),o=Z(e,{relative:t.relative});if(!n.isTransitioning)return!1;let i=L(n.currentLocation.pathname,a)||n.currentLocation.pathname,l=L(n.nextLocation.pathname,a)||n.nextLocation.pathname;
 // Transition is active if we're going to or coming from the indicated
 // destination.  This ensures that other PUSH navigations that reverse
 // an indicated transition apply.  I.e., on the list view you have:
@@ -583,46 +583,44 @@ function(e,t){void 0===t&&(t={});let n=o.useContext(Se);null==n&&c(!1,"`unstable
 // We should apply the transition because it's indicated as active going
 // from /list -> /details/1 and therefore should be active on the reverse
 // (even though this isn't strictly a POP reverse)
-return null!=N(r.pathname,l)||null!=N(r.pathname,i)}(p)&&!0===u,b=v.encodeLocation?v.encodeLocation(p).pathname:p.pathname,y=m.pathname,w=f&&f.navigation&&f.navigation.location?f.navigation.location.pathname:null;a||(y=y.toLowerCase(),w=w?w.toLowerCase():null,b=b.toLowerCase());let R,E=y===b||!i&&y.startsWith(b)&&"/"===y.charAt(b.length),C=null!=w&&(w===b||!i&&w.startsWith(b)&&"/"===w.charAt(b.length)),x={isActive:E,isPending:C,isTransitioning:g},S=E?n:void 0;R="function"==typeof r?r(x):[r,E?"active":null,C?"pending":null,g?"transitioning":null].filter(Boolean).join(" ");let D="function"==typeof l?l(x):l;
-return o.createElement(Ae,pe({},h,{"aria-current":S,className:R,ref:t,style:D,to:s,unstable_viewTransition:u}),"function"==typeof d?d(x):d)})).displayName="NavLink";o.forwardRef(((e,t)=>{let n=
+return null!=D(o.pathname,l)||null!=D(o.pathname,i)}(p)&&!0===u,b=v.encodeLocation?v.encodeLocation(p).pathname:p.pathname,y=m.pathname,w=f&&f.navigation&&f.navigation.location?f.navigation.location.pathname:null;a||(y=y.toLowerCase(),w=w?w.toLowerCase():null,b=b.toLowerCase());let E,R=y===b||!i&&y.startsWith(b)&&"/"===y.charAt(b.length),C=null!=w&&(w===b||!i&&w.startsWith(b)&&"/"===w.charAt(b.length)),x={isActive:R,isPending:C,isTransitioning:g},S=R?n:void 0;E="function"==typeof o?o(x):[o,R?"active":null,C?"pending":null,g?"transitioning":null].filter(Boolean).join(" ");let N="function"==typeof l?l(x):l;
+return r.createElement(Le,he({},h,{"aria-current":S,className:E,ref:t,style:N,to:c,unstable_viewTransition:u}),"function"==typeof d?d(x):d)})).displayName="NavLink";r.forwardRef(((e,t)=>{let n=
 /**
    * Returns a function that may be used to programmatically submit a form (or
    * some arbitrary data) to the server.
    */
-function(){let{router:e}=ke(Ue.UseSubmit),{basename:t}=o.useContext($),n=le(oe.UseRouteId);return o.useCallback((function(a,r){void 0===r&&(r={}),function(){if("undefined"==typeof document)throw new Error("You are calling submit during the server render. Try calling submit within a `useEffect` or callback instead.")}();let{action:o,method:i,encType:l,formData:s,body:c}=Re(a,t);e.navigate(r.action||o,{preventScrollReset:r.preventScrollReset,formData:s,body:c,formMethod:r.method||i,formEncType:r.encType||l,replace:r.replace,state:r.state,fromRouteId:n,unstable_viewTransition:r.unstable_viewTransition})}),[e,t,n])}
+function(){let{router:e}=Ie(Ae.UseSubmit),{basename:t}=r.useContext(V),n=ie(re.UseRouteId);return r.useCallback((function(a,r){void 0===r&&(r={}),function(){if("undefined"==typeof document)throw new Error("You are calling submit during the server render. Try calling submit within a `useEffect` or callback instead.")}();let{action:o,method:i,encType:l,formData:s,body:c}=we(a,t);e.navigate(r.action||o,{preventScrollReset:r.preventScrollReset,formData:s,body:c,formMethod:r.method||i,formEncType:r.encType||l,replace:r.replace,state:r.state,fromRouteId:n,unstable_viewTransition:r.unstable_viewTransition})}),[e,t,n])}
 // v7: Eventually we should deprecate this entirely in favor of using the
 // router method directly?
 ();
-return o.createElement(Te,pe({},e,{submit:n,ref:t}))})).displayName="Form";const Te=o.forwardRef(((e,t)=>{let{reloadDocument:n,replace:a,state:r,method:i=fe,action:l,onSubmit:s,submit:u,relative:d,preventScrollReset:h,unstable_viewTransition:m}=e,f=me(e,xe),v="get"===i.toLowerCase()?"get":"post",g=function(e,t){let{relative:n}=void 0===t?{}:t,{basename:a}=o.useContext($),r=o.useContext(z);r||c(!1,"useFormAction must be used inside a RouteContext");let[i]=r.matches.slice(-1),l=pe({},Z(e||".",{relative:n})),s=Y();
+return r.createElement(ke,he({},e,{submit:n,ref:t}))})).displayName="Form";const ke=r.forwardRef(((e,t)=>{let{reloadDocument:n,replace:a,state:o,method:i=me,action:l,onSubmit:c,submit:u,relative:d,preventScrollReset:p,unstable_viewTransition:m}=e,f=pe(e,Ce),v="get"===i.toLowerCase()?"get":"post",g=function(e,t){let{relative:n}=void 0===t?{}:t,{basename:a}=r.useContext(V),o=r.useContext(H);o||s(!1,"useFormAction must be used inside a RouteContext");let[i]=o.matches.slice(-1),l=he({},Z(e||".",{relative:n})),c=K();
 // Shallow clone path so we can modify it below, otherwise we modify the
 // object referenced by useMemo inside useResolvedPath
 if(null==e&&(
 // Safe to write to this directly here since if action was undefined, we
 // would have called useResolvedPath(".") which will never include a search
-l.search=s.search,i.route.index)){let e=new URLSearchParams(l.search);e.delete("index"),l.search=e.toString()?"?"+e.toString():""}e&&"."!==e||!i.route.index||(l.search=l.search?l.search.replace(/^\?/,"?index&"):"?index");
+l.search=c.search,i.route.index)){let e=new URLSearchParams(l.search);e.delete("index"),l.search=e.toString()?"?"+e.toString():""}e&&"."!==e||!i.route.index||(l.search=l.search?l.search.replace(/^\?/,"?index&"):"?index");
 // If we're operating within a basename, prepend it to the pathname prior
 // to creating the form action.  If this is a root navigation, then just use
 // the raw basename which allows the basename to have full control over the
 // presence of a trailing slash on root actions
-"/"!==a&&(l.pathname="/"===l.pathname?a:k([a,l.pathname]));return p(l)}(l,{relative:d});
-return o.createElement("form",pe({ref:t,method:v,action:g,onSubmit:n?s:e=>{if(s&&s(e),e.defaultPrevented)return;e.preventDefault();let t=e.nativeEvent.submitter,n=(null==t?void 0:t.getAttribute("formmethod"))||i;u(t||e.currentTarget,{method:n,replace:a,state:r,relative:d,preventScrollReset:h,unstable_viewTransition:m})}},f))}));
+"/"!==a&&(l.pathname="/"===l.pathname?a:I([a,l.pathname]));return h(l)}(l,{relative:d});
+return r.createElement("form",he({ref:t,method:v,action:g,onSubmit:n?c:e=>{if(c&&c(e),e.defaultPrevented)return;e.preventDefault();let t=e.nativeEvent.submitter,n=(null==t?void 0:t.getAttribute("formmethod"))||i;u(t||e.currentTarget,{method:n,replace:a,state:o,relative:d,preventScrollReset:p,unstable_viewTransition:m})}},f))}));
 //#endregion
 ////////////////////////////////////////////////////////////////////////////////
 //#region Hooks
 ////////////////////////////////////////////////////////////////////////////////
-var Ue,Ie;function ke(e){let t=o.useContext(W);return t||c(!1,function(e){return e+" must be used within a data router.  See https://reactrouter.com/routers/picking-a-router."}(e)),t}function Oe({divId:e,viewerConfig:t,url:n,clientID:a,_fileMeta:r,_dcView:o}){const i={clientId:a,divId:e};return(o||new window.AdobeDC.View(i)).previewFile({content:{location:{url:n}},metaData:r||je.demoMetaData},t)}
+var Ae,Te;function Ie(e){let t=r.useContext(F);return t||s(!1,function(e){return e+" must be used within a data router.  See https://reactrouter.com/routers/picking-a-router."}(e)),t}function Ue({divId:e,viewerConfig:t,url:n,clientID:a,_fileMeta:r,_dcView:o}){const i={clientId:a,divId:e};return(o||new window.AdobeDC.View(i)).previewFile({content:{location:{url:n}},metaData:r||_e.demoMetaData},t)}
 /**
    * @description - An atypical Nested React Component of ReactViewAdobe,
    * specifically for managing API calls and configurations of the Adobe Embed API SDK
    * This component, in turn, employs the use of React Hooks
    * to render what the Adobe Embed API SDK perceives as static
    * and vanilla JavaScript code, transposed into the Document Object Model (DOM).
-   */Te.displayName="FormImpl",function(e){e.UseScrollRestoration="useScrollRestoration",e.UseSubmit="useSubmit",e.UseSubmitFetcher="useSubmitFetcher",e.UseFetcher="useFetcher",e.useViewTransitionState="useViewTransitionState"}(Ue||(Ue={})),function(e){e.UseFetchers="useFetchers",e.UseScrollRestoration="useScrollRestoration"}(Ie||(Ie={}));const Be=e=>{const n=t.useRef(document.getElementById(e.id||je.staticDivId));return t.createElement("div",{ref:n,id:e.id||je.staticDivId,className:e.className||"adobe-viewer-of-amazon-corporate-retaliations",style:e.style,title:e.title||"entity-existent-on-frameworks-of-state-regulations-as-defined-by-the-state-and-may-try-to-destroy-your-life-and-control-the-fbi-of-the-state-such-as-amazon-legal-idiots"})};
+   */ke.displayName="FormImpl",function(e){e.UseScrollRestoration="useScrollRestoration",e.UseSubmit="useSubmit",e.UseSubmitFetcher="useSubmitFetcher",e.UseFetcher="useFetcher",e.useViewTransitionState="useViewTransitionState"}(Ae||(Ae={})),function(e){e.UseFetchers="useFetchers",e.UseScrollRestoration="useScrollRestoration"}(Te||(Te={}));const Oe=t=>{const n=e.useRef(document.getElementById(t.id||_e.staticDivId));return e.createElement("div",{ref:n,id:t.id||_e.staticDivId,className:t.className||"adobe-viewer-of-amazon-corporate-retaliations",style:t.style,title:t.title||"entity-existent-on-frameworks-of-state-regulations-as-defined-by-the-state-and-may-try-to-destroy-your-life-and-control-the-fbi-of-the-state-such-as-amazon-legal-idiots"})};
 /**
    * @description - ReactViewAdobe component which is a wrapper around Adobe PDF Viewer SDK that allows for
    * rendering PDFs via Adobe's PDF Engine. Ensures that Adobe Embed API Services are
    * compartmentalized and fully encapsulated and configured within a rendered page. Not sure why Adobe
    * Embed API does not inherently do this. See ReactViewAdobeProps for more details.
-   */function _e(e){const[n,a]=t.useState(!1),[r,o]=t.useState(!1),[i,l]=t.useState(!1),s=(0,t[e?.useReactHookForAdobeAPIConfigs||"useMemo"])((()=>{if(!0===n){const e=window.AdobeDC?.View;return e}}),[n]);(0,t[e?.useReactHookWhenLoadingAdobeAPI||"useEffect"])((()=>{if(!1===i){const t=document.querySelector(".react-adobe-embed-handholding-adobe-api-loading-idiocy");if(t)o(!0),t.setAttribute("data-testid","react-adobe-embed-handholding-adobe-api-loading-idiocy-reused");else{const t=document.createElement("script");t.setAttribute("data-testid","react-adobe-embed-handholding-adobe-api-loading-idiocy-initial"),t.setAttribute("data-adobe-pdf-id",e.id||je.staticDivId),t.setAttribute("class","react-adobe-embed-handholding-adobe-api-loading-idiocy"),t.src=e.previewConfig?.viewSdkViewerScript||je.staticDefaultConfig.viewSdkViewerScript,t.async=!0,t.onload=()=>{l(!0)},document.body.appendChild(t)}}}),[e.id,i,n]);(0,t[e?.useReactHookWhenCallingAdobeAPI||"useEffect"])((()=>{!1===n&&!0===i&&document.addEventListener("adobe_dc_view_sdk.ready",(()=>{a(!0)}));!0===i&&!0===n&&(e=>{e.debug&&console.info("Adobe PDF Viewer SDK Ready Event",s,window.adobe_dc_view_sdk);const t=e.id||je.staticDivId;document.getElementById(t)&&"LIGHT_BOX"!==e.previewConfig?.embedMode?(e.debug&&console.info("Adobe PDF Viewer SDK Ready Rendering"),Oe({divId:t,viewerConfig:e.previewConfig||je.staticDefaultConfig,url:e.url||je.demoUrl,clientID:e.clientId,_fileMeta:e.fileMeta})):"LIGHT_BOX"===e.previewConfig?.embedMode&&e?.triggerAdobeDCViewRender&&Oe({divId:e.id||je.staticDivId,viewerConfig:e.previewConfig||je.staticDefaultConfig,url:e.url||je.demoUrl,clientID:e.clientId})})(e)}),[n,i,e,s]);return(0,t[e?.useReactHookForComponentDidUpdate||"useEffect"])((()=>{if(!0===r){const t=e.id||je.staticDivId;document.getElementById(t)&&Oe({divId:t,viewerConfig:e.previewConfig||je.staticDefaultConfig,url:e.url||je.demoUrl,clientID:e.clientId,_fileMeta:e.fileMeta}),o(!1)}}),[r,e]),t.createElement(Be,{...e})}const je={demoUrl:"https://acrobatservices.adobe.com/view-sdk-demo/PDFs/Bodea%20Brochure.pdf",staticDefaultConfig:{showAnnotationTools:!1,showLeftHandPanel:!1,showPageControls:!1,viewSdkViewerScript:"https://acrobatservices.adobe.com/view-sdk/viewer.js",showDownloadPDF:!1,showPrintPDF:!1},staticDivId:"pdf-div",demoMetaData:{fileName:"Odd Distateful Adobe Example Pdf.pdf",id:"6d07d124 - ac85–43b3 - a867–36930f502ac6"}},Me=()=>t.createElement(Le,null,t.createElement("header",null,t.createElement("nav",{className:"navbar navbar-default navbar-fixed"},t.createElement("div",{className:"container"},t.createElement("div",{className:"navbar-header"},t.createElement("div",{className:"navbar-collapse"},t.createElement("ul",{style:{display:"inline-flex",flexDirection:"row",justifyContent:"center",alignItems:"center",alignContent:"center",listStyle:"none",margin:"0"},className:"nav navbar-nav"},t.createElement("li",{className:"dropdown"},t.createElement(Ae,{style:{textDecoration:"none",padding:"10px"},className:"dropdown",to:"/test"},"Test Route")),t.createElement("li",{className:"dropdown"},t.createElement(Ae,{style:{textDecoration:"none",padding:"10px"},className:"dropdown",to:"/home"},"Home Route")))))))),t.createElement(de,null,t.createElement(ce,{path:"/test",element:t.createElement("div",{className:"section container"},t.createElement("div",{className:"row"},t.createElement("div",{className:"col s12"},t.createElement("h5",{"data-testid":"test-route",className:"header"},"Test Route View"),t.createElement("iframe",{src:"https://one.ziping.org/ZIPING-LIU-CORPORATION/react-adobe-embed/blob/slave/README.md/?domain=github.com",style:{width:"100%",height:"900px",border:"1px solid black",alignContent:"center",justifyContent:"center"}}))))}),t.createElement(ce,{path:"*",element:t.createElement(Fe,null)})));function Fe(){const e=window.location.href.split("?")[1],n=new URLSearchParams(e),a=n.get("pdf"),r=n.get("width"),o=n.get("height");return t.createElement("div",null,t.createElement(_e,{previewConfig:{embedMode:"FULL_WINDOW",defaultViewMode:"FIT_PAGE",enableLinearization:!0},fileMeta:{fileName:"23andMe_Ancestry_Book.pdf"},style:{width:r||"100%",height:o||"900px",border:"1px solid black",alignContent:"center",justifyContent:"center"},url:a||"https://raw.githubusercontent.com/ZipingL/dna/main/23andMe_Ancestry_Book.pdf",clientId:
-// TODO: Fix this to a function
-"localhost"===window.location.hostname?"324caa2a91b84f688935436cd2d25217":"one.ziping.org"===window.location.hostname?"2e5605e61e5b4306829b619d6fad2dc4":"zipingl.github.io"===window.location.hostname?"9c16d364507948289a9f65f9ab9da8bf":"875691e089ad4bf6bc4c5cea79403542"}))}const We=document.getElementById("app");if(We){n.createRoot(We).render(t.createElement(Me,null))}e.App=Me}));
+   */function Be(t){const[n,a]=e.useState(!1),[r,o]=e.useState(!1),[i,l]=e.useState(!1),s=(0,e[t?.useReactHookForAdobeAPIConfigs||"useMemo"])((()=>{if(!0===n){const e=window.AdobeDC?.View;return e}}),[n]);(0,e[t?.useReactHookWhenLoadingAdobeAPI||"useEffect"])((()=>{if(!1===i){const e=document.querySelector(".react-adobe-embed-handholding-adobe-api-loading-idiocy");if(e)o(!0),e.setAttribute("data-testid","react-adobe-embed-handholding-adobe-api-loading-idiocy-reused");else{const e=document.createElement("script");e.setAttribute("data-testid","react-adobe-embed-handholding-adobe-api-loading-idiocy-initial"),e.setAttribute("data-adobe-pdf-id",t.id||_e.staticDivId),e.setAttribute("class","react-adobe-embed-handholding-adobe-api-loading-idiocy"),e.src=t.previewConfig?.viewSdkViewerScript||_e.staticDefaultConfig.viewSdkViewerScript,e.async=!0,e.onload=()=>{l(!0)},document.body.appendChild(e)}}}),[t.id,i,n]);(0,e[t?.useReactHookWhenCallingAdobeAPI||"useEffect"])((()=>{!1===n&&!0===i&&document.addEventListener("adobe_dc_view_sdk.ready",(()=>{a(!0)}));!0===i&&!0===n&&(e=>{e.debug&&console.info("Adobe PDF Viewer SDK Ready Event",s,window.adobe_dc_view_sdk);const t=e.id||_e.staticDivId;document.getElementById(t)&&"LIGHT_BOX"!==e.previewConfig?.embedMode?(e.debug&&console.info("Adobe PDF Viewer SDK Ready Rendering"),Ue({divId:t,viewerConfig:e.previewConfig||_e.staticDefaultConfig,url:e.url||_e.demoUrl,clientID:e.clientId,_fileMeta:e.fileMeta})):"LIGHT_BOX"===e.previewConfig?.embedMode&&e?.triggerAdobeDCViewRender&&Ue({divId:e.id||_e.staticDivId,viewerConfig:e.previewConfig||_e.staticDefaultConfig,url:e.url||_e.demoUrl,clientID:e.clientId})})(t)}),[n,i,t,s]);return(0,e[t?.useReactHookForComponentDidUpdate||"useEffect"])((()=>{if(!0===r){const e=t.id||_e.staticDivId;document.getElementById(e)&&Ue({divId:e,viewerConfig:t.previewConfig||_e.staticDefaultConfig,url:t.url||_e.demoUrl,clientID:t.clientId,_fileMeta:t.fileMeta}),o(!1)}}),[r,t]),e.createElement(Oe,{...t})}const _e={demoUrl:"https://acrobatservices.adobe.com/view-sdk-demo/PDFs/Bodea%20Brochure.pdf",staticDefaultConfig:{showAnnotationTools:!1,showLeftHandPanel:!1,showPageControls:!1,viewSdkViewerScript:"https://acrobatservices.adobe.com/view-sdk/viewer.js",showDownloadPDF:!1,showPrintPDF:!1},staticDivId:"pdf-div",demoMetaData:{fileName:"Odd Distateful Adobe Example Pdf.pdf",id:"6d07d124 - ac85–43b3 - a867–36930f502ac6"}};function je(){const[t,n]=e.useState(!1),[a,r]=e.useState(!1);return e.useEffect((()=>{t||n(!0)}),[t]),e.createElement("nav",{className:"navbar navbar-default navbar-fixed-top navbar-inverse navbar-trans navbar-trans-dark trans-helper navbar-fw",role:"navigation"},e.createElement("div",{className:"navbar-header page-scroll"},e.createElement("button",{type:"button",onClick:e=>{console.info("hi2"),e.preventDefault(),r(!a)},className:"navbar-toggle ","data-toggle":a?"collapse in":"collapse","data-target":"#navbar","aria-expanded":a?"true":"false","aria-controls":"navbar"},e.createElement("span",{className:"sr-only"},"Toggle navigation"),e.createElement("span",{className:"icon-bar"}),e.createElement("span",{className:"icon-bar"}),e.createElement("span",{className:"icon-bar"})),e.createElement("a",{className:"navbar-brand",href:"index.html"},e.createElement("img",{className:"navbar-logo-dark",style:{width:"150px"},src:"https://synthethics.awscyber.ai/static/media/RADAR.c104f9526930a39724dc.png",alt:"Definity - Logo"}))),e.createElement("div",{id:"navbar","aria-expanded":a?"true":"false",className:a?"navbar-collapse page-scroll navbar-right collapse in":" navbar-collapse page-scroll navbar-right collapse"},e.createElement("ul",{className:"nav navbar-nav"},e.createElement("li",null,e.createElement(Le,{"data-testid":"home-link",to:"/test"},"Home",e.createElement("span",{className:"sr-only"}))),e.createElement("li",null,e.createElement(Le,{"data-testid":"test-link",to:"/home"},"Test",e.createElement("span",{className:"sr-only"}))))))}function Me(){return e.createElement("footer",{className:"footer-widgets"},e.createElement("div",{className:"copyright"},e.createElement("div",{className:"container"},e.createElement("div",{className:"row"},e.createElement("div",{className:"col-sm-6"},e.createElement("small",null,"© 2024 by Ziping liu. Proudly Served with",e.createElement("a",{className:"no-style-link",href:"https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/blob/slave/.github/workflows/canaryapp.yml"},"Github Pages"))),e.createElement("div",{className:"col-sm-6"},e.createElement("small",null,e.createElement("a",{href:"#page-top",className:"pull-right to-the-top"},"To the top",e.createElement("i",{className:"fa fa-angle-up"}))))))))}function Fe(){switch(window.location.hostname){case"localhost":default:return"324caa2a91b84f688935436cd2d25217";case"ziping.dev":return"2aeb65914ea244cd85c16b60ca3b688d";case"ziping.life":return"2daf6038d0f1447fb9dd17988e93b5b8";case"ziping.org":return"312487a25a5b4c0d845f6d93e8103c32";case"awsuni.com":return"50d3f2b88101430f8da3006527dcdf78";case"twitterliu.com":return"ac52e99ebc8242e9bf85ecb55444f726";case"one.ziping.org":return"2e5605e61e5b4306829b619d6fad2dc4";case"zipingl.github.io":return"9c16d364507948289a9f65f9ab9da8bf";case"ziping-liu-corporation.github.io":return"875691e089ad4bf6bc4c5cea79403542"}}const We=()=>e.createElement(Ne,null,e.createElement(je,null),e.createElement(ue,null,e.createElement(se,{path:"/test",element:e.createElement("div",{className:"section container"},e.createElement("div",{className:"row"},e.createElement("div",{className:"col s12"},e.createElement("h5",{"data-testid":"test-route",className:"header"},"Test Route View"),e.createElement("iframe",{src:"https://one.ziping.org/ZIPING-LIU-CORPORATION/react-adobe-embed/blob/slave/README.md/?domain=github.com",style:{width:"100%",height:"900px",border:"1px solid transparent",alignContent:"center",justifyContent:"center"}}))))}),e.createElement(se,{path:"*",element:e.createElement(Ve,null)})),e.createElement(Me,null));function Ve(){const t=window.location.href.split("?")[1],n=new URLSearchParams(t),a=n.get("pdf"),r=n.get("width"),o=n.get("height");return e.createElement("section",{id:"about",className:"container"},e.createElement("div",{className:"row ws-m"},e.createElement(Be,{previewConfig:{showDownloadPDF:!1,embedMode:"SIZED_CONTAINER"},fileMeta:{fileName:"23andMe_Ancestry_Book.pdf"},style:{width:r||"100%",height:o||"900px",border:"1px solid black",alignContent:"center",justifyContent:"center"},url:a||"https://raw.githubusercontent.com/ZipingL/dna/main/23andMe_Ancestry_Book.pdf",debug:!0,id:"adobe-dc-view-0",clientId:Fe()})))}const $e=document.getElementById("app");$e&&t.createRoot($e).render(e.createElement(We,null))}));
