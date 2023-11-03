@@ -28,7 +28,7 @@ Ziping Liu really enjoys using Adobe Acrobat DC Pro ever since having the chance
  </thead>
   <tr>
    <td>
-  <a href="https://cloud.cypress.io/projects/izghdg/runs">  <img title="Canary heartbeat status check for deployed latest component and adobe pdf api availability" src="https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/detailed/izghdg/main&style=flat-square&logo=cypress"/> </a>
+  <a href="https://cloud.cypress.io/projects/izghdg/runs">  <img title="Canary heartbeat status check for deployed latest component and adobe pdf api availability" src="https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed-cd-canary/actions/workflows/cypress-canary.yaml/badge.svg"/> </a>
    </td>
    <td>
      <img src="https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/actions/workflows/canaryapp.yml/badge.svg">
