@@ -9,7 +9,7 @@ export default function Footer() {
                     <div className="row">
                         <div className="col-sm-6">
                             <small>
-                                © 2024 by Ziping liu. Proudly Served with
+                                © 2024 by Ziping liu. Proudly Served with&nbsp;
                                 <a
                                     className="no-style-link"
                                     href="https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/blob/slave/.github/workflows/canaryapp.yml"

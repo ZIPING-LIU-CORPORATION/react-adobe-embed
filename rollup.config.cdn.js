@@ -30,7 +30,8 @@ const config = {
         typescript({ useTsconfigDeclarationDir: true ,
             exclude: [
                 "**/__tests__"
-            ]
+            ],
+            sourceMap: false,
         }),
         peerDepsExternal(),
         babel({
@@ -53,7 +54,7 @@ const config = {
         terser( {
             format:{
               comments: "all",
-              preamble: "/* react-script-tag  cdn */"
+              preamble: "/* react-adobe-embed */"
             }
           }),
         

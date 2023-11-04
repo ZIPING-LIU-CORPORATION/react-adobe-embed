@@ -8,5 +8,15 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     
   },
+  
+  //ignore 
+  ignorePatterns: [
+    'node_modules',
+    'build',
+    'dist',
+    'lib',
+    "rollup.config.js",
+    "rollup.config.*.js",
+  ],
   root: true,
 };

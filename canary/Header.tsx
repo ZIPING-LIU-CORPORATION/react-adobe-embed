@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 export default function Header() {
   const [componentDidMount, setComponentDidMount] = React.useState(false);
   const [buttonToggleClicked, setButtonToggleClicked] = React.useState(false);
+  const [dropDownToggleClicked, setDropDownToggleClicked] = React.useState(false);
   React.useEffect(() => {
 
     if (!componentDidMount) {
@@ -79,15 +80,42 @@ export default function Header() {
                 <span className="sr-only" />
               </Link>
             </li>
-            <li>
+            <li
+              onClick={() => {
+                setDropDownToggleClicked(!dropDownToggleClicked);
+              }}
+              className={
+                "dropdown" + (dropDownToggleClicked ? " open" : "")
+              }>
               <Link
+
+                className='dropdown-toggle'
                 data-testid={
                   "test-link"
                 }
-                to="/home">
+                 to="#"
+                >
                 Test
-                <span className="sr-only" />
+                <span className="caret"></span>
               </Link>
+              <ul className="dropdown-menu">
+                <div className="row">
+                  <div className="col-lg-6 mb-sm-30">
+                    <li className="dropdown-header">Test Routes</li>
+                    <li className="divider" />
+                    <li>
+                      <Link to="/home">
+                        Basic PDF Render
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/light">
+                        Lightbox PDF Render
+                      </Link>
+                    </li>
+                  </div>
+                </div>
+              </ul>
             </li>
 
           </ul>

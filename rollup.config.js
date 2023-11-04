@@ -69,8 +69,8 @@ export default [
             resolve(),
             commonjs(),
             typescript({ tsconfig: "./tsconfig.json" ,
-          
-            "sourceMap": false,
+            
+            "sourceMap": true,
             exclude: [
               "**/tests/**/*",
               "**/*.test.tsx",
@@ -82,7 +82,7 @@ export default [
             terser( {
               format:{
                 comments: "some",
-                preamble: "/* react-script-tag */"
+                preamble: "/* react-adobe-embed */"
               }
             }),
 

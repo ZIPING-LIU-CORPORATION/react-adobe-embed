@@ -24,12 +24,12 @@ const config = {
     plugins: [
         css(),
         typescript({ useTsconfigDeclarationDir: false ,
-
+            sourceMap: false,
             tsconfigOverride: {
                 compilerOptions: {
                     outDir: "build"
                 },
-         
+            
             include: [
                  "canary/App.tsx"
             ],

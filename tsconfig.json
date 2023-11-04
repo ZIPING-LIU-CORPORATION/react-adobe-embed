@@ -113,6 +113,8 @@
     "lib",
     "src/__tests__",
     "types",
-    "node_modules"
+    "node_modules",
+    "dist",
+    "build"
   ]
 }
