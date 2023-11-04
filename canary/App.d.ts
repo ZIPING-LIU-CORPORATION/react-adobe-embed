@@ -1,1 +1,1 @@
-import "./App.css";
+export {};
