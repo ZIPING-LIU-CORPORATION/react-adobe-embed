@@ -131,12 +131,21 @@ export default function ReactViewAdobe(props: ReactViewAdobeProps) {
         ".react-adobe-embed-handholding-adobe-api-loading-idiocy",
       );
       if (scriptExistsALready) {
-        setComponentNeedsRendering(true);
+        if (props.debug)
+          console.info(`\x1b[1mAdobe SDK Check\x1b[0m`, 'Reloading and Rerendering Adobe SDK');
+
+        // Lightbox mode renders from ui event triggered by user, so no need to render
+        if(props.previewConfig?.embedMode !== "LIGHT_BOX"){
+            setComponentNeedsRendering(true);
+        }
+        
         scriptExistsALready.setAttribute(
           "data-testid",
           "react-adobe-embed-handholding-adobe-api-loading-idiocy-reused",
         );
       } else {
+        if (props.debug)
+         console.info(`\x1b[1mAdobe SDK Check\x1b[0m`, 'Initial Adobe SDK Load');
         const script = document.createElement("script");
         script.setAttribute(
           "data-testid",
