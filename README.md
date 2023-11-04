@@ -93,6 +93,7 @@ return(
 ```
 
 ##### Lightbox Example 
+ - Example using React States
 ```ts
 import React from 'react';
 
@@ -132,8 +133,11 @@ const App = () => {
 }
 ```
 
+ - [Lightbox example code without using React States](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/blob/slave/canary/routes/LightBox.tsx), and through calling adobe embed api directly.
+   - View a deployed demo [here](https://ziping-liu-corporation.github.io/react-adobe-embed/#/light).
 
-### Note:  these other steps below are no longer required but remain to provide insight on how react-adobe-embed handles adobe embed api
+
+#### Note:  these other steps below are no longer required but remain to provide insight on how react-adobe-embed handles adobe embed api
 #### ~~2~~. ~~As the current implementation of creating [LIGHT_BOX](https://acrobatservices.adobe.com/view-sdk-demo/index.html#/view/LIGHT_BOX/Bodea%20Brochure.pdf) embed pdf's is quite complicated~~, you can view a live code example of how to use LIGHT_BOX mode with react-adobe-embed [here](https://codesandbox.io/p/sandbox/react-adobe-embed-pdf-galleria-showcase-yq5zz6?file=%2Fsrc%2FSections%2FMain.tsx%3A65%2C79)
 
 #### ~~3~~. Note on adobe sdk `<script>` tag:
