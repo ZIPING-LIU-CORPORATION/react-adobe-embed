@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import ReactViewAdobe from "../src/index";
-import "./App.css";
 import Header from "./Header";
 import Footer from "./Footer";
 import { getClientId } from "./util";
@@ -43,49 +42,63 @@ const App = () => {
     </HashRouter>
   );
 };
-function ReactPath() {
-  const locationUrl = window.location.href;
-  const paramPdf = locationUrl.split("?")[1];
+function ReactPath () {
+    const locationUrl = window.location.href;
+    const paramPdf = locationUrl.split('?')[1];
+    const newUrlSearchParams = new URLSearchParams(paramPdf);
+    const pdfUrl = newUrlSearchParams.get('pdf') || newUrlSearchParams.get('url') || 'https://raw.githubusercontent.com/ZipingL/dna/main/23andMe_Ancestry_Book.pdf';
+    const width = newUrlSearchParams.get('width');
+    const height = newUrlSearchParams.get('height');
+    const fileName = newUrlSearchParams.get('fileName') || (pdfUrl.split('/').pop() || '23andMe_Ancestry_Book.pdf');
+  
+  
+  
+    return(
+        <section id="about" className="container section">
+            <div className="row ws-m">
+            <header className="sec-heading">
+                <h2>Basic Test View</h2>
+                <span className="subheading">
+                  Using the react-adobe-embed component with no additional 
+                  configurations, except for the pdf url, in order to test 
+                  the rendering of a PDF at the most basic level of 
+                  usage.
+                </span>
+              </header>
+                   <ReactViewAdobe
+                        previewConfig={
+                            { }
+                        }
+  
+                        fileMeta= {
+                            {
+                                "fileName":  fileName,
+                            }
+                        }
+  
+                        style={{
+                            width: width ? width : "100%",
+                            height:  height ? height : "900px",
+                            border: "1px solid black",
+                            alignContent: "center",
+                            justifyContent: "center",
+  
+                        }}
+                        url={
+                            pdfUrl ? 
+                            pdfUrl :
+                            "https://raw.githubusercontent.com/ZipingL/dna/main/23andMe_Ancestry_Book.pdf"
+                        }
+                        debug={true}
+  
+                        id="adobe-dc-view-0"
+                        clientId={ getClientId() }
+                    /></div>
+        </section>
+    )
+  }
 
-  const newUrlSearchParams = new URLSearchParams(paramPdf);
-  const pdfUrl = newUrlSearchParams.get("pdf");
-  const width = newUrlSearchParams.get("width");
-  const height = newUrlSearchParams.get("height");
-
-  return (
-    <section id="about" className="container">
-      <div className="row ws-m">
-        <ReactViewAdobe
-          previewConfig={{
-            showDownloadPDF: false,
-            embedMode: "SIZED_CONTAINER",
-          }}
-          fileMeta={{
-            fileName: "23andMe_Ancestry_Book.pdf",
-          }}
-          style={{
-            width: width ? width : "100%",
-            height: height ? height : "900px",
-            border: "1px solid black",
-            alignContent: "center",
-            justifyContent: "center",
-          }}
-          url={
-            pdfUrl
-              ? pdfUrl
-              : "https://raw.githubusercontent.com/ZipingL/dna/main/23andMe_Ancestry_Book.pdf"
-          }
-          debug={true}
-          id="adobe-dc-view-0"
-          clientId={getClientId()}
-        />
-      </div>
-    </section>
-  );
-}
-
-const appElem = document.getElementById("app");
-
-if (appElem) {
-  ReactDOM.createRoot(appElem).render(<App />);
-}
+  const rootElement = document.getElementById("app");
+  if(rootElement){
+    ReactDOM.createRoot(rootElement).render(<App />);
+  }
