@@ -1,4 +1,4 @@
-/* react-script-tag  cdn */
+/* react-adobe-embed */
 !function(e,t){"object"==typeof exports&&"undefined"!=typeof module?t(require("react")):"function"==typeof define&&define.amd?define(["react"],t):t((e="undefined"!=typeof globalThis?globalThis:e||self).React)}(this,(function(e){"use strict";function t({divId:e,viewerConfig:t,url:i,clientID:d,_fileMeta:a,_dcView:n}){const c={clientId:d,divId:e};return(n||new window.AdobeDC.View(c)).previewFile({content:{location:{url:i}},metaData:a||o.demoMetaData},t)}
 /**
    * @description - An atypical Nested React Component of ReactViewAdobe,
