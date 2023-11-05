@@ -11,16 +11,21 @@ import terser from "@rollup/plugin-terser";
 
 const config = {
     input: 'src/main.tsx',
+ 
     output: [
         {
-       
+            
             file: 'dist/react-adobe-embed.cdn.js',
             // cdn format
             format: 'umd',
             name: 'ReactAdobeEmbed',
+               
             globals: {
                 react: 'React',
-                'react-dom/client': 'ReactDOM'            }
+                'react-dom/client': 'ReactDOM'          
+            
+            },
+            sourcemap:'inline'
 
         }
     ],
@@ -31,7 +36,7 @@ const config = {
             exclude: [
                 "**/__tests__"
             ],
-            sourceMap: false,
+            sourceMap: true,
         }),
         peerDepsExternal(),
         babel({
@@ -54,7 +59,7 @@ const config = {
         terser( {
             format:{
               comments: "all",
-              preamble: "/* react-adobe-embed */"
+              preamble: `${process.env.CDN_PREAMBLE_COMMENTARY_NOTICE || "/* react-adobe-embed */"}`
             }
           }),
         

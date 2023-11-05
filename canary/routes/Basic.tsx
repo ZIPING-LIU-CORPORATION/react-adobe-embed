@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactViewAdobe from '../../src/index';
+import ReactViewAdobe from 'react-adobe-embed';
 import { getClientId } from '../util';
 export default function BasicAdobeEmbed() {
     const locationUrl = window.location.href;

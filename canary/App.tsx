@@ -5,6 +5,7 @@ import Header from './Header';
 import Footer from './Footer';
 import BasicAdobeEmbed from './routes/Basic';
 import LightBoxEmbed from './routes/LightBox';
+import CDN from './routes/CDN';
 
 function App() {
   return (
@@ -38,6 +39,10 @@ function App() {
         <Route path="/light" element={
           <LightBoxEmbed/>
         } />
+
+        <Route path="/cdn" element={
+          <CDN/>
+        }/>
 
 
     </Routes>

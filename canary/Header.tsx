@@ -113,6 +113,12 @@ export default function Header() {
                         Lightbox PDF Render
                       </Link>
                     </li>
+
+                    <li>
+                      <Link to="/cdn">
+                        CDN Loaded PDF Render
+                      </Link>
+                    </li>
                   </div>
                 </div>
               </ul>

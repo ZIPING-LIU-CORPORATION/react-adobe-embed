@@ -30,7 +30,7 @@
                                      /* Specify what module code is generated. */
    // "rootDir": "./src",                                  /* Specify the root folder within your source files. */
     "moduleResolution": "Node",                       /* Specify how TypeScript looks up a file from a given module specifier. */
-     "baseUrl": "./src",                                 /* Specify the base directory to resolve non-relative module names. */
+     "baseUrl": "./",                                 /* Specify the base directory to resolve non-relative module names. */
     //  "paths": {
     //   "@types": ["./src/@types"],
     //  },
@@ -81,6 +81,16 @@
     // "preserveSymlinks": true,                         /* Disable resolving symlinks to their realpath. This correlates to the same flag in node. */
     "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
 
+      "paths": {
+        "react-adobe-embed": [
+          "src"
+        ]
+
+      },
+
+      
+
+
     /* Type Checking */
     "strict": true,                                      /* Enable all strict type-checking options. */
     // "noImplicitAny": true,                            /* Enable error reporting for expressions and declarations with an implied 'any' type. */
@@ -108,7 +118,9 @@
   },
   "include": [
    "./src",
+   "./canary"
   ],
+  
   "exclude": [
     "lib",
     "src/__tests__",

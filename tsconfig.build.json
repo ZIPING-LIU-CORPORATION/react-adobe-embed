@@ -9,10 +9,12 @@
       "acceptance-tests",
       "webpack",
       "jest",
-      "src/stories/**"
+      "src/stories/**",
+      "canary"
     ],
     "compilerOptions": {
-      "outDir": "lib"
+      "outDir": "lib",
+      "baseUrl": "./src"
     }
   }
   

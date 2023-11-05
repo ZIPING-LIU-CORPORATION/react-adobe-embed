@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactViewAdobe, { previewFile } from  '../../src/index';
+import ReactViewAdobe, { previewFile } from  'react-adobe-embed';
 import { getClientId } from '../util';
 
 export default function LightBoxEmbed() {

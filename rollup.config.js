@@ -6,7 +6,7 @@ import filesize from 'rollup-plugin-filesize';
 import localResolve from  '@haensl/rollup-plugin-local-resolve';
 import replace from "@rollup/plugin-replace";
 
-import typescript from "@rollup/plugin-typescript";
+import typescript from "rollup-plugin-typescript2";
  
 import terser from "@rollup/plugin-terser";
 import{ dts} from "rollup-plugin-dts";
@@ -91,7 +91,7 @@ export default [
         external: ["react", "react-dom", "styled-components"]
     },
     {
-        input: "./lib/types/index.d.ts",
+        input:  "types/index.d.ts",
         output: [{ file: "lib/bundle.esm.d.ts", format: "esm" }],
         plugins: [dts()],
     },
