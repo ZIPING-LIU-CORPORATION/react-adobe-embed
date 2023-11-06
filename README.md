@@ -9,7 +9,7 @@ Ziping Liu really enjoys using Adobe Acrobat DC Pro ever since having the chance
     <td>
      <a  
       title="Canary End to End, integrated testing, that ensures the deployed react adobe component testing endpoint is runnning, via a production environment given that the react-adobe-embed relies on an external service "
-      href="https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed-cd-canary/blob/main/cypress.config.ts">Canary Hearbeat Status</a>
+      href="#canary-testingend-to-end-testing">Canary Hearbeat Status</a>
     </td>
     <td>
      <a 
@@ -19,7 +19,7 @@ Ziping Liu really enjoys using Adobe Acrobat DC Pro ever since having the chance
     <td>
      <a 
       title="Unit Test that is a quick check of code changes via mocking out the very large external react embed api spaghetti code"
-      href="https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/blob/slave/src/__tests__/base.test.tsx">Integration/Unit Test on Code Push</a>
+      href="https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/blob/slave/README.md#integration-testing">Integration/Unit Test on Code Push</a>
     </td>
     <td>
       <a href="http://www.wakatime.com/@aws">Development Coding Effort</a>
