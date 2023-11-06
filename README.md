@@ -136,7 +136,8 @@ const App = () => {
  - [Lightbox example code without using React States](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/blob/slave/canary/routes/LightBox.tsx), and through calling adobe embed api directly.
    - View a deployed demo [here](https://ziping-liu-corporation.github.io/react-adobe-embed/#/light).
 
-
+<blockquote> 
+   
 #### Note:  these other steps below are no longer required but remain to provide insight on how react-adobe-embed handles adobe embed api
 #### ~~2~~. ~~As the current implementation of creating [LIGHT_BOX](https://acrobatservices.adobe.com/view-sdk-demo/index.html#/view/LIGHT_BOX/Bodea%20Brochure.pdf) embed pdf's is quite complicated~~, you can view a live code example of how to use LIGHT_BOX mode with react-adobe-embed [here](https://codesandbox.io/p/sandbox/react-adobe-embed-pdf-galleria-showcase-yq5zz6?file=%2Fsrc%2FSections%2FMain.tsx%3A65%2C79)
 
@@ -147,21 +148,16 @@ const App = () => {
  - ~~Anyways, the URL has been updated above in step 1.~~
   - ~~Since I guess Adobe just likes to change the URL to whatever they want, you can find the correct URL to use to include their ADOBE MAGIC STUFF [here](https://developer.adobe.com/document-services/docs/overview/pdf-embed-api/).~~
   - I don't know why but the folks at Adobe decided to change the script URL, and then also change the global variable name used to store the Adobe api methods, this has ulimately caused this npm package as actually a broken useless wrapper... so why didn't anyone add to the [discussion board](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/discussions/1) to let me know? Seriously? Just literally next time say, hey idiot your code is broken. I won't be offended. It's just code dude.
+</blockquote>
 
-### Installation via CDN
+
+## Installation via CDN
 You can also load this as a CDN script. By default the latest version can be accessed publically via. For now it is only accessible in this manner as a UMD bundle, with access to the default exported React Component.
 ```html
 <script src="https://ziping-liu-corporation.github.io/react-adobe-embed/dist/react-adobe-embed.cdn.js">
-<script>
-  (function(){
-    /**
-     * In which the default export ReactViewAdobe Component can be accessed like such. And can be used with typescript development via webpack/rollup configurations of the npm as an external global.
-     * Further useage examples to be added.
-     */
-    const ReactAdobeEmbed = (window)?.ReactViewAdobe;
-  })()
-</script>
 ```
+ - View a code example of using `react-adobe-embed` via cdn [here](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/blob/slave/canary/routes/CDN.tsx), as well as viewing the [deployed code](https://ziping-liu-corporation.github.io/react-adobe-embed/#/cdn) as part of the canary testing endpoint, [here](https://ziping-liu-corporation.github.io/react-adobe-embed/#/cdn).
+
 
 
 ## Troubleshooting common errors
