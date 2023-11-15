@@ -42,11 +42,11 @@ e.Replace="REPLACE"}(a||(a={}));const i="popstate";
    * reserved for something else.
    *
    * @see https://github.com/remix-run/history/tree/main/docs/api-reference.md#createhashhistory
-   */function l(e){return void 0===e&&(e={}),function(e,t,n,r){void 0===r&&(r={});let{window:l=document.defaultView,v5Compat:c=!1}=r,m=l.history,p=a.Pop,f=null,g=v();
+   */function l(e){return void 0===e&&(e={}),function(e,t,n,r){void 0===r&&(r={});let{window:l=document.defaultView,v5Compat:c=!1}=r,m=l.history,p=a.Pop,f=null,v=g();
 // Index should only be null when we initialize. If not, it's because the
 // user called history.pushState or history.replaceState directly, in which
 // case we should log a warning as it will result in bugs.
-null==g&&(g=0,m.replaceState(o({},m.state,{idx:g}),""));function v(){return(m.state||{idx:null}).idx}function b(){p=a.Pop;let e=v(),t=null==e?null:e-g;g=e,f&&f({action:p,location:R.location,delta:t})}function y(e,t){p=a.Push;let r=d(R.location,e,t);n&&n(r,e),g=v()+1;let o=u(r,g),i=R.createHref(r);
+null==v&&(v=0,m.replaceState(o({},m.state,{idx:v}),""));function g(){return(m.state||{idx:null}).idx}function b(){p=a.Pop;let e=g(),t=null==e?null:e-v;v=e,f&&f({action:p,location:R.location,delta:t})}function y(e,t){p=a.Push;let r=d(R.location,e,t);n&&n(r,e),v=g()+1;let o=u(r,v),i=R.createHref(r);
 // try...catch because iOS limits us to 100 pushState calls :/
 try{m.pushState(o,"",i)}catch(e){
 // If the exception is because `state` can't be serialized, let that throw
@@ -56,7 +56,7 @@ try{m.pushState(o,"",i)}catch(e){
 if(e instanceof DOMException&&"DataCloneError"===e.name)throw e;
 // They are going to lose state here, but there is no real
 // way to warn them about it since the page will refresh...
-l.location.assign(i)}c&&f&&f({action:p,location:R.location,delta:1})}function w(e,t){p=a.Replace;let r=d(R.location,e,t);n&&n(r,e),g=v();let o=u(r,g),i=R.createHref(r);m.replaceState(o,"",i),c&&f&&f({action:p,location:R.location,delta:0})}function E(e){
+l.location.assign(i)}c&&f&&f({action:p,location:R.location,delta:1})}function w(e,t){p=a.Replace;let r=d(R.location,e,t);n&&n(r,e),v=g();let o=u(r,v),i=R.createHref(r);m.replaceState(o,"",i),c&&f&&f({action:p,location:R.location,delta:0})}function E(e){
 // window.location.origin is "null" (the literal string value) in Firefox
 // under certain conditions, notably when serving from a local HTML file
 // See https://bugzilla.mozilla.org/show_bug.cgi?id=878297
@@ -106,7 +106,7 @@ key:t&&t.key||a||Math.random().toString(36).substr(2,8)})}
    *
    * @see https://reactrouter.com/utils/match-routes
    */
-function f(e,t,n){void 0===n&&(n="/");let a=k(("string"==typeof t?m(t):t).pathname||"/",n);if(null==a)return null;let r=g(e);!function(e){e.sort(((e,t)=>e.score!==t.score?t.score-e.score:function(e,t){let n=e.length===t.length&&e.slice(0,-1).every(((e,n)=>e===t[n]));return n?
+function f(e,t,n){void 0===n&&(n="/");let a=k(("string"==typeof t?m(t):t).pathname||"/",n);if(null==a)return null;let r=v(e);!function(e){e.sort(((e,t)=>e.score!==t.score?t.score-e.score:function(e,t){let n=e.length===t.length&&e.slice(0,-1).every(((e,n)=>e===t[n]));return n?
 // If two routes are siblings, we should try to match the earlier sibling
 // first. This allows people to have fine-grained control over the matching
 // behavior by simply putting routes with identical paths in the order they
@@ -121,19 +121,19 @@ e[e.length-1]-t[t.length-1]:
 // encoded here but there also shouldn't be anything to decode so this
 // should be a safe operation.  This avoids needing matchRoutes to be
 // history-aware.
-L(a));return o}function g(e,t,n,a){void 0===t&&(t=[]),void 0===n&&(n=[]),void 0===a&&(a="");let r=(e,r,o)=>{let i={relativePath:void 0===o?e.path||"":o,caseSensitive:!0===e.caseSensitive,childrenIndex:r,route:e};i.relativePath.startsWith("/")&&(s(i.relativePath.startsWith(a),'Absolute route path "'+i.relativePath+'" nested under path "'+a+'" is not valid. An absolute child route path must start with the combined path of all its parent routes.'),i.relativePath=i.relativePath.slice(a.length));let l=T([a,i.relativePath]),c=n.concat(i);
+L(a));return o}function v(e,t,n,a){void 0===t&&(t=[]),void 0===n&&(n=[]),void 0===a&&(a="");let r=(e,r,o)=>{let i={relativePath:void 0===o?e.path||"":o,caseSensitive:!0===e.caseSensitive,childrenIndex:r,route:e};i.relativePath.startsWith("/")&&(s(i.relativePath.startsWith(a),'Absolute route path "'+i.relativePath+'" nested under path "'+a+'" is not valid. An absolute child route path must start with the combined path of all its parent routes.'),i.relativePath=i.relativePath.slice(a.length));let l=I([a,i.relativePath]),c=n.concat(i);
 // Add the children before adding this route to the array, so we traverse the
 // route tree depth-first and child routes appear before their parents in
 // the "flattened" version.
 e.children&&e.children.length>0&&(s(
 // Our types know better, but runtime JS may not!
 // @ts-expect-error
-!0!==e.index,'Index routes must not have child routes. Please remove all child routes from route path "'+l+'".'),g(e.children,t,c,l)),
+!0!==e.index,'Index routes must not have child routes. Please remove all child routes from route path "'+l+'".'),v(e.children,t,c,l)),
 // Routes without a path shouldn't ever match by themselves unless they are
 // index routes, so don't add them to the list of possible branches.
 (null!=e.path||e.index)&&t.push({path:l,score:x(l,e.index),routesMeta:c})};return e.forEach(((e,t)=>{var n;
 // coarse-grain check for optional params
-if(""!==e.path&&null!=(n=e.path)&&n.includes("?"))for(let n of v(e.path))r(e,t,n);else r(e,t)})),t}
+if(""!==e.path&&null!=(n=e.path)&&n.includes("?"))for(let n of g(e.path))r(e,t,n);else r(e,t)})),t}
 /**
    * Computes all combinations of optional path segments for a given path,
    * excluding combinations that are ambiguous and of lower priority.
@@ -147,12 +147,12 @@ if(""!==e.path&&null!=(n=e.path)&&n.includes("?"))for(let n of v(e.path))r(e,t,n
    * - `/one/:two/three/:five`
    * - `/one/three/:four/:five`
    * - `/one/:two/three/:four/:five`
-   */function v(e){let t=e.split("/");if(0===t.length)return[];let[n,...a]=t,r=n.endsWith("?"),o=n.replace(/\?$/,"");
+   */function g(e){let t=e.split("/");if(0===t.length)return[];let[n,...a]=t,r=n.endsWith("?"),o=n.replace(/\?$/,"");
 // Optional path segments are denoted by a trailing `?`
 if(0===a.length)
 // Intepret empty string as omitting an optional segment
 // `["one", "", "three"]` corresponds to omitting `:two` from `/one/:two?/three` -> `/one/three`
-return r?[o,""]:[o];let i=v(a.join("/")),l=[];
+return r?[o,""]:[o];let i=g(a.join("/")),l=[];
 // for absolute paths, ensure `/` instead of empty segment
 // All child paths with the prefix.  Do this for all children before the
 // optional version for all children, so we get consistent ordering where the
@@ -165,7 +165,7 @@ return l.push(...i.map((e=>""===e?o:[o,e].join("/")))),
 // Then, if this is an optional value, add all child versions without
 r&&l.push(...i),l.map((t=>e.startsWith("/")&&""===t?"/":t))}!function(e){e.data="data",e.deferred="deferred",e.redirect="redirect",e.error="error"}(p||(p={}));const b=/^:\w+$/,y=3,w=2,E=1,R=10,C=-2,N=e=>"*"===e;function x(e,t){let n=e.split("/"),a=n.length;return n.some(N)&&(a+=C),t&&(a+=w),n.filter((e=>!N(e))).reduce(((e,t)=>e+(b.test(t)?y:""===t?E:R)),a)}function S(e,t){let{routesMeta:n}=e,a={},r="/",o=[];for(let e=0;e<n.length;++e){let i=n[e],l=e===n.length-1,s="/"===r?t:t.slice(r.length)||"/",c=D({path:i.relativePath,caseSensitive:i.caseSensitive,end:l},s);if(!c)return null;Object.assign(a,c.params);let u=i.route;o.push({
 // TODO: Can this as be avoided?
-params:a,pathname:T([r,c.pathname]),pathnameBase:U(T([r,c.pathnameBase])),route:u}),"/"!==c.pathnameBase&&(r=T([r,c.pathnameBase]))}return o}
+params:a,pathname:I([r,c.pathname]),pathnameBase:U(I([r,c.pathnameBase])),route:u}),"/"!==c.pathnameBase&&(r=I([r,c.pathnameBase]))}return o}
 /**
    * Performs pattern matching on a URL pathname and returns information about
    * the match.
@@ -218,10 +218,10 @@ let n=t.endsWith("/")?t.length-1:t.length,a=e.charAt(n);return a&&"/"!==a?null:e
    *       </Route
    *     </Route>
    *   </Route>
-   */function I(e){return e.filter(((e,t)=>0===t||e.route.path&&e.route.path.length>0))}
+   */function P(e){return e.filter(((e,t)=>0===t||e.route.path&&e.route.path.length>0))}
 /**
    * @private
-   */function P(e,t,n,a){let r;void 0===a&&(a=!1),"string"==typeof e?r=m(e):(r=o({},e),s(!r.pathname||!r.pathname.includes("?"),A("?","pathname","search",r)),s(!r.pathname||!r.pathname.includes("#"),A("#","pathname","hash",r)),s(!r.search||!r.search.includes("#"),A("#","search","hash",r)));let i,l=""===e||""===r.pathname,c=l?"/":r.pathname;
+   */function T(e,t,n,a){let r;void 0===a&&(a=!1),"string"==typeof e?r=m(e):(r=o({},e),s(!r.pathname||!r.pathname.includes("?"),A("?","pathname","search",r)),s(!r.pathname||!r.pathname.includes("#"),A("#","pathname","hash",r)),s(!r.search||!r.search.includes("#"),A("#","search","hash",r)));let i,l=""===e||""===r.pathname,c=l?"/":r.pathname;
 // Routing is relative to the current pathname if explicitly requested.
 // If a pathname is explicitly provided in `to`, it should be relative to the
 // route context. This is explained in `Note on `<Link to>` values` in our
@@ -244,7 +244,7 @@ n.length>1&&n.pop():"."!==e&&n.push(e)})),n.length>1?n.join("/"):"/"}(n,t):t;ret
 return u.pathname.endsWith("/")||!d&&!h||(u.pathname+="/"),u}
 /**
    * @private
-   */const T=e=>e.join("/").replace(/\/\/+/g,"/")
+   */const I=e=>e.join("/").replace(/\/\/+/g,"/")
 /**
    * @private
    */,U=e=>e.replace(/\/+$/,"").replace(/^\/*/,"/")
@@ -327,22 +327,22 @@ function(){let{router:e}=function(e){let t=r.useContext(j);return t||s(!1,oe(e))
 // is useless because we haven't wired up our router subscriber yet
 n.current&&("number"==typeof a?e.navigate(a):e.navigate(a,F({fromRouteId:t},r)))}),[e,t])}():function(){K()||s(!1,// TODO: This error is probably because they somehow have 2 versions of the
 // router loaded. We can help them understand how to avoid that.
-"useNavigate() may be used only in the context of a <Router> component.");let e=r.useContext(j),{basename:t,navigator:n}=r.useContext(H),{matches:a}=r.useContext($),{pathname:o}=q(),i=JSON.stringify(I(a).map((e=>e.pathnameBase))),l=r.useRef(!1);return Z((()=>{l.current=!0})),r.useCallback((function(a,r){
+"useNavigate() may be used only in the context of a <Router> component.");let e=r.useContext(j),{basename:t,navigator:n}=r.useContext(H),{matches:a}=r.useContext($),{pathname:o}=q(),i=JSON.stringify(P(a).map((e=>e.pathnameBase))),l=r.useRef(!1);return Z((()=>{l.current=!0})),r.useCallback((function(a,r){
 // Short circuit here since if this happens on first render the navigate
 // is useless because we haven't wired up our history listener yet
-if(void 0===r&&(r={}),c(l.current,G),!l.current)return;if("number"==typeof a)return void n.go(a);let s=P(a,JSON.parse(i),o,"path"===r.relative);
+if(void 0===r&&(r={}),c(l.current,G),!l.current)return;if("number"==typeof a)return void n.go(a);let s=T(a,JSON.parse(i),o,"path"===r.relative);
 // If we're operating within a basename, prepend it to the pathname prior
 // to handing off to history (but only if we're not in a data router,
 // otherwise it'll prepend the basename inside of the router).
 // If this is a root navigation, then we navigate to the raw basename
 // which allows the basename to have full control over the presence of a
 // trailing slash on root links
-null==e&&"/"!==t&&(s.pathname="/"===s.pathname?t:T([t,s.pathname])),(r.replace?n.replace:n.push)(s,r.state,r)}),[t,n,i,o,e])}
+null==e&&"/"!==t&&(s.pathname="/"===s.pathname?t:I([t,s.pathname])),(r.replace?n.replace:n.push)(s,r.state,r)}),[t,n,i,o,e])}
 /**
    * Resolves the pathname of the given `to` value against the current location.
    *
    * @see https://reactrouter.com/hooks/use-resolved-path
-   */()}function X(e,t){let{relative:n}=void 0===t?{}:t,{matches:a}=r.useContext($),{pathname:o}=q(),i=JSON.stringify(I(a).map((e=>e.pathnameBase)));return r.useMemo((()=>P(e,JSON.parse(i),o,"path"===n)),[e,i,o,n])}
+   */()}function X(e,t){let{relative:n}=void 0===t?{}:t,{matches:a}=r.useContext($),{pathname:o}=q(),i=JSON.stringify(P(a).map((e=>e.pathnameBase)));return r.useMemo((()=>T(e,JSON.parse(i),o,"path"===n)),[e,i,o,n])}
 /**
    * Returns the element of the route that matched the current location, prepared
    * with the correct context to render the remainder of the route tree. Route
@@ -372,7 +372,7 @@ return function(e,t,n){K()||s(!1,// TODO: This error is probably because they so
 //     </Routes>
 //   );
 // }
-let e=p&&p.path||"";g=d,v=!p||e.endsWith("*"),b='You rendered descendant <Routes> (or called `useRoutes()`) at "'+d+'" (under <Route path="'+e+'">) but the parent route path has no trailing "*". This means if you navigate deeper, the parent won\'t match anymore and therefore the child routes will never render.\n\nPlease change the parent <Route path="'+e+'"> to <Route path="'+("/"===e?"*":e+"/*")+'">.',v||le[g]||(le[g]=!0,c(!1,b))}var g,v,b;
+let e=p&&p.path||"";v=d,g=!p||e.endsWith("*"),b='You rendered descendant <Routes> (or called `useRoutes()`) at "'+d+'" (under <Route path="'+e+'">) but the parent route path has no trailing "*". This means if you navigate deeper, the parent won\'t match anymore and therefore the child routes will never render.\n\nPlease change the parent <Route path="'+e+'"> to <Route path="'+("/"===e?"*":e+"/*")+'">.',g||le[v]||(le[v]=!0,c(!1,b))}var v,g,b;
 /**
    * Declares an element that should be rendered at a certain URL path.
    *
@@ -388,9 +388,9 @@ n&&(c=a.route.errorElement||ee);let u=t.concat(i.slice(0,o+1)),d=()=>{let t;retu
 // Only wrap in an error boundary within data router usages when we have an
 // ErrorBoundary/errorElement on this route.  Otherwise let it bubble up to
 // an ancestor ErrorBoundary/errorElement
-return n&&(a.route.ErrorBoundary||a.route.errorElement||0===o)?r.createElement(te,{location:n.location,revalidation:n.revalidation,component:c,error:s,children:d(),routeContext:{outlet:null,matches:u,isDataRoute:!0}}):d()}),null)}(N&&N.map((e=>Object.assign({},e,{params:Object.assign({},u,e.params),pathname:T([h,
+return n&&(a.route.ErrorBoundary||a.route.errorElement||0===o)?r.createElement(te,{location:n.location,revalidation:n.revalidation,component:c,error:s,children:d(),routeContext:{outlet:null,matches:u,isDataRoute:!0}}):d()}),null)}(N&&N.map((e=>Object.assign({},e,{params:Object.assign({},u,e.params),pathname:I([h,
 // Re-encode pathnames that were decoded inside matchRoutes
-o.encodeLocation?o.encodeLocation(e.pathname).pathname:e.pathname]),pathnameBase:"/"===e.pathnameBase?h:T([h,
+o.encodeLocation?o.encodeLocation(e.pathname).pathname:e.pathname]),pathnameBase:"/"===e.pathnameBase?h:I([h,
 // Re-encode pathnames that were decoded inside matchRoutes
 o.encodeLocation?o.encodeLocation(e.pathnameBase).pathname:e.pathnameBase])}))),i,n);
 // When a user passes in a `locationArg`, the associated routes need to
@@ -441,7 +441,7 @@ function ie(e){let t=function(e){let t=r.useContext($);return t||s(!1,oe(e)),t}(
    */function ce(e){let{basename:t="/",children:n=null,location:o,navigationType:i=a.Pop,navigator:l,static:u=!1}=e;K()&&s(!1,"You cannot render a <Router> inside another <Router>. You should never have more than one in your app.");
 // Preserve trailing slashes on basename, so we can let the user control
 // the enforcement of trailing slashes throughout the app
-let d=t.replace(/^\/*/,"/"),h=r.useMemo((()=>({basename:d,navigator:l,static:u})),[d,l,u]);"string"==typeof o&&(o=m(o));let{pathname:p="/",search:f="",hash:g="",state:v=null,key:b="default"}=o,y=r.useMemo((()=>{let e=k(p,d);return null==e?null:{location:{pathname:e,search:f,hash:g,state:v,key:b},navigationType:i}}),[d,p,f,g,v,b,i]);return c(null!=y,'<Router basename="'+d+'"> is not able to match the URL "'+p+f+g+"\" because it does not start with the basename, so the <Router> won't render anything."),null==y?null:r.createElement(H.Provider,{value:h},r.createElement(V.Provider,{children:n,value:y}))}
+let d=t.replace(/^\/*/,"/"),h=r.useMemo((()=>({basename:d,navigator:l,static:u})),[d,l,u]);"string"==typeof o&&(o=m(o));let{pathname:p="/",search:f="",hash:v="",state:g=null,key:b="default"}=o,y=r.useMemo((()=>{let e=k(p,d);return null==e?null:{location:{pathname:e,search:f,hash:v,state:g,key:b},navigationType:i}}),[d,p,f,v,g,b,i]);return c(null!=y,'<Router basename="'+d+'"> is not able to match the URL "'+p+f+v+"\" because it does not start with the basename, so the <Router> won't render anything."),null==y?null:r.createElement(H.Provider,{value:h},r.createElement(V.Provider,{children:n,value:y}))}
 /**
    * A container for a nested tree of `<Route>` elements that renders the branch
    * that best matches the current location.
@@ -473,13 +473,13 @@ return void n.push.apply(n,de(e.props.children,o));e.type!==se&&s(!1,"["+("strin
    * LICENSE.md file in the root directory of this source tree.
    *
    * @license MIT
-   */function he(){return he=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var a in n)Object.prototype.hasOwnProperty.call(n,a)&&(e[a]=n[a])}return e},he.apply(this,arguments)}function me(e,t){if(null==e)return{};var n,a,r={},o=Object.keys(e);for(a=0;a<o.length;a++)n=o[a],t.indexOf(n)>=0||(r[n]=e[n]);return r}new Promise((()=>{}));const pe="get",fe="application/x-www-form-urlencoded";function ge(e){return null!=e&&"string"==typeof e.tagName}
+   */function he(){return he=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var a in n)Object.prototype.hasOwnProperty.call(n,a)&&(e[a]=n[a])}return e},he.apply(this,arguments)}function me(e,t){if(null==e)return{};var n,a,r={},o=Object.keys(e);for(a=0;a<o.length;a++)n=o[a],t.indexOf(n)>=0||(r[n]=e[n]);return r}new Promise((()=>{}));const pe="get",fe="application/x-www-form-urlencoded";function ve(e){return null!=e&&"string"==typeof e.tagName}
 // One-time check for submitter support
-let ve=null;const be=new Set(["application/x-www-form-urlencoded","multipart/form-data","text/plain"]);function ye(e){return null==e||be.has(e)?e:(c(!1,'"'+e+'" is not a valid `encType` for `<Form>`/`<fetcher.Form>` and will default to "'+fe+'"'),null)}function we(e,t){let n,a,r,o,i;if(ge(l=e)&&"form"===l.tagName.toLowerCase()){
+let ge=null;const be=new Set(["application/x-www-form-urlencoded","multipart/form-data","text/plain"]);function ye(e){return null==e||be.has(e)?e:(c(!1,'"'+e+'" is not a valid `encType` for `<Form>`/`<fetcher.Form>` and will default to "'+fe+'"'),null)}function we(e,t){let n,a,r,o,i;if(ve(l=e)&&"form"===l.tagName.toLowerCase()){
 // When grabbing the action from the element, it will have had the basename
 // prefixed to ensure non-JS scenarios work, so strip it since we'll
 // re-prefix in the router
-let i=e.getAttribute("action");a=i?k(i,t):null,n=e.getAttribute("method")||pe,r=ye(e.getAttribute("enctype"))||fe,o=new FormData(e)}else if(function(e){return ge(e)&&"button"===e.tagName.toLowerCase()}(e)||function(e){return ge(e)&&"input"===e.tagName.toLowerCase()}(e)&&("submit"===e.type||"image"===e.type)){let i=e.form;if(null==i)throw new Error('Cannot submit a <button> or <input type="submit"> without a <form>');
+let i=e.getAttribute("action");a=i?k(i,t):null,n=e.getAttribute("method")||pe,r=ye(e.getAttribute("enctype"))||fe,o=new FormData(e)}else if(function(e){return ve(e)&&"button"===e.tagName.toLowerCase()}(e)||function(e){return ve(e)&&"input"===e.tagName.toLowerCase()}(e)&&("submit"===e.type||"image"===e.type)){let i=e.form;if(null==i)throw new Error('Cannot submit a <button> or <input type="submit"> without a <form>');
 // <button>/<input type="submit"> may override attributes of <form>
 // When grabbing the action from the element, it will have had the basename
 // prefixed to ensure non-JS scenarios work, so strip it since we'll
@@ -491,9 +491,9 @@ let l=e.getAttribute("formaction")||i.getAttribute("action");
 // browsers, consider using the `formdata-submitter-polyfill` package
 if(a=l?k(l,t):null,n=e.getAttribute("formmethod")||i.getAttribute("method")||pe,r=ye(e.getAttribute("formenctype"))||ye(i.getAttribute("enctype"))||fe,
 // Build a FormData object populated from a form and submitter
-o=new FormData(i,e),!function(){if(null===ve)try{new FormData(document.createElement("form"),
+o=new FormData(i,e),!function(){if(null===ge)try{new FormData(document.createElement("form"),
 // @ts-expect-error if FormData supports the submitter parameter, this will throw
-0),ve=!1}catch(e){ve=!0}return ve}()){let{name:t,type:n,value:a}=e;if("image"===n){let e=t?t+".":"";o.append(e+"x","0"),o.append(e+"y","0")}else t&&o.append(t,a)}}else{if(ge(e))throw new Error('Cannot submit element that is not <form>, <button>, or <input type="submit|image">');
+0),ge=!1}catch(e){ge=!0}return ge}()){let{name:t,type:n,value:a}=e;if("image"===n){let e=t?t+".":"";o.append(e+"x","0"),o.append(e+"y","0")}else t&&o.append(t,a)}}else{if(ve(e))throw new Error('Cannot submit element that is not <form>, <button>, or <input type="submit|image">');
 // Send body for <Form encType="text/plain" so we encode it into text
 n=pe,a=null,r=fe,i=e}var l;return o&&"text/plain"===r&&(i=o,o=void 0),{action:a,method:n.toLowerCase(),encType:r,formData:o,body:i}}const Ee=["onClick","relative","reloadDocument","replace","state","target","to","preventScrollReset","unstable_viewTransition"],Re=["aria-current","caseSensitive","className","end","style","to","unstable_viewTransition","children"],Ce=["reloadDocument","replace","state","method","action","onSubmit","submit","relative","preventScrollReset","unstable_viewTransition"],Ne=r.createContext({isTransitioning:!1});Ne.displayName="ViewTransition";
 //#endregion
@@ -526,9 +526,9 @@ const xe=r.startTransition;
    * A `<Router>` for use in web browsers. Stores the location in the hash
    * portion of the URL so it is not sent to the server.
    */
-function Se(e){let{basename:t,children:n,future:a,window:o}=e,i=r.useRef();null==i.current&&(i.current=l({window:o,v5Compat:!0}));let s=i.current,[c,u]=r.useState({action:s.action,location:s.location}),{v7_startTransition:d}=a||{},h=r.useCallback((e=>{d&&xe?xe((()=>u(e))):u(e)}),[u,d]);return r.useLayoutEffect((()=>s.listen(h)),[s,h]),r.createElement(ce,{basename:t,children:n,location:c.location,navigationType:c.action,navigator:s})}const De="undefined"!=typeof window&&void 0!==window.document&&void 0!==window.document.createElement,Le=/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i,ke=r.forwardRef((function(e,t){let n,{onClick:a,relative:o,reloadDocument:i,replace:l,state:u,target:d,to:m,preventScrollReset:p,unstable_viewTransition:f}=e,g=me(e,Ee),{basename:v}=r.useContext(H),b=!1;if("string"==typeof m&&Le.test(m)&&(
+function Se(e){let{basename:t,children:n,future:a,window:o}=e,i=r.useRef();null==i.current&&(i.current=l({window:o,v5Compat:!0}));let s=i.current,[c,u]=r.useState({action:s.action,location:s.location}),{v7_startTransition:d}=a||{},h=r.useCallback((e=>{d&&xe?xe((()=>u(e))):u(e)}),[u,d]);return r.useLayoutEffect((()=>s.listen(h)),[s,h]),r.createElement(ce,{basename:t,children:n,location:c.location,navigationType:c.action,navigator:s})}const De="undefined"!=typeof window&&void 0!==window.document&&void 0!==window.document.createElement,Le=/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i,ke=r.forwardRef((function(e,t){let n,{onClick:a,relative:o,reloadDocument:i,replace:l,state:u,target:d,to:m,preventScrollReset:p,unstable_viewTransition:f}=e,v=me(e,Ee),{basename:g}=r.useContext(H),b=!1;if("string"==typeof m&&Le.test(m)&&(
 // Render the absolute href server- and client-side
-n=m,De))try{let e=new URL(window.location.href),t=m.startsWith("//")?new URL(e.protocol+m):new URL(m),n=k(t.pathname,v);t.origin===e.origin&&null!=n?
+n=m,De))try{let e=new URL(window.location.href),t=m.startsWith("//")?new URL(e.protocol+m):new URL(m),n=k(t.pathname,g);t.origin===e.origin&&null!=n?
 // Strip the protocol/origin/basename for same-origin absolute URLs
 m=n+t.search+t.hash:b=!0}catch(e){
 // We can't do external URL detection without a valid URL
@@ -548,7 +548,7 @@ function(e,t){let{relative:n}=void 0===t?{}:t;K()||s(!1,// TODO: This error is p
 // to creating the href.  If this is a root navigation, then just use the raw
 // basename which allows the basename to have full control over the presence
 // of a trailing slash on root links
-return"/"!==a&&(u="/"===l?a:T([a,l])),o.createHref({pathname:u,search:c,hash:i})}(m,{relative:o}),w=
+return"/"!==a&&(u="/"===l?a:I([a,l])),o.createHref({pathname:u,search:c,hash:i})}(m,{relative:o}),w=
 /**
    * Handles the click behavior for router `<Link>` components. This is useful if
    * you need to create custom `<Link>` components with the same click behavior we
@@ -562,7 +562,7 @@ t&&"_self"!==t||function(e){return!!(e.metaKey||e.altKey||e.ctrlKey||e.shiftKey)
 let n=void 0!==a?a:h(u)===h(d);c(e,{replace:n,state:o,preventScrollReset:i,relative:l,unstable_viewTransition:s})}}),[u,c,d,a,o,n,e,i,l,s])}(m,{replace:l,state:u,target:d,preventScrollReset:p,relative:o,unstable_viewTransition:f});
 
 // eslint-disable-next-line jsx-a11y/anchor-has-content
-return r.createElement("a",he({},g,{href:n||y,onClick:b||i?a:function(e){a&&a(e),e.defaultPrevented||w(e)},ref:t,target:d}))}));ke.displayName="Link";r.forwardRef((function(e,t){let{"aria-current":n="page",caseSensitive:a=!1,className:o="",end:i=!1,style:l,to:c,unstable_viewTransition:u,children:d}=e,h=me(e,Re),m=X(c,{relative:h.relative}),p=q(),f=r.useContext(W),{navigator:g}=r.useContext(H),v=null!=f&&
+return r.createElement("a",he({},v,{href:n||y,onClick:b||i?a:function(e){a&&a(e),e.defaultPrevented||w(e)},ref:t,target:d}))}));ke.displayName="Link";r.forwardRef((function(e,t){let{"aria-current":n="page",caseSensitive:a=!1,className:o="",end:i=!1,style:l,to:c,unstable_viewTransition:u,children:d}=e,h=me(e,Re),m=X(c,{relative:h.relative}),p=q(),f=r.useContext(W),{navigator:v}=r.useContext(H),g=null!=f&&
 // Conditional usage is OK here because the usage of a data router is static
 // eslint-disable-next-line react-hooks/rules-of-hooks
 /**
@@ -573,7 +573,7 @@ return r.createElement("a",he({},g,{href:n||y,onClick:b||i?a:function(e){a&&a(e)
    * @param href The destination href
    * @param [opts.relative] Relative routing type ("route" | "path")
    */
-function(e,t){void 0===t&&(t={});let n=r.useContext(Ne);null==n&&s(!1,"`unstable_useViewTransitionState` must be used within `react-router-dom`'s `RouterProvider`.  Did you accidentally import `RouterProvider` from `react-router`?");let{basename:a}=Te(Ie.useViewTransitionState),o=X(e,{relative:t.relative});if(!n.isTransitioning)return!1;let i=k(n.currentLocation.pathname,a)||n.currentLocation.pathname,l=k(n.nextLocation.pathname,a)||n.nextLocation.pathname;
+function(e,t){void 0===t&&(t={});let n=r.useContext(Ne);null==n&&s(!1,"`unstable_useViewTransitionState` must be used within `react-router-dom`'s `RouterProvider`.  Did you accidentally import `RouterProvider` from `react-router`?");let{basename:a}=Ie(Pe.useViewTransitionState),o=X(e,{relative:t.relative});if(!n.isTransitioning)return!1;let i=k(n.currentLocation.pathname,a)||n.currentLocation.pathname,l=k(n.nextLocation.pathname,a)||n.nextLocation.pathname;
 // Transition is active if we're going to or coming from the indicated
 // destination.  This ensures that other PUSH navigations that reverse
 // an indicated transition apply.  I.e., on the list view you have:
@@ -583,17 +583,17 @@ function(e,t){void 0===t&&(t={});let n=r.useContext(Ne);null==n&&s(!1,"`unstable
 // We should apply the transition because it's indicated as active going
 // from /list -> /details/1 and therefore should be active on the reverse
 // (even though this isn't strictly a POP reverse)
-return null!=D(o.pathname,l)||null!=D(o.pathname,i)}(m)&&!0===u,b=g.encodeLocation?g.encodeLocation(m).pathname:m.pathname,y=p.pathname,w=f&&f.navigation&&f.navigation.location?f.navigation.location.pathname:null;a||(y=y.toLowerCase(),w=w?w.toLowerCase():null,b=b.toLowerCase());let E,R=y===b||!i&&y.startsWith(b)&&"/"===y.charAt(b.length),C=null!=w&&(w===b||!i&&w.startsWith(b)&&"/"===w.charAt(b.length)),N={isActive:R,isPending:C,isTransitioning:v},x=R?n:void 0;E="function"==typeof o?o(N):[o,R?"active":null,C?"pending":null,v?"transitioning":null].filter(Boolean).join(" ");let S="function"==typeof l?l(N):l;
+return null!=D(o.pathname,l)||null!=D(o.pathname,i)}(m)&&!0===u,b=v.encodeLocation?v.encodeLocation(m).pathname:m.pathname,y=p.pathname,w=f&&f.navigation&&f.navigation.location?f.navigation.location.pathname:null;a||(y=y.toLowerCase(),w=w?w.toLowerCase():null,b=b.toLowerCase());let E,R=y===b||!i&&y.startsWith(b)&&"/"===y.charAt(b.length),C=null!=w&&(w===b||!i&&w.startsWith(b)&&"/"===w.charAt(b.length)),N={isActive:R,isPending:C,isTransitioning:g},x=R?n:void 0;E="function"==typeof o?o(N):[o,R?"active":null,C?"pending":null,g?"transitioning":null].filter(Boolean).join(" ");let S="function"==typeof l?l(N):l;
 return r.createElement(ke,he({},h,{"aria-current":x,className:E,ref:t,style:S,to:c,unstable_viewTransition:u}),"function"==typeof d?d(N):d)})).displayName="NavLink";r.forwardRef(((e,t)=>{let n=
 /**
    * Returns a function that may be used to programmatically submit a form (or
    * some arbitrary data) to the server.
    */
-function(){let{router:e}=Te(Ie.UseSubmit),{basename:t}=r.useContext(H),n=ie(re.UseRouteId);return r.useCallback((function(a,r){void 0===r&&(r={}),function(){if("undefined"==typeof document)throw new Error("You are calling submit during the server render. Try calling submit within a `useEffect` or callback instead.")}();let{action:o,method:i,encType:l,formData:s,body:c}=we(a,t);e.navigate(r.action||o,{preventScrollReset:r.preventScrollReset,formData:s,body:c,formMethod:r.method||i,formEncType:r.encType||l,replace:r.replace,state:r.state,fromRouteId:n,unstable_viewTransition:r.unstable_viewTransition})}),[e,t,n])}
+function(){let{router:e}=Ie(Pe.UseSubmit),{basename:t}=r.useContext(H),n=ie(re.UseRouteId);return r.useCallback((function(a,r){void 0===r&&(r={}),function(){if("undefined"==typeof document)throw new Error("You are calling submit during the server render. Try calling submit within a `useEffect` or callback instead.")}();let{action:o,method:i,encType:l,formData:s,body:c}=we(a,t);e.navigate(r.action||o,{preventScrollReset:r.preventScrollReset,formData:s,body:c,formMethod:r.method||i,formEncType:r.encType||l,replace:r.replace,state:r.state,fromRouteId:n,unstable_viewTransition:r.unstable_viewTransition})}),[e,t,n])}
 // v7: Eventually we should deprecate this entirely in favor of using the
 // router method directly?
 ();
-return r.createElement(Ae,he({},e,{submit:n,ref:t}))})).displayName="Form";const Ae=r.forwardRef(((e,t)=>{let{reloadDocument:n,replace:a,state:o,method:i=pe,action:l,onSubmit:c,submit:u,relative:d,preventScrollReset:m,unstable_viewTransition:p}=e,f=me(e,Ce),g="get"===i.toLowerCase()?"get":"post",v=function(e,t){let{relative:n}=void 0===t?{}:t,{basename:a}=r.useContext(H),o=r.useContext($);o||s(!1,"useFormAction must be used inside a RouteContext");let[i]=o.matches.slice(-1),l=he({},X(e||".",{relative:n})),c=q();
+return r.createElement(Ae,he({},e,{submit:n,ref:t}))})).displayName="Form";const Ae=r.forwardRef(((e,t)=>{let{reloadDocument:n,replace:a,state:o,method:i=pe,action:l,onSubmit:c,submit:u,relative:d,preventScrollReset:m,unstable_viewTransition:p}=e,f=me(e,Ce),v="get"===i.toLowerCase()?"get":"post",g=function(e,t){let{relative:n}=void 0===t?{}:t,{basename:a}=r.useContext(H),o=r.useContext($);o||s(!1,"useFormAction must be used inside a RouteContext");let[i]=o.matches.slice(-1),l=he({},X(e||".",{relative:n})),c=q();
 // Shallow clone path so we can modify it below, otherwise we modify the
 // object referenced by useMemo inside useResolvedPath
 if(null==e&&(
@@ -604,32 +604,28 @@ l.search=c.search,i.route.index)){let e=new URLSearchParams(l.search);e.delete("
 // to creating the form action.  If this is a root navigation, then just use
 // the raw basename which allows the basename to have full control over the
 // presence of a trailing slash on root actions
-"/"!==a&&(l.pathname="/"===l.pathname?a:T([a,l.pathname]));return h(l)}(l,{relative:d});
-return r.createElement("form",he({ref:t,method:g,action:v,onSubmit:n?c:e=>{if(c&&c(e),e.defaultPrevented)return;e.preventDefault();let t=e.nativeEvent.submitter,n=(null==t?void 0:t.getAttribute("formmethod"))||i;u(t||e.currentTarget,{method:n,replace:a,state:o,relative:d,preventScrollReset:m,unstable_viewTransition:p})}},f))}));
+"/"!==a&&(l.pathname="/"===l.pathname?a:I([a,l.pathname]));return h(l)}(l,{relative:d});
+return r.createElement("form",he({ref:t,method:v,action:g,onSubmit:n?c:e=>{if(c&&c(e),e.defaultPrevented)return;e.preventDefault();let t=e.nativeEvent.submitter,n=(null==t?void 0:t.getAttribute("formmethod"))||i;u(t||e.currentTarget,{method:n,replace:a,state:o,relative:d,preventScrollReset:m,unstable_viewTransition:p})}},f))}));
 //#endregion
 ////////////////////////////////////////////////////////////////////////////////
 //#region Hooks
 ////////////////////////////////////////////////////////////////////////////////
-var Ie,Pe;function Te(e){let t=r.useContext(j);return t||s(!1,function(e){return e+" must be used within a data router.  See https://reactrouter.com/routers/picking-a-router."}(e)),t}function Ue(){const[t,n]=e.useState(!1),[a,r]=e.useState(!1),[o,i]=e.useState(!1);return e.useEffect((()=>{t||n(!0)}),[t]),e.createElement("nav",{className:"navbar navbar-default navbar-fixed-top navbar-inverse navbar-trans navbar-trans-dark trans-helper navbar-fw",role:"navigation"},e.createElement("div",{className:"container"},e.createElement("div",{style:{width:"75%"},className:"navbar-header page-scroller"},e.createElement("button",{type:"button",onClick:e=>{console.info("hi2"),e.preventDefault(),r(!a)},className:"navbar-toggle collapsed","data-toggle":a?"collapse in":"collapse","data-target":"#navbar","aria-expanded":a?"true":"false","aria-controls":"navbar"},e.createElement("span",{className:"sr-only"},"Toggle navigation"),e.createElement("span",{className:"icon-bar"}),e.createElement("span",{className:"icon-bar"}),e.createElement("span",{className:"icon-bar"})),e.createElement("a",{className:"navbar-brand",href:"index.html"},e.createElement("img",{className:"navbar-logo-dark",style:{content:"unset",height:"50px",backgroundImage:"none"},src:"https://synthethics.awscyber.ai/static/media/RADAR.c104f9526930a39724dc.png",alt:"Definity - Logo"}))),e.createElement("div",{id:"navbar","aria-expanded":a?"true":"false",className:a?"navbar-collapse   collapse in":" navbar-collapse   collapse"},e.createElement("ul",{className:"nav navbar-nav"},e.createElement("li",null,e.createElement(ke,{"data-testid":"home-link",to:"/test"},"Home",e.createElement("span",{className:"sr-only"}))),e.createElement("li",{onClick:()=>{i(!o)},className:"dropdown"+(o?" open":"")},e.createElement(ke,{className:"dropdown-toggle","data-testid":"test-link",to:"#"},"Test",e.createElement("span",{className:"caret"})),e.createElement("ul",{className:"dropdown-menu"},e.createElement("div",{className:"row"},e.createElement("div",{className:"col-lg-6 mb-sm-30"},e.createElement("li",{className:"dropdown-header"},"Test Routes"),e.createElement("li",{className:"divider"}),e.createElement("li",null,e.createElement(ke,{to:"/home"},"Basic PDF Render")),e.createElement("li",null,e.createElement(ke,{to:"/light"},"Lightbox PDF Render")),e.createElement("li",null,e.createElement(ke,{to:"/cdn"},"CDN Loaded PDF Render"))))))))))}function Oe(){return e.createElement("footer",{className:"footer-widgets"},e.createElement("div",{className:"copyright"},e.createElement("div",{className:"container"},e.createElement("div",{className:"row"},e.createElement("div",{className:"col-sm-6"},e.createElement("small",null,"© 2024 by Ziping liu. Proudly Served with ",e.createElement("a",{className:"no-style-link",href:"https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/blob/slave/.github/workflows/canaryapp.yml"},"Github Pages"))),e.createElement("div",{className:"col-sm-6"},e.createElement("small",null,e.createElement("a",{href:"#page-top",className:"pull-right to-the-top"},"To the top",e.createElement("i",{className:"fa fa-angle-up"}))))))))}function Be({divId:e,viewerConfig:t,url:n,clientID:a,_fileMeta:r,_dcView:o}){const i={clientId:a,divId:e};return(o||new window.AdobeDC.View(i)).previewFile({content:{location:{url:n}},metaData:r||Fe.demoMetaData},t)}
+var Pe,Te;function Ie(e){let t=r.useContext(j);return t||s(!1,function(e){return e+" must be used within a data router.  See https://reactrouter.com/routers/picking-a-router."}(e)),t}function Ue(){const[t,n]=e.useState(!1),[a,r]=e.useState(!1),[o,i]=e.useState(!1);return e.useEffect((()=>{t||n(!0)}),[t]),e.createElement("nav",{className:"navbar navbar-default navbar-fixed-top navbar-inverse navbar-trans navbar-trans-dark trans-helper navbar-fw",role:"navigation"},e.createElement("div",{className:"container"},e.createElement("div",{style:{width:"75%"},className:"navbar-header page-scroller"},e.createElement("button",{type:"button",onClick:e=>{console.info("hi2"),e.preventDefault(),r(!a)},className:"navbar-toggle collapsed","data-toggle":a?"collapse in":"collapse","data-target":"#navbar","aria-expanded":a?"true":"false","aria-controls":"navbar"},e.createElement("span",{className:"sr-only"},"Toggle navigation"),e.createElement("span",{className:"icon-bar"}),e.createElement("span",{className:"icon-bar"}),e.createElement("span",{className:"icon-bar"})),e.createElement("a",{className:"navbar-brand",href:"index.html"},e.createElement("img",{className:"navbar-logo-dark",style:{content:"unset",height:"50px",backgroundImage:"none"},src:"https://synthethics.awscyber.ai/static/media/RADAR.c104f9526930a39724dc.png",alt:"Definity - Logo"}))),e.createElement("div",{id:"navbar","aria-expanded":a?"true":"false",className:a?"navbar-collapse   collapse in":" navbar-collapse   collapse"},e.createElement("ul",{className:"nav navbar-nav"},e.createElement("li",null,e.createElement(ke,{"data-testid":"home-link",to:"/test"},"Home",e.createElement("span",{className:"sr-only"}))),e.createElement("li",{onClick:()=>{i(!o)},className:"dropdown"+(o?" open":"")},e.createElement(ke,{className:"dropdown-toggle","data-testid":"test-link",to:"#"},"Test",e.createElement("span",{className:"caret"})),e.createElement("ul",{className:"dropdown-menu"},e.createElement("div",{className:"row"},e.createElement("div",{className:"col-lg-6 mb-sm-30"},e.createElement("li",{className:"dropdown-header"},"Test Routes"),e.createElement("li",{className:"divider"}),e.createElement("li",null,e.createElement(ke,{to:"/home"},"Basic PDF Render")),e.createElement("li",null,e.createElement(ke,{to:"/light"},"Lightbox PDF Render")),e.createElement("li",null,e.createElement(ke,{to:"/cdn"},"CDN Loaded PDF Render"))))))))))}function Oe(){return e.createElement("footer",{className:"footer-widgets"},e.createElement("div",{className:"copyright"},e.createElement("div",{className:"container"},e.createElement("div",{className:"row"},e.createElement("div",{className:"col-sm-6"},e.createElement("small",null,"© 2024 by Ziping liu. Proudly Served with ",e.createElement("a",{className:"no-style-link",href:"https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/blob/slave/.github/workflows/canaryapp.yml"},"Github Pages"))),e.createElement("div",{className:"col-sm-6"},e.createElement("small",null,e.createElement("a",{href:"#page-top",className:"pull-right to-the-top"},"To the top",e.createElement("i",{className:"fa fa-angle-up"}))))))))}function Be({divId:e,viewerConfig:t,url:n,clientID:a,_fileMeta:r,_dcView:o}){const i={clientId:a,divId:e};return(o||new window.AdobeDC.View(i)).previewFile({content:{location:{url:n}},metaData:r||Fe.demoMetaData},t)}
 /**
    * @description - An atypical Nested React Component of ReactViewAdobe,
    * specifically for managing API calls and configurations of the Adobe Embed API SDK
    * This component, in turn, employs the use of React Hooks
    * to render what the Adobe Embed API SDK perceives as static
    * and vanilla JavaScript code, transposed into the Document Object Model (DOM).
-   */Ae.displayName="FormImpl",function(e){e.UseScrollRestoration="useScrollRestoration",e.UseSubmit="useSubmit",e.UseSubmitFetcher="useSubmitFetcher",e.UseFetcher="useFetcher",e.useViewTransitionState="useViewTransitionState"}(Ie||(Ie={})),function(e){e.UseFetchers="useFetchers",e.UseScrollRestoration="useScrollRestoration"}(Pe||(Pe={}));const _e=t=>{const n=e.useRef(document.getElementById(t.id||Fe.staticDivId));return e.createElement("div",{ref:n,id:t.id||Fe.staticDivId,className:t.className||"adobe-viewer-of-amazon-corporate-retaliations",style:t.style,title:t.title||"entity-existent-on-frameworks-of-state-regulations-as-defined-by-the-state-and-may-try-to-destroy-your-life-and-control-the-fbi-of-the-state-such-as-amazon-legal-idiots"})};
+   */Ae.displayName="FormImpl",function(e){e.UseScrollRestoration="useScrollRestoration",e.UseSubmit="useSubmit",e.UseSubmitFetcher="useSubmitFetcher",e.UseFetcher="useFetcher",e.useViewTransitionState="useViewTransitionState"}(Pe||(Pe={})),function(e){e.UseFetchers="useFetchers",e.UseScrollRestoration="useScrollRestoration"}(Te||(Te={}));const _e=t=>{const n=e.useRef(document.getElementById(t.id||Fe.staticDivId));return e.createElement("div",{ref:n,id:t.id||Fe.staticDivId,className:t.className||"adobe-viewer-of-amazon-corporate-retaliations",style:t.style,title:t.title||"entity-existent-on-frameworks-of-state-regulations-as-defined-by-the-state-and-may-try-to-destroy-your-life-and-control-the-fbi-of-the-state-such-as-amazon-legal-idiots"})};
 /**
    * @description - ReactViewAdobe component which is a wrapper around Adobe PDF Viewer SDK that allows for
    * rendering PDFs via Adobe's PDF Engine. Ensures that Adobe Embed API Services are
    * compartmentalized and fully encapsulated and configured within a rendered page. Not sure why Adobe
    * Embed API does not inherently do this. See ReactViewAdobeProps for more details.
-   */function Me(n){const[a,r]=e.useState(!1),[o,i]=e.useState(!1),[l,s]=e.useState(!1),c=(0,e[n?.useReactHookForAdobeAPIConfigs||"useMemo"])((()=>{if(!0===a){const e=window.AdobeDC?.View;return e}}),[a]),[u,d]=e.useState(null);(0,e[n?.useReactHookWhenLoadingAdobeAPI||"useEffect"])((()=>{if(null==u){const t=e.createRef();d(t)}if(!1===l){const a=document.querySelector(`script.react-adobe-embed-handholding-adobe-api-loading-idiocy[data-adobe-pdf-id="${n.id||Fe.staticDivId}"]`),r=u;if(r&&a)n.debug&&console.info("[1mAdobe SDK Check[0m","Reloading and Rerendering Adobe SDK"),
+   */function Me(t){const[n,a]=e.useState(!1),[r,o]=e.useState(!1),[i,l]=e.useState(!1),s=(0,e[t?.useReactHookForAdobeAPIConfigs||"useMemo"])((()=>{if(!0===n){const e=window.AdobeDC?.View;return e}}),[n]);(0,e[t?.useReactHookWhenLoadingAdobeAPI||"useEffect"])((()=>{if(!1===i){const e=document.querySelector(`script.react-adobe-embed-handholding-adobe-api-loading-idiocy[data-adobe-pdf-id="${t.id||Fe.staticDivId}"]`);if(e)t.debug&&console.info("[1mAdobe SDK Check[0m","Reloading and Rerendering Adobe SDK"),
 // Lightbox mode renders from ui event triggered by user, so no need to render
-"LIGHT_BOX"!==n.previewConfig?.embedMode&&i(!0),r.current.setAttribute("data-testid","react-adobe-embed-handholding-adobe-api-loading-idiocy-reused");else{n.debug&&console.info("[1mAdobe SDK Check[0m","Initial Adobe SDK Load");const a=()=>{const[t,a]=e.useState(!1),[r,o]=e.useState(!1);return e.useEffect((()=>{if(!1===t&&a(!0),t&&!1===r){const e=document.createElement("script");
-// const script = document.createElement("script");
-e.setAttribute("data-testid","react-adobe-embed-handholding-adobe-api-loading-idiocy-initial"),e.setAttribute("data-adobe-pdf-id",n.id||Fe.staticDivId),e.setAttribute("class","react-adobe-embed-handholding-adobe-api-loading-idiocy"),e.src=n.previewConfig?.viewSdkViewerScript||Fe.staticDefaultConfig.viewSdkViewerScript,e.async=!0,e.onload=()=>{s(!0)},document.body.appendChild(e),o(!0)}}),[t,l,n]),e.createElement("script",{"data-testid":"react-adobe-embed-handholding-adobe-api-loading-idiocy-initial","data-adobe-pdf-id":n.id||Fe.staticDivId,className:"react-adobe-embed-handholding-adobe-api-loading-idiocy",src:n.previewConfig?.viewSdkViewerScript||Fe.staticDefaultConfig.viewSdkViewerScript,async:!0,ref:u})},r=document.createElement("script");
-// render by appending to body, via  creating a div element, and then appending the script to the div element
-r.setAttribute("data-testid","react-adobe-embed-handholding-adobe-api-loading-idiocy-initial"),r.setAttribute("data-adobe-pdf-id",n.id||Fe.staticDivId),document.body.appendChild(r),t.createRoot(r).render(e.createElement(a,null))}}}),[n.id,l,a]);(0,e[n?.useReactHookWhenCallingAdobeAPI||"useEffect"])((()=>{!1===a&&!0===l&&document.addEventListener("adobe_dc_view_sdk.ready",(()=>{r(!0)}));!0===l&&!0===a&&(e=>{e.debug&&console.info("Adobe PDF Viewer SDK Ready Event",c,window.adobe_dc_view_sdk);const t=e.id||Fe.staticDivId;document.getElementById(t)&&"LIGHT_BOX"!==e.previewConfig?.embedMode?(e.debug&&console.info("Adobe PDF Viewer SDK Ready Rendering"),Be({divId:t,viewerConfig:e.previewConfig||Fe.staticDefaultConfig,url:e.url||Fe.demoUrl,clientID:e.clientId,_fileMeta:e.fileMeta})):"LIGHT_BOX"===e.previewConfig?.embedMode&&e?.triggerAdobeDCViewRender&&Be({divId:e.id||Fe.staticDivId,viewerConfig:e.previewConfig||Fe.staticDefaultConfig,url:e.url||Fe.demoUrl,clientID:e.clientId})})(n)}),[a,l,n,c]);return(0,e[n?.useReactHookForComponentDidUpdate||"useEffect"])((()=>{if(!0===o){const e=n.id||Fe.staticDivId;document.getElementById(e)&&Be({divId:e,viewerConfig:n.previewConfig||Fe.staticDefaultConfig,url:n.url||Fe.demoUrl,clientID:n.clientId,_fileMeta:n.fileMeta}),i(!1)}}),[o,n]),e.createElement(_e,{...n})}const Fe={demoUrl:"https://acrobatservices.adobe.com/view-sdk-demo/PDFs/Bodea%20Brochure.pdf",staticDefaultConfig:{showAnnotationTools:!1,showLeftHandPanel:!1,showPageControls:!1,viewSdkViewerScript:"https://acrobatservices.adobe.com/view-sdk/viewer.js",showDownloadPDF:!1,showPrintPDF:!1},staticDivId:"pdf-div",demoMetaData:{fileName:"Odd Distateful Adobe Example Pdf.pdf",id:"6d07d124 - ac85–43b3 - a867–36930f502ac6"}};function je(){switch(window.location.hostname){case"localhost":default:return"324caa2a91b84f688935436cd2d25217";case"ziping.dev":return"2aeb65914ea244cd85c16b60ca3b688d";case"ziping.life":return"2daf6038d0f1447fb9dd17988e93b5b8";case"ziping.org":return"312487a25a5b4c0d845f6d93e8103c32";case"awsuni.com":return"50d3f2b88101430f8da3006527dcdf78";case"twitterliu.com":return"ac52e99ebc8242e9bf85ecb55444f726";case"one.ziping.org":return"2e5605e61e5b4306829b619d6fad2dc4";case"zipingl.github.io":return"9c16d364507948289a9f65f9ab9da8bf";case"ziping-liu-corporation.github.io":return"875691e089ad4bf6bc4c5cea79403542"}}function We(){const t=window.location.href.split("?")[1],n=new URLSearchParams(t),a=n.get("pdf")||n.get("url")||"https://raw.githubusercontent.com/ZipingL/dna/main/23andMe_Ancestry_Book.pdf",r=n.get("width"),o=n.get("height"),i=n.get("fileName")||a.split("/").pop()||"23andMe_Ancestry_Book.pdf";return e.createElement("section",{id:"about",className:"container section"},e.createElement("div",{className:"row ws-m"},e.createElement("header",{className:"sec-heading"},e.createElement("h2",null,"Basic Test View"),e.createElement("span",{className:"subheading"},"Using the react-adobe-embed component with no additional configurations, except for the pdf url, in order to test the rendering of a PDF at the most basic level of usage.")),e.createElement(Me,{previewConfig:{},className:"col container-fluid post-content",fileMeta:{fileName:i},style:{width:r||"100%",height:o||"calc(100vh - 200px)",maxHeight:"100%",border:"1px solid transparent",alignContent:"center",justifyContent:"center",minHeight:"500px"},url:a||"https://raw.githubusercontent.com/ZipingL/dna/main/23andMe_Ancestry_Book.pdf",debug:!0,id:"adobe-dc-view-0",clientId:je()})))}function He(){return e.createElement("section",{className:"container section"},e.createElement("div",{className:"row ws-m"},e.createElement("div",{className:"col s12",style:{height:"calc(100vh - 420px)"}},e.createElement(Me,{url:"https://raw.githubusercontent.com/ZipingL/dna/main/23andMe_Ancestry_Book.pdf",clientId:je(),previewConfig:{embedMode:"LIGHT_BOX"},debug:!0}),e.createElement("button",{className:"btn btn-primary",onClick:()=>{Be({url:"https://raw.githubusercontent.com/ZipingL/dna/main/23andMe_Ancestry_Book.pdf",viewerConfig:{embedMode:"LIGHT_BOX"},clientID:je(),divId:"pdf-div",_fileMeta:{fileName:"23andMe_Ancestry_Book.pdf"}})}},"Toggle Light Box View"))))}function Ve(){const[t,n]=e.useState(!1),[a,r]=e.useState(!1);e.useEffect((()=>{if(!t){
+"LIGHT_BOX"!==t.previewConfig?.embedMode&&o(!0),e.setAttribute("data-testid","react-adobe-embed-handholding-adobe-api-loading-idiocy-reused");else{t.debug&&console.info("[1mAdobe SDK Check[0m","Initial Adobe SDK Load");const e=document.createElement("script");e.setAttribute("data-testid","react-adobe-embed-handholding-adobe-api-loading-idiocy-initial"),e.setAttribute("data-adobe-pdf-id",t.id||Fe.staticDivId),e.setAttribute("class","react-adobe-embed-handholding-adobe-api-loading-idiocy"),e.src=t.previewConfig?.viewSdkViewerScript||Fe.staticDefaultConfig.viewSdkViewerScript,e.async=!0,e.onload=()=>{l(!0)},document.body.appendChild(e)}}}),[t.id,i,n]);(0,e[t?.useReactHookWhenCallingAdobeAPI||"useEffect"])((()=>{!1===n&&!0===i&&document.addEventListener("adobe_dc_view_sdk.ready",(()=>{a(!0)}));!0===i&&!0===n&&(e=>{e.debug&&console.info("Adobe PDF Viewer SDK Ready Event",s,window.adobe_dc_view_sdk);const t=e.id||Fe.staticDivId;document.getElementById(t)&&"LIGHT_BOX"!==e.previewConfig?.embedMode?(e.debug&&console.info("Adobe PDF Viewer SDK Ready Rendering"),Be({divId:t,viewerConfig:e.previewConfig||Fe.staticDefaultConfig,url:e.url||Fe.demoUrl,clientID:e.clientId,_fileMeta:e.fileMeta})):"LIGHT_BOX"===e.previewConfig?.embedMode&&e?.triggerAdobeDCViewRender&&Be({divId:e.id||Fe.staticDivId,viewerConfig:e.previewConfig||Fe.staticDefaultConfig,url:e.url||Fe.demoUrl,clientID:e.clientId})})(t)}),[n,i,t,s]);return(0,e[t?.useReactHookForComponentDidUpdate||"useEffect"])((()=>{if(!0===r){const e=t.id||Fe.staticDivId;document.getElementById(e)&&Be({divId:e,viewerConfig:t.previewConfig||Fe.staticDefaultConfig,url:t.url||Fe.demoUrl,clientID:t.clientId,_fileMeta:t.fileMeta}),o(!1)}}),[r,t]),e.createElement(_e,{...t})}const Fe={demoUrl:"https://acrobatservices.adobe.com/view-sdk-demo/PDFs/Bodea%20Brochure.pdf",staticDefaultConfig:{showAnnotationTools:!1,showLeftHandPanel:!1,showPageControls:!1,viewSdkViewerScript:"https://acrobatservices.adobe.com/view-sdk/viewer.js",showDownloadPDF:!1,showPrintPDF:!1},staticDivId:"pdf-div",demoMetaData:{fileName:"Odd Distateful Adobe Example Pdf.pdf",id:"6d07d124 - ac85–43b3 - a867–36930f502ac6"}};function je(){switch(window.location.hostname){case"localhost":default:return"324caa2a91b84f688935436cd2d25217";case"ziping.dev":return"2aeb65914ea244cd85c16b60ca3b688d";case"ziping.life":return"2daf6038d0f1447fb9dd17988e93b5b8";case"ziping.org":return"312487a25a5b4c0d845f6d93e8103c32";case"awsuni.com":return"50d3f2b88101430f8da3006527dcdf78";case"twitterliu.com":return"ac52e99ebc8242e9bf85ecb55444f726";case"one.ziping.org":return"2e5605e61e5b4306829b619d6fad2dc4";case"zipingl.github.io":return"9c16d364507948289a9f65f9ab9da8bf";case"ziping-liu-corporation.github.io":return"875691e089ad4bf6bc4c5cea79403542"}}function We(){const t=window.location.href.split("?")[1],n=new URLSearchParams(t),a=n.get("pdf")||n.get("url")||"https://raw.githubusercontent.com/ZipingL/dna/main/23andMe_Ancestry_Book.pdf",r=n.get("width"),o=n.get("height"),i=n.get("fileName")||a.split("/").pop()||"23andMe_Ancestry_Book.pdf";return e.createElement("section",{id:"about",className:"container section"},e.createElement("div",{className:"row ws-m"},e.createElement("header",{className:"sec-heading"},e.createElement("h2",null,"Basic Test View"),e.createElement("span",{className:"subheading"},"Using the react-adobe-embed component with no additional configurations, except for the pdf url, in order to test the rendering of a PDF at the most basic level of usage.")),e.createElement(Me,{previewConfig:{},className:"col container-fluid post-content",fileMeta:{fileName:i},style:{width:r||"100%",height:o||"calc(100vh - 200px)",maxHeight:"100%",border:"1px solid transparent",alignContent:"center",justifyContent:"center",minHeight:"500px"},url:a||"https://raw.githubusercontent.com/ZipingL/dna/main/23andMe_Ancestry_Book.pdf",debug:!0,id:"adobe-dc-view-0",clientId:je()})))}function He(){return e.createElement("section",{className:"container section"},e.createElement("div",{className:"row ws-m"},e.createElement("div",{className:"col s12",style:{height:"calc(100vh - 420px)"}},e.createElement(Me,{url:"https://raw.githubusercontent.com/ZipingL/dna/main/23andMe_Ancestry_Book.pdf",clientId:je(),previewConfig:{embedMode:"LIGHT_BOX"},debug:!0}),e.createElement("button",{className:"btn btn-primary",onClick:()=>{Be({url:"https://raw.githubusercontent.com/ZipingL/dna/main/23andMe_Ancestry_Book.pdf",viewerConfig:{embedMode:"LIGHT_BOX"},clientID:je(),divId:"pdf-div",_fileMeta:{fileName:"23andMe_Ancestry_Book.pdf"}})}},"Toggle Light Box View"))))}function Ve(){const[t,n]=e.useState(!1),[a,r]=e.useState(!1);e.useEffect((()=>{if(!t){
 // Create new script element to load cdn
 const e=document.createElement("script");e.src="https://ziping-liu-corporation.github.io/react-adobe-embed/dist/react-adobe-embed.cdn.js",e.async=!0,e.onload=()=>{r(!0)},
 // Add script to document body
