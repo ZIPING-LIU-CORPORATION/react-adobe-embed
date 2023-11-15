@@ -138,10 +138,10 @@ const App = () => {
 
 <blockquote> 
    
-#### Note:  these other steps below are no longer required but remain to provide insight on how react-adobe-embed handles adobe embed api
+*Note:  these other steps below are no longer required but remain to provide insight on how react-adobe-embed handles adobe embed api*
 #### ~~2~~. ~~As the current implementation of creating [LIGHT_BOX](https://acrobatservices.adobe.com/view-sdk-demo/index.html#/view/LIGHT_BOX/Bodea%20Brochure.pdf) embed pdf's is quite complicated~~, you can view a live code example of how to use LIGHT_BOX mode with react-adobe-embed [here](https://codesandbox.io/p/sandbox/react-adobe-embed-pdf-galleria-showcase-yq5zz6?file=%2Fsrc%2FSections%2FMain.tsx%3A65%2C79)
 
-#### ~~3~~. Note on adobe sdk `<script>` tag:
+#### ~~3. Note on adobe sdk `<script>` tag:~~
  - You don't need to worry about handling outside script tags. The react wrapper handles any script downloading. Simple call the React Component as shown above.
  - ~~In the past it was this: `<script src='https://documentcloud.adobe.com/view-sdk/main.js'></script>` as instructed by their office docs.~~
    - ~~If you use this URL right now however: it will give you an error saying to update your PDF Viewer. I saw the error on Nov 28th myself and asked myself... This is an embed PDF viewer, i shouldn't need to update anything.~~
@@ -154,9 +154,11 @@ const App = () => {
 ## Installation via CDN
 You can also load this as a CDN script. By default the latest version can be accessed publically via. For now it is only accessible in this manner as a UMD bundle, with access to the default exported React Component.
 ```html
-<script src="https://ziping-liu-corporation.github.io/react-adobe-embed/dist/react-adobe-embed.cdn.js">
+<script src="https://cdn.jsdelivr.net/npm/react-adobe-embed@11.0/dist/react-adobe-embed.cdn.js">
 ```
- - View a code example of using `react-adobe-embed` via cdn [here](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/blob/slave/canary/routes/CDN.tsx), as well as viewing the [deployed code](https://ziping-liu-corporation.github.io/react-adobe-embed/#/cdn) as part of the canary testing endpoint, [here](https://ziping-liu-corporation.github.io/react-adobe-embed/#/cdn).
+ - An example of loading `react-adobe-embed` and utilizing it as a cdn is currently part of the testing endpoint.
+    - The **testing endpoint code** can be viewed at [canary/routes/CDN.tsx](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/blob/slave/canary/routes/CDN.tsx)
+    - The deployed **testing endpoint code** can be viewed at [ziping-liu-corporation.github.io/#/cdn](https://ziping-liu-corporation.github.io/react-adobe-embed/#/cdn)
 
 
 
@@ -198,7 +200,7 @@ The end to end tests which includes testing of the react-adobe-embed react compo
  - These tests are deployed as a form of heartbeat or canary testing via github workflows.
  - These tests are also ran with each new code push within this repo, and are triggered [via a respitory dispatch event](.github/workflows/canaryapp.yml)
 
- *Note: Further details including the testing architecture that allows for then a continuosu dpeloyment and integartion of the react-adobe-embed component will be added.*
+ *Note: Further details including the testing architecture that allows for then a continuous dpeloyment and integartion of the react-adobe-embed component will be added. Please see the FAQs below*
 
 
 
@@ -206,6 +208,10 @@ The end to end tests which includes testing of the react-adobe-embed react compo
 
 
 ## FAQS
+
+### Is there more explanation available? The readme is pretty barebones and barely makes sense to me..
+  - No doubt, the package and component is now pretty complicated in terms of the amount of code and directories and features it provides, which can definitely make it difficult to understand the basic usage or even the purpose of the package. The readme is intended to be concise such that it allows for a quick understanding of the most important aspects of the package. As of now a more detailed wiki page is being worked and will be provided as an additional resource that provides detailed explainations and guidance on the code and package.
+
 ### Why was this made?
   - We needed a utility for displaying PDF's but wanted to have more typescript and React involved with the displaying. This is part of LIU LLC's intermission phase ongoing in preliminary motions for setting up required framing for phase 4. These motions and phases encompass research and analysis as well as press reporting of the ongoing retaliation campaign currently waged against an employee at Amazon that started April of 2022. To learn more, see [here](https://ziping-liu-corporation.github.io/#/home/)
 ### Do you need to see a demo without code sandbox?

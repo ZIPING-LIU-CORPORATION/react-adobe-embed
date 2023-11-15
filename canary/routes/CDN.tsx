@@ -23,8 +23,7 @@ export default function CDN() {
 
         }
 
-    }
-        , [componentDidMount, componentDidUpdate]);
+    } , [componentDidMount, componentDidUpdate]);
 
 
     (window as any).React = React; // expose React as global since the react-adobe embed cdn expects React to be loaded via cdn as well
