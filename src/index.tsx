@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom/client";
 
 export function previewFile({
   divId,
@@ -122,52 +123,126 @@ export default function ReactViewAdobe(props: ReactViewAdobeProps) {
     }
   }, [adobePDFProgrammeInstalled]);
 
+  const [scriptRef, setScriptRef] = React.useState<React.RefObject<HTMLScriptElement> | null>(null);
+
+
+
+
   const useHooksForLoading =
     React[props?.useReactHookWhenLoadingAdobeAPI || "useEffect"];
 
   useHooksForLoading(() => {
+    if (scriptRef == null) {
+      const newRef = React.createRef<HTMLScriptElement>() as React.RefObject<HTMLScriptElement>;
+
+      setScriptRef(newRef);
+
+
+    }
     if (scriptViewerLoaded === false) {
-      const scriptExistsALready = document.querySelector(
+      const scriptExistsALreadyElem = document.querySelector(
         `script.react-adobe-embed-handholding-adobe-api-loading-idiocy[data-adobe-pdf-id="${props.id || DefaultConfigs.staticDivId}"]`,
       );
-      if (scriptExistsALready) {
+
+      const scriptExistsALready = scriptRef;
+      if (scriptExistsALready && scriptExistsALreadyElem) {
         if (props.debug)
           console.info(`\x1b[1mAdobe SDK Check\x1b[0m`, 'Reloading and Rerendering Adobe SDK');
 
         // Lightbox mode renders from ui event triggered by user, so no need to render
-        if(props.previewConfig?.embedMode !== "LIGHT_BOX"){
-            setComponentNeedsRendering(true);
+        if (props.previewConfig?.embedMode !== "LIGHT_BOX") {
+          setComponentNeedsRendering(true);
         }
-        
-        scriptExistsALready.setAttribute(
+
+        scriptExistsALready.current!.setAttribute(
           "data-testid",
           "react-adobe-embed-handholding-adobe-api-loading-idiocy-reused",
         );
       } else {
         if (props.debug)
-         console.info(`\x1b[1mAdobe SDK Check\x1b[0m`, 'Initial Adobe SDK Load');
-        const script = document.createElement("script");
-        script.setAttribute(
+          console.info(`\x1b[1mAdobe SDK Check\x1b[0m`, 'Initial Adobe SDK Load');
+
+
+        const ScriptNew = () => {
+          const [componentDidMount, setComponentDidMount] = React.useState(false);
+          const [componentDidUpdate, setComponentDidUpdate] = React.useState(false);
+          React.useEffect(() => {
+            if (componentDidMount === false) {
+              setComponentDidMount(true);
+            }
+            if (componentDidMount 
+                && componentDidUpdate === false
+              ) {
+              const script = document.createElement("script");
+              // const script = document.createElement("script");
+              script.setAttribute(
+                "data-testid",
+                "react-adobe-embed-handholding-adobe-api-loading-idiocy-initial",
+              );
+
+
+
+              script.setAttribute(
+                "data-adobe-pdf-id",
+                props.id || DefaultConfigs.staticDivId,
+              );
+              script.setAttribute(
+                "class",
+                "react-adobe-embed-handholding-adobe-api-loading-idiocy",
+              );
+              script.src =
+                props.previewConfig?.viewSdkViewerScript ||
+                DefaultConfigs.staticDefaultConfig.viewSdkViewerScript;
+              script.async = true;
+              script.onload = () => {
+                setScriptViewerLoaded(true);
+              };
+
+              document.body.appendChild(script);
+
+              setComponentDidUpdate(true);
+            }
+          }, [componentDidMount, scriptViewerLoaded, props]);
+
+
+
+          return <script
+            data-testid="react-adobe-embed-handholding-adobe-api-loading-idiocy-initial"
+            data-adobe-pdf-id={props.id || DefaultConfigs.staticDivId}
+            className="react-adobe-embed-handholding-adobe-api-loading-idiocy"
+            src={props.previewConfig?.viewSdkViewerScript ||
+              DefaultConfigs.staticDefaultConfig.viewSdkViewerScript}
+            async={true}
+            ref={scriptRef}
+
+          ></script>
+        }
+
+        // render by appending to body, via  creating a div element, and then appending the script to the div element
+
+
+        const scriptElement = document.createElement("script");
+        scriptElement.setAttribute(
           "data-testid",
           "react-adobe-embed-handholding-adobe-api-loading-idiocy-initial",
         );
 
-        script.setAttribute(
+        scriptElement.setAttribute(
           "data-adobe-pdf-id",
           props.id || DefaultConfigs.staticDivId,
         );
-        script.setAttribute(
-          "class",
-          "react-adobe-embed-handholding-adobe-api-loading-idiocy",
-        );
-        script.src =
-          props.previewConfig?.viewSdkViewerScript ||
-          DefaultConfigs.staticDefaultConfig.viewSdkViewerScript;
-        script.async = true;
-        script.onload = () => {
-          setScriptViewerLoaded(true);
-        };
-        document.body.appendChild(script);
+
+        document.body.appendChild(scriptElement);
+
+
+
+        ReactDOM.createRoot(scriptElement).render(<ScriptNew />);
+
+
+
+
+
+
       }
     }
   }, [props.id, scriptViewerLoaded, adobePDFProgrammeInstalled]);
@@ -295,12 +370,12 @@ export type PreviewFileConfig = {
               Users can use the swipe gesture to navigate to other pages which will be displayed one at a time.
            */
   defaultViewMode:
-    | "FIT_WIDTH"
-    | "FIT_PAGE"
-    | "TWO_COLUMN"
-    | "TWO_COLUMN_FIT_PAGE"
-    | "CONTINUOUS"
-    | "SINGLE_PAGE";
+  | "FIT_WIDTH"
+  | "FIT_PAGE"
+  | "TWO_COLUMN"
+  | "TWO_COLUMN_FIT_PAGE"
+  | "CONTINUOUS"
+  | "SINGLE_PAGE";
   enableFormFilling: boolean;
   showDownloadPDF: boolean;
   showPrintPDF: boolean;
@@ -347,20 +422,20 @@ export type ReactHooks = {
   [key in Extract<keyof typeof React, `use${string}`>]: [] extends Parameters<
     (typeof React)[key]
   >
-    ? never
-    : key extends "useReducer"
-    ? never
-    : key extends "useDeferredValue"
-    ? never
-    : (typeof React)[key] extends (
-        factory: React.EffectCallback,
-        deps?: React.DependencyList | undefined,
-      ) => void
-    ? key
-    : (typeof React)[key] extends (
-        factory: () => any,
-        deps: React.DependencyList | undefined,
-      ) => void
-    ? key
-    : never;
+  ? never
+  : key extends "useReducer"
+  ? never
+  : key extends "useDeferredValue"
+  ? never
+  : (typeof React)[key] extends (
+    factory: React.EffectCallback,
+    deps?: React.DependencyList | undefined,
+  ) => void
+  ? key
+  : (typeof React)[key] extends (
+    factory: () => any,
+    deps: React.DependencyList | undefined,
+  ) => void
+  ? key
+  : never;
 }[Extract<keyof typeof React, `use${string}`>];

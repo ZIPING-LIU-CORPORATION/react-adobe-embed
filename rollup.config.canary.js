@@ -51,7 +51,7 @@ const config = {
                 "dist",
             ],
 
-            babelHelpers: 'external',
+            babelHelpers: 'inline',
             include: [
                 "canary/App.tsx"
             ],
