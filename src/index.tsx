@@ -128,7 +128,7 @@ export default function ReactViewAdobe(props: ReactViewAdobeProps) {
   useHooksForLoading(() => {
     if (scriptViewerLoaded === false) {
       const scriptExistsALready = document.querySelector(
-        ".react-adobe-embed-handholding-adobe-api-loading-idiocy",
+        `script.react-adobe-embed-handholding-adobe-api-loading-idiocy[data-adobe-pdf-id="${props.id || DefaultConfigs.staticDivId}"]`,
       );
       if (scriptExistsALready) {
         if (props.debug)
