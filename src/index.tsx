@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom/client";
 
 export function previewFile({
   divId,
@@ -77,6 +78,7 @@ const AdobeDiv = (props: {
   className?: string;
   title?: string;
 
+  children?: React.ReactNode;
   style?: React.CSSProperties;
 }) => {
   const ref = React.useRef<HTMLDivElement>(
@@ -96,7 +98,9 @@ const AdobeDiv = (props: {
         props.title ||
         "entity-existent-on-frameworks-of-state-regulations-as-defined-by-the-state-and-may-try-to-destroy-your-life-and-control-the-fbi-of-the-state-such-as-amazon-legal-idiots"
       }
-    ></div>
+    > 
+      {props.children}
+    </div>
   );
 };
 
@@ -109,7 +113,9 @@ const AdobeDiv = (props: {
 export default function ReactViewAdobe(props: ReactViewAdobeProps) {
   const [adobePDFProgrammeInstalled, setAdobePDFProgrammeInstalled] =
     React.useState(false);
-
+  const [scriptLoaderRef, setScriptLoaderRef] = React.useState<
+  React.RefObject<HTMLScriptElement> | null
+  >(null);
   const [componentNeedsRendering, setComponentNeedsRendering] =
     React.useState(false);
   const [scriptViewerLoaded, setScriptViewerLoaded] = React.useState(false);
@@ -120,57 +126,105 @@ export default function ReactViewAdobe(props: ReactViewAdobeProps) {
       const adobedcview = (window as any)["AdobeDC"]?.["View"];
       return adobedcview;
     }
+  
   }, [adobePDFProgrammeInstalled]);
 
   const useHooksForLoading =
     React[props?.useReactHookWhenLoadingAdobeAPI || "useEffect"];
 
   useHooksForLoading(() => {
-    if (scriptViewerLoaded === false) {
-      const scriptExistsALready = document.querySelector(
-        `script.react-adobe-embed-handholding-adobe-api-loading-idiocy[data-adobe-pdf-id="${props.id || DefaultConfigs.staticDivId}"]`,
-      );
-      if (scriptExistsALready) {
-        if (props.debug)
-          console.info(`\x1b[1mAdobe SDK Check\x1b[0m`, 'Reloading and Rerendering Adobe SDK');
 
-        // Lightbox mode renders from ui event triggered by user, so no need to render
-        if(props.previewConfig?.embedMode !== "LIGHT_BOX"){
-            setComponentNeedsRendering(true);
+    const ScriptAdobeLoader = (scriptprops:{
+        onLoad: () => void
+    }) => {
+ 
+      const [componentDidUpdate, setComponentDidUpdate] = React.useState(false);
+      const [componentDidMount, setComponentDidMount] = React.useState(false);
+
+      React.useEffect(() => {
+        if(scriptLoaderRef === null){
+          setScriptLoaderRef(React.createRef<HTMLScriptElement>());
+          
+      } 
+        if (componentDidMount === false) {
+
+            setComponentDidMount(true);
+          
         }
-        
-        scriptExistsALready.setAttribute(
-          "data-testid",
-          "react-adobe-embed-handholding-adobe-api-loading-idiocy-reused",
-        );
+        if(componentDidUpdate === false && componentDidMount === true){
+            
+           const scriptElem = document.createElement('script');
+            scriptElem.setAttribute('src', props.previewConfig?.viewSdkViewerScript || DefaultConfigs.staticDefaultConfig.viewSdkViewerScript);
+            scriptElem.setAttribute('data-adobe-pdf-id', props.id || DefaultConfigs.staticDivId);
+            scriptElem.setAttribute('data-testid', 'react-adobe-embed-handholding-adobe-api-loading-idiocy-initial');
+            scriptElem.setAttribute('id', 'react-adobe-embed-handholding-adobe-api-loading-idiocy-react-managed-script-loading-observer');
+            scriptElem.setAttribute('type', 'text/javascript');
+            scriptElem.setAttribute('async', 'true');
+
+
+            document.body.appendChild(scriptElem);
+            setComponentDidUpdate(true);
+            scriptprops?.onLoad && scriptprops.onLoad();
+            
+        }
+      }, [componentDidMount, componentDidUpdate, props.previewConfig?.viewSdkViewerScript, props.id, scriptLoaderRef, scriptprops]);
+
+
+      return (
+        <script
+        ref={scriptLoaderRef}
+          src={
+            props.previewConfig?.viewSdkViewerScript ||
+            DefaultConfigs.staticDefaultConfig.viewSdkViewerScript
+          }
+          className="react-adobe-embed-handholding-adobe-api-loading-idiocy-react-managed-script-loading-observer"
+          data-adobe-pdf-id={props.id || DefaultConfigs.staticDivId}
+
+        ></script>
+      )
+    }
+   
+    if (scriptViewerLoaded == false){
+      const scriptExistsALready = document.querySelector(   `script[data-adobe-pdf-id="${props.id || DefaultConfigs.staticDivId}"]`);
+      console.info('scriptExistsALready', scriptExistsALready,scriptLoaderRef );
+      if (scriptExistsALready  ) {
+    
+        if(props.previewConfig?.embedMode !== 'LIGHT_BOX'){
+          setComponentNeedsRendering(true);
+        }
+
+        scriptExistsALready.setAttribute('data-testid', 'react-adobe-embed-handholding-adobe-api-loading-idiocy-reused');
+
+
+        scriptLoaderRef?.current?.setAttribute('data-testid', 'react-adobe-embed-handholding-adobe-api-loading-idiocy-reused');
+
+        if (props.debug)
+          console.info(`\x1b[1mAdobe SDK Check\x1b[0m`, 'Adobe SDK Already Loaded so Setting Flag for Rerender Needed');
+
       } else {
         if (props.debug)
          console.info(`\x1b[1mAdobe SDK Check\x1b[0m`, 'Initial Adobe SDK Load');
-        const script = document.createElement("script");
-        script.setAttribute(
-          "data-testid",
-          "react-adobe-embed-handholding-adobe-api-loading-idiocy-initial",
-        );
+        const scriptElemWrap = document.querySelector(
+          `#${props.id || DefaultConfigs.staticDivId} #adobe-pdf-viewer-sdk-script-loader`,
+        )
+        console.info('scriptElemWrap', scriptElemWrap)
 
-        script.setAttribute(
-          "data-adobe-pdf-id",
-          props.id || DefaultConfigs.staticDivId,
-        );
-        script.setAttribute(
-          "class",
-          "react-adobe-embed-handholding-adobe-api-loading-idiocy",
-        );
-        script.src =
-          props.previewConfig?.viewSdkViewerScript ||
-          DefaultConfigs.staticDefaultConfig.viewSdkViewerScript;
-        script.async = true;
-        script.onload = () => {
-          setScriptViewerLoaded(true);
-        };
-        document.body.appendChild(script);
+
+        
+        if(scriptElemWrap) {
+
+          ReactDOM.createRoot(scriptElemWrap).render(<ScriptAdobeLoader 
+              onLoad={()=>{
+                  setScriptViewerLoaded(true);
+              }}
+            />)
+        }
+
+
+  
       }
     }
-  }, [props.id, scriptViewerLoaded, adobePDFProgrammeInstalled]);
+  }, [props.id, scriptViewerLoaded, adobePDFProgrammeInstalled , props.previewConfig?.viewSdkViewerScript, scriptLoaderRef]);
 
   const useHooksForCall =
     React[props?.useReactHookWhenCallingAdobeAPI || "useEffect"];
@@ -253,7 +307,11 @@ export default function ReactViewAdobe(props: ReactViewAdobeProps) {
     }
   }, [componentNeedsRendering, props]);
 
-  return <AdobeDiv {...props} />;
+  return <AdobeDiv {...props}>
+      <div id="adobe-pdf-viewer-sdk-script-loader">
+
+      </div>
+  </AdobeDiv>
 }
 
 

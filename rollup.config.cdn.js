@@ -42,7 +42,7 @@ const config = {
         babel({
             exclude: 'node_modules/**',
           
-            babelHelpers: 'external',
+            babelHelpers: "inline",
             presets: [
                 "@babel/preset-env",
                 "@babel/preset-react",
