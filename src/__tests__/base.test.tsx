@@ -12,25 +12,6 @@ import {
 describe('BasicRender', () => {
 
     test('should render the component', async () => {
-        const previewFile = jest.fn();
-        (global as any).AdobeDC = {
-            View:
-                class {
-                    constructor() {
-
-                    }
-
-
-                    previewFile = previewFile;
-                },
-
-
-
-
-
-        }
-
-
 
 
 

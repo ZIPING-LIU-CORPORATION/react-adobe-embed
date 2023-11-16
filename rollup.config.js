@@ -50,7 +50,7 @@ export default [
             localResolve(),
             babel({ exclude: 'node_modules/**, src/tests/**' ,
         
-            babelHelpers: "inline",
+            babelHelpers: 'external',
             presets: [
                 "@babel/preset-env",
                 "@babel/preset-react",

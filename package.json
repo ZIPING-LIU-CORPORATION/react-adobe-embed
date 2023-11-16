@@ -1,6 +1,6 @@
 {
   "name": "react-adobe-embed",
-  "version": "11.2.6",
+  "version": "11.2.7",
   "homepage": "https://ziping-liu-corporation.github.io/react-adobe-embed/#/home",
   "repository": {
     "type": "git",
@@ -47,10 +47,19 @@
     "Adobe Developer",
     "Adobe PDF Embed API"
   ],
-  "umd:main": "lib/index.js",
+  "umd:main": "lib/bundle.js",
   "cdn:main": "dist/react-adobe-embed.cdn.js",
-  "module": "lib/bundle.esm.js",
-  "main":  "lib/bundle.cjs.js",
+  "module": "lib/bundle.esm.mjs",
+  "main": "lib/bundle.cjs.js",
+ 
+  "exports": {
+    ".": {
+      "require": "./lib/bundle.cjs.js",
+      "import": "./lib/bundle.esm.mjs",
+      "default": "./dist/react-adobe-embed.cdn.js",
+      "umd":"./dist/react-adobe-embed.cdn.js"
+    }
+  },
   "types": "lib/bundle.esm.d.ts",
   "files": [
     "lib",

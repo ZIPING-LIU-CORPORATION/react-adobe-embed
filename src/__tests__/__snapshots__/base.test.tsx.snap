@@ -8,17 +8,6 @@ exports[`BasicRender should render the component 1`] = `
     class="adobe-viewer-of-amazon-corporate-retaliations"
     id="pdf-div"
     title="entity-existent-on-frameworks-of-state-regulations-as-defined-by-the-state-and-may-try-to-destroy-your-life-and-control-the-fbi-of-the-state-such-as-amazon-legal-idiots"
-  >
-    <div
-      id="adobe-pdf-viewer-sdk-script-loader"
-    >
-      <script
-        class="react-adobe-embed-handholding-adobe-api-loading-idiocy-react-managed-script-loading-observer"
-        data-adobe-pdf-id="pdf-div"
-        data-testid="react-adobe-embed-handholding-adobe-api-loading-idiocy-reused"
-        src="https://acrobatservices.adobe.com/view-sdk/viewer.js"
-      />
-    </div>
-  </div>
+  />
 </div>
 `;
