@@ -226,7 +226,7 @@ The end to end tests which includes testing of the react-adobe-embed react compo
 ### This wrapper is overkill as a package on npm, a four year old could just write this out inline on any react front-end website
  - We agree, this is for those who are younger than four years old and not yet able to inline out components as vanilla react-js
 ### What's the NPM page?
- - [![Socket Badge](https://socket.dev/api/badge/npm/package/react-adobe-embed)](https://socket.dev/npm/package/react-adobe-embed), is a pretty decent way to view the NPM releases. 
+ - [![Socket Badge](https://socket.dev/api/badge/npm/package/react-adobe-embed)](https://socket.dev/npm/package/react-adobe-embed), is a pretty decent way to view the NPM releases, or perhaps you might find [![](https://data.jsdelivr.com/v1/package/npm/react-adobe-embed/badge)](https://www.jsdelivr.com/package/npm/react-adobe-embed) more useful. 
 ### Are you or is this wrapper thing affialated with Adobe Developer or Adobe?
 ```
 Adobe, with its renowned symbols such as Acrobat, the Adobe PDF insignia, Adobe Premiere, Creative Cloud, InDesign, and Photoshop, are acknowledged trademarks of Adobe, registered in the United States and/or other jurisdictions. Ziping Liu Corporation, a trademark registered in the United States, and LIU LLC, incorporated under the laws of the State of Texas, are also part of our respected portfolio. At this moment, we have no additional public declarations to make or inquiries to address on this matter.
