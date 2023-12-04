@@ -152,11 +152,86 @@ const App = () => {
 
 
 ## Installation via CDN
-You can also load this as a CDN script. By default the latest version can be accessed publically via. For now it is only accessible in this manner as a UMD bundle, with access to the default exported React Component.
+You can also load this as a CDN script via [jsdelivr using this link](https://cdn.jsdelivr.net/npm/react-adobe-embed@11.2/dist/react-adobe-embed.cdn.js). By default the latest version can be accessed publically through the CD workflow as well, at [ziping-liu-corporation.github.io/react-adobe-embed/dist/react-adobe-embed.cdn.js](https://ziping-liu-corporation.github.io/react-adobe-embed/dist/react-adobe-embed.cdn.js). For now this CDN bundle is only accessible in the form of a UMD bundle, through a global named `ReactAdobeEmbed` that provides access to the default export from react-adobe-embed, or also known by its name as a named export `ReactViewAdobe`. Below is a sample html file that renders a PDF via react-adobe-embed loaded as a CDN.
 ```html
-<script src="https://cdn.jsdelivr.net/npm/react-adobe-embed@11.0/dist/react-adobe-embed.cdn.js">
+<head>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+</head>
+
+<body>
+  <h1>My PDF Viewer</h1>
+  <div id="root"> </div>
+  <script src="https://cdn.jsdelivr.net/npm/react-adobe-embed@11.2/dist/react-adobe-embed.cdn.js"> </script>
+  <script>
+    /**
+     * @type {React} ReactCDN
+     * In order to use the react-adobe-embed 
+     * component library,  you also need 
+     * to have loaded React and ReactDOM
+     * via CDN as well. This is usually done 
+     * via a script tag that would be placed before
+     * the script tag for react-adobe-embed's cdn.
+     * Although the script tags run
+     * asynchronously, they are still ran 
+     * in the order in which they appear
+     * within the html file. Ideally, you would place
+     * the script tag for React and ReactDOM CDN's 
+     * in the "head" portion of the html file, 
+     * while the script tag for react-adobe-embed CDN
+     * is placed at the end of the "body" portion 
+     * of the html file.
+     * This ensures that the React and 
+     * ReactDOM CDN's are loaded before 
+     * react-adobe-embed. CDN links for React 
+     * and ReactDOM can be found via React's doc site:
+     * https://legacy.reactjs.org/docs/cdn-links.html
+     */
+    const ReactCDN = window.React;
+
+    /**
+     * @type { import('react-dom/client') }
+     */
+    const ReactDOMCDN = window.ReactDOM;
+
+    /**
+     * @type {import('react-adobe-embed').default}
+     * ReactViewAdobe custom component library 
+     * loaded via CDN from the above script tag
+     * via jsdelivr.net
+     */
+    const ReactViewAdobeCDN = window.ReactViewAdobe;
+
+    /**
+     * @type { import('react-adobe-embed').ReactViewAdobeProps }
+     */
+    const myReactViewAdobeProps = {
+      clientId: "324caa2a91b84f688935436cd2d25217",
+      url: "https://raw.githubusercontent.com/" +
+        "ZipingL/dna/main/23andMe_Ancestry_Book.pdf",
+      style: {
+        height: "600px",
+        width: "100%"
+      },
+      fileMeta: {
+        fileName: "23andMe Ancestry Book"
+      }
+    };
+
+    const CreatedReactComponent = ReactCDN.createElement(
+      ReactViewAdobeCDN,
+      myReactViewAdobeProps,
+      null
+    )
+    const rootElement = document.getElementById("root");
+    if (rootElement) {
+      const ReactRootFromElement = ReactDOMCDN.createRoot(rootElement);
+      ReactRootFromElement.render(CreatedReactComponent);
+    }
+  </script>
+</body>
 ```
- - An example of loading `react-adobe-embed` and utilizing it as a cdn is currently part of the testing endpoint.
+ - An example of loading `react-adobe-embed` and utilizing it as a cdn is currently part of the testing endpoint used as part of the continuous integration workflow that is active for this package.
     - The **testing endpoint code** can be viewed at [canary/routes/CDN.tsx](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/blob/slave/canary/routes/CDN.tsx)
     - The deployed **testing endpoint code** can be viewed at [ziping-liu-corporation.github.io/#/cdn](https://ziping-liu-corporation.github.io/react-adobe-embed/#/cdn)
 
