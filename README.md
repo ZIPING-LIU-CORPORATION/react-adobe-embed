@@ -19,22 +19,23 @@ Ziping Liu really enjoys using Adobe Acrobat DC Pro ever since having the chance
     <td>
      <a 
       title="Unit Test that is a quick check of code changes via mocking out the very large external react embed api spaghetti code"
-      href="https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/blob/slave/README.md#integration-testing">Integration/Unit Test on Code Push</a>
+      href="#integration-testing">Integration/Unit Test on Code Push</a>
     </td>
     <td>
-      <a href="http://www.wakatime.com/@aws">Development Coding Effort</a>
+      <a href="https://www.wakatime.com/@aws">Development Coding Effort</a>
     </td>
    </tr>
  </thead>
   <tr>
    <td>
-  <a href="https://cloud.cypress.io/projects/izghdg/runs">  <img title="Canary heartbeat status check for deployed latest component and adobe pdf api availability" src="https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed-cd-canary/actions/workflows/cypress-canary.yaml/badge.svg"/> </a>
+  <a href="https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed-cd-canary/actions/workflows/cypress-canary.yaml">  <img title="Canary heartbeat status check for deployed latest component and adobe pdf api availability" src="https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed-cd-canary/actions/workflows/cypress-canary.yaml/badge.svg"/> </a>
    </td>
    <td>
-     <img src="https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/actions/workflows/canaryapp.yml/badge.svg">
+   <a href="https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/actions/workflows/canaryapp.yml">
+     <img src="https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/actions/workflows/canaryapp.yml/badge.svg"> </a>
    </td>
     <td>
-     <img src="https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/actions/workflows/main.yml/badge.svg"/>
+     <a href="https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/actions/workflows/main.yml"><img src="https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/actions/workflows/main.yml/badge.svg"/></a>
     </td>
         <td>
      <a href="https://wakatime.com/badge/user/e012350f-8b4a-4ec4-ae89-56e558bfec5d/project/91c0617a-04ed-419d-9221-d5086d1bfbf6"> <img src="https://wakatime.com/badge/user/e012350f-8b4a-4ec4-ae89-56e558bfec5d/project/91c0617a-04ed-419d-9221-d5086d1bfbf6.svg"/> </a>
@@ -136,21 +137,6 @@ const App = () => {
  - [Lightbox example code without using React States](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/blob/slave/canary/routes/LightBox.tsx), and through calling adobe embed api directly.
    - View a deployed demo [here](https://ziping-liu-corporation.github.io/react-adobe-embed/#/light).
 
-<blockquote> 
-   
-*Note:  these other steps below are no longer required but remain to provide insight on how react-adobe-embed handles adobe embed api*
-#### ~~2~~. ~~As the current implementation of creating [LIGHT_BOX](https://acrobatservices.adobe.com/view-sdk-demo/index.html#/view/LIGHT_BOX/Bodea%20Brochure.pdf) embed pdf's is quite complicated~~, you can view a live code example of how to use LIGHT_BOX mode with react-adobe-embed [here](https://codesandbox.io/p/sandbox/react-adobe-embed-pdf-galleria-showcase-yq5zz6?file=%2Fsrc%2FSections%2FMain.tsx%3A65%2C79)
-
-#### ~~3. Note on adobe sdk `<script>` tag:~~
- - You don't need to worry about handling outside script tags. The react wrapper handles any script downloading. Simple call the React Component as shown above.
- - ~~In the past it was this: `<script src='https://documentcloud.adobe.com/view-sdk/main.js'></script>` as instructed by their office docs.~~
-   - ~~If you use this URL right now however: it will give you an error saying to update your PDF Viewer. I saw the error on Nov 28th myself and asked myself... This is an embed PDF viewer, i shouldn't need to update anything.~~
- - ~~Anyways, the URL has been updated above in step 1.~~
-  - ~~Since I guess Adobe just likes to change the URL to whatever they want, you can find the correct URL to use to include their ADOBE MAGIC STUFF [here](https://developer.adobe.com/document-services/docs/overview/pdf-embed-api/).~~
-  - I don't know why but the folks at Adobe decided to change the script URL, and then also change the global variable name used to store the Adobe api methods, this has ulimately caused this npm package as actually a broken useless wrapper... so why didn't anyone add to the [discussion board](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/discussions/1) to let me know? Seriously? Just literally next time say, hey idiot your code is broken. I won't be offended. It's just code dude.
-</blockquote>
-
-
 ## Installation via CDN
 You can also load this as a CDN script via [jsdelivr using this link](https://cdn.jsdelivr.net/npm/react-adobe-embed@11.2/dist/react-adobe-embed.cdn.js). By default the latest version can be accessed publically through the CD workflow as well, at [ziping-liu-corporation.github.io/react-adobe-embed/dist/react-adobe-embed.cdn.js](https://ziping-liu-corporation.github.io/react-adobe-embed/dist/react-adobe-embed.cdn.js). For now this CDN bundle is only accessible in the form of a UMD bundle, through a global named `ReactAdobeEmbed` that provides access to the default export from react-adobe-embed, or also known by its name as a named export `ReactViewAdobe`. Below is a sample html file that renders a PDF via react-adobe-embed loaded as a CDN.
 ```html
@@ -235,7 +221,19 @@ You can also load this as a CDN script via [jsdelivr using this link](https://cd
     - The **testing endpoint code** can be viewed at [canary/routes/CDN.tsx](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/blob/slave/canary/routes/CDN.tsx)
     - The deployed **testing endpoint code** can be viewed at [ziping-liu-corporation.github.io/#/cdn](https://ziping-liu-corporation.github.io/react-adobe-embed/#/cdn)
 
+<blockquote> 
+   
+*Note:  these other steps below are no longer required but remain to provide insight on how react-adobe-embed handles adobe embed api*
+#### ~~2~~. ~~As the current implementation of creating [LIGHT_BOX](https://acrobatservices.adobe.com/view-sdk-demo/index.html#/view/LIGHT_BOX/Bodea%20Brochure.pdf) embed pdf's is quite complicated~~, you can view a live code example of how to use LIGHT_BOX mode with react-adobe-embed [here](https://codesandbox.io/p/sandbox/react-adobe-embed-pdf-galleria-showcase-yq5zz6?file=%2Fsrc%2FSections%2FMain.tsx%3A65%2C79)
 
+#### ~~3. Note on adobe sdk `<script>` tag:~~
+ - You don't need to worry about handling outside script tags. The react wrapper handles any script downloading. Simple call the React Component as shown above.
+ - ~~In the past it was this: `<script src='https://documentcloud.adobe.com/view-sdk/main.js'></script>` as instructed by their office docs.~~
+   - ~~If you use this URL right now however: it will give you an error saying to update your PDF Viewer. I saw the error on Nov 28th myself and asked myself... This is an embed PDF viewer, i shouldn't need to update anything.~~
+ - ~~Anyways, the URL has been updated above in step 1.~~
+  - ~~Since I guess Adobe just likes to change the URL to whatever they want, you can find the correct URL to use to include their ADOBE MAGIC STUFF [here](https://developer.adobe.com/document-services/docs/overview/pdf-embed-api/).~~
+  - I don't know why but the folks at Adobe decided to change the script URL, and then also change the global variable name used to store the Adobe api methods, this has ulimately caused this npm package as actually a broken useless wrapper... so why didn't anyone add to the [discussion board](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/discussions/1) to let me know? Seriously? Just literally next time say, hey idiot your code is broken. I won't be offended. It's just code dude.
+</blockquote>
 
 ## Troubleshooting common errors
  - `Cannot read properties of undefined (reading 'View')`
