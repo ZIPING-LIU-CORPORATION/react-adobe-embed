@@ -55,8 +55,8 @@ export default function Header() {
             <img
               className="navbar-logo-dark"
               style={{ content: 'unset', height: "50px", backgroundImage: 'none' }}
-              src="https://synthethics.awscyber.ai/static/media/RADAR.c104f9526930a39724dc.png"
-              alt="Definity - Logo"
+              src="radar_big.webp"
+              alt="React Adobe Embed Canary Testing Endpoint"
             />
           </a>
         </div>
