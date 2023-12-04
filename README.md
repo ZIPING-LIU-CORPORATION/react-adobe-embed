@@ -138,7 +138,15 @@ const App = () => {
    - View a deployed demo [here](https://ziping-liu-corporation.github.io/react-adobe-embed/#/light).
 
 ## Installation via CDN
-You can also load this as a CDN script via [jsdelivr using this link](https://cdn.jsdelivr.net/npm/react-adobe-embed@11.2/dist/react-adobe-embed.cdn.js). By default the latest version can be accessed publically through the CD workflow as well, at [ziping-liu-corporation.github.io/react-adobe-embed/dist/react-adobe-embed.cdn.js](https://ziping-liu-corporation.github.io/react-adobe-embed/dist/react-adobe-embed.cdn.js). For now this CDN bundle is only accessible in the form of a UMD bundle, through a global named `ReactAdobeEmbed` that provides access to the default export from react-adobe-embed, or also known by its name as a named export `ReactViewAdobe`. Below is a sample html file that renders a PDF via react-adobe-embed loaded as a CDN.
+You can also load this as a CDN script via [jsdelivr using this link](https://cdn.jsdelivr.net/npm/react-adobe-embed@11.2/dist/react-adobe-embed.cdn.js). By default the latest version can be accessed publically through the CD workflow as well, at [ziping-liu-corporation.github.io/react-adobe-embed/dist/react-adobe-embed.cdn.js](https://ziping-liu-corporation.github.io/react-adobe-embed/dist/react-adobe-embed.cdn.js). 
+<blockquote>
+
+  *For now this CDN bundle is only accessible in the form of a UMD bundle, through a global named `ReactViewAdobe` (and accessible via `window.ReactViewAdobe`) that provides access to the default export from `react-adobe-embed` package, or also known by its name as a named export [`ReactViewAdobe`](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/blob/slave/src/index.tsx#L109).*
+
+</blockquote>
+
+
+### Example using `html` which renders a PDF via react-adobe-embed loaded as a **CDN**
 ```html
 <head>
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
@@ -217,7 +225,8 @@ You can also load this as a CDN script via [jsdelivr using this link](https://cd
   </script>
 </body>
 ```
- - An example of loading `react-adobe-embed` and utilizing it as a cdn is currently part of the testing endpoint used as part of the continuous integration workflow that is active for this package.
+ 
+ - Another example of loading `react-adobe-embed` and utilizing it as a cdn is currently part of the testing endpoint used as part of the continuous integration workflow that is active for this package.
     - The **testing endpoint code** can be viewed at [canary/routes/CDN.tsx](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/blob/slave/canary/routes/CDN.tsx)
     - The deployed **testing endpoint code** can be viewed at [ziping-liu-corporation.github.io/#/cdn](https://ziping-liu-corporation.github.io/react-adobe-embed/#/cdn)
 
