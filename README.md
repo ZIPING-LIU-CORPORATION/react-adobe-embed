@@ -138,7 +138,7 @@ const App = () => {
    - View a deployed demo [here](https://ziping-liu-corporation.github.io/react-adobe-embed/#/light).
 
 ## Installation via CDN
-You can also load this as a CDN script via [jsdelivr using this link](https://cdn.jsdelivr.net/npm/react-adobe-embed@11.2/dist/react-adobe-embed.cdn.js). By default the latest version can be accessed publically through the CD workflow as well, at [ziping-liu-corporation.github.io/react-adobe-embed/dist/react-adobe-embed.cdn.js](https://ziping-liu-corporation.github.io/react-adobe-embed/dist/react-adobe-embed.cdn.js). 
+You can also load this as a CDN script via [jsdelivr through their version aliased delivery here](https://cdn.jsdelivr.net/npm/react-adobe-embed@11/dist/react-adobe-embed.cdn.min.js). Also, the latest version can be accessed publically through the CD workflow as well, at [ziping-liu-corporation.github.io/react-adobe-embed/dist/react-adobe-embed.cdn.js](https://ziping-liu-corporation.github.io/react-adobe-embed/dist/react-adobe-embed.cdn.js). 
 <blockquote>
 
   *For now this CDN bundle is only accessible in the form of a UMD bundle, through a global named `ReactViewAdobe` (and accessible via `window.ReactViewAdobe`) that provides access to the default export from `react-adobe-embed` package, or also known by its name as a named export [`ReactViewAdobe`](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/blob/slave/src/index.tsx#L109).*
