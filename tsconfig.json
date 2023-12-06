@@ -118,7 +118,7 @@
   },
   "include": [
    "./src",
-   "./canary"
+   
   ],
   
   "exclude": [

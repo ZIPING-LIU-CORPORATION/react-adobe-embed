@@ -68,17 +68,22 @@ export default [
             
             resolve(),
             commonjs(),
-            typescript({ tsconfig: "./tsconfig.json" ,
-            
-
+            typescript({ tsconfig: "./tsconfig.json",
             "sourceMap": true,
-            exclude: [
-              "canary",
-              "**/tests/**/*",
-              "**/*.test.tsx",
-              "**/*.test.ts",
-              "**/__tests__",
-            ]
+            
+            "tsconfigOverride": {
+              exclude: [
+                "canary",
+                "**/tests/**/*",
+                "**/*.test.tsx",
+                "**/*.test.ts",
+                "**/__tests__",
+              ],
+              "outDir": "./lib",
+              "declaration": true,
+              "baseUrl": ".",
+            },
+       
           }),
     
             terser( {

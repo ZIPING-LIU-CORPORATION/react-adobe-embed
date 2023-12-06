@@ -42,6 +42,7 @@ const config = {
                     "**/__tests__",
                     "build",
                     "dist",
+                    "lib"
                 ],
                 
             },
