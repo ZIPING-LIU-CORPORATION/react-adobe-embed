@@ -47,15 +47,14 @@
     "Adobe Developer",
     "Adobe PDF Embed API"
   ],
-  "module": ".lib/bundle.esm.mjs",
-  "main": "lib/bundle.cjs.js",
-  "umd:main": "lib/bundle.js",
+  "module": "./lib/bundle.esm.mjs",
+  "main": "./lib/bundle.cjs.js",
+  "umd:main": "./lib/bundle.js",
   "jsdelivr": "./dist/react-adobe-embed.cdn.js",
   "exports": {
     ".": {
       "require": "./lib/bundle.cjs.js",
       "import": "./lib/bundle.esm.mjs",
-      "default": "./dist/react-adobe-embed.cdn.js",
       "umd": "./lib/bundle.js"
     }
   },
