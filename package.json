@@ -1,6 +1,6 @@
 {
   "name": "react-adobe-embed",
-  "version": "11.2.13",
+  "version": "11.3.0",
   "homepage": "https://ziping-liu-corporation.github.io/react-adobe-embed/#/home",
   "repository": {
     "type": "git",
@@ -50,15 +50,17 @@
   "module": "./lib/bundle.esm.mjs",
   "main": "./lib/bundle.cjs.js",
   "umd:main": "./lib/bundle.js",
+  "browser": "./dist/react-adobe-embed.cdn.js",
   "jsdelivr": "./dist/react-adobe-embed.cdn.js",
   "exports": {
     ".": {
       "require": "./lib/bundle.cjs.js",
       "import": "./lib/bundle.esm.mjs",
-      "umd": "./lib/bundle.js"
+      "umd": "./lib/bundle.js",
+      "default": "./lib/bundle.esm.mjs"
     }
   },
-  "types": "lib/bundle.esm.d.ts",
+  "types": "./lib/bundle.esm.d.ts",
   "files": [
     "LICENSE",
     "lib",

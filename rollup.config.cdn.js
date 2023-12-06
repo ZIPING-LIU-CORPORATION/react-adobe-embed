@@ -34,7 +34,10 @@ const config = {
         
         typescript({ useTsconfigDeclarationDir: true ,
             exclude: [
-                "**/__tests__"
+                "**/__tests__",
+                "canary",
+                "lib",
+                "dist",
             ],
             sourceMap: true,
         }),

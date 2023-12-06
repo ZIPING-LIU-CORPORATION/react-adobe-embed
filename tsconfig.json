@@ -127,6 +127,7 @@
     "types",
     "node_modules",
     "dist",
-    "build"
+    "build",
+    "canary",
   ]
 }

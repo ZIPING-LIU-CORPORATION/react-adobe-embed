@@ -27,21 +27,23 @@ const config = {
         typescript({
             useTsconfigDeclarationDir: false,
             sourceMap: false,
+            tsconfig: "./tsconfig.build.json",
             tsconfigOverride: {
                 compilerOptions: {
                     outDir: "build"
                 },
 
+                declaration: false,
                 include: [
-                    "canary/App.tsx"
+                    "./canary/App.tsx"
                 ],
 
                 exclude: [
                     "**/__tests__",
                     "build",
                     "dist",
-
-                ]
+                ],
+                
             },
         }),
         peerDepsExternal(),
