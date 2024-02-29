@@ -105,7 +105,7 @@ export type PreviewFileConfig = {
     /** Leave blank for default as FULL WINDOW MODE
      * https://documentservices.adobe.com/view-sdk-demo/index.html#/view/FULL_WINDOW/Bodea%20Brochure.pdf
      */
-    embedMode: "LIGHT_BOX" | "SIZED_CONTAINER" | "IN_LINE" | string;
+    embedMode: "LIGHT_BOX" | "SIZED_CONTAINER" | "IN_LINE" | "FULL_WINDOW";
     enableSearchAPIs: boolean;
     showDisabledSaveButton: boolean;
     /**
