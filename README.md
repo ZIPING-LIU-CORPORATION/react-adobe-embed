@@ -24,6 +24,9 @@ Ziping Liu really enjoys using Adobe Acrobat DC Pro ever since having the chance
     <td>
       <a href="https://www.wakatime.com/@aws">Development Coding Effort</a>
     </td>
+      <td>
+         Package Ratings
+      </td>
    </tr>
  </thead>
   <tr>
@@ -39,8 +42,13 @@ Ziping Liu really enjoys using Adobe Acrobat DC Pro ever since having the chance
     </td>
         <td>
      <a href="https://wakatime.com/badge/user/e012350f-8b4a-4ec4-ae89-56e558bfec5d/project/91c0617a-04ed-419d-9221-d5086d1bfbf6"> <img src="https://wakatime.com/badge/user/e012350f-8b4a-4ec4-ae89-56e558bfec5d/project/91c0617a-04ed-419d-9221-d5086d1bfbf6.svg"/> </a>
-    </td>
-  </tr></table>
+    </td> 
+    <td> <a href="https://packagequality.com/#?package=react-adobe-embed"><img src="https://packagequality.com/badge/react-adobe-embed.png"/></a>  </td>
+     
+  </tr>
+ 
+  
+  </table>
 
 Through live heartbeat monitoring the react component as well as the external  api service used, as well as via standard integartion testing, that provides full CD/CI coverage of [react-adobe-embed](https://github.com/ziping-liu-corporation/react-adobe-embed). *Further details regarding CD to be provided.*
 
