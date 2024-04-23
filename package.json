@@ -76,7 +76,7 @@
   "scripts": {
     "clean": "rm -rf ./build && rm -rf ./lib && rm -rf ./dist && rm -rf ./types",
     "test": "jest",
-    "build:canary": "npm run build:roll:canary && rsync -rhv --progress ./public/* ./build && cp ./README.md ./build && npm run build:roll:cdn && rsync -rhv --progress ./dist ./build/ && cp ./LICENSE.txt ./build && npm run build:public",
+    "build:canary": "npm run build:roll:canary && rsync -rhv --progress ./public/* ./build && cp ./README.md ./build && npm run build:roll:cdn && rsync -rhv --progress ./dist ./build/ && cp ./LICENSE.md ./build && npm run build:public",
     "build:public": "node ./scripts/public.js",
     "build:roll:canary": "rimraf build &&  rollup --bundleConfigAsCjs -c rollup.config.canary.js",
     "predeploy": "npm run build:roll:canary",
@@ -123,5 +123,9 @@
     "rollup-plugin-typescript2": "^0.34.1",
     "ts-jest": "^29.1.1",
     "typescript": "^4.9.5"
+  
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.9.5"
   }
 }
