@@ -1,6 +1,6 @@
 {
   "name": "react-adobe-embed",
-  "version": "12.0.0",
+  "version": "12.0.1",
   "homepage": "https://ziping-liu-corporation.github.io/react-adobe-embed/#/home",
   "repository": {
     "type": "git",
@@ -76,7 +76,7 @@
   "scripts": {
     "clean": "rm -rf ./build && rm -rf ./lib && rm -rf ./dist && rm -rf ./types",
     "test": "jest",
-    "build:canary": "npm run build:roll:canary && rsync -rhv --progress ./public/* ./build && cp ./README.md ./build && npm run build:roll:cdn && rsync -rhv --progress ./dist ./build/ && cp ./LICENSE ./build && npm run build:public",
+    "build:canary": "npm run build:roll:canary && rsync -rhv --progress ./public/* ./build && cp ./README.md ./build && npm run build:roll:cdn && rsync -rhv --progress ./dist ./build/ && cp ./LICENSE.txt ./build && npm run build:public",
     "build:public": "node ./scripts/public.js",
     "build:roll:canary": "rimraf build &&  rollup --bundleConfigAsCjs -c rollup.config.canary.js",
     "predeploy": "npm run build:roll:canary",
