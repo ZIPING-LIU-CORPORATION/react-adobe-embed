@@ -1,8 +1,14 @@
-# [React based ADOBE PDF EMBED API Component Facade](https://ziping-liu-corporation.github.io/react-adobe-embed/) is a Great Tool for Displaying PDF's with rich features,
+## What is this for?
+`react-Adobe-embed` is a powerful and versatile React component that seamlessly integrates Adobe's document viewing and editing capabilities into your web applications. With this component, you can easily embed Adobe PDF documents, allowing users to view, interact with, and even sign them directly within your React application. The `react-adobe-embed` component is essentially a React Custom Component that wraps around Adobe's Embed API for PDFs.
+### Key Features
+- Removes need to interface with Adobe's Embed API and provides an easier way through React.js. 
+- Seamless integration of all Adobe's document viewing and editing capabilities with embed PDF documents
+- Comprehensive CD/CI coverage with live heartbeat monitoring and integration testing of this custom React component to ensure that all capabilities are functional in real-time.
+### Reliable and Robust
+React-Adobe-Embed is built with reliability and robustness in mind. The component undergoes rigorous testing and monitoring to ensure its stability and performance. Through live heartbeat monitoring, both the React component and the external API service it relies on are continuously checked to detect any issues or anomalies.
+Additionally, the component is fully covered by standard integration testing, providing comprehensive CD/CI coverage. This ensures that any changes or updates to the codebase are thoroughly tested before being deployed, minimizing the risk of introducing bugs or regressions.
 
-Ziping Liu really enjoys using Adobe Acrobat DC Pro ever since having the chance to use it for the first time when I interned at a law firm. In case you want to use it with React with a bit more Typescript This Wrapper allows Adobe PDF Embed to work great with React 18 and Typescript
-
-## Current Build and Working Status 
+### Current Build and Working Status via CD/CI Coverages
 <table>
 <thead>
    <tr>
@@ -52,12 +58,24 @@ Ziping Liu really enjoys using Adobe Acrobat DC Pro ever since having the chance
 
 Through live heartbeat monitoring the react component as well as the external  api service used, as well as via standard integartion testing, that provides full CD/CI coverage of [react-adobe-embed](https://github.com/ziping-liu-corporation/react-adobe-embed). *Further details regarding CD to be provided.*
 
-## Installation via package managers
- - `npm install react-adobe-embed`
- - `yarn add react-adobe-embed`
+
+## Getting Started
+Getting started with React-Adobe-Embed is quick and easy. The component can be installed via popular package managers such as npm and yarn:
+```bash
+npm install react-adobe-embed
+```
+or
+```bash
+yarn add react-adobe-embed
+```
+Once installed, you can import the component into your React application and start using it right away. The component provides a simple and intuitive API for embedding Adobe documents and customizing the viewing experience.
+
+### Get a ClientId
+You will need a clientId "key" from Adobe to use the Embed API and therefore this `react-adobe-embed` as well. You can get one for free (and create up to 20 keys) by visiting the [Adobe Embed API Creation Page](https://acrobatservices.adobe.com/dc-integration-creation-app-cdn/main.html?api=pdf-embed-api). Keys are tied to a specific `domain` that you specificy when creating a key, which means that the key only works for that `domain`, e.g. `app.exampledomain.com`, or `example.com`, or `localhost`. For you convenience, you may use the clientId show below in the example usages, but take note that it only works on `http://localhost:80`.
 
 
-### Basic Usage Examples
+
+## Basic Usage Examples
 
 ```tsx
 import React from 'react';
@@ -73,7 +91,7 @@ return(
      * on http://localhost:80.
      * In order to generate your own clientId that is set with a configured
      * application domain,(e.g. yourappwithadobeembedstuff.com), 
-     * visit: https://acrobatservices.adobe.com/dc-integration-creation-app-cdn/main
+     * visit: https://acrobatservices.adobe.com/dc-integration-creation-app-cdn/main.html?api=pdf-embed-api
      */
     clientId="324caa2a91b84f688935436cd2d25217"
     title="A Story of Wages"
@@ -164,7 +182,7 @@ You can also load this as a CDN script via [jsdelivr through their version alias
 <body>
   <h1>My PDF Viewer</h1>
   <div id="root"> </div>
-  <script src="https://cdn.jsdelivr.net/npm/react-adobe-embed@11.2/dist/react-adobe-embed.cdn.js"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/react-adobe-embed@12/dist/react-adobe-embed.cdn.js"> </script>
   <script>
     /**
      * @type {React} ReactCDN
@@ -298,6 +316,8 @@ The end to end tests which includes testing of the react-adobe-embed react compo
 
 
 ## FAQS
+### Uh so there's no types provided when importing this library in my typescript project
+ - This has been fixed with the latest major version update to version 12.0.0. The package.json had been updated to correctly point to where type definitions exist.
 
 ### Is there more explanation available? The readme is pretty barebones and barely makes sense to me..
   - No doubt, the package and component is now pretty complicated in terms of the amount of code and directories and features it provides, which can definitely make it difficult to understand the basic usage or even the purpose of the package. The readme is intended to be concise such that it allows for a quick understanding of the most important aspects of the package. As of now a more detailed wiki page is being worked and will be provided as an additional resource that provides detailed explainations and guidance on the code and package.

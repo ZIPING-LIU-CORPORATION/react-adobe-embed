@@ -129,5 +129,6 @@
     "dist",
     "build",
     "canary",
+    "scripts"
   ]
 }

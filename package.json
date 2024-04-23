@@ -1,6 +1,6 @@
 {
   "name": "react-adobe-embed",
-  "version": "11.3.3",
+  "version": "12.0.0",
   "homepage": "https://ziping-liu-corporation.github.io/react-adobe-embed/#/home",
   "repository": {
     "type": "git",
@@ -57,6 +57,8 @@
       "require": "./lib/bundle.cjs.js",
       "import": "./lib/bundle.esm.mjs",
       "umd": "./lib/bundle.js",
+      "types": "./lib/bundle.esm.d.ts",
+      "node": "./lib/bundle.cjs.js",
       "default": "./lib/bundle.esm.mjs"
     }
   },
@@ -85,8 +87,8 @@
     "build:roll": "rimraf lib && tsc -p tsconfig.build.json && rollup --bundleConfigAsCjs -c rollup.config.js",
     "build:roll:cdn": "rimraf dist && tsc -p tsconfig.build.json && rollup --bundleConfigAsCjs -c rollup.config.cdn.js"
   },
-  "author": "Ziping Liu <astrocat@githubliu.com>",
-  "license": "LicenseRef-LICENSE",
+  "author": "Ziping Liu <ziping@linkedinliu.com>",
+  "license":  "SEE LICENSE IN LICENSE.txt",
   "devDependencies": {
     "@babel/core": "^7.23.2",
     "@babel/plugin-transform-runtime": "^7.23.2",
@@ -108,7 +110,6 @@
     "@typescript-eslint/parser": "^6.9.0",
     "eslint": "^8.52.0",
     "gh-pages": "^6.0.0",
-    "html-minifier": "^4.0.0",
     "husky": "^8.0.3",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
@@ -121,5 +122,8 @@
     "rollup-plugin-typescript2": "^0.34.1",
     "ts-jest": "^29.1.1",
     "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "html-minifier-terser": "^7.2.0"
   }
 }

@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 const path = require('path');
-const minify = require('html-minifier').minify;
+const {minify} = require('html-minifier-terser');
 
 const modifiedDate = (new Date()).toISOString().replace(/\.\d\d\dZ/, '+00:00');
 const publicIndexhtml = fs.readFileSync(path.resolve(__dirname, '../public/index.html'), 'utf8');
@@ -159,7 +159,7 @@ const headMatchedModded = headMatched[1] + ` <meta property="og:image" content="
 
 `;
 const htmlNew = publicIndexhtml.replace( headMatched[1], headMatchedModded);
-const htmlMiny = minify(htmlNew, {
+minify(htmlNew, {
     collapseWhitespace: true,
     minifyCSS: true,
     minifyJS: true,
@@ -169,10 +169,11 @@ const htmlMiny = minify(htmlNew, {
     removeEmptyAttributes: true,
     removeRedundantAttributes: true,
     useShortDoctype: true,
-});
-if(process && process?.env){
-  process.env.DATEMODIFIED_CODE_DEPLOYED = modifiedDate;
-} 
-const env_filestring = `DATEMODIFIED_CODE_DEPLOYED=${modifiedDate}`;
-fs.writeFileSync(path.resolve(__dirname, '../.env'), env_filestring, 'utf8');
-fs.writeFileSync(path.resolve(__dirname, '../build/index.html'), htmlMiny, 'utf8');
+}).then((htmlMiny) => {
+  if(process && process?.env){
+    process.env.DATEMODIFIED_CODE_DEPLOYED = modifiedDate;
+  } 
+  const env_filestring = `DATEMODIFIED_CODE_DEPLOYED=${modifiedDate}`;
+  fs.writeFileSync(path.resolve(__dirname, '../.env'), env_filestring, 'utf8');
+  fs.writeFileSync(path.resolve(__dirname, '../build/index.html'), htmlMiny, 'utf8');
+})
