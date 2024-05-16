@@ -1,6 +1,6 @@
 {
   "name": "react-adobe-embed",
-  "version": "12.0.1",
+  "version": "12.0.2",
   "homepage": "https://ziping-liu-corporation.github.io/react-adobe-embed/#/home",
   "repository": {
     "type": "git",
@@ -124,8 +124,5 @@
     "ts-jest": "^29.1.1",
     "typescript": "^4.9.5"
   
-  },
-  "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.9.5"
   }
 }
