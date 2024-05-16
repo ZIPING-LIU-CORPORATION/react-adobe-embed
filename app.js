@@ -1,7 +1,7 @@
 /* react app for react-adobe-embed used as a live testing environment  via github pages */
 !function(e,t){"object"==typeof exports&&"undefined"!=typeof module?t(require("react"),require("react-dom/client"),require("react-dom")):"function"==typeof define&&define.amd?define(["react","react-dom/client","react-dom"],t):t((e="undefined"!=typeof globalThis?globalThis:e||self).React,e.ReactDOM)}(this,(function(e,t){"use strict";function n(e){var t=Object.create(null);return e&&Object.keys(e).forEach((function(n){if("default"!==n){var a=Object.getOwnPropertyDescriptor(e,n);Object.defineProperty(t,n,a.get?a:{enumerable:!0,get:function(){return e[n]}})}})),t.default=e,Object.freeze(t)}var a,r=n(e);
 /**
-   * @remix-run/router v1.16.0
+   * @remix-run/router v1.16.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -268,7 +268,7 @@ return u.pathname.endsWith("/")||!d&&!h||(u.pathname+="/"),u}
    * Response thrown from an action/loader
    */;const B=["post","put","patch","delete"];new Set(B);const M=["get",...B];
 /**
-   * React Router v6.23.0
+   * React Router v6.23.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -496,7 +496,7 @@ return;let o=[...t,a];if(e.type===r.Fragment)
 // Transparently support React.Fragment and its children.
 return void n.push.apply(n,he(e.props.children,o));e.type!==ce&&s(!1,"["+("string"==typeof e.type?e.type:e.type.name)+"] is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>"),e.props.index&&e.props.children&&s(!1,"An index route cannot have child routes.");let i={id:e.props.id||o.join("-"),caseSensitive:e.props.caseSensitive,element:e.props.element,Component:e.props.Component,index:e.props.index,path:e.props.path,loader:e.props.loader,action:e.props.action,errorElement:e.props.errorElement,ErrorBoundary:e.props.ErrorBoundary,hasErrorBoundary:null!=e.props.ErrorBoundary||null!=e.props.errorElement,shouldRevalidate:e.props.shouldRevalidate,handle:e.props.handle,lazy:e.props.lazy};e.props.children&&(i.children=he(e.props.children,o)),n.push(i)})),n}
 /**
-   * React Router DOM v6.23.0
+   * React Router DOM v6.23.1
    *
    * Copyright (c) Remix Software Inc.
    *
