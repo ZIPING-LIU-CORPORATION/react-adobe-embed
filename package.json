@@ -1,6 +1,6 @@
 {
   "name": "react-adobe-embed",
-  "version": "12.0.2",
+  "version": "13.0.0",
   "homepage": "https://ziping-liu-corporation.github.io/react-adobe-embed/#/home",
   "repository": {
     "type": "git",
@@ -50,8 +50,8 @@
   "module": "./lib/bundle.esm.mjs",
   "main": "./lib/bundle.cjs.js",
   "umd:main": "./lib/bundle.js",
-  "browser": "./dist/react-adobe-embed.cdn.js",
-  "jsdelivr": "./dist/react-adobe-embed.cdn.js",
+  "browser": "./lib/bundle.js",
+  "jsdelivr": "./lib/bundle.js",
   "exports": {
     ".": {
       "require": "./lib/bundle.cjs.js",
@@ -76,13 +76,13 @@
   "scripts": {
     "clean": "rm -rf ./build && rm -rf ./lib && rm -rf ./dist && rm -rf ./types",
     "test": "jest",
-    "build:canary": "npm run build:roll:canary && rsync -rhv --progress ./public/* ./build && cp ./README.md ./build && npm run build:roll:cdn && rsync -rhv --progress ./dist ./build/ && cp ./LICENSE.md ./build && npm run build:public",
+    "build:canary": "npm run build:roll:canary && rsync -rhv --progress ./public/* ./build && cp ./README.md ./build && npm run build:roll && rsync -rhv --progress ./lib ./build/ && cp ./LICENSE.md ./build && npm run build:public",
     "build:public": "node ./scripts/public.js",
     "build:roll:canary": "rimraf build &&  rollup --bundleConfigAsCjs -c rollup.config.canary.js",
     "predeploy": "npm run build:roll:canary",
     "prepare": "husky install",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src ./canary",
-    "build": "npm run build:roll && npm run build:roll:cdn",
+    "build": "npm run build:roll",
     "deploy": "gh-pages -d build",
     "build:roll": "rimraf lib && tsc -p tsconfig.build.json && rollup --bundleConfigAsCjs -c rollup.config.js",
     "build:roll:cdn": "rimraf dist && tsc -p tsconfig.build.json && rollup --bundleConfigAsCjs -c rollup.config.cdn.js"
@@ -101,6 +101,7 @@
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-replace": "^5.0.5",
     "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.5.11",
     "@types/react": "^18.2.33",
@@ -123,6 +124,5 @@
     "rollup-plugin-typescript2": "^0.34.1",
     "ts-jest": "^29.1.1",
     "typescript": "^4.9.5"
-  
   }
 }

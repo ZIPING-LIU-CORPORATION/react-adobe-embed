@@ -18,7 +18,7 @@ const outputCommonConf = {
   exports: 'named',
   globals: {
     react: 'React',
-    'react-dom/client': 'ReactDOM'
+    'react-dom': 'ReactDOM'
   }
 };
 
@@ -31,18 +31,27 @@ export default [
           {
             file: packageJson['umd:main'],
             format: 'umd',
-            name: 'ReactScriptTag',
-            ...outputCommonConf
+            name: 'ReactAdobeEmbed',
+            exports:"named",
+            extend: true,
+            sourcemap: true,
+            globals: {
+              react: 'React',
+              'react-dom': 'ReactDOM'
+            },
           },
           {
             file: packageJson.main,
+            name: 'ReactAdobeEmbed',
             format: 'cjs',
             ...outputCommonConf
           },
           {
             file: packageJson.module,
-            format: 'es',
-            ...outputCommonConf
+         
+            format: 'esm',
+            
+           
           },
         ],
         plugins: [
@@ -50,7 +59,7 @@ export default [
             localResolve(),
             babel({ exclude: 'node_modules/**, src/tests/**' ,
         
-            babelHelpers: 'external',
+            babelHelpers: "bundled",
             presets: [
                 "@babel/preset-env",
                 "@babel/preset-react",
@@ -95,11 +104,13 @@ export default [
 
             filesize(),
         ],
-        external: ["react", "react-dom", "styled-components"]
+        external: ['react', 'react-dom'], // Marking React and ReactDOM as external
+
     },
     {
         input:  "types/index.d.ts",
         output: [{ file: "lib/bundle.esm.d.ts", format: "esm" }],
         plugins: [dts()],
     },
+    
 ];

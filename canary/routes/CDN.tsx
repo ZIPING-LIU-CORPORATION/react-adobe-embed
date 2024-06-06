@@ -11,7 +11,7 @@ export default function CDN() {
 
             // Create new script element to load cdn
             const script = document.createElement('script');
-            script.src = 'https://ziping-liu-corporation.github.io/react-adobe-embed/dist/react-adobe-embed.cdn.js';
+            script.src = 'https://ziping-liu-corporation.github.io/react-adobe-embed/lib/bundle.js';
             script.async = true;
             script.onload = () => {
                 setComponentDidUpdate(true);

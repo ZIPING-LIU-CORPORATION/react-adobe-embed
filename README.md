@@ -230,7 +230,7 @@ _For now this CDN bundle is only accessible in the form of a UMD bundle, through
 <body>
   <h1>My PDF Viewer</h1>
   <div id="root"></div>
-  <script src="https://cdn.jsdelivr.net/npm/react-adobe-embed/dist/react-adobe-embed.cdn.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-adobe-embed/lib/bundle.js"></script>
   <script>
     /**
      * @type {React} ReactCDN
@@ -268,7 +268,7 @@ _For now this CDN bundle is only accessible in the form of a UMD bundle, through
      * loaded via CDN from the above script tag
      * via jsdelivr.net
      */
-    const ReactViewAdobeCDN = window.ReactViewAdobe;
+    const ReactViewAdobeCDN = window.ReactAdobeEmbed.ReactViewAdobe;
 
     /**
      * @type { import('react-adobe-embed').ReactViewAdobeProps }
