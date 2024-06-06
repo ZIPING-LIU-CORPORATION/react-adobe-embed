@@ -27,8 +27,9 @@ export default function CDN() {
 
 
     (window as any).React = React; // expose React as global since the react-adobe embed cdn expects React to be loaded via cdn as well
-    const ReactViewAdobe = (window as any).ReactAdobeEmbed.ReactViewAdobe;
-
+   
+    console.info("ReactAdobeEMbed",(global as any).ReactAdobeEmbed)
+    const ReactViewAdobe = (global as any).ReactAdobeEmbed?.ReactViewAdobe;
     return (
         <section className="container section">
             <div className="row ws-m">
@@ -44,7 +45,7 @@ export default function CDN() {
                     This approach involves loading the component as an independent script within the initial HTML page load, effectively integrating it into the HTML DOM environment. This method not only reduces the space required by the web application, thereby enhancing its load speed, but also leverages the benefits of distributed loading. By loading distinct components of the web application through separate network requests, we can maximize efficiency. In this instance, the react-adobe-embed component is sourced from a CDN as a separate network request, distinct from the main web application. This effectively allows the web application to load in two concurrent parts, or at least simulates this effect, thanks to the inherent multi-threading capabilities of computer systems.
                     </p>
                     {
-                        componentDidUpdate && componentDidMount && ReactViewAdobe && (<ReactViewAdobe
+                        componentDidUpdate && componentDidMount  && (<ReactViewAdobe
                             clientId={getClientId()}
                             url="https://raw.githubusercontent.com/ZipingL/dna/main/23andMe_Ancestry_Book.pdf"
                             debug={true}

@@ -33,7 +33,6 @@ export default [
             format: 'umd',
             name: 'ReactAdobeEmbed',
             exports:"named",
-            extend: true,
             sourcemap: true,
             globals: {
               react: 'React',
@@ -42,7 +41,7 @@ export default [
           },
           {
             file: packageJson.main,
-            name: 'ReactAdobeEmbed',
+   
             format: 'cjs',
             ...outputCommonConf
           },
@@ -50,7 +49,7 @@ export default [
             file: packageJson.module,
          
             format: 'esm',
-            
+
            
           },
         ],
