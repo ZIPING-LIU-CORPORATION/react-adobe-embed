@@ -28,8 +28,8 @@ export default function CDN() {
 
     (window as any).React = React; // expose React as global since the react-adobe embed cdn expects React to be loaded via cdn as well
    
-    console.info("ReactAdobeEMbed",(global as any).ReactAdobeEmbed)
-    const ReactViewAdobe = (global as any).ReactAdobeEmbed?.ReactViewAdobe;
+    console.info("ReactAdobeEMbed",(window as any).ReactAdobeEmbed)
+    const ReactViewAdobe = (window as any).ReactAdobeEmbed?.ReactViewAdobe;
     return (
         <section className="container section">
             <div className="row ws-m">
