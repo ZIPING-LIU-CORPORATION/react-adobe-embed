@@ -1,5 +1,6 @@
 import React from "react";
 import { FileMetaData, PreviewFileConfig, ReactViewAdobeProps } from "./types";
+export { DefaultConfigs, FileMetaData, PreviewFileConfig, ReactViewAdobeProps } from "./types";
 /**
  * Renders the embedded Adobe PDF viewer using the Adobe Embed API.
  *

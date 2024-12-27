@@ -2,6 +2,7 @@ import React from "react";
 import { DefaultConfigs, FileMetaData, PreviewFileConfig, ReactViewAdobeProps } from "./types";
 import AdobeDiv from "./AdobeDiv";
 
+export {DefaultConfigs, FileMetaData, PreviewFileConfig, ReactViewAdobeProps} from "./types";
 
 /**
  * Renders the embedded Adobe PDF viewer using the Adobe Embed API.
