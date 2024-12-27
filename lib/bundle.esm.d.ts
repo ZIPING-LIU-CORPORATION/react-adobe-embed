@@ -193,6 +193,14 @@ type PreviewFileConfig = {
     showPageControls: boolean;
     showLeftHandPanel: boolean;
 };
+declare const DefaultConfigs: {
+    demoUrl: string;
+    staticDefaultConfig: {
+        [key: string]: any;
+    };
+    staticDivId: string;
+    demoMetaData: Partial<FileMetaData>;
+};
 type FileMetaData = {
     /**
      * The name of the PDF to be rendered. An example of fileName is "Bodea Brochure.pdf". Note that fileName is considered a required field but not enforced,
@@ -310,4 +318,4 @@ declare function log({ message, prefix, type, }: {
  */
 declare function ReactViewAdobe(props: ReactViewAdobeProps): React.JSX.Element;
 
-export { ReactViewAdobe, ReactViewAdobe as default, log, previewFile };
+export { DefaultConfigs, type FileMetaData, type PreviewFileConfig, ReactViewAdobe, type ReactViewAdobeProps, ReactViewAdobe as default, log, previewFile };
