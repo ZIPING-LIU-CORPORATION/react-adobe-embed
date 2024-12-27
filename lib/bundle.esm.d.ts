@@ -1,13 +1,5 @@
 import React from 'react';
 
-declare function previewFile({ divId, viewerConfig, url, clientID, _fileMeta, _dcView, }: {
-    divId: string;
-    viewerConfig: Partial<PreviewFileConfig>;
-    url: string;
-    clientID: string;
-    _dcView?: any;
-    _fileMeta?: Partial<FileMetaData>;
-}): any;
 /**
  * @description - props for ReactViewAdobe component which is a wrapper around Adobe PDF Viewer SDK
  * @param useReactHookWhenLoadingAdobeAPI - provides customizability in specifying a certain type of React Hook to use when loading the Adobe Embed API SDK into the DOM
@@ -52,73 +44,43 @@ type ReactViewAdobeProps = {
      * Experimental usages only, and not needed or recommended to be used.
      */
     useReactHookWhenLoadingAdobeAPI?: ReactHooks;
+    /**
+     * Experimental usages only, and not needed or recommended to be used. Allows you to specify a certain type of React Hook to use when calling the Adobe Embed API Services.
+     */
     useReactHookWhenCallingAdobeAPI?: ReactHooks;
+    /**
+     * Experimental usages only, and not needed or recommended to be used. Allows you to specify a certain type of React Hook to use for creating parameters or inputs required by Adobe Embed API Services.
+     */
     useReactHookForAdobeAPIConfigs?: ReactHooks;
+    /**
+     * Experimental usages only, and not needed or recommended to be used. Allows you to specify a certain type of React Hook to use for listening to component updates, to allow for complex nested rerender trigger/chaining.
+     */
     useReactHookForComponentDidUpdate?: ReactHooks;
     triggerAdobeDCViewRender?: boolean;
 };
 /**
- * @description - ReactViewAdobe component which is a wrapper around Adobe PDF Viewer SDK that allows for
- * rendering PDFs via Adobe's PDF Engine. Ensures that Adobe Embed API Services are
- * compartmentalized and fully encapsulated and configured within a rendered page. Not sure why Adobe
- * Embed API does not inherently do this. See ReactViewAdobeProps for more details.
- */
-declare function ReactViewAdobe(props: ReactViewAdobeProps): React.JSX.Element;
-declare const DefaultConfigs: {
-    demoUrl: string;
-    staticDefaultConfig: {
-        showAnnotationTools: boolean;
-        showLeftHandPanel: boolean;
-        showPageControls: boolean;
-        viewSdkViewerScript: string;
-        showDownloadPDF: boolean;
-        showPrintPDF: boolean;
-    };
-    staticDivId: string;
-    demoMetaData: {
-        fileName: string;
-        id: string;
-    };
-};
-type FileMetaData = {
-    /**
-     * The name of the PDF to be rendered. An example of fileName is "Bodea Brochure.pdf". Note that fileName is considered a required field but not enforced,
-     *  - The file name displays on the top bar of the rendered PDF viewer. If left empty, a noticeable empty space is shown instead.
-     */
-    fileName: string;
-    /**
-     * Pass the PDF ID when annotation APIs are enabled to uniquely identify the PDF. For more details, see [Annotations API overview](https://developer.adobe.com/document-services/docs/overview/pdf-embed-api/howtos_comments/#annotations-api-overview).
-     *  - Caution: Failing to provide an id while enabling annotation options will cause the pdf to fail in rendering.
-     */
-    id: string;
-    /**
-     * Set this flag to true if you want to render the PDF in read-only mode. Commenting is not allowed and existing PDF comments are displayed as read only.
-     */
-    hasReadOnlyAccess: boolean;
-};
-type DefaultViewMode = "FIT_WIDTH" | "FIT_PAGE" | "TWO_COLUMN" | "TWO_COLUMN_FIT_PAGE" | "CONTINUOUS" | "SINGLE_PAGE";
-/**
- * @property {boolean} showZoomControl - Configures whether to display zoom controls.
- * @property {boolean} showAnnotationTools - Indicates whether to display annotation tools.
- * @property {boolean} showFullScreen - Configures whether to show the full screen toggle.
- * @property {DefaultViewMode} defaultViewMode - Specifies the default view mode for displaying the PDF.
- * @property {boolean} enableFormFilling - Indicates whether form filling is enabled.
- * @property {boolean} showDownloadPDF - Configures whether to show the download option.
- * @property {boolean} showPrintPDF - Configures whether to show the print option.
- * @property {boolean} showLeftHandPanel - Configures whether to show the left-hand panel.
- * @property {"CLOSE" | "BACK"} exitPDFViewerType - Specifies the behavior of the close button.
- * @property {boolean} showThumbnails - Configures whether to show thumbnails.
- * @property {boolean} showBookmarks - Configures whether to show the bookmarks panel.
- * @property {boolean} enableLinearization - Indicates whether PDF linearization is enabled.
- * @property {boolean} enableAnnotationAPIs - Indicates whether PDF annotation APIs are enabled.
- * @property {boolean} includePDFAnnotations - Indicates whether existing PDF annotations are included.
- * @property {boolean} enableSearchAPIs - Indicates whether PDF search APIs are enabled.
- * @property {"LIGHT_BOX" | "SIZED_CONTAINER" | "IN_LINE" | "FULL_WINDOW"} embedMode - Specifies the embedding mode.
- * @property {boolean} showDisabledSaveButton - Configures whether to show the save button in a disabled state.
- * @property {boolean} focusOnRendering - Configures the focus behavior when rendering the PDF.
- * @property {boolean} showFullScreenViewButton - Configures whether to show the full-screen option.
- * @property {string} viewSdkViewerScript - Specifies the URL for the Adobe Embed API SDK viewer script.
- */
+ * The parameters for the `PreviewFile` function.
+  * @property {boolean} showZoomControl - Configures whether to display zoom controls.
+  * @property {boolean} showAnnotationTools - Indicates whether to display annotation tools.
+  * @property {boolean} showFullScreen - Configures whether to show the full screen toggle.
+  * @property {DefaultViewMode} defaultViewMode - Specifies the default view mode for displaying the PDF.
+  * @property {boolean} enableFormFilling - Indicates whether form filling is enabled.
+  * @property {boolean} showDownloadPDF - Configures whether to show the download option.
+  * @property {boolean} showPrintPDF - Configures whether to show the print option.
+  * @property {boolean} showLeftHandPanel - Configures whether to show the left-hand panel.
+  * @property {"CLOSE" | "BACK"} exitPDFViewerType - Specifies the behavior of the close button.
+  * @property {boolean} showThumbnails - Configures whether to show thumbnails.
+  * @property {boolean} showBookmarks - Configures whether to show the bookmarks panel.
+  * @property {boolean} enableLinearization - Indicates whether PDF linearization is enabled.
+  * @property {boolean} enableAnnotationAPIs - Indicates whether PDF annotation APIs are enabled.
+  * @property {boolean} includePDFAnnotations - Indicates whether existing PDF annotations are included.
+  * @property {boolean} enableSearchAPIs - Indicates whether PDF search APIs are enabled.
+  * @property {"LIGHT_BOX" | "SIZED_CONTAINER" | "IN_LINE" | "FULL_WINDOW"} embedMode - Specifies the embedding mode.
+  * @property {boolean} showDisabledSaveButton - Configures whether to show the save button in a disabled state.
+  * @property {boolean} focusOnRendering - Configures the focus behavior when rendering the PDF.
+  * @property {boolean} showFullScreenViewButton - Configures whether to show the full-screen option.
+  * @property {string} viewSdkViewerScript - Specifies the URL for the Adobe Embed API SDK viewer script.
+  */
 type PreviewFileConfig = {
     /**
      * Set this to `false` to hide the zoom-in and zoom-out options available in the right-hand panel. This configuration will work for full window and lightbox embed modes.
@@ -228,9 +190,124 @@ type PreviewFileConfig = {
      * uses the default [URL](https://acrobatservices.adobe.com/view-sdk/viewer.js) specified from Adobe's documentation, *which has been changed twice, for odd unknowable reasons*.
      */
     viewSdkViewerScript: string;
+    showPageControls: boolean;
+    showLeftHandPanel: boolean;
 };
+type FileMetaData = {
+    /**
+     * The name of the PDF to be rendered. An example of fileName is "Bodea Brochure.pdf". Note that fileName is considered a required field but not enforced,
+     *  - The file name displays on the top bar of the rendered PDF viewer. If left empty, a noticeable empty space is shown instead.
+     */
+    fileName: string;
+    /**
+     * Pass the PDF ID when annotation APIs are enabled to uniquely identify the PDF. For more details, see [Annotations API overview](https://developer.adobe.com/document-services/docs/overview/pdf-embed-api/howtos_comments/#annotations-api-overview).
+     *  - Caution: Failing to provide an id while enabling annotation options will cause the pdf to fail in rendering.
+     */
+    id: string;
+    /**
+     * Set this flag to true if you want to render the PDF in read-only mode. Commenting is not allowed and existing PDF comments are displayed as read only.
+     */
+    hasReadOnlyAccess: boolean;
+};
+type DefaultViewMode = "FIT_WIDTH" | "FIT_PAGE" | "TWO_COLUMN" | "TWO_COLUMN_FIT_PAGE" | "CONTINUOUS" | "SINGLE_PAGE";
 type ReactHooks = {
     [key in Extract<keyof typeof React, `use${string}`>]: [] extends Parameters<(typeof React)[key]> ? never : key extends "useReducer" ? never : key extends "useDeferredValue" ? never : (typeof React)[key] extends (factory: React.EffectCallback, deps?: React.DependencyList | undefined) => void ? key : (typeof React)[key] extends (factory: () => any, deps: React.DependencyList | undefined) => void ? key : never;
 }[Extract<keyof typeof React, `use${string}`>];
 
-export { DefaultConfigs, type DefaultViewMode, type FileMetaData, type ReactHooks, ReactViewAdobe, type ReactViewAdobeProps, ReactViewAdobe as default, previewFile };
+/**
+ * Renders the embedded Adobe PDF viewer using the Adobe Embed API.
+ *
+ * This function is particularly useful when using the `LIGHT_BOX` embed mode, where the PDF viewer
+ * is intended to be triggered by a user interaction, such as clicking a button or link. In `LIGHT_BOX`
+ * mode, the viewer typically occupies the entire screen and does not render by default on page load.
+ *
+ * ### Usage:
+ * ```tsx
+ * previewFile({
+ *   divId: "pdf-viewer",
+ *   viewerConfig: { embedMode: "LIGHT_BOX", showAnnotationTools: true },
+ *   url: "https://example.com/sample.pdf",
+ *   clientID: "your-client-id",
+ *   _fileMeta: { fileName: "Sample.pdf", id: "unique-id" },
+ * });
+ * ```
+ *
+ * @param {Object} params - Parameters for rendering the PDF.
+ * @param {string} params.divId - The ID of the container div where the PDF viewer will be embedded.
+ * @param {Partial<PreviewFileConfig>} params.viewerConfig - Configuration options for the PDF viewer.
+ * @param {string} params.url - The URL of the PDF file to be rendered.
+ * @param {string} params.clientID - The client ID for accessing the Adobe Embed API.
+ * @param {Partial<FileMetaData>} [params._fileMeta] - Optional metadata for the PDF, such as file name and ID.
+ * @param {any} [params._dcView] - Optional pre-existing AdobeDC.View instance to reuse. If not provided, a new instance will be created.
+ *
+ * @returns A promise that resolves when the PDF is successfully rendered.
+ */
+declare function previewFile({ divId, viewerConfig, url, clientID, _fileMeta, _dcView, }: {
+    divId: string;
+    viewerConfig: Partial<PreviewFileConfig>;
+    url: string;
+    clientID: string;
+    _dcView?: any;
+    _fileMeta?: Partial<FileMetaData>;
+}): Promise<any>;
+declare function log({ message, prefix, type, }: {
+    message: string;
+    prefix: string;
+    type: 'info' | 'warn' | 'error';
+}): void;
+/**
+ * ReactViewAdobe
+ *
+ * A React component that acts as a wrapper around the Adobe PDF Viewer SDK, enabling seamless rendering of PDFs using Adobe's Embed API services.
+ * This component is designed to encapsulate and compartmentalize the Adobe Embed API's logic within the React lifecycle, providing robust
+ * configurability and dynamic behavior through customizable React hooks and props.
+ *
+ * ### Features:
+ * - Supports multiple embed modes (`LIGHT_BOX`, `FULL_WINDOW`, `SIZED_CONTAINER`, `IN_LINE`).
+ * - Dynamically loads the Adobe Embed SDK script into the DOM if not already present.
+ * - Enables advanced configurations for rendering, such as annotations, zoom controls, and fullscreen toggles.
+ * - Offers hooks-based extensibility to customize behavior when loading, rendering, or updating the component.
+ * - Provides detailed debug logging for development.
+ *
+ * @param {ReactViewAdobeProps} props - The properties for the ReactViewAdobe component.
+ * @property {string} url - The URL of the PDF to render. (Required)
+ * @property {string} clientId - The Adobe Embed API client ID. (Required)
+ * @property {Partial<PreviewFileConfig>} [previewConfig] - Configuration options for the Adobe Viewer (e.g., zoom controls, annotations).
+ * @property {Partial<FileMetaData>} [fileMeta] - Metadata for the PDF (e.g., file name, ID).
+ * @property {string} [id] - The ID for the PDF container element in the DOM.
+ * @property {React.ReactNode} [children] - Any child components to render inside the wrapper.
+ * @property {string} [className] - CSS class for styling the container.
+ * @property {string} [title] - Title for the container, typically used for accessibility.
+ * @property {React.CSSProperties} [style] - Inline styles for the container.
+ * @property {boolean} [debug] - Enables detailed logging for debugging purposes.
+ * @property {ReactHooks} [useReactHookWhenLoadingAdobeAPI] - Hook for managing the lifecycle of script loading (default: `useEffect`). Do not use unless necessary and you understand the implications.
+ * @property {ReactHooks} [useReactHookWhenCallingAdobeAPI] - Hook for managing API calls to Adobe services (default: `useEffect`). Do not use unless necessary and you understand the implications.
+ * @property {ReactHooks} [useReactHookForComponentDidUpdate] - Hook for managing component updates and re-renders (default: `useEffect`). Do not use unless necessary and you understand the implications.
+ * @property {boolean} [triggerAdobeDCViewRender] - Flag to trigger the rendering of the PDF, especially for `LIGHT_BOX` mode.
+ *
+ * @example
+ * ```tsx
+ * import { ReactViewAdobe } from './ReactViewAdobe';
+ *
+ * export default function App() {
+ *   return (
+ *     <ReactViewAdobe
+ *       url="https://example.com/sample.pdf"
+ *       clientId="your-client-id"
+ *       previewConfig={{ embedMode: "FULL_WINDOW", showZoomControl: true }}
+ *       debug
+ *     />
+ *   );
+ * }
+ * ```
+ *
+ * @summary
+ * - Ensure that the provided `clientId` is correctly configured for your domain, as Adobe verifies domain-clientID mappings.
+ * - This component dynamically injects the Adobe Embed SDK script into the DOM if not already loaded.
+ * - Use the `debug` flag to log lifecycle events and troubleshooting details during development.
+ *
+ * @returns {JSX.Element} A React component that renders the Adobe PDF Viewer.
+ */
+declare function ReactViewAdobe(props: ReactViewAdobeProps): React.JSX.Element;
+
+export { ReactViewAdobe, ReactViewAdobe as default, log, previewFile };
