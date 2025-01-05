@@ -1,7 +1,7 @@
 /* react app for react-adobe-embed used as a live testing environment  via github pages */
 !function(e,t){"object"==typeof exports&&"undefined"!=typeof module?t(require("react"),require("react-dom/client"),require("react-dom")):"function"==typeof define&&define.amd?define(["react","react-dom/client","react-dom"],t):t((e="undefined"!=typeof globalThis?globalThis:e||self).React,e.ReactDOM)}(this,(function(e,t){"use strict";function n(e){var t=Object.create(null);return e&&Object.keys(e).forEach((function(n){if("default"!==n){var a=Object.getOwnPropertyDescriptor(e,n);Object.defineProperty(t,n,a.get?a:{enumerable:!0,get:function(){return e[n]}})}})),t.default=e,Object.freeze(t)}var a,r=n(e);
 /**
-   * @remix-run/router v1.16.1
+   * @remix-run/router v1.21.0
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -108,9 +108,9 @@ key:t&&t.key||a||Math.random().toString(36).substr(2,8)})}
 /**
    * Matches the given routes to a location and returns the match data.
    *
-   * @see https://reactrouter.com/utils/match-routes
+   * @see https://reactrouter.com/v6/utils/match-routes
    */
-function f(e,t,n){void 0===n&&(n="/");let a=k(("string"==typeof t?p(t):t).pathname||"/",n);if(null==a)return null;let r=v(e);!function(e){e.sort(((e,t)=>e.score!==t.score?t.score-e.score:function(e,t){let n=e.length===t.length&&e.slice(0,-1).every(((e,n)=>e===t[n]));return n?
+function f(e,t,n){return void 0===n&&(n="/"),function(e,t,n){let a="string"==typeof t?p(t):t,r=k(a.pathname||"/",n);if(null==r)return null;let o=v(e);!function(e){e.sort(((e,t)=>e.score!==t.score?t.score-e.score:function(e,t){let n=e.length===t.length&&e.slice(0,-1).every(((e,n)=>e===t[n]));return n?
 // If two routes are siblings, we should try to match the earlier sibling
 // first. This allows people to have fine-grained control over the matching
 // behavior by simply putting routes with identical paths in the order they
@@ -118,14 +118,14 @@ function f(e,t,n){void 0===n&&(n="/");let a=k(("string"==typeof t?p(t):t).pathna
 e[e.length-1]-t[t.length-1]:
 // Otherwise, it doesn't really make sense to rank non-siblings by index,
 // so they sort equally.
-0}(e.routesMeta.map((e=>e.childrenIndex)),t.routesMeta.map((e=>e.childrenIndex)))))}(r);let o=null;for(let e=0;null==o&&e<r.length;++e){
+0}(e.routesMeta.map((e=>e.childrenIndex)),t.routesMeta.map((e=>e.childrenIndex)))))}(o);let i=null;for(let e=0;null==i&&e<o.length;++e){
 // Incoming pathnames are generally encoded from either window.location
 // or from router.navigate, but we want to match against the unencoded
 // paths in the route definitions.  Memory router locations won't be
 // encoded here but there also shouldn't be anything to decode so this
 // should be a safe operation.  This avoids needing matchRoutes to be
 // history-aware.
-let t=A(a);o=S(r[e],t)}return o}function v(e,t,n,a){void 0===t&&(t=[]),void 0===n&&(n=[]),void 0===a&&(a="");let r=(e,r,o)=>{let i={relativePath:void 0===o?e.path||"":o,caseSensitive:!0===e.caseSensitive,childrenIndex:r,route:e};i.relativePath.startsWith("/")&&(s(i.relativePath.startsWith(a),'Absolute route path "'+i.relativePath+'" nested under path "'+a+'" is not valid. An absolute child route path must start with the combined path of all its parent routes.'),i.relativePath=i.relativePath.slice(a.length));let l=_([a,i.relativePath]),c=n.concat(i);
+let t=A(r);i=S(o[e],t)}return i}(e,t,n)}function v(e,t,n,a){void 0===t&&(t=[]),void 0===n&&(n=[]),void 0===a&&(a="");let r=(e,r,o)=>{let i={relativePath:void 0===o?e.path||"":o,caseSensitive:!0===e.caseSensitive,childrenIndex:r,route:e};i.relativePath.startsWith("/")&&(s(i.relativePath.startsWith(a),'Absolute route path "'+i.relativePath+'" nested under path "'+a+'" is not valid. An absolute child route path must start with the combined path of all its parent routes.'),i.relativePath=i.relativePath.slice(a.length));let l=I([a,i.relativePath]),c=n.concat(i);
 // Add the children before adding this route to the array, so we traverse the
 // route tree depth-first and child routes appear before their parents in
 // the "flattened" version.
@@ -167,14 +167,14 @@ return r?[o,""]:[o];let i=g(a.join("/")),l=[];
 // first, we avoid this issue
 return l.push(...i.map((e=>""===e?o:[o,e].join("/")))),
 // Then, if this is an optional value, add all child versions without
-r&&l.push(...i),l.map((t=>e.startsWith("/")&&""===t?"/":t))}!function(e){e.data="data",e.deferred="deferred",e.redirect="redirect",e.error="error"}(m||(m={}));const b=/^:[\w-]+$/,y=3,w=2,E=1,R=10,C=-2,x=e=>"*"===e;function N(e,t){let n=e.split("/"),a=n.length;return n.some(x)&&(a+=C),t&&(a+=w),n.filter((e=>!x(e))).reduce(((e,t)=>e+(b.test(t)?y:""===t?E:R)),a)}function S(e,t){let{routesMeta:n}=e,a={},r="/",o=[];for(let e=0;e<n.length;++e){let i=n[e],l=e===n.length-1,s="/"===r?t:t.slice(r.length)||"/",c=D({path:i.relativePath,caseSensitive:i.caseSensitive,end:l},s);if(!c)return null;Object.assign(a,c.params);let u=i.route;o.push({
+r&&l.push(...i),l.map((t=>e.startsWith("/")&&""===t?"/":t))}!function(e){e.data="data",e.deferred="deferred",e.redirect="redirect",e.error="error"}(m||(m={}));const b=/^:[\w-]+$/,y=3,w=2,E=1,R=10,C=-2,x=e=>"*"===e;function N(e,t){let n=e.split("/"),a=n.length;return n.some(x)&&(a+=C),t&&(a+=w),n.filter((e=>!x(e))).reduce(((e,t)=>e+(b.test(t)?y:""===t?E:R)),a)}function S(e,t,n){let{routesMeta:a}=e,r={},o="/",i=[];for(let e=0;e<a.length;++e){let n=a[e],l=e===a.length-1,s="/"===o?t:t.slice(o.length)||"/",c=D({path:n.relativePath,caseSensitive:n.caseSensitive,end:l},s),u=n.route;if(!c)return null;Object.assign(r,c.params),i.push({
 // TODO: Can this as be avoided?
-params:a,pathname:_([r,c.pathname]),pathnameBase:I(_([r,c.pathnameBase])),route:u}),"/"!==c.pathnameBase&&(r=_([r,c.pathnameBase]))}return o}
+params:r,pathname:I([o,c.pathname]),pathnameBase:_(I([o,c.pathnameBase])),route:u}),"/"!==c.pathnameBase&&(o=I([o,c.pathnameBase]))}return i}
 /**
    * Performs pattern matching on a URL pathname and returns information about
    * the match.
    *
-   * @see https://reactrouter.com/utils/match-path
+   * @see https://reactrouter.com/v6/utils/match-path
    */function D(e,t){"string"==typeof e&&(e={path:e,caseSensitive:!1,end:!0});let[n,a]=function(e,t,n){void 0===t&&(t=!1);void 0===n&&(n=!0);c("*"===e||!e.endsWith("*")||e.endsWith("/*"),'Route path "'+e+'" will be treated as if it were "'+e.replace(/\*$/,"/*")+'" because the `*` character must always follow a `/` in the pattern. To get rid of this warning, please change the route path to "'+e.replace(/\*$/,"/*")+'".');let a=[],r="^"+e.replace(/\/*\*?$/,"").replace(/^\/*/,"/").replace(/[\\.*+^${}|()[\]]/g,"\\$&").replace(/\/:([\w-]+)(\?)?/g,((e,t,n)=>(a.push({paramName:t,isOptional:null!=n}),n?"/?([^\\/]+)?":"/([^\\/]+)")));e.endsWith("*")?(a.push({paramName:"*"}),r+="*"===e||"/*"===e?"(.*)$":"(?:\\/(.+)|\\/*)$"):n?
 // When matching to the end, ignore trailing slashes
 r+="\\/*$":""!==e&&"/"!==e&&(
@@ -198,8 +198,8 @@ let n=t.endsWith("/")?t.length-1:t.length,a=e.charAt(n);return a&&"/"!==a?null:e
 /**
    * Returns a resolved path object relative to the given pathname.
    *
-   * @see https://reactrouter.com/utils/resolve-path
-   */function L(e,t,n,a){return"Cannot include a '"+e+"' character in a manually specified `to."+t+"` field ["+JSON.stringify(a)+"].  Please separate it out to the `to."+n+'` field. Alternatively you may provide the full path as a string in <Link to="..."> and the router will parse it for you.'}
+   * @see https://reactrouter.com/v6/utils/resolve-path
+   */function P(e,t,n,a){return"Cannot include a '"+e+"' character in a manually specified `to."+t+"` field ["+JSON.stringify(a)+"].  Please separate it out to the `to."+n+'` field. Alternatively you may provide the full path as a string in <Link to="..."> and the router will parse it for you.'}
 /**
    * @private
    *
@@ -225,14 +225,14 @@ let n=t.endsWith("/")?t.length-1:t.length,a=e.charAt(n);return a&&"/"!==a?null:e
    */
 // Return the array of pathnames for the current route matches - used to
 // generate the routePathnames input for resolveTo()
-function P(e,t){let n=function(e){return e.filter(((e,t)=>0===t||e.route.path&&e.route.path.length>0))}(e);
+function L(e,t){let n=function(e){return e.filter(((e,t)=>0===t||e.route.path&&e.route.path.length>0))}(e);
 // When v7_relativeSplatPath is enabled, use the full pathname for the leaf
 // match so we include splat values for "." links.  See:
 // https://github.com/remix-run/react-router/issues/11052#issuecomment-1836589329
-return t?n.map(((t,n)=>n===e.length-1?t.pathname:t.pathnameBase)):n.map((e=>e.pathnameBase))}
+return t?n.map(((e,t)=>t===n.length-1?e.pathname:e.pathnameBase)):n.map((e=>e.pathnameBase))}
 /**
    * @private
-   */function T(e,t,n,a){let r;void 0===a&&(a=!1),"string"==typeof e?r=p(e):(r=o({},e),s(!r.pathname||!r.pathname.includes("?"),L("?","pathname","search",r)),s(!r.pathname||!r.pathname.includes("#"),L("#","pathname","hash",r)),s(!r.search||!r.search.includes("#"),L("#","search","hash",r)));let i,l=""===e||""===r.pathname,c=l?"/":r.pathname;
+   */function T(e,t,n,a){let r;void 0===a&&(a=!1),"string"==typeof e?r=p(e):(r=o({},e),s(!r.pathname||!r.pathname.includes("?"),P("?","pathname","search",r)),s(!r.pathname||!r.pathname.includes("#"),P("#","pathname","hash",r)),s(!r.search||!r.search.includes("#"),P("#","search","hash",r)));let i,l=""===e||""===r.pathname,c=l?"/":r.pathname;
 // Routing is relative to the current pathname if explicitly requested.
 // If a pathname is explicitly provided in `to`, it should be relative to the
 // route context. This is explained in `Note on `<Link to>` values` in our
@@ -253,10 +253,10 @@ n.length>1&&n.pop():"."!==e&&n.push(e)})),n.length>1?n.join("/"):"/"}(n,t):t;ret
 return u.pathname.endsWith("/")||!d&&!h||(u.pathname+="/"),u}
 /**
    * @private
-   */const _=e=>e.join("/").replace(/\/\/+/g,"/")
+   */const I=e=>e.join("/").replace(/\/\/+/g,"/")
 /**
    * @private
-   */,I=e=>e.replace(/\/+$/,"").replace(/^\/*/,"/")
+   */,_=e=>e.replace(/\/+$/,"").replace(/^\/*/,"/")
 /**
    * @private
    */,O=e=>e&&"?"!==e?e.startsWith("?")?e:"?"+e:""
@@ -268,7 +268,7 @@ return u.pathname.endsWith("/")||!d&&!h||(u.pathname+="/"),u}
    * Response thrown from an action/loader
    */;const B=["post","put","patch","delete"];new Set(B);const M=["get",...B];
 /**
-   * React Router v6.23.1
+   * React Router v6.28.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -294,7 +294,7 @@ const W=r.createContext(null);W.displayName="Navigation";const H=r.createContext
 /**
    * Returns true if this component is a descendant of a `<Router>`.
    *
-   * @see https://reactrouter.com/hooks/use-in-router-context
+   * @see https://reactrouter.com/v6/hooks/use-in-router-context
    */
 function K(){return null!=r.useContext(H)}
 /**
@@ -305,7 +305,7 @@ function K(){return null!=r.useContext(H)}
    * "routing" in your app, and we'd like to know what your use case is. We may
    * be able to provide something higher-level to better suit your needs.
    *
-   * @see https://reactrouter.com/hooks/use-location
+   * @see https://reactrouter.com/v6/hooks/use-location
    */function q(){return K()||s(!1,// TODO: This error is probably because they somehow have 2 versions of the
 // router loaded. We can help them understand how to avoid that.
 "useLocation() may be used only in the context of a <Router> component."),r.useContext(H).location}
@@ -322,8 +322,8 @@ r.useLayoutEffect(e)}
    * Returns an imperative method for changing the location. Used by `<Link>`s, but
    * may also be used by other elements to change the location.
    *
-   * @see https://reactrouter.com/hooks/use-navigate
-   */function Z(){let{isDataRoute:e}=r.useContext($);
+   * @see https://reactrouter.com/v6/hooks/use-navigate
+   */function Y(){let{isDataRoute:e}=r.useContext($);
 // Conditional usage is OK here because the usage of a data router is static
 // eslint-disable-next-line react-hooks/rules-of-hooks
 return e?
@@ -336,7 +336,7 @@ function(){let{router:e}=function(e){let t=r.useContext(j);return t||s(!1,oe(e))
 // is useless because we haven't wired up our router subscriber yet
 n.current&&("number"==typeof a?e.navigate(a):e.navigate(a,F({fromRouteId:t},r)))}),[e,t])}():function(){K()||s(!1,// TODO: This error is probably because they somehow have 2 versions of the
 // router loaded. We can help them understand how to avoid that.
-"useNavigate() may be used only in the context of a <Router> component.");let e=r.useContext(j),{basename:t,future:n,navigator:a}=r.useContext(W),{matches:o}=r.useContext($),{pathname:i}=q(),l=JSON.stringify(P(o,n.v7_relativeSplatPath)),u=r.useRef(!1);return J((()=>{u.current=!0})),r.useCallback((function(n,r){
+"useNavigate() may be used only in the context of a <Router> component.");let e=r.useContext(j),{basename:t,future:n,navigator:a}=r.useContext(W),{matches:o}=r.useContext($),{pathname:i}=q(),l=JSON.stringify(L(o,n.v7_relativeSplatPath)),u=r.useRef(!1);return J((()=>{u.current=!0})),r.useCallback((function(n,r){
 // Short circuit here since if this happens on first render the navigate
 // is useless because we haven't wired up our history listener yet
 if(void 0===r&&(r={}),c(u.current,G),!u.current)return;if("number"==typeof n)return void a.go(n);let o=T(n,JSON.parse(l),i,"path"===r.relative);
@@ -346,19 +346,19 @@ if(void 0===r&&(r={}),c(u.current,G),!u.current)return;if("number"==typeof n)ret
 // If this is a root navigation, then we navigate to the raw basename
 // which allows the basename to have full control over the presence of a
 // trailing slash on root links
-null==e&&"/"!==t&&(o.pathname="/"===o.pathname?t:_([t,o.pathname])),(r.replace?a.replace:a.push)(o,r.state,r)}),[t,a,l,i,e])}
+null==e&&"/"!==t&&(o.pathname="/"===o.pathname?t:I([t,o.pathname])),(r.replace?a.replace:a.push)(o,r.state,r)}),[t,a,l,i,e])}
 /**
    * Resolves the pathname of the given `to` value against the current location.
    *
-   * @see https://reactrouter.com/hooks/use-resolved-path
-   */()}function Y(e,t){let{relative:n}=void 0===t?{}:t,{future:a}=r.useContext(W),{matches:o}=r.useContext($),{pathname:i}=q(),l=JSON.stringify(P(o,a.v7_relativeSplatPath));return r.useMemo((()=>T(e,JSON.parse(l),i,"path"===n)),[e,l,i,n])}
+   * @see https://reactrouter.com/v6/hooks/use-resolved-path
+   */()}function Z(e,t){let{relative:n}=void 0===t?{}:t,{future:a}=r.useContext(W),{matches:o}=r.useContext($),{pathname:i}=q(),l=JSON.stringify(L(o,a.v7_relativeSplatPath));return r.useMemo((()=>T(e,JSON.parse(l),i,"path"===n)),[e,l,i,n])}
 /**
    * Returns the element of the route that matched the current location, prepared
    * with the correct context to render the remainder of the route tree. Route
    * elements in the tree must render an `<Outlet>` to render their child route's
    * element.
    *
-   * @see https://reactrouter.com/hooks/use-routes
+   * @see https://reactrouter.com/v6/hooks/use-routes
    */function X(e,t){
 // Internal implementation with accept optional param for RouterProvider usage
 return function(e,t,n,o){K()||s(!1,// TODO: This error is probably because they somehow have 2 versions of the
@@ -394,10 +394,17 @@ let e=v&&v.path||"";se(h,!v||e.endsWith("*"),'You rendered descendant <Routes> (
 //   pathname:           "/descendant/a%25b/match"
 //   parentPathnameBase: "/descendant/a%b"
 // And the direct substring removal approach won't work :/
-let e=m.replace(/^\//,"").split("/");E="/"+w.replace(/^\//,"").split("/").slice(e.length).join("/")}let R=f(e,{pathname:E});c(v||null!=R,'No routes matched location "'+g.pathname+g.search+g.hash+'" '),c(null==R||void 0!==R[R.length-1].route.element||void 0!==R[R.length-1].route.Component||void 0!==R[R.length-1].route.lazy,'Matched leaf route at location "'+g.pathname+g.search+g.hash+'" does not have an element or Component. This means it will render an <Outlet /> with a null value by default resulting in an "empty" page.');let C=function(e,t,n,a){var o,i;void 0===t&&(t=[]);void 0===n&&(n=null);void 0===a&&(a=null);if(null==e){if(null==(i=n)||!i.errors)return null;
+let e=m.replace(/^\//,"").split("/");E="/"+w.replace(/^\//,"").split("/").slice(e.length).join("/")}let R=f(e,{pathname:E});c(v||null!=R,'No routes matched location "'+g.pathname+g.search+g.hash+'" '),c(null==R||void 0!==R[R.length-1].route.element||void 0!==R[R.length-1].route.Component||void 0!==R[R.length-1].route.lazy,'Matched leaf route at location "'+g.pathname+g.search+g.hash+'" does not have an element or Component. This means it will render an <Outlet /> with a null value by default resulting in an "empty" page.');let C=function(e,t,n,a){var o;void 0===t&&(t=[]);void 0===n&&(n=null);void 0===a&&(a=null);if(null==e){var i;if(!n)return null;if(n.errors)
 // Don't bail if we have data router errors so we can render them in the
 // boundary.  Use the pre-matched (or shimmed) matches
-e=n.matches}let l=e,c=null==(o=n)?void 0:o.errors;
+e=n.matches;else{if(!(null!=(i=a)&&i.v7_partialHydration&&0===t.length&&!n.initialized&&n.matches.length>0))return null;
+// Don't bail if we're initializing with partial hydration and we have
+// router matches.  That means we're actively running `patchRoutesOnNavigation`
+// so we should render down the partial matches to the appropriate
+// `HydrateFallback`.  We only do this if `parentMatches` is empty so it
+// only impacts the root matches for `RouterProvider` and no descendant
+// `<Routes>`
+e=n.matches}}let l=e,c=null==(o=n)?void 0:o.errors;
 // If we have data errors, trim matches to the highest error boundary
 if(null!=c){let e=l.findIndex((e=>e.route.id&&void 0!==(null==c?void 0:c[e.route.id])));e>=0||s(!1,"Could not find a matching route for errors on route IDs: "+Object.keys(c).join(",")),l=l.slice(0,Math.min(l.length,e+1))}
 // If we're in a partial hydration mode, detect if we need to render down to
@@ -414,9 +421,9 @@ let i,s=!1,h=null,p=null;n&&(i=c&&a.route.id?c[a.route.id]:void 0,h=a.route.erro
 // Only wrap in an error boundary within data router usages when we have an
 // ErrorBoundary/errorElement on this route.  Otherwise let it bubble up to
 // an ancestor ErrorBoundary/errorElement
-return n&&(a.route.ErrorBoundary||a.route.errorElement||0===o)?r.createElement(te,{location:n.location,revalidation:n.revalidation,component:h,error:i,children:f(),routeContext:{outlet:null,matches:m,isDataRoute:!0}}):f()}),null)}(R&&R.map((e=>Object.assign({},e,{params:Object.assign({},d,e.params),pathname:_([m,
+return n&&(a.route.ErrorBoundary||a.route.errorElement||0===o)?r.createElement(te,{location:n.location,revalidation:n.revalidation,component:h,error:i,children:f(),routeContext:{outlet:null,matches:m,isDataRoute:!0}}):f()}),null)}(R&&R.map((e=>Object.assign({},e,{params:Object.assign({},d,e.params),pathname:I([m,
 // Re-encode pathnames that were decoded inside matchRoutes
-i.encodeLocation?i.encodeLocation(e.pathname).pathname:e.pathname]),pathnameBase:"/"===e.pathnameBase?m:_([m,
+i.encodeLocation?i.encodeLocation(e.pathname).pathname:e.pathname]),pathnameBase:"/"===e.pathnameBase?m:I([m,
 // Re-encode pathnames that were decoded inside matchRoutes
 i.encodeLocation?i.encodeLocation(e.pathnameBase).pathname:e.pathnameBase])}))),l,n,o);
 // When a user passes in a `locationArg`, the associated routes need to
@@ -450,17 +457,18 @@ return t.location!==e.location||"idle"!==t.revalidation&&"idle"===e.revalidation
 }componentDidCatch(e,t){console.error("React Router caught the following error during render",e,t)}render(){return void 0!==this.state.error?r.createElement($.Provider,{value:this.props.routeContext},r.createElement(z.Provider,{value:this.state.error,children:this.props.component})):this.props.children}}function ne(e){let{routeContext:t,match:n,children:a}=e,o=r.useContext(j);
 // Track how deep we got in our render pass to emulate SSR componentDidCatch
 // in a DataStaticRouter
-return o&&o.static&&o.staticContext&&(n.route.errorElement||n.route.ErrorBoundary)&&(o.staticContext._deepestRenderedBoundaryId=n.route.id),r.createElement($.Provider,{value:t},a)}var ae=function(e){return e.UseBlocker="useBlocker",e.UseRevalidator="useRevalidator",e.UseNavigateStable="useNavigate",e}(ae||{}),re=function(e){return e.UseBlocker="useBlocker",e.UseLoaderData="useLoaderData",e.UseActionData="useActionData",e.UseRouteError="useRouteError",e.UseNavigation="useNavigation",e.UseRouteLoaderData="useRouteLoaderData",e.UseMatches="useMatches",e.UseRevalidator="useRevalidator",e.UseNavigateStable="useNavigate",e.UseRouteId="useRouteId",e}(re||{});function oe(e){return e+" must be used within a data router.  See https://reactrouter.com/routers/picking-a-router."}
+return o&&o.static&&o.staticContext&&(n.route.errorElement||n.route.ErrorBoundary)&&(o.staticContext._deepestRenderedBoundaryId=n.route.id),r.createElement($.Provider,{value:t},a)}var ae=function(e){return e.UseBlocker="useBlocker",e.UseRevalidator="useRevalidator",e.UseNavigateStable="useNavigate",e}(ae||{}),re=function(e){return e.UseBlocker="useBlocker",e.UseLoaderData="useLoaderData",e.UseActionData="useActionData",e.UseRouteError="useRouteError",e.UseNavigation="useNavigation",e.UseRouteLoaderData="useRouteLoaderData",e.UseMatches="useMatches",e.UseRevalidator="useRevalidator",e.UseNavigateStable="useNavigate",e.UseRouteId="useRouteId",e}(re||{});function oe(e){return e+" must be used within a data router.  See https://reactrouter.com/v6/routers/picking-a-router."}
 // Internal version with hookName-aware debugging
 function ie(e){let t=function(e){let t=r.useContext($);return t||s(!1,oe(e)),t}(e),n=t.matches[t.matches.length-1];return n.route.id||s(!1,e+' can only be used on routes that contain a unique "id"'),n.route.id}
 /**
    * Returns the ID for the nearest contextual route
-   */const le={};function se(e,t,n){t||le[e]||(le[e]=!0,c(!1,n))}
+   */const le={};function se(e,t,n){t||le[e]||(le[e]=!0,c(!1,n))}const ce={};const ue=(e,t,n)=>{var a;ce[a="⚠️ React Router Future Flag Warning: "+t+". You can use the `"+e+"` future flag to opt-in early. For more information, see "+n+"."]||(ce[a]=!0,console.warn(a))};
 /**
    * Declares an element that should be rendered at a certain URL path.
    *
-   * @see https://reactrouter.com/components/route
-   */function ce(e){s(!1,"A <Route> is only ever to be used as the child of <Routes> element, never rendered directly. Please wrap your <Route> in a <Routes>.")}
+   * @see https://reactrouter.com/v6/components/route
+   */
+function de(e){s(!1,"A <Route> is only ever to be used as the child of <Routes> element, never rendered directly. Please wrap your <Route> in a <Routes>.")}
 /**
    * Provides location context for the rest of the app.
    *
@@ -468,8 +476,8 @@ function ie(e){let t=function(e){let t=r.useContext($);return t||s(!1,oe(e)),t}(
    * router that is more specific to your environment such as a `<BrowserRouter>`
    * in web browsers or a `<StaticRouter>` for server rendering.
    *
-   * @see https://reactrouter.com/router-components/router
-   */function ue(e){let{basename:t="/",children:n=null,location:o,navigationType:i=a.Pop,navigator:l,static:u=!1,future:d}=e;K()&&s(!1,"You cannot render a <Router> inside another <Router>. You should never have more than one in your app.");
+   * @see https://reactrouter.com/v6/router-components/router
+   */function he(e){let{basename:t="/",children:n=null,location:o,navigationType:i=a.Pop,navigator:l,static:u=!1,future:d}=e;K()&&s(!1,"You cannot render a <Router> inside another <Router>. You should never have more than one in your app.");
 // Preserve trailing slashes on basename, so we can let the user control
 // the enforcement of trailing slashes throughout the app
 let h=t.replace(/^\/*/,"/"),m=r.useMemo((()=>({basename:h,navigator:l,static:u,future:F({v7_relativeSplatPath:!1},d)})),[h,d,l,u]);"string"==typeof o&&(o=p(o));let{pathname:f="/",search:v="",hash:g="",state:b=null,key:y="default"}=o,w=r.useMemo((()=>{let e=k(f,h);return null==e?null:{location:{pathname:e,search:v,hash:g,state:b,key:y},navigationType:i}}),[h,f,v,g,b,y,i]);return c(null!=w,'<Router basename="'+h+'"> is not able to match the URL "'+f+v+g+"\" because it does not start with the basename, so the <Router> won't render anything."),null==w?null:r.createElement(W.Provider,{value:m},r.createElement(H.Provider,{children:n,value:w}))}
@@ -477,8 +485,8 @@ let h=t.replace(/^\/*/,"/"),m=r.useMemo((()=>({basename:h,navigator:l,static:u,f
    * A container for a nested tree of `<Route>` elements that renders the branch
    * that best matches the current location.
    *
-   * @see https://reactrouter.com/components/routes
-   */function de(e){let{children:t,location:n}=e;return X(he(t),n)}
+   * @see https://reactrouter.com/v6/components/routes
+   */function pe(e){let{children:t,location:n}=e;return X(me(t),n)}
 ///////////////////////////////////////////////////////////////////////////////
 // UTILS
 ///////////////////////////////////////////////////////////////////////////////
@@ -487,16 +495,16 @@ let h=t.replace(/^\/*/,"/"),m=r.useMemo((()=>({basename:h,navigator:l,static:u,f
    * either a `<Route>` element or an array of them. Used internally by
    * `<Routes>` to create a route config from its children.
    *
-   * @see https://reactrouter.com/utils/create-routes-from-children
+   * @see https://reactrouter.com/v6/utils/create-routes-from-children
    */
-function he(e,t){void 0===t&&(t=[]);let n=[];return r.Children.forEach(e,((e,a)=>{if(!r.isValidElement(e))
+function me(e,t){void 0===t&&(t=[]);let n=[];return r.Children.forEach(e,((e,a)=>{if(!r.isValidElement(e))
 // Ignore non-elements. This allows people to more easily inline
 // conditionals in their route config.
 return;let o=[...t,a];if(e.type===r.Fragment)
 // Transparently support React.Fragment and its children.
-return void n.push.apply(n,he(e.props.children,o));e.type!==ce&&s(!1,"["+("string"==typeof e.type?e.type:e.type.name)+"] is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>"),e.props.index&&e.props.children&&s(!1,"An index route cannot have child routes.");let i={id:e.props.id||o.join("-"),caseSensitive:e.props.caseSensitive,element:e.props.element,Component:e.props.Component,index:e.props.index,path:e.props.path,loader:e.props.loader,action:e.props.action,errorElement:e.props.errorElement,ErrorBoundary:e.props.ErrorBoundary,hasErrorBoundary:null!=e.props.ErrorBoundary||null!=e.props.errorElement,shouldRevalidate:e.props.shouldRevalidate,handle:e.props.handle,lazy:e.props.lazy};e.props.children&&(i.children=he(e.props.children,o)),n.push(i)})),n}
+return void n.push.apply(n,me(e.props.children,o));e.type!==de&&s(!1,"["+("string"==typeof e.type?e.type:e.type.name)+"] is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>"),e.props.index&&e.props.children&&s(!1,"An index route cannot have child routes.");let i={id:e.props.id||o.join("-"),caseSensitive:e.props.caseSensitive,element:e.props.element,Component:e.props.Component,index:e.props.index,path:e.props.path,loader:e.props.loader,action:e.props.action,errorElement:e.props.errorElement,ErrorBoundary:e.props.ErrorBoundary,hasErrorBoundary:null!=e.props.ErrorBoundary||null!=e.props.errorElement,shouldRevalidate:e.props.shouldRevalidate,handle:e.props.handle,lazy:e.props.lazy};e.props.children&&(i.children=me(e.props.children,o)),n.push(i)})),n}
 /**
-   * React Router DOM v6.23.1
+   * React Router DOM v6.28.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -504,13 +512,13 @@ return void n.push.apply(n,he(e.props.children,o));e.type!==ce&&s(!1,"["+("strin
    * LICENSE.md file in the root directory of this source tree.
    *
    * @license MIT
-   */function pe(){return pe=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var a in n)Object.prototype.hasOwnProperty.call(n,a)&&(e[a]=n[a])}return e},pe.apply(this,arguments)}function me(e,t){if(null==e)return{};var n,a,r={},o=Object.keys(e);for(a=0;a<o.length;a++)n=o[a],t.indexOf(n)>=0||(r[n]=e[n]);return r}new Promise((()=>{}));const fe="get",ve="application/x-www-form-urlencoded";function ge(e){return null!=e&&"string"==typeof e.tagName}
+   */function fe(){return fe=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var a in n)Object.prototype.hasOwnProperty.call(n,a)&&(e[a]=n[a])}return e},fe.apply(this,arguments)}function ve(e,t){if(null==e)return{};var n,a,r={},o=Object.keys(e);for(a=0;a<o.length;a++)n=o[a],t.indexOf(n)>=0||(r[n]=e[n]);return r}new Promise((()=>{}));const ge="get",be="application/x-www-form-urlencoded";function ye(e){return null!=e&&"string"==typeof e.tagName}
 // One-time check for submitter support
-let be=null;const ye=new Set(["application/x-www-form-urlencoded","multipart/form-data","text/plain"]);function we(e){return null==e||ye.has(e)?e:(c(!1,'"'+e+'" is not a valid `encType` for `<Form>`/`<fetcher.Form>` and will default to "'+ve+'"'),null)}function Ee(e,t){let n,a,r,o,i;if(ge(l=e)&&"form"===l.tagName.toLowerCase()){
+let we=null;const Ee=new Set(["application/x-www-form-urlencoded","multipart/form-data","text/plain"]);function Re(e){return null==e||Ee.has(e)?e:(c(!1,'"'+e+'" is not a valid `encType` for `<Form>`/`<fetcher.Form>` and will default to "'+be+'"'),null)}function Ce(e,t){let n,a,r,o,i;if(ye(l=e)&&"form"===l.tagName.toLowerCase()){
 // When grabbing the action from the element, it will have had the basename
 // prefixed to ensure non-JS scenarios work, so strip it since we'll
 // re-prefix in the router
-let i=e.getAttribute("action");a=i?k(i,t):null,n=e.getAttribute("method")||fe,r=we(e.getAttribute("enctype"))||ve,o=new FormData(e)}else if(function(e){return ge(e)&&"button"===e.tagName.toLowerCase()}(e)||function(e){return ge(e)&&"input"===e.tagName.toLowerCase()}(e)&&("submit"===e.type||"image"===e.type)){let i=e.form;if(null==i)throw new Error('Cannot submit a <button> or <input type="submit"> without a <form>');
+let i=e.getAttribute("action");a=i?k(i,t):null,n=e.getAttribute("method")||ge,r=Re(e.getAttribute("enctype"))||be,o=new FormData(e)}else if(function(e){return ye(e)&&"button"===e.tagName.toLowerCase()}(e)||function(e){return ye(e)&&"input"===e.tagName.toLowerCase()}(e)&&("submit"===e.type||"image"===e.type)){let i=e.form;if(null==i)throw new Error('Cannot submit a <button> or <input type="submit"> without a <form>');
 // <button>/<input type="submit"> may override attributes of <form>
 // When grabbing the action from the element, it will have had the basename
 // prefixed to ensure non-JS scenarios work, so strip it since we'll
@@ -520,13 +528,13 @@ let l=e.getAttribute("formaction")||i.getAttribute("action");
 // then tack on the submitter value at the end.  This is a lightweight
 // solution that is not 100% spec compliant.  For complete support in older
 // browsers, consider using the `formdata-submitter-polyfill` package
-if(a=l?k(l,t):null,n=e.getAttribute("formmethod")||i.getAttribute("method")||fe,r=we(e.getAttribute("formenctype"))||we(i.getAttribute("enctype"))||ve,
+if(a=l?k(l,t):null,n=e.getAttribute("formmethod")||i.getAttribute("method")||ge,r=Re(e.getAttribute("formenctype"))||Re(i.getAttribute("enctype"))||be,
 // Build a FormData object populated from a form and submitter
-o=new FormData(i,e),!function(){if(null===be)try{new FormData(document.createElement("form"),
+o=new FormData(i,e),!function(){if(null===we)try{new FormData(document.createElement("form"),
 // @ts-expect-error if FormData supports the submitter parameter, this will throw
-0),be=!1}catch(e){be=!0}return be}()){let{name:t,type:n,value:a}=e;if("image"===n){let e=t?t+".":"";o.append(e+"x","0"),o.append(e+"y","0")}else t&&o.append(t,a)}}else{if(ge(e))throw new Error('Cannot submit element that is not <form>, <button>, or <input type="submit|image">');
+0),we=!1}catch(e){we=!0}return we}()){let{name:t,type:n,value:a}=e;if("image"===n){let e=t?t+".":"";o.append(e+"x","0"),o.append(e+"y","0")}else t&&o.append(t,a)}}else{if(ye(e))throw new Error('Cannot submit element that is not <form>, <button>, or <input type="submit|image">');
 // Send body for <Form encType="text/plain" so we encode it into text
-n=fe,a=null,r=ve,i=e}var l;return o&&"text/plain"===r&&(i=o,o=void 0),{action:a,method:n.toLowerCase(),encType:r,formData:o,body:i}}const Re=["onClick","relative","reloadDocument","replace","state","target","to","preventScrollReset","unstable_viewTransition"],Ce=["aria-current","caseSensitive","className","end","style","to","unstable_viewTransition","children"],xe=["fetcherKey","navigate","reloadDocument","replace","state","method","action","onSubmit","relative","preventScrollReset","unstable_viewTransition"];
+n=ge,a=null,r=be,i=e}var l;return o&&"text/plain"===r&&(i=o,o=void 0),{action:a,method:n.toLowerCase(),encType:r,formData:o,body:i}}const xe=["onClick","relative","reloadDocument","replace","state","target","to","preventScrollReset","viewTransition"],Ne=["aria-current","caseSensitive","className","end","style","to","viewTransition","children"],Se=["fetcherKey","navigate","reloadDocument","replace","state","method","action","onSubmit","relative","preventScrollReset","viewTransition"];
 // HEY YOU! DON'T TOUCH THIS VARIABLE!
 
 // It is replaced with the proper version at build time via a babel plugin in
@@ -538,7 +546,7 @@ n=fe,a=null,r=ve,i=e}var l;return o&&"text/plain"===r&&(i=o,o=void 0),{action:a,
 // https://github.com/HTTPArchive/wappalyzer/blob/main/src/technologies/r.json
 try{window.__reactRouterVersion="6"}catch(e){
 // no-op
-}const Ne=r.createContext({isTransitioning:!1});Ne.displayName="ViewTransition";r.createContext(new Map).displayName="Fetchers";
+}const De=r.createContext({isTransitioning:!1});De.displayName="ViewTransition";r.createContext(new Map).displayName="Fetchers";
 //#endregion
 ////////////////////////////////////////////////////////////////////////////////
 //#region Components
@@ -564,14 +572,14 @@ try{window.__reactRouterVersion="6"}catch(e){
 
     See https://github.com/remix-run/react-router/issues/10579
   */
-const Se=r.startTransition;
+const Ae=r.startTransition;
 /**
    * A `<Router>` for use in web browsers. Stores the location in the hash
    * portion of the URL so it is not sent to the server.
    */
-function De(e){let{basename:t,children:n,future:a,window:o}=e,i=r.useRef();null==i.current&&(i.current=l({window:o,v5Compat:!0}));let s=i.current,[c,u]=r.useState({action:s.action,location:s.location}),{v7_startTransition:d}=a||{},h=r.useCallback((e=>{d&&Se?Se((()=>u(e))):u(e)}),[u,d]);return r.useLayoutEffect((()=>s.listen(h)),[s,h]),r.createElement(ue,{basename:t,children:n,location:c.location,navigationType:c.action,navigator:s,future:a})}const Ae="undefined"!=typeof window&&void 0!==window.document&&void 0!==window.document.createElement,ke=/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i,Le=r.forwardRef((function(e,t){let n,{onClick:a,relative:o,reloadDocument:i,replace:l,state:u,target:d,to:p,preventScrollReset:m,unstable_viewTransition:f}=e,v=me(e,Re),{basename:g}=r.useContext(W),b=!1;if("string"==typeof p&&ke.test(p)&&(
+function ke(e){let{basename:t,children:n,future:a,window:o}=e,i=r.useRef();null==i.current&&(i.current=l({window:o,v5Compat:!0}));let s=i.current,[c,u]=r.useState({action:s.action,location:s.location}),{v7_startTransition:d}=a||{},h=r.useCallback((e=>{d&&Ae?Ae((()=>u(e))):u(e)}),[u,d]);return r.useLayoutEffect((()=>s.listen(h)),[s,h]),r.useEffect((()=>{return void 0===(null==(e=a)?void 0:e.v7_startTransition)&&ue("v7_startTransition","React Router will begin wrapping state updates in `React.startTransition` in v7","https://reactrouter.com/v6/upgrading/future#v7_starttransition"),void(void 0!==(null==e?void 0:e.v7_relativeSplatPath)||t||ue("v7_relativeSplatPath","Relative route resolution within Splat routes is changing in v7","https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath"));var e,t}),[a]),r.createElement(he,{basename:t,children:n,location:c.location,navigationType:c.action,navigator:s,future:a})}const Pe="undefined"!=typeof window&&void 0!==window.document&&void 0!==window.document.createElement,Le=/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i,Te=r.forwardRef((function(e,t){let n,{onClick:a,relative:o,reloadDocument:i,replace:l,state:u,target:d,to:p,preventScrollReset:m,viewTransition:f}=e,v=ve(e,xe),{basename:g}=r.useContext(W),b=!1;if("string"==typeof p&&Le.test(p)&&(
 // Render the absolute href server- and client-side
-n=p,Ae))try{let e=new URL(window.location.href),t=p.startsWith("//")?new URL(e.protocol+p):new URL(p),n=k(t.pathname,g);t.origin===e.origin&&null!=n?
+n=p,Pe))try{let e=new URL(window.location.href),t=p.startsWith("//")?new URL(e.protocol+p):new URL(p),n=k(t.pathname,g);t.origin===e.origin&&null!=n?
 // Strip the protocol/origin/basename for same-origin absolute URLs
 p=n+t.search+t.hash:b=!0}catch(e){
 // We can't do external URL detection without a valid URL
@@ -582,31 +590,31 @@ let y=
    * Returns the full href for the given "to" value. This is useful for building
    * custom links that are also accessible and preserve right-click behavior.
    *
-   * @see https://reactrouter.com/hooks/use-href
+   * @see https://reactrouter.com/v6/hooks/use-href
    */
 function(e,t){let{relative:n}=void 0===t?{}:t;K()||s(!1,// TODO: This error is probably because they somehow have 2 versions of the
 // router loaded. We can help them understand how to avoid that.
-"useHref() may be used only in the context of a <Router> component.");let{basename:a,navigator:o}=r.useContext(W),{hash:i,pathname:l,search:c}=Y(e,{relative:n}),u=l;
+"useHref() may be used only in the context of a <Router> component.");let{basename:a,navigator:o}=r.useContext(W),{hash:i,pathname:l,search:c}=Z(e,{relative:n}),u=l;
 // If we're operating within a basename, prepend it to the pathname prior
 // to creating the href.  If this is a root navigation, then just use the raw
 // basename which allows the basename to have full control over the presence
 // of a trailing slash on root links
-return"/"!==a&&(u="/"===l?a:_([a,l])),o.createHref({pathname:u,search:c,hash:i})}(p,{relative:o}),w=
+return"/"!==a&&(u="/"===l?a:I([a,l])),o.createHref({pathname:u,search:c,hash:i})}(p,{relative:o}),w=
 // External hooks
 /**
    * Handles the click behavior for router `<Link>` components. This is useful if
    * you need to create custom `<Link>` components with the same click behavior we
    * use in our exported `<Link>`.
    */
-function(e,t){let{target:n,replace:a,state:o,preventScrollReset:i,relative:l,unstable_viewTransition:s}=void 0===t?{}:t,c=Z(),u=q(),d=Y(e,{relative:l});return r.useCallback((t=>{if(function(e,t){return!(0!==e.button||
+function(e,t){let{target:n,replace:a,state:o,preventScrollReset:i,relative:l,viewTransition:s}=void 0===t?{}:t,c=Y(),u=q(),d=Z(e,{relative:l});return r.useCallback((t=>{if(function(e,t){return!(0!==e.button||
 // Ignore everything but left clicks
 t&&"_self"!==t||function(e){return!!(e.metaKey||e.altKey||e.ctrlKey||e.shiftKey)}(e))}(t,n)){t.preventDefault();
 // If the URL hasn't changed, a regular <a> will do a replace instead of
 // a push, so do the same here unless the replace prop is explicitly set
-let n=void 0!==a?a:h(u)===h(d);c(e,{replace:n,state:o,preventScrollReset:i,relative:l,unstable_viewTransition:s})}}),[u,c,d,a,o,n,e,i,l,s])}(p,{replace:l,state:u,target:d,preventScrollReset:m,relative:o,unstable_viewTransition:f});
+let n=void 0!==a?a:h(u)===h(d);c(e,{replace:n,state:o,preventScrollReset:i,relative:l,viewTransition:s})}}),[u,c,d,a,o,n,e,i,l,s])}(p,{replace:l,state:u,target:d,preventScrollReset:m,relative:o,viewTransition:f});
 
 // eslint-disable-next-line jsx-a11y/anchor-has-content
-return r.createElement("a",pe({},v,{href:n||y,onClick:b||i?a:function(e){a&&a(e),e.defaultPrevented||w(e)},ref:t,target:d}))}));Le.displayName="Link";r.forwardRef((function(e,t){let{"aria-current":n="page",caseSensitive:a=!1,className:o="",end:i=!1,style:l,to:c,unstable_viewTransition:u,children:d}=e,h=me(e,Ce),p=Y(c,{relative:h.relative}),m=q(),f=r.useContext(V),{navigator:v,basename:g}=r.useContext(W),b=null!=f&&
+return r.createElement("a",fe({},v,{href:n||y,onClick:b||i?a:function(e){a&&a(e),e.defaultPrevented||w(e)},ref:t,target:d}))}));Te.displayName="Link";r.forwardRef((function(e,t){let{"aria-current":n="page",caseSensitive:a=!1,className:o="",end:i=!1,style:l,to:c,viewTransition:u,children:d}=e,h=ve(e,Ne),p=Z(c,{relative:h.relative}),m=q(),f=r.useContext(V),{navigator:v,basename:g}=r.useContext(W),b=null!=f&&
 // Conditional usage is OK here because the usage of a data router is static
 // eslint-disable-next-line react-hooks/rules-of-hooks
 /**
@@ -617,13 +625,13 @@ return r.createElement("a",pe({},v,{href:n||y,onClick:b||i?a:function(e){a&&a(e)
    * @param href The destination href
    * @param [opts.relative] Relative routing type ("route" | "path")
    */
-function(e,t){void 0===t&&(t={});let n=r.useContext(Ne);null==n&&s(!1,"`unstable_useViewTransitionState` must be used within `react-router-dom`'s `RouterProvider`.  Did you accidentally import `RouterProvider` from `react-router`?");let{basename:a}=_e(Pe.useViewTransitionState),o=Y(e,{relative:t.relative});if(!n.isTransitioning)return!1;let i=k(n.currentLocation.pathname,a)||n.currentLocation.pathname,l=k(n.nextLocation.pathname,a)||n.nextLocation.pathname;
+function(e,t){void 0===t&&(t={});let n=r.useContext(De);null==n&&s(!1,"`useViewTransitionState` must be used within `react-router-dom`'s `RouterProvider`.  Did you accidentally import `RouterProvider` from `react-router`?");let{basename:a}=Oe(Ie.useViewTransitionState),o=Z(e,{relative:t.relative});if(!n.isTransitioning)return!1;let i=k(n.currentLocation.pathname,a)||n.currentLocation.pathname,l=k(n.nextLocation.pathname,a)||n.nextLocation.pathname;
 // Transition is active if we're going to or coming from the indicated
 // destination.  This ensures that other PUSH navigations that reverse
 // an indicated transition apply.  I.e., on the list view you have:
-//   <NavLink to="/details/1" unstable_viewTransition>
+//   <NavLink to="/details/1" viewTransition>
 // If you click the breadcrumb back to the list view:
-//   <NavLink to="/list" unstable_viewTransition>
+//   <NavLink to="/list" viewTransition>
 // We should apply the transition because it's indicated as active going
 // from /list -> /details/1 and therefore should be active on the reverse
 // (even though this isn't strictly a POP reverse)
@@ -632,23 +640,23 @@ return null!=D(o.pathname,l)||null!=D(o.pathname,i)}(p)&&!0===u,y=v.encodeLocati
 // we're looking for a slash _after_ what's in `to`.  For example:
 // <NavLink to="/users"> and <NavLink to="/users/">
 // both want to look for a / at index 6 to match URL `/users/matt`
-const R="/"!==y&&y.endsWith("/")?y.length-1:y.length;let C,x=w===y||!i&&w.startsWith(y)&&"/"===w.charAt(R),N=null!=E&&(E===y||!i&&E.startsWith(y)&&"/"===E.charAt(y.length)),S={isActive:x,isPending:N,isTransitioning:b},A=x?n:void 0;C="function"==typeof o?o(S):[o,x?"active":null,N?"pending":null,b?"transitioning":null].filter(Boolean).join(" ");let L="function"==typeof l?l(S):l;
-return r.createElement(Le,pe({},h,{"aria-current":A,className:C,ref:t,style:L,to:c,unstable_viewTransition:u}),"function"==typeof d?d(S):d)})).displayName="NavLink";
+const R="/"!==y&&y.endsWith("/")?y.length-1:y.length;let C,x=w===y||!i&&w.startsWith(y)&&"/"===w.charAt(R),N=null!=E&&(E===y||!i&&E.startsWith(y)&&"/"===E.charAt(y.length)),S={isActive:x,isPending:N,isTransitioning:b},A=x?n:void 0;C="function"==typeof o?o(S):[o,x?"active":null,N?"pending":null,b?"transitioning":null].filter(Boolean).join(" ");let P="function"==typeof l?l(S):l;
+return r.createElement(Te,fe({},h,{"aria-current":A,className:C,ref:t,style:P,to:c,viewTransition:u}),"function"==typeof d?d(S):d)})).displayName="NavLink";
 //#endregion
 ////////////////////////////////////////////////////////////////////////////////
 //#region Hooks
 ////////////////////////////////////////////////////////////////////////////////
-var Pe,Te;function _e(e){let t=r.useContext(j);return t||s(!1,
+var Ie,_e;function Oe(e){let t=r.useContext(j);return t||s(!1,
 // Internal hooks
-function(e){return e+" must be used within a data router.  See https://reactrouter.com/routers/picking-a-router."}(e)),t}r.forwardRef(((e,t)=>{let{fetcherKey:n,navigate:a,reloadDocument:o,replace:i,state:l,method:c=fe,action:u,onSubmit:d,relative:p,preventScrollReset:m,unstable_viewTransition:f}=e,v=me(e,xe),g=
+function(e){return e+" must be used within a data router.  See https://reactrouter.com/v6/routers/picking-a-router."}(e)),t}r.forwardRef(((e,t)=>{let{fetcherKey:n,navigate:a,reloadDocument:o,replace:i,state:l,method:c=ge,action:u,onSubmit:d,relative:p,preventScrollReset:m,viewTransition:f}=e,v=ve(e,Se),g=
 /**
    * Returns a function that may be used to programmatically submit a form (or
    * some arbitrary data) to the server.
    */
-function(){let{router:e}=_e(Pe.UseSubmit),{basename:t}=r.useContext(W),n=ie(re.UseRouteId);return r.useCallback((function(a,r){void 0===r&&(r={}),function(){if("undefined"==typeof document)throw new Error("You are calling submit during the server render. Try calling submit within a `useEffect` or callback instead.")}();let{action:o,method:i,encType:l,formData:s,body:c}=Ee(a,t);if(!1===r.navigate){let t=r.fetcherKey||Oe();e.fetch(t,n,r.action||o,{preventScrollReset:r.preventScrollReset,formData:s,body:c,formMethod:r.method||i,formEncType:r.encType||l,unstable_flushSync:r.unstable_flushSync})}else e.navigate(r.action||o,{preventScrollReset:r.preventScrollReset,formData:s,body:c,formMethod:r.method||i,formEncType:r.encType||l,replace:r.replace,state:r.state,fromRouteId:n,unstable_flushSync:r.unstable_flushSync,unstable_viewTransition:r.unstable_viewTransition})}),[e,t,n])}
+function(){let{router:e}=Oe(Ie.UseSubmit),{basename:t}=r.useContext(W),n=ie(re.UseRouteId);return r.useCallback((function(a,r){void 0===r&&(r={}),function(){if("undefined"==typeof document)throw new Error("You are calling submit during the server render. Try calling submit within a `useEffect` or callback instead.")}();let{action:o,method:i,encType:l,formData:s,body:c}=Ce(a,t);if(!1===r.navigate){let t=r.fetcherKey||Be();e.fetch(t,n,r.action||o,{preventScrollReset:r.preventScrollReset,formData:s,body:c,formMethod:r.method||i,formEncType:r.encType||l,flushSync:r.flushSync})}else e.navigate(r.action||o,{preventScrollReset:r.preventScrollReset,formData:s,body:c,formMethod:r.method||i,formEncType:r.encType||l,replace:r.replace,state:r.state,fromRouteId:n,flushSync:r.flushSync,viewTransition:r.viewTransition})}),[e,t,n])}
 // v7: Eventually we should deprecate this entirely in favor of using the
 // router method directly?
-(),b=function(e,t){let{relative:n}=void 0===t?{}:t,{basename:a}=r.useContext(W),o=r.useContext($);o||s(!1,"useFormAction must be used inside a RouteContext");let[i]=o.matches.slice(-1),l=pe({},Y(e||".",{relative:n})),c=q();
+(),b=function(e,t){let{relative:n}=void 0===t?{}:t,{basename:a}=r.useContext(W),o=r.useContext($);o||s(!1,"useFormAction must be used inside a RouteContext");let[i]=o.matches.slice(-1),l=fe({},Z(e||".",{relative:n})),c=q();
 // Shallow clone path so we can modify it below, otherwise we modify the
 // object referenced by useMemo inside useResolvedPath
 if(null==e){
@@ -658,13 +666,13 @@ l.search=c.search;
 // When grabbing search params from the URL, remove any included ?index param
 // since it might not apply to our contextual route.  We add it back based
 // on match.route.index below
-let e=new URLSearchParams(l.search);e.has("index")&&""===e.get("index")&&(e.delete("index"),l.search=e.toString()?"?"+e.toString():"")}e&&"."!==e||!i.route.index||(l.search=l.search?l.search.replace(/^\?/,"?index&"):"?index");
+let e=new URLSearchParams(l.search),t=e.getAll("index");if(t.some((e=>""===e))){e.delete("index"),t.filter((e=>e)).forEach((t=>e.append("index",t)));let n=e.toString();l.search=n?"?"+n:""}}e&&"."!==e||!i.route.index||(l.search=l.search?l.search.replace(/^\?/,"?index&"):"?index");
 // If we're operating within a basename, prepend it to the pathname prior
 // to creating the form action.  If this is a root navigation, then just use
 // the raw basename which allows the basename to have full control over the
 // presence of a trailing slash on root actions
-"/"!==a&&(l.pathname="/"===l.pathname?a:_([a,l.pathname]));return h(l)}(u,{relative:p}),y="get"===c.toLowerCase()?"get":"post";
-return r.createElement("form",pe({ref:t,method:y,action:b,onSubmit:o?d:e=>{if(d&&d(e),e.defaultPrevented)return;e.preventDefault();let t=e.nativeEvent.submitter,r=(null==t?void 0:t.getAttribute("formmethod"))||c;g(t||e.currentTarget,{fetcherKey:n,method:r,navigate:a,replace:i,state:l,relative:p,preventScrollReset:m,unstable_viewTransition:f})}},v))})).displayName="Form",function(e){e.UseScrollRestoration="useScrollRestoration",e.UseSubmit="useSubmit",e.UseSubmitFetcher="useSubmitFetcher",e.UseFetcher="useFetcher",e.useViewTransitionState="useViewTransitionState"}(Pe||(Pe={})),function(e){e.UseFetcher="useFetcher",e.UseFetchers="useFetchers",e.UseScrollRestoration="useScrollRestoration"}(Te||(Te={}));let Ie=0,Oe=()=>"__"+String(++Ie)+"__";function Ue(){const[t,n]=e.useState(!1),[a,r]=e.useState(!1),[o,i]=e.useState(!1);return e.useEffect((()=>{t||n(!0)}),[t]),e.createElement("nav",{className:"navbar navbar-default navbar-fixed-top navbar-inverse navbar-trans navbar-trans-dark trans-helper navbar-fw",role:"navigation"},e.createElement("div",{className:"container"},e.createElement("div",{style:{width:"75%"},className:"navbar-header page-scroller"},e.createElement("button",{type:"button",onClick:e=>{console.info("hi2"),e.preventDefault(),r(!a)},className:"navbar-toggle collapsed","data-toggle":a?"collapse in":"collapse","data-target":"#navbar","aria-expanded":a?"true":"false","aria-controls":"navbar"},e.createElement("span",{className:"sr-only"},"Toggle navigation"),e.createElement("span",{className:"icon-bar"}),e.createElement("span",{className:"icon-bar"}),e.createElement("span",{className:"icon-bar"})),e.createElement("a",{className:"navbar-brand",href:"index.html"},e.createElement("img",{className:"navbar-logo-dark",style:{content:"unset",height:"50px",backgroundImage:"none"},src:"radar_big.webp",alt:"React Adobe Embed Canary Testing Endpoint"}))),e.createElement("div",{id:"navbar","aria-expanded":a?"true":"false",className:a?"navbar-collapse   collapse in":" navbar-collapse   collapse"},e.createElement("ul",{className:"nav navbar-nav"},e.createElement("li",null,e.createElement(Le,{"data-testid":"home-link",to:"/test"},"Home",e.createElement("span",{className:"sr-only"}))),e.createElement("li",{onClick:()=>{i(!o)},className:"dropdown"+(o?" open":"")},e.createElement(Le,{className:"dropdown-toggle","data-testid":"test-link",to:"#"},"Test",e.createElement("span",{className:"caret"})),e.createElement("ul",{className:"dropdown-menu"},e.createElement("div",{className:"row"},e.createElement("div",{className:"col-lg-6 mb-sm-30"},e.createElement("li",{className:"dropdown-header"},"Test Routes"),e.createElement("li",{className:"divider"}),e.createElement("li",null,e.createElement(Le,{to:"/home"},"Basic PDF Render")),e.createElement("li",null,e.createElement(Le,{to:"/light"},"Lightbox PDF Render")),e.createElement("li",null,e.createElement(Le,{to:"/cdn"},"CDN Loaded PDF Render"))))))))))}function Be(){return e.createElement("footer",{className:"footer-widgets"},e.createElement("div",{className:"copyright"},e.createElement("div",{className:"container"},e.createElement("div",{className:"row"},e.createElement("div",{className:"col-sm-6"},e.createElement("small",null,"© 2024 by Ziping liu. Proudly Served with ",e.createElement("a",{className:"no-style-link",href:"https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/blob/slave/.github/workflows/canaryapp.yml"},"Github Pages"))),e.createElement("div",{className:"col-sm-6"},e.createElement("small",null,e.createElement("a",{href:"#page-top",className:"pull-right to-the-top"},"To the top",e.createElement("i",{className:"fa fa-angle-up"}))))))))}const Me={demoUrl:"https://acrobatservices.adobe.com/view-sdk-demo/PDFs/Bodea%20Brochure.pdf",staticDefaultConfig:{showAnnotationTools:!1,showLeftHandPanel:!1,embedMode:void 0,showPageControls:!1,viewSdkViewerScript:"https://acrobatservices.adobe.com/view-sdk/viewer.js",showDownloadPDF:!1,showPrintPDF:!1},staticDivId:"pdf-div",demoMetaData:{fileName:"Adobe Example Pdf.pdf",id:"6d07d124 - ac85–43b3 - a867–36930f502ac6"}},Fe=t=>{const n=e.useRef(document.getElementById(t.id||Me.staticDivId));return e.createElement("div",{ref:n,id:t.id||Me.staticDivId,className:t.className||"adobe-viewer-of-amazon-corporate-retaliations",style:t.style,title:t.title||"entity-existent-on-frameworks-of-state-regulations-as-defined-by-the-state-and-may-try-to-destroy-your-life-and-control-the-fbi-of-the-state-such-as-amazon-legal-idiots"})};
+"/"!==a&&(l.pathname="/"===l.pathname?a:I([a,l.pathname]));return h(l)}(u,{relative:p}),y="get"===c.toLowerCase()?"get":"post";
+return r.createElement("form",fe({ref:t,method:y,action:b,onSubmit:o?d:e=>{if(d&&d(e),e.defaultPrevented)return;e.preventDefault();let t=e.nativeEvent.submitter,r=(null==t?void 0:t.getAttribute("formmethod"))||c;g(t||e.currentTarget,{fetcherKey:n,method:r,navigate:a,replace:i,state:l,relative:p,preventScrollReset:m,viewTransition:f})}},v))})).displayName="Form",function(e){e.UseScrollRestoration="useScrollRestoration",e.UseSubmit="useSubmit",e.UseSubmitFetcher="useSubmitFetcher",e.UseFetcher="useFetcher",e.useViewTransitionState="useViewTransitionState"}(Ie||(Ie={})),function(e){e.UseFetcher="useFetcher",e.UseFetchers="useFetchers",e.UseScrollRestoration="useScrollRestoration"}(_e||(_e={}));let Ue=0,Be=()=>"__"+String(++Ue)+"__";function Me(){const[t,n]=e.useState(!1),[a,r]=e.useState(!1),[o,i]=e.useState(!1);return e.useEffect((()=>{t||n(!0)}),[t]),e.createElement("nav",{className:"navbar navbar-default navbar-fixed-top navbar-inverse navbar-trans navbar-trans-dark trans-helper navbar-fw",role:"navigation"},e.createElement("div",{className:"container"},e.createElement("div",{style:{width:"75%"},className:"navbar-header page-scroller"},e.createElement("button",{type:"button",onClick:e=>{console.info("hi2"),e.preventDefault(),r(!a)},className:"navbar-toggle collapsed","data-toggle":a?"collapse in":"collapse","data-target":"#navbar","aria-expanded":a?"true":"false","aria-controls":"navbar"},e.createElement("span",{className:"sr-only"},"Toggle navigation"),e.createElement("span",{className:"icon-bar"}),e.createElement("span",{className:"icon-bar"}),e.createElement("span",{className:"icon-bar"})),e.createElement("a",{className:"navbar-brand",href:"index.html"},e.createElement("img",{className:"navbar-logo-dark",style:{content:"unset",height:"50px",backgroundImage:"none"},src:"radar_big.webp",alt:"React Adobe Embed Canary Testing Endpoint"}))),e.createElement("div",{id:"navbar","aria-expanded":a?"true":"false",className:a?"navbar-collapse   collapse in":" navbar-collapse   collapse"},e.createElement("ul",{className:"nav navbar-nav"},e.createElement("li",null,e.createElement(Te,{"data-testid":"home-link",to:"/test"},"Home",e.createElement("span",{className:"sr-only"}))),e.createElement("li",{onClick:()=>{i(!o)},className:"dropdown"+(o?" open":"")},e.createElement(Te,{className:"dropdown-toggle","data-testid":"test-link",to:"#"},"Test",e.createElement("span",{className:"caret"})),e.createElement("ul",{className:"dropdown-menu"},e.createElement("div",{className:"row"},e.createElement("div",{className:"col-lg-6 mb-sm-30"},e.createElement("li",{className:"dropdown-header"},"Test Routes"),e.createElement("li",{className:"divider"}),e.createElement("li",null,e.createElement(Te,{to:"/home"},"Basic PDF Render")),e.createElement("li",null,e.createElement(Te,{to:"/light"},"Lightbox PDF Render")),e.createElement("li",null,e.createElement(Te,{to:"/cdn"},"CDN Loaded PDF Render"))))))))))}function Fe(){return e.createElement("footer",{className:"footer-widgets"},e.createElement("div",{className:"copyright"},e.createElement("div",{className:"container"},e.createElement("div",{className:"row"},e.createElement("div",{className:"col-sm-6"},e.createElement("small",null,"© 2024 by Ziping liu. Proudly Served with ",e.createElement("a",{className:"no-style-link",href:"https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/blob/slave/.github/workflows/canaryapp.yml"},"Github Pages"))),e.createElement("div",{className:"col-sm-6"},e.createElement("small",null,e.createElement("a",{href:"#page-top",className:"pull-right to-the-top"},"To the top",e.createElement("i",{className:"fa fa-angle-up"}))))))))}const je={demoUrl:"https://acrobatservices.adobe.com/view-sdk-demo/PDFs/Bodea%20Brochure.pdf",staticDefaultConfig:{showAnnotationTools:!1,showLeftHandPanel:!1,embedMode:void 0,showPageControls:!1,viewSdkViewerScript:"https://acrobatservices.adobe.com/view-sdk/viewer.js",showDownloadPDF:!1,showPrintPDF:!1},staticDivId:"pdf-div",demoMetaData:{fileName:"Adobe Example Pdf.pdf",id:"6d07d124 - ac85–43b3 - a867–36930f502ac6"}},Ve=t=>{const n=e.useRef(document.getElementById(t.id||je.staticDivId));return e.createElement("div",{ref:n,id:t.id||je.staticDivId,className:t.className||"adobe-viewer-of-amazon-corporate-retaliations",style:t.style,title:t.title||"entity-existent-on-frameworks-of-state-regulations-as-defined-by-the-state-and-may-try-to-destroy-your-life-and-control-the-fbi-of-the-state-such-as-amazon-legal-idiots"})};
 /**
    * @description - An atypical Nested React Component of ReactViewAdobe,
    * specifically for managing API calls and configurations of the Adobe Embed API SDK
@@ -700,7 +708,7 @@ return r.createElement("form",pe({ref:t,method:y,action:b,onSubmit:o?d:e=>{if(d&
    *
    * @returns A promise that resolves when the PDF is successfully rendered.
    */
-function je({divId:e,viewerConfig:t,url:n,clientID:a,_fileMeta:r,_dcView:o}){const i={clientId:a,divId:e};return(o||new window.AdobeDC.View(i)).previewFile({content:{location:{url:n}},metaData:r||Me.demoMetaData},t)}function Ve({message:e,prefix:t="ReactViewAdobe",type:n="info"}){
+function We({divId:e,viewerConfig:t,url:n,clientID:a,_fileMeta:r,_dcView:o}){const i={clientId:a,divId:e};return(o||new window.AdobeDC.View(i)).previewFile({content:{location:{url:n}},metaData:r||je.demoMetaData},t)}function He({message:e,prefix:t="ReactViewAdobe",type:n="info"}){
 // format the message  and better colors, prefix in bold
 const a=`[1m${t}[0m: ${e}`;
 // log the message to the console add prefix in bold
@@ -757,22 +765,22 @@ console[n](a)}
    * - Use the `debug` flag to log lifecycle events and troubleshooting details during development.
    *
    * @returns {JSX.Element} A React component that renders the Adobe PDF Viewer.
-   */function We(t){const[n,a]=e.useState(!1),[r,o]=e.useState(!1),[i,l]=e.useState(!1),s=e[t?.useReactHookForAdobeAPIConfigs||"useMemo"],c=e.useCallback((()=>{const e=t.id||Me.staticDivId,n=t.previewConfig||Me.staticDefaultConfig,a=t.url||Me.demoUrl;
+   */function $e(t){const[n,a]=e.useState(!1),[r,o]=e.useState(!1),[i,l]=e.useState(!1),s=e[t?.useReactHookForAdobeAPIConfigs||"useMemo"],c=e.useCallback((()=>{const e=t.id||je.staticDivId,n=t.previewConfig||je.staticDefaultConfig,a=t.url||je.demoUrl;
 // For Lightbox, we only call if "triggerAdobeDCViewRender" is set
-if("LIGHT_BOX"===n?.embedMode)t.triggerAdobeDCViewRender&&je({divId:e,viewerConfig:n,url:a,clientID:t.clientId,_fileMeta:t.fileMeta});else{document.getElementById(e)&&(t.debug&&console.info("Adobe PDF Viewer: Attempting to preview the file"),je({divId:e,viewerConfig:n,url:a,clientID:t.clientId,_fileMeta:t.fileMeta}))}}),[t.id,t.url,t.clientId,t.fileMeta,t.debug,t.triggerAdobeDCViewRender,t.previewConfig]),u=s((()=>{if(t.debug&&Ve({message:"At hooks to check if Adobe DC View is available",prefix:"ReactViewAdobe:adobeDCView",type:"info"}),!0===n){const e=window.AdobeDC?.View;return t.debug&&Ve({message:"Adobe DC View is available",prefix:"ReactViewAdobe:adobeDCView",type:"info"}),e}}),[n]);(0,e[t?.useReactHookWhenLoadingAdobeAPI||"useEffect"])((()=>{if(!1===i){const e=document.querySelector(`script.react-adobe-embed-handholding-adobe-api-loading-idiocy[data-adobe-pdf-id="${t.id||Me.staticDivId}"]`);if(e)t.debug&&
+if("LIGHT_BOX"===n?.embedMode)t.triggerAdobeDCViewRender&&We({divId:e,viewerConfig:n,url:a,clientID:t.clientId,_fileMeta:t.fileMeta});else{document.getElementById(e)&&(t.debug&&console.info("Adobe PDF Viewer: Attempting to preview the file"),We({divId:e,viewerConfig:n,url:a,clientID:t.clientId,_fileMeta:t.fileMeta}))}}),[t.id,t.url,t.clientId,t.fileMeta,t.debug,t.triggerAdobeDCViewRender,t.previewConfig]),u=s((()=>{if(t.debug&&He({message:"At hooks to check if Adobe DC View is available",prefix:"ReactViewAdobe:adobeDCView",type:"info"}),!0===n){const e=window.AdobeDC?.View;return t.debug&&He({message:"Adobe DC View is available",prefix:"ReactViewAdobe:adobeDCView",type:"info"}),e}}),[n]);(0,e[t?.useReactHookWhenLoadingAdobeAPI||"useEffect"])((()=>{if(!1===i){const e=document.querySelector(`script.react-adobe-embed-handholding-adobe-api-loading-idiocy[data-adobe-pdf-id="${t.id||je.staticDivId}"]`);if(e)t.debug&&
 // console.info(`\x1b[1mAdobe SDK Check\x1b[0m`, 'Reloading and Rerendering Adobe SDK');
-Ve({message:"Reloading and Rerendering Adobe SDK",prefix:"ReactViewAdobe:AdobeSDK",type:"info"}),
+He({message:"Reloading and Rerendering Adobe SDK",prefix:"ReactViewAdobe:AdobeSDK",type:"info"}),
 // Lightbox mode renders from ui event triggered by user, so no need to render
-"LIGHT_BOX"!==t.previewConfig?.embedMode&&o(!0),e.setAttribute("data-testid","react-adobe-embed-handholding-adobe-api-loading-idiocy-reused");else{t.debug&&Ve({message:"Initial Adobe SDK Load",prefix:"ReactViewAdobe:AdobeSDK",type:"info"});const e=document.createElement("script");e.setAttribute("data-testid","react-adobe-embed-handholding-adobe-api-loading-idiocy-initial"),e.setAttribute("data-adobe-pdf-id",t.id||Me.staticDivId),e.setAttribute("class","react-adobe-embed-handholding-adobe-api-loading-idiocy"),e.src=t.previewConfig?.viewSdkViewerScript||Me.staticDefaultConfig.viewSdkViewerScript,e.async=!0,e.onload=()=>{l(!0)},document.body.appendChild(e)}}}),[t.id,i,n]);(0,e[t?.useReactHookWhenCallingAdobeAPI||"useEffect"])((()=>{!1===n&&!0===i&&document.addEventListener("adobe_dc_view_sdk.ready",(()=>{a(!0)}));!0===i&&!0===n&&(e=>{e.debug&&
+"LIGHT_BOX"!==t.previewConfig?.embedMode&&o(!0),e.setAttribute("data-testid","react-adobe-embed-handholding-adobe-api-loading-idiocy-reused");else{t.debug&&He({message:"Initial Adobe SDK Load",prefix:"ReactViewAdobe:AdobeSDK",type:"info"});const e=document.createElement("script");e.setAttribute("data-testid","react-adobe-embed-handholding-adobe-api-loading-idiocy-initial"),e.setAttribute("data-adobe-pdf-id",t.id||je.staticDivId),e.setAttribute("class","react-adobe-embed-handholding-adobe-api-loading-idiocy"),e.src=t.previewConfig?.viewSdkViewerScript||je.staticDefaultConfig.viewSdkViewerScript,e.async=!0,e.onload=()=>{l(!0)},document.body.appendChild(e)}}}),[t.id,i,n]);(0,e[t?.useReactHookWhenCallingAdobeAPI||"useEffect"])((()=>{!1===n&&!0===i&&document.addEventListener("adobe_dc_view_sdk.ready",(()=>{a(!0)}));!0===i&&!0===n&&(e=>{e.debug&&
 /*
                     console.info(
                     "Adobe PDF Viewer SDK Ready Event",
                     adobeDCView,
                     (window as any)["adobe_dc_view_sdk"],
                   );*/
-Ve({message:"At Calling Adobe API to render PDF - window.adobe_dc_view_sdk:"+window.adobe_dc_view_sdk,prefix:"ReactViewAdobe:callAdobeApi",type:"info"}),c()})(t)}),[n,i,t,u]);return(0,e[t?.useReactHookForComponentDidUpdate||"useEffect"])((()=>{if(!0===r){const e=t.id||Me.staticDivId;document.getElementById(e)&&c(),o(!1)}}),[r,t]),e.createElement(Fe,{...t})}function He(){switch(window.location.hostname){case"localhost":default:return"324caa2a91b84f688935436cd2d25217";case"ziping.dev":return"2aeb65914ea244cd85c16b60ca3b688d";case"ziping.life":return"2daf6038d0f1447fb9dd17988e93b5b8";case"ziping.org":return"312487a25a5b4c0d845f6d93e8103c32";case"awsuni.com":return"50d3f2b88101430f8da3006527dcdf78";case"twitterliu.com":return"ac52e99ebc8242e9bf85ecb55444f726";case"one.ziping.org":return"2e5605e61e5b4306829b619d6fad2dc4";case"zipingl.github.io":return"9c16d364507948289a9f65f9ab9da8bf";case"ziping-liu-corporation.github.io":return"875691e089ad4bf6bc4c5cea79403542"}}function $e(){const t=window.location.href.split("?")[1],n=new URLSearchParams(t),a=n.get("pdf")||n.get("url")||"https://raw.githubusercontent.com/ZipingL/dna/main/23andMe_Ancestry_Book.pdf",r=n.get("width"),o=n.get("height"),i=n.get("fileName")||a.split("/").pop()||"23andMe_Ancestry_Book.pdf";return e.createElement("section",{id:"about",className:"container section"},e.createElement("div",{className:"row ws-m"},e.createElement("header",{className:"sec-heading"},e.createElement("h2",null,"Basic Test View"),e.createElement("span",{className:"subheading"},"Using the react-adobe-embed component with no additional configurations, except for the pdf url, in order to test the rendering of a PDF at the most basic level of usage.")),e.createElement(We,{previewConfig:{},className:"col container-fluid post-content",fileMeta:{fileName:i},style:{width:r||"100%",height:o||"calc(100vh - 200px)",maxHeight:"100%",border:"1px solid transparent",alignContent:"center",justifyContent:"center",minHeight:"500px"},url:a,debug:!0,id:"adobe-dc-view-0",clientId:He()})))}function ze(){return e.createElement("section",{className:"container section"},e.createElement("div",{className:"row ws-m"},e.createElement("div",{className:"col s12",style:{height:"calc(100vh - 420px)"}},e.createElement(We,{url:"https://raw.githubusercontent.com/ZipingL/dna/main/23andMe_Ancestry_Book.pdf",clientId:He(),previewConfig:{embedMode:"LIGHT_BOX"},debug:!0}),e.createElement("button",{className:"btn btn-primary",onClick:()=>{je({url:"https://raw.githubusercontent.com/ZipingL/dna/main/23andMe_Ancestry_Book.pdf",viewerConfig:{embedMode:"LIGHT_BOX"},clientID:He(),divId:"pdf-div",_fileMeta:{fileName:"23andMe_Ancestry_Book.pdf"}})}},"Toggle Light Box View"))))}function Ke(){const[t,n]=e.useState(!1),[a,r]=e.useState(!1);e.useEffect((()=>{if(!t){
+He({message:"At Calling Adobe API to render PDF - window.adobe_dc_view_sdk:"+window.adobe_dc_view_sdk,prefix:"ReactViewAdobe:callAdobeApi",type:"info"}),c()})(t)}),[n,i,t,u]);return(0,e[t?.useReactHookForComponentDidUpdate||"useEffect"])((()=>{if(!0===r){const e=t.id||je.staticDivId;document.getElementById(e)&&c(),o(!1)}}),[r,t]),e.createElement(Ve,{...t})}function ze(){switch(window.location.hostname){case"localhost":default:return"324caa2a91b84f688935436cd2d25217";case"ziping.dev":return"2aeb65914ea244cd85c16b60ca3b688d";case"ziping.life":return"2daf6038d0f1447fb9dd17988e93b5b8";case"ziping.org":return"312487a25a5b4c0d845f6d93e8103c32";case"awsuni.com":return"50d3f2b88101430f8da3006527dcdf78";case"twitterliu.com":return"ac52e99ebc8242e9bf85ecb55444f726";case"one.ziping.org":return"2e5605e61e5b4306829b619d6fad2dc4";case"zipingl.github.io":return"9c16d364507948289a9f65f9ab9da8bf";case"ziping-liu-corporation.github.io":return"875691e089ad4bf6bc4c5cea79403542"}}function Ke(){const t=window.location.href.split("?")[1],n=new URLSearchParams(t),a=n.get("pdf")||n.get("url")||"https://raw.githubusercontent.com/ZipingL/dna/main/23andMe_Ancestry_Book.pdf",r=n.get("width"),o=n.get("height"),i=n.get("fileName")||a.split("/").pop()||"23andMe_Ancestry_Book.pdf";return e.createElement("section",{id:"about",className:"container section"},e.createElement("div",{className:"row ws-m"},e.createElement("header",{className:"sec-heading"},e.createElement("h2",null,"Basic Test View"),e.createElement("span",{className:"subheading"},"Using the react-adobe-embed component with no additional configurations, except for the pdf url, in order to test the rendering of a PDF at the most basic level of usage.")),e.createElement($e,{previewConfig:{},className:"col container-fluid post-content",fileMeta:{fileName:i},style:{width:r||"100%",height:o||"calc(100vh - 200px)",maxHeight:"100%",border:"1px solid transparent",alignContent:"center",justifyContent:"center",minHeight:"500px"},url:a,debug:!0,id:"adobe-dc-view-0",clientId:ze()})))}function qe(){return e.createElement("section",{className:"container section"},e.createElement("div",{className:"row ws-m"},e.createElement("div",{className:"col s12",style:{height:"calc(100vh - 420px)"}},e.createElement($e,{url:"https://raw.githubusercontent.com/ZipingL/dna/main/23andMe_Ancestry_Book.pdf",clientId:ze(),previewConfig:{embedMode:"LIGHT_BOX"},debug:!0}),e.createElement("button",{className:"btn btn-primary",onClick:()=>{We({url:"https://raw.githubusercontent.com/ZipingL/dna/main/23andMe_Ancestry_Book.pdf",viewerConfig:{embedMode:"LIGHT_BOX"},clientID:ze(),divId:"pdf-div",_fileMeta:{fileName:"23andMe_Ancestry_Book.pdf"}})}},"Toggle Light Box View"))))}function Ge(){const[t,n]=e.useState(!1),[a,r]=e.useState(!1);e.useEffect((()=>{if(!t){
 // Create new script element to load cdn
 const e=document.createElement("script");e.src="https://ziping-liu-corporation.github.io/react-adobe-embed/lib/bundle.js",e.async=!0,e.onload=()=>{r(!0)},
 // Add script to document body
 document.body.appendChild(e),n(!0)}}),[t,a]),window.React=e,// expose React as global since the react-adobe embed cdn expects React to be loaded via cdn as well
-console.info("ReactAdobeEMbed",window.ReactAdobeEmbed);const o=window.ReactAdobeEmbed?.ReactViewAdobe;return e.createElement("section",{className:"container section"},e.createElement("div",{className:"row ws-m"},e.createElement("div",{className:"col s12"},e.createElement("header",{className:"sec-heading"},e.createElement("h2",null,"CDN Loaded Basic PDF Render"),e.createElement("span",{className:"subheading"},"Content Delivery Networking (CDN) allows the delivery of the react-adobe-embed component to a browser environment to occur as ",e.createElement("strong",null,"a separate process")," from the main body of the web application's code.")),e.createElement("p",null,"This approach involves loading the component as an independent script within the initial HTML page load, effectively integrating it into the HTML DOM environment. This method not only reduces the space required by the web application, thereby enhancing its load speed, but also leverages the benefits of distributed loading. By loading distinct components of the web application through separate network requests, we can maximize efficiency. In this instance, the react-adobe-embed component is sourced from a CDN as a separate network request, distinct from the main web application. This effectively allows the web application to load in two concurrent parts, or at least simulates this effect, thanks to the inherent multi-threading capabilities of computer systems."),a&&t&&e.createElement(o,{clientId:He(),url:"https://raw.githubusercontent.com/ZipingL/dna/main/23andMe_Ancestry_Book.pdf",debug:!0,className:"col container-fluid post-content",style:{height:"calc(100vh - 420px)",width:"100%"},previewConfig:{},fileMeta:{fileName:"23andMe_Ancestry_Book.pdf"}}))))}const qe=document.getElementById("app");qe&&t.createRoot(qe).render(e.createElement((function(){return e.createElement(De,null,e.createElement(Ue,null),e.createElement(de,null,e.createElement(ce,{path:"/test",element:e.createElement("div",{className:"section container"},e.createElement("div",{className:"row"},e.createElement("div",{className:"col s12"},e.createElement("h5",{"data-testid":"test-route",className:"header"},"Test Route View"),e.createElement("iframe",{src:"https://one.ziping.org/ZIPING-LIU-CORPORATION/react-adobe-embed/blob/slave/README.md/?domain=github.com",style:{width:"100%",height:"900px",border:"1px solid transparent",alignContent:"center",justifyContent:"center"}}))))}),e.createElement(ce,{path:"/home",element:e.createElement($e,null)}),e.createElement(ce,{path:"/light",element:e.createElement(ze,null)}),e.createElement(ce,{path:"/cdn",element:e.createElement(Ke,null)})),e.createElement(Be,null))}),null))}));
+console.info("ReactAdobeEMbed",window.ReactAdobeEmbed);const o=window.ReactAdobeEmbed?.ReactViewAdobe;return e.createElement("section",{className:"container section"},e.createElement("div",{className:"row ws-m"},e.createElement("div",{className:"col s12"},e.createElement("header",{className:"sec-heading"},e.createElement("h2",null,"CDN Loaded Basic PDF Render"),e.createElement("span",{className:"subheading"},"Content Delivery Networking (CDN) allows the delivery of the react-adobe-embed component to a browser environment to occur as ",e.createElement("strong",null,"a separate process")," from the main body of the web application's code.")),e.createElement("p",null,"This approach involves loading the component as an independent script within the initial HTML page load, effectively integrating it into the HTML DOM environment. This method not only reduces the space required by the web application, thereby enhancing its load speed, but also leverages the benefits of distributed loading. By loading distinct components of the web application through separate network requests, we can maximize efficiency. In this instance, the react-adobe-embed component is sourced from a CDN as a separate network request, distinct from the main web application. This effectively allows the web application to load in two concurrent parts, or at least simulates this effect, thanks to the inherent multi-threading capabilities of computer systems."),a&&t&&e.createElement(o,{clientId:ze(),url:"https://raw.githubusercontent.com/ZipingL/dna/main/23andMe_Ancestry_Book.pdf",debug:!0,className:"col container-fluid post-content",style:{height:"calc(100vh - 420px)",width:"100%"},previewConfig:{},fileMeta:{fileName:"23andMe_Ancestry_Book.pdf"}}))))}const Je=document.getElementById("app");Je&&t.createRoot(Je).render(e.createElement((function(){return e.createElement(ke,null,e.createElement(Me,null),e.createElement(pe,null,e.createElement(de,{path:"/test",element:e.createElement("div",{className:"section container"},e.createElement("div",{className:"row"},e.createElement("div",{className:"col s12"},e.createElement("h5",{"data-testid":"test-route",className:"header"},"Test Route View"),e.createElement("iframe",{src:"https://one.ziping.org/ZIPING-LIU-CORPORATION/react-adobe-embed/blob/slave/README.md/?domain=github.com",style:{width:"100%",height:"900px",border:"1px solid transparent",alignContent:"center",justifyContent:"center"}}))))}),e.createElement(de,{path:"/home",element:e.createElement(Ke,null)}),e.createElement(de,{path:"/light",element:e.createElement(qe,null)}),e.createElement(de,{path:"/cdn",element:e.createElement(Ge,null)})),e.createElement(Fe,null))}),null))}));
