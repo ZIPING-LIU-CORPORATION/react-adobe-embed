@@ -78,11 +78,18 @@ or
 yarn add react-adobe-embed
 ```
 
-Once installed, you can import the component into your React application and start using it right away. The component provides a simple and intuitive API for embedding Adobe documents and customizing the viewing experience.
+Once installed, you can import the component into your React application and start using it right away. The component provides a simple and intuitive API for embedding Adobe documents and customizing the viewing experience. **To use the component, you will need to obtain a clientId from Adobe, which is required to access the Adobe Embed API**. These clientIds are tied to a specific domain or subdomain, thus create one accordingly to the page you intend to use the component on. You are free to use the clientId provided in the example below, but take note that it only works on `http://localhost:80`. See below on how to get a clientId.
 
 ### Get a ClientId
 
 You will need a clientId "key" from Adobe to use the Embed API and therefore this `react-adobe-embed` as well. You can get one for free (and create up to 20 keys) by visiting the [Adobe Embed API Creation Page](https://acrobatservices.adobe.com/dc-integration-creation-app-cdn/main.html?api=pdf-embed-api). Keys are tied to a specific `domain` that you specificy when creating a key, which means that the key only works for that `domain`, e.g. `app.exampledomain.com`, or `example.com`, or `localhost`. For you convenience, you may use the clientId show below in the example usages, but take note that it only works on `http://localhost:80`.
+
+## Troubleshooting common errors
+
+- `Cannot read properties of undefined (reading 'View')`
+  - **Remedy**: disable ReactStrictMode when rendering the React Application, e.g., remove <React.StrictMode>
+- `LicenseVerificationService.js:32 POST https://viewlicense.adobe.io/viewsdklicense/jwt 401 (Unauthorized)` (The pdf renders then immediately disappears for no apparent reason, sometimes showing an 'Unauthorized' error in the console and where the pdf was)
+  - **Remedy:** The provided `clientId` is invalid. This usually occurs because the `clientId` is not configured to permit Adobe Embed API calls from the current hostname. You may use the example `clientId` `324caa2a91b84f688935436cd2d25217` as shown above, but please note that this example `clientId` is only valid for use on `localhost` at port `80`, i.e., `http://localhost:80`. To generate your own `clientId`, visit the official Adobe page [here](https://acrobatservices.adobe.com/dc-integration-creation-app-cdn/main.html) for React Adobe Embed.
 
 ## Basic Usage Examples
 
@@ -320,12 +327,6 @@ _For now this CDN bundle is only accessible in the form of a UMD bundle, through
 - I don't know why but the folks at Adobe decided to change the script URL, and then also change the global variable name used to store the Adobe api methods, this has ulimately caused this npm package as actually a broken useless wrapper... so why didn't anyone add to the [discussion board](https://github.com/ZIPING-LIU-CORPORATION/react-adobe-embed/discussions/1) to let me know? Seriously? Just literally next time say, hey idiot your code is broken. I won't be offended. It's just code dude.
 </blockquote>
 
-## Troubleshooting common errors
-
-- `Cannot read properties of undefined (reading 'View')`
-  - Remedy: disable ReactStrictMode when rendering the React Application, e.g., remove <React.StrictMode>
-- `LicenseVerificationService.js:32 POST https://viewlicense.adobe.io/viewsdklicense/jwt 401 (Unauthorized)` (The pdf renders then immediately disappears for no apparent reason)
-  - Remedy: the provided clientId is invalid. This is mainly due to the clientId provided not setup to allow for adobe embed api calls at the current hostname. You are free to use the clientId, `` shown in the example above, but take note that you will need to run your app on localhost port 80. To create your own clientId, visit the official page [here](https://acrobatservices.adobe.com/dc-integration-creation-app-cdn/main.html) for react adobe embed.
 
 ## Testing
 
